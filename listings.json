@@ -49,19 +49,13 @@
     ]
   },
   {
-    "listing": "/content/Cours_6/index.html",
+    "listing": "/content/Cours_2/index.html",
     "items": [
-      "/content/Cours_6/4-behavioral_patterns.html",
-      "/content/Cours_6/2-Creational_patterns.html",
-      "/content/Cours_6/1-Python_Design_Pattern.html",
-      "/content/Cours_6/3-Structural_patterns.html",
-      "/content/Cours_6/TP.html"
-    ]
-  },
-  {
-    "listing": "/content/Projets/index.html",
-    "items": [
-      "/content/Projets/L3_EIF_2024.html"
+      "/content/Cours_2/1-Encapsulation.html",
+      "/content/Cours_2/2-Heritage.html",
+      "/content/Cours_2/3-Composition.html",
+      "/content/Cours_2/4-Dunder.html",
+      "/content/Cours_2/TP.html"
     ]
   },
   {
@@ -74,16 +68,6 @@
       "/content/Cours_1/2-Structuration_des_donnees.html",
       "/content/Cours_1/5-Simplicity_and_performance.html",
       "/content/Cours_1/4-all_is_object.html"
-    ]
-  },
-  {
-    "listing": "/content/Cours_2/index.html",
-    "items": [
-      "/content/Cours_2/1-Encapsulation.html",
-      "/content/Cours_2/2-Heritage.html",
-      "/content/Cours_2/3-Composition.html",
-      "/content/Cours_2/4-Dunder.html",
-      "/content/Cours_2/TP.html"
     ]
   },
   {
@@ -105,6 +89,22 @@
       "/content/Cours_3/5-Protocol.html",
       "/content/Cours_3/TP.html",
       "/content/Cours_3/3-Type_Hinting.html"
+    ]
+  },
+  {
+    "listing": "/content/Projets/index.html",
+    "items": [
+      "/content/Projets/L3_EIF_2024.html"
+    ]
+  },
+  {
+    "listing": "/content/Cours_6/index.html",
+    "items": [
+      "/content/Cours_6/4-behavioral_patterns.html",
+      "/content/Cours_6/2-Creational_patterns.html",
+      "/content/Cours_6/1-Python_Design_Pattern.html",
+      "/content/Cours_6/3-Structural_patterns.html",
+      "/content/Cours_6/TP.html"
     ]
   }
 ]
