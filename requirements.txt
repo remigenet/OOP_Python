@@ -1,6 +1,5 @@
 fastapi
-torch
-torchvision
+jax
 pandas
 numpy
 matplotlib
@@ -9,3 +8,4 @@ scipy
 jupyter
 jupyter-cache
 scipy
+pytest

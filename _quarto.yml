@@ -115,7 +115,7 @@ website:
       title: "Sujets de Projets possibles"
       contents: 
        - content/Projets/index.qmd
-       - content/Projets/L3_EIF_2024.qmd
+       - content/Projets/m2_EIF_2024.qmd
 
         
   repo-url: https://github.com/remigenet/OOP_Python

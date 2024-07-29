@@ -1,0 +1,21 @@
+---
+title: "Projets POO - Millésime 2024-2025"
+weight: 10
+tags:
+  - Pandas
+  - Bases
+  - Libraries
+  - Cours
+categories:
+  - Cours
+  - Fondamentaux
+type: book
+description: ""
+image: .img/projet.webp
+filters:
+  - pyodide
+---
+
+# TODO
+
+---
