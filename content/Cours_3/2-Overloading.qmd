@@ -1,0 +1,139 @@
+---
+title: "Polymorphism in Python: Function Overloading and Type Checking"
+weight: 10
+tags:
+  - Pandas
+  - Bases
+  - Libraries
+  - Cours
+categories:
+  - Cours
+  - Fondamentaux
+type: book
+description: "Learn how to achieve polymorphism in Python through function overloading, type checking, and class-based polymorphism"
+image: .img/numpy.png
+filters:
+  - pyodide
+---
+
+# Polymorphism in Python: Function Overloading and Type Checking
+
+---
+
+In Python, function overloading (having multiple functions with the same name but different parameters) is not directly supported like in C++. However, Python offers alternative ways to achieve similar functionality. Let's explore this concept and how it relates to polymorphism.
+
+## Function Overloading in Python
+
+### The C++ Approach (Not Available in Python)
+
+In C++, you might write:
+
+```cpp
+class Calculator {
+public:
+    int add(int a, int b) {
+        return a + b;
+    }
+    
+    double add(double a, double b) {
+        return a + b;
+    }
+};
+```
+
+This is not possible in Python. If you define two functions with the same name, the latter will override the former.
+
+### Python's Approach
+
+In Python, we need to use different strategies to handle different types of inputs:
+
+1. **Different Function Names**:
+   ```{pyodide-python}
+   def add_integers(a: int, b: int) -> int:
+       return a + b
+
+   def add_floats(a: float, b: float) -> float:
+       return a + b
+   ```
+
+2. **Single Function with Type Checking**:
+   ```{pyodide-python}
+   def add(a, b):
+       if isinstance(a, int) and isinstance(b, int):
+           return a + b
+       elif isinstance(a, float) and isinstance(b, float):
+           return a + b
+       else:
+           raise TypeError("Unsupported types")
+   ```
+
+3. **Using a Class to Encapsulate Different Implementations**:
+   ```{pyodide-python}
+   class Calculator:
+       def add(self, a, b):
+           if isinstance(a, int) and isinstance(b, int):
+               return self._add_integers(a, b)
+           elif isinstance(a, float) and isinstance(b, float):
+               return self._add_floats(a, b)
+           else:
+               raise TypeError("Unsupported types")
+
+       def _add_integers(self, a: int, b: int) -> int:
+           return a + b
+
+       def _add_floats(self, a: float, b: float) -> float:
+           return a + b
+   ```
+
+## Polymorphism Through Type Checking
+
+The class-based approach above demonstrates a form of polymorphism. The `add` method behaves differently based on the types of its inputs, effectively providing different implementations for different data types.
+
+### Benefits of This Approach:
+
+1. **Single Interface**: Users of the `Calculator` class only need to call `add`, regardless of the input types.
+2. **Encapsulation**: The type-specific implementations (`_add_integers` and `_add_floats`) are hidden from the user.
+3. **Extensibility**: It's easy to add support for new types by adding new private methods and extending the type checking in `add`.
+
+### Example Usage:
+
+```{pyodide-python}
+calc = Calculator()
+print(calc.add(5, 3))        # Uses _add_integers
+print(calc.add(5.5, 3.2))    # Uses _add_floats
+```
+
+## Duck Typing and Polymorphism in Python
+
+While the above approach uses explicit type checking, Python often relies on duck typing for polymorphism. "If it walks like a duck and quacks like a duck, it's a duck."
+
+```{pyodide-python}
+def calculate_area(shape):
+    return shape.area()
+
+class Circle:
+    def __init__(self, radius):
+        self.radius = radius
+    
+    def area(self):
+        return 3.14 * self.radius ** 2
+
+class Square:
+    def __init__(self, side):
+        self.side = side
+    
+    def area(self):
+        return self.side ** 2
+
+# Both work because both have an area() method
+print(calculate_area(Circle(5)))
+print(calculate_area(Square(4)))
+```
+
+In this case, `calculate_area` works with any object that has an `area` method, regardless of its actual type.
+
+## Conclusion
+
+While Python doesn't support function overloading in the same way as C++, it offers flexible alternatives through type checking and duck typing. These approaches allow for polymorphic behavior, enabling functions and methods to work with different types in a way that's both pythonic and maintainable.
+
+The class-based approach with encapsulated type-specific methods provides a clean way to handle different input types while maintaining a simple interface for the user. This demonstrates how Python can achieve polymorphic behavior similar to function overloading in other languages, but with its own unique style.

@@ -1,0 +1,423 @@
+---
+title: "Behavioral Design Pattern"
+weight: 10
+tags:
+  - Pandas
+  - Bases
+  - Libraries
+  - Cours
+categories:
+  - Cours
+  - Fondamentaux
+type: book
+description: "Découvrir les design paterns, et connaitre les plus standards"
+image: .img/dunder_poo2.webp
+filters:
+  - pyodide
+---
+
+# Behavioral Design Patterns in Python
+
+---
+
+Behavioral patterns are concerned with algorithms and the assignment of responsibilities between objects. They characterize complex control flow that's difficult to follow at run-time.
+
+## 1. Observer Pattern
+
+The Observer pattern lets you define a subscription mechanism to notify multiple objects about any events that happen to the object they're observing.
+
+### 1.1 Example: Weather Station
+
+```{pyodide-python}
+from abc import ABC, abstractmethod
+
+class Subject(ABC):
+    @abstractmethod
+    def attach(self, observer):
+        pass
+
+    @abstractmethod
+    def detach(self, observer):
+        pass
+
+    @abstractmethod
+    def notify(self):
+        pass
+
+class Observer(ABC):
+    @abstractmethod
+    def update(self, temperature, humidity, pressure):
+        pass
+
+class WeatherStation(Subject):
+    def __init__(self):
+        self._observers = []
+        self._temperature = 0
+        self._humidity = 0
+        self._pressure = 0
+
+    def attach(self, observer):
+        self._observers.append(observer)
+
+    def detach(self, observer):
+        self._observers.remove(observer)
+
+    def notify(self):
+        for observer in self._observers:
+            observer.update(self._temperature, self._humidity, self._pressure)
+
+    def set_measurements(self, temperature, humidity, pressure):
+        self._temperature = temperature
+        self._humidity = humidity
+        self._pressure = pressure
+        self.notify()
+
+class DisplayDevice(Observer):
+    def update(self, temperature, humidity, pressure):
+        print(f"Temperature: {temperature}°C, Humidity: {humidity}%, Pressure: {pressure}hPa")
+
+# Usage
+weather_station = WeatherStation()
+display1 = DisplayDevice()
+display2 = DisplayDevice()
+
+weather_station.attach(display1)
+weather_station.attach(display2)
+
+weather_station.set_measurements(25, 60, 1013)
+```
+
+### 1.2 Benefits of Observer
+- Supports the principle of loose coupling between objects
+- Allows sending data to many objects efficiently
+- Dynamic relationships can be established between objects at runtime
+
+## 2. Strategy Pattern
+
+The Strategy pattern lets you define a family of algorithms, put each of them into a separate class, and make their objects interchangeable.
+
+### 2.1 Example: Payment Processing
+
+```{pyodide-python}
+from abc import ABC, abstractmethod
+
+class PaymentStrategy(ABC):
+    @abstractmethod
+    def pay(self, amount):
+        pass
+
+class CreditCardPayment(PaymentStrategy):
+    def __init__(self, card_number, name):
+        self.card_number = card_number
+        self.name = name
+
+    def pay(self, amount):
+        print(f"Paid ${amount} using Credit Card {self.card_number}")
+
+class PayPalPayment(PaymentStrategy):
+    def __init__(self, email):
+        self.email = email
+
+    def pay(self, amount):
+        print(f"Paid ${amount} using PayPal account {self.email}")
+
+class ShoppingCart:
+    def __init__(self):
+        self.items = []
+        self.payment_strategy = None
+
+    def add_item(self, item, price):
+        self.items.append((item, price))
+
+    def set_payment_strategy(self, payment_strategy):
+        self.payment_strategy = payment_strategy
+
+    def checkout(self):
+        total = sum(price for _, price in self.items)
+        if self.payment_strategy:
+            self.payment_strategy.pay(total)
+        else:
+            print("No payment method set")
+
+# Usage
+cart = ShoppingCart()
+cart.add_item("Book", 10)
+cart.add_item("Headphones", 50)
+
+cart.set_payment_strategy(CreditCardPayment("1234-5678-9012-3456", "John Doe"))
+cart.checkout()
+
+cart.set_payment_strategy(PayPalPayment("john@example.com"))
+cart.checkout()
+```
+
+### 2.2 Benefits of Strategy
+- Allows switching algorithms used inside an object at runtime
+- Isolates the implementation details of an algorithm from the code that uses it
+- Replaces inheritance with composition
+
+## 3. Command Pattern
+
+The Command pattern turns a request into a stand-alone object that contains all information about the request.
+
+### 3.1 Example: Remote Control
+
+```{pyodide-python}
+from abc import ABC, abstractmethod
+
+class Command(ABC):
+    @abstractmethod
+    def execute(self):
+        pass
+
+class Light:
+    def turn_on(self):
+        print("Light is on")
+
+    def turn_off(self):
+        print("Light is off")
+
+class LightOnCommand(Command):
+    def __init__(self, light):
+        self.light = light
+
+    def execute(self):
+        self.light.turn_on()
+
+class LightOffCommand(Command):
+    def __init__(self, light):
+        self.light = light
+
+    def execute(self):
+        self.light.turn_off()
+
+class RemoteControl:
+    def __init__(self):
+        self.command = None
+
+    def set_command(self, command):
+        self.command = command
+
+    def press_button(self):
+        if self.command:
+            self.command.execute()
+
+# Usage
+light = Light()
+light_on = LightOnCommand(light)
+light_off = LightOffCommand(light)
+
+remote = RemoteControl()
+
+remote.set_command(light_on)
+remote.press_button()
+
+remote.set_command(light_off)
+remote.press_button()
+```
+
+### 3.2 Benefits of Command
+- Decouples classes that invoke operations from classes that perform these operations
+- Allows creating sequences of commands with a macro command
+- Supports undo operations
+
+## 4. State Pattern
+
+The State pattern lets an object alter its behavior when its internal state changes. It appears as if the object changed its class.
+
+### 4.1 Example: Vending Machine
+
+```{pyodide-python}
+from abc import ABC, abstractmethod
+
+class State(ABC):
+    @abstractmethod
+    def insert_coin(self, vending_machine):
+        pass
+
+    @abstractmethod
+    def eject_coin(self, vending_machine):
+        pass
+
+    @abstractmethod
+    def select_item(self, vending_machine):
+        pass
+
+class NoCoinState(State):
+    def insert_coin(self, vending_machine):
+        print("Coin inserted")
+        vending_machine.set_state(vending_machine.has_coin_state)
+
+    def eject_coin(self, vending_machine):
+        print("No coin to eject")
+
+    def select_item(self, vending_machine):
+        print("You need to insert a coin first")
+
+class HasCoinState(State):
+    def insert_coin(self, vending_machine):
+        print("You can't insert another coin")
+
+    def eject_coin(self, vending_machine):
+        print("Coin ejected")
+        vending_machine.set_state(vending_machine.no_coin_state)
+
+    def select_item(self, vending_machine):
+        print("Item dispensed")
+        vending_machine.set_state(vending_machine.no_coin_state)
+
+class VendingMachine:
+    def __init__(self):
+        self.no_coin_state = NoCoinState()
+        self.has_coin_state = HasCoinState()
+        self.state = self.no_coin_state
+
+    def set_state(self, state):
+        self.state = state
+
+    def insert_coin(self):
+        self.state.insert_coin(self)
+
+    def eject_coin(self):
+        self.state.eject_coin(self)
+
+    def select_item(self):
+        self.state.select_item(self)
+
+# Usage
+vending_machine = VendingMachine()
+
+vending_machine.select_item()  # You need to insert a coin first
+vending_machine.insert_coin()  # Coin inserted
+vending_machine.select_item()  # Item dispensed
+```
+
+### 4.2 Benefits of State
+- Organizes code related to particular states into separate classes
+- Makes state transitions explicit
+- Simplifies the code by eliminating bulky state machine conditional statements
+
+## 5. Chain of Responsibility Pattern
+
+The Chain of Responsibility pattern lets you pass requests along a chain of handlers. Upon receiving a request, each handler decides either to process the request or to pass it to the next handler in the chain.
+
+### 5.1 Example: Logger Levels
+
+```{pyodide-python}
+from abc import ABC, abstractmethod
+
+class Logger(ABC):
+    INFO = 1
+    DEBUG = 2
+    ERROR = 3
+
+    def __init__(self, level):
+        self.level = level
+        self.next = None
+
+    def set_next(self, next_logger):
+        self.next = next_logger
+        return next_logger
+
+    def log(self, level, message):
+        if level >= self.level:
+            self.write(message)
+        if self.next:
+            self.next.log(level, message)
+
+    @abstractmethod
+    def write(self, message):
+        pass
+
+class ConsoleLogger(Logger):
+    def write(self, message):
+        print("Console: " + message)
+
+class FileLogger(Logger):
+    def write(self, message):
+        print("File: " + message)
+
+class EmailLogger(Logger):
+    def write(self, message):
+        print("Email: " + message)
+
+# Usage
+console_logger = ConsoleLogger(Logger.INFO)
+file_logger = FileLogger(Logger.DEBUG)
+email_logger = EmailLogger(Logger.ERROR)
+
+console_logger.set_next(file_logger).set_next(email_logger)
+
+console_logger.log(Logger.INFO, "This is an information.")
+console_logger.log(Logger.DEBUG, "This is a debug information.")
+console_logger.log(Logger.ERROR, "This is an error information.")
+```
+
+### 5.2 Benefits of Chain of Responsibility
+- Reduces coupling between components
+- Increases flexibility in assigning responsibilities to objects
+- Allows adding or removing responsibilities dynamically
+
+## 6. Template Method Pattern
+
+The Template Method pattern defines the skeleton of an algorithm in the superclass but lets subclasses override specific steps of the algorithm without changing its structure.
+
+### 6.1 Example: Beverage Preparation
+
+```{pyodide-python}
+from abc import ABC, abstractmethod
+
+class Beverage(ABC):
+    def prepare(self):
+        self.boil_water()
+        self.brew()
+        self.pour_in_cup()
+        self.add_condiments()
+
+    def boil_water(self):
+        print("Boiling water")
+
+    @abstractmethod
+    def brew(self):
+        pass
+
+    def pour_in_cup(self):
+        print("Pouring into cup")
+
+    @abstractmethod
+    def add_condiments(self):
+        pass
+
+class Coffee(Beverage):
+    def brew(self):
+        print("Dripping coffee through filter")
+
+    def add_condiments(self):
+        print("Adding sugar and milk")
+
+class Tea(Beverage):
+    def brew(self):
+        print("Steeping the tea")
+
+    def add_condiments(self):
+        print("Adding lemon")
+
+# Usage
+coffee = Coffee()
+tea = Tea()
+
+print("Making coffee:")
+coffee.prepare()
+
+print("\nMaking tea:")
+tea.prepare()
+```
+
+### 6.2 Benefits of Template Method
+- Lets subclasses implement varying behavior
+- Avoids code duplication
+- Allows fine-grained control over the steps of an algorithm
+
+## Conclusion
+
+Behavioral design patterns are crucial for managing algorithms, relationships, and responsibilities between objects. They improve communication between objects, make complex control flows more manageable, and help distribute responsibilities efficiently. By applying these patterns, developers can create more flexible and maintainable code structures that are easier to understand and modify.

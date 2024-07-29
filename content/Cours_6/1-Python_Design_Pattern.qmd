@@ -1,0 +1,214 @@
+---
+title: "Python-Specific Design Patterns"
+weight: 10
+tags:
+  - Pandas
+  - Bases
+  - Libraries
+  - Cours
+categories:
+  - Cours
+  - Fondamentaux
+type: book
+description: "Learn about Python-specific design patterns, including context managers and descriptors, to write more efficient and Pythonic code."
+image: .img/AST.webp
+filters:
+  - pyodide
+---
+
+# Python-Specific Design Patterns
+
+---
+
+## 5.1 Context Managers
+
+Context managers in Python provide a clean way to manage resources, ensuring proper acquisition and release.
+
+### The `with` Statement
+
+```{pyodide-python}
+with open('file.txt', 'r') as file:
+    content = file.read()
+# File is automatically closed after this block
+```
+
+### Implementing Custom Context Managers
+
+```{pyodide-python}
+class DatabaseConnection:
+    def __init__(self, host, user, password):
+        self.host = host
+        self.user = user
+        self.password = password
+        self.connection = None
+
+    def __enter__(self):
+        print(f"Connecting to database at {self.host}")
+        self.connection = connect_to_db(self.host, self.user, self.password)
+        return self.connection
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        if self.connection:
+            print("Closing database connection")
+            self.connection.close()
+        if exc_type is not None:
+            print(f"An exception occurred: {exc_value}")
+        return False  # Propagate exceptions
+
+# Usage
+with DatabaseConnection('localhost', 'user', 'password') as conn:
+    conn.execute("SELECT * FROM users")
+```
+
+Explanation of `__exit__` parameters:
+- `exc_type`: The type of the exception that occurred, or None if no exception occurred.
+- `exc_value`: The exception instance, or None if no exception occurred.
+- `traceback`: A traceback object, or None if no exception occurred.
+
+### Using contextlib
+
+```{pyodide-python}
+from contextlib import contextmanager
+
+@contextmanager
+def temp_file(filename, mode='w'):
+    try:
+        f = open(filename, mode)
+        yield f
+    finally:
+        f.close()
+        import os
+        os.remove(filename)
+
+# Usage
+with temp_file('temp.txt') as f:
+    f.write('Temporary data')
+# File is automatically closed and deleted after this block
+```
+
+### Async Context Managers
+
+```{pyodide-python}
+import aiohttp
+import asyncio
+
+class AsyncWebSession:
+    async def __aenter__(self):
+        self.session = aiohttp.ClientSession()
+        return self.session
+
+    async def __aexit__(self, exc_type, exc_value, traceback):
+        await self.session.close()
+        if exc_type is not None:
+            print(f"An error occurred: {exc_value}")
+
+async def fetch_data(url):
+    async with AsyncWebSession() as session:
+        async with session.get(url) as response:
+            return await response.text()
+
+# Usage
+asyncio.run(fetch_data('https://api.example.com/data'))
+```
+
+## 5.2 Descriptors
+
+Descriptors provide a way to customize attribute access in Python classes.
+
+### Meaningful Descriptor Example
+
+```{pyodide-python}
+class TemperatureDescriptor:
+    def __init__(self, name):
+        self.name = f"_{name}"
+
+    def __get__(self, obj, objtype=None):
+        if obj is None:
+            return self
+        return getattr(obj, self.name)
+
+    def __set__(self, obj, value):
+        if not isinstance(value, (int, float)):
+            raise TypeError("Temperature must be a number")
+        if value < -273.15:
+            raise ValueError("Temperature below absolute zero is not possible")
+        setattr(obj, self.name, value)
+
+class WeatherStation:
+    temperature = TemperatureDescriptor("temperature")
+
+    def __init__(self, temp):
+        self.temperature = temp
+
+# Usage
+station = WeatherStation(25)
+print(station.temperature)  # 25
+station.temperature = -300  # Raises ValueError
+```
+
+Explanation of `__get__` parameters:
+- `obj`: The instance that the attribute was accessed through, or None when the attribute is accessed through the class.
+- `objtype`: The class that was used to access the attribute. This is set even when called on an instance.
+
+The difference between `__get__` and `getattr`:
+- `__get__` is a method of the descriptor object itself. It's called when accessing an attribute that is a descriptor.
+- `getattr` is a built-in function that retrieves an attribute from an object. Inside `__get__`, we often use `getattr` to access the actual stored value.
+
+### Advanced Descriptor: Lazy Property
+
+```{pyodide-python}
+class LazyProperty:
+    def __init__(self, function):
+        self.function = function
+        self.name = function.__name__
+
+    def __get__(self, obj, type=None):
+        if obj is None:
+            return self
+        value = self.function(obj)
+        setattr(obj, self.name, value)
+        return value
+
+class DataProcessor:
+    def __init__(self, filename):
+        self.filename = filename
+
+    @LazyProperty
+    def data(self):
+        print("Loading data...")
+        with open(self.filename, 'r') as f:
+            return f.read()
+
+# Usage
+processor = DataProcessor('large_file.txt')
+# Data is not loaded yet
+print(processor.data)  # Prints "Loading data..." and then the content
+print(processor.data)  # Prints the content without "Loading data..."
+```
+
+Now, let's break down how this works step by step:
+
+1. When `@LazyProperty` is applied to the `data` method in `DataProcessor`:
+   - An instance of `LazyProperty` is created, with the `data` method as its `function` attribute.
+   - This `LazyProperty` instance replaces the `data` method in the class dictionary.
+
+2. When we create a `DataProcessor` instance:
+   - No data is loaded yet. The `filename` is stored, but `data` is not accessed.
+
+3. The first time `processor.data` is accessed:
+   - Python sees that `data` is a descriptor (it has a `__get__` method) and calls `LazyProperty.__get__(processor, DataProcessor)`.
+   - Inside `__get__`:
+     a. It checks if `obj` (processor) is None. It's not, so it continues.
+     b. It calls `self.function(obj)`, which is equivalent to calling the original `data` method.
+     c. This prints "Loading data..." and reads the file.
+     d. The result is stored back into the `processor` instance using `setattr(obj, self.name, value)`.
+     e. The value is returned.
+
+4. The second time `processor.data` is accessed:
+   - Python first looks for an instance attribute named `data`.
+   - It finds one (because we set it in step 3d), so it returns that value directly.
+   - The `LazyProperty.__get__` method is not called this time.
+
+The key point is that after the first access, the `LazyProperty` descriptor is effectively replaced by the computed value. This is why the "Loading data..." message only appears once.
+
+These examples demonstrate how context managers and descriptors can be used to create more robust, efficient, and Pythonic code. Context managers excel at resource management, while descriptors offer powerful ways to customize attribute behavior.

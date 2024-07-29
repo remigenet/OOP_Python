@@ -1,0 +1,153 @@
+project:
+  type: website
+
+
+website:
+  title: "Programmation Orientée Objet en Python"
+  open-graph: true
+  favicon: content/.img/favicon.png
+  page-navigation: true
+  back-to-top-navigation: true
+  reader-mode: true
+  navbar:
+    search: true
+    left:
+      - text: Back to Main Website
+        url: https://remigenet.github.io/
+      - file: index.qmd
+        text: Home 
+      - sidebar:introduction
+      - sidebar:heritance
+      - sidebar:polymorphism
+      - sidebar:decorators
+      - sidebar:packaging
+      - sidebar:patterns
+      - sidebar:projects
+    tools:
+      - icon: github
+        menu:
+          - text: Code source
+            url:  https://github.com/remigenet/OOP_Python
+            
+  sidebar: 
+    - id: root
+      title: "Programmation Orientée Objet en Python"
+      href: index.qmd
+    - id: home
+      title: "Homepage"
+      href: index.qmd
+    - id: introduction
+      title: "Introduction: Histoire et Concepts"
+      contents: 
+      - content/Cours_1/index.qmd
+      - content/Cours_1/1-Histoire.qmd
+      - content/Cours_1/2-Structuration_des_donnees.qmd
+      - content/Cours_1/3-NaissancePOO.qmd
+      - content/Cours_1/4-all_is_object.qmd
+      - content/Cours_1/5-Simplicity_and_performance.qmd
+      - content/Cours_1/6-Bases_of_classes_in_python.qmd
+      - section: Travaux Pratiques
+        expanded: false
+        contents:
+        - content/Cours_1/TP.qmd
+      icon: book
+    - id: heritance 
+      title: "Encapsulation, Héritage, Composition et Dunder"
+      contents: 
+       - content/Cours_2/index.qmd
+       - content/Cours_2/1-Encapsulation.qmd
+       - content/Cours_2/2-Heritage.qmd
+       - content/Cours_2/3-Composition.qmd
+       - content/Cours_2/4-Dunder.qmd
+       - section: Travaux Pratiques
+         expanded: false
+         contents:
+         - content/Cours_2/TP.qmd
+    - id: polymorphism 
+      title: "Polymorphisme et Surcharge"
+      contents: 
+       - content/Cours_3/index.qmd
+       - content/Cours_3/1-Polymorphism.qmd
+       - content/Cours_3/2-Overloading.qmd
+       - content/Cours_3/3-Type_Hinting.qmd
+       - content/Cours_3/4-Abstract_class.qmd
+       - content/Cours_3/5-Protocol.qmd
+       - section: Travaux Pratiques
+         expanded: false
+         contents:
+         - content/Cours_3/TP.qmd
+    - id: decorators 
+      title: "Decorators"
+      contents: 
+       - content/Cours_4/1-Design_Pattern.qmd
+       - content/Cours_4/2-Decorator_theory.qmd
+       - content/Cours_4/3-Decorator_practically.qmd
+       - content/Cours_4/4-builtin_decorator.qmd
+       - section: Travaux Pratiques
+         expanded: false
+         contents:
+         - content/Cours_4/TP.qmd
+    - id: packaging 
+      title: "Project Management and Packaging"
+      contents: 
+       - content/Cours_5/index.qmd
+       - content/Cours_5/1-Project_layout.qmd
+       - content/Cours_5/2-Import.qmd
+       - content/Cours_5/3-Packaging_and_environment.qmd
+       - content/Cours_5/4-Tests.qmd
+       - section: Travaux Pratiques
+         expanded: false
+         contents:
+         - content/Cours_5/TP.qmd
+    - id: patterns 
+      title: "Design Patterns"
+      contents: 
+       - content/Cours_6/index.qmd
+       - content/Cours_6/1-Python_Design_Pattern.qmd
+       - content/Cours_6/2-Creational_patterns.qmd
+       - content/Cours_6/3-Structural_patterns.qmd
+       - content/Cours_6/4-behavioral_patterns.qmd
+       - section: Travaux Pratiques
+         expanded: false
+         contents:
+         - content/Cours_5/TP.qmd
+    - id: projects
+      title: "Sujets de Projets possibles"
+      contents: 
+       - content/Projets/index.qmd
+       - content/Projets/L3_EIF_2024.qmd
+
+        
+  repo-url: https://github.com/remigenet/OOP_Python
+  repo-branch: main
+  page-footer:
+    left: |
+      Programmation Orienté Object en Python, Rémi Genet.<br>
+      Licence {{< fa brands creative-commons >}}<br>
+      Code source disponible sur [`Github`](https://github.com/remigenet/OOP_Python)
+    right: |
+      Site construit avec {{< fa brands python >}} et [`Quarto`](https://quarto.org/)<br>
+      Inspiration pour la mise en forme du site [ici](https://github.com/linogaliana/python-datascientist)<br>
+      [Code source disponible sur {{< fa brands github >}} `GitHub`](https://github.com/remigenet/OOP_Python)
+
+theme:
+  light: flatly
+  dark: vapor
+format:
+  html:
+    css: styles.css
+    toc: true
+    toc-depth: 3
+    code-overflow: wrap
+format-links: true
+author: Remi Genet
+date: today
+date-format: iso
+page-layout: full
+google-scholar: true
+commentable: true
+validate-yaml: false
+crossref:
+  chapters: true
+lightbox: auto
+jupyter: python3

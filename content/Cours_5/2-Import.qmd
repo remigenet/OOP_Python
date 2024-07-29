@@ -1,0 +1,305 @@
+---
+title: "Understanding imports"
+weight: 10
+tags:
+  - Libraries
+  - Cours
+categories:
+  - Cours
+  - Fondamentaux
+type: book
+description: ""
+image: .img/dunder_poo.webp
+filters:
+  - pyodide
+---
+
+## Understanding Python Imports and Package Structure
+
+---
+
+### The Python Import System
+
+When you use an `import` statement, Python searches for the module or package in several locations:
+
+1. The directory containing the script
+2. PYTHONPATH (if set)
+3. Standard library directories
+4. Site-packages directory (for installed third-party packages)
+
+You can view the current module search path using:
+
+```python
+import sys
+print(sys.path)
+```
+
+### PATH and PYTHONPATH
+
+- **PATH**: An environment variable that tells the operating system where to look for executables.
+- **PYTHONPATH**: An environment variable that adds additional directories to Python's module search path.
+
+### Importing from the Current Directory
+
+To import modules from the current directory:
+
+1. Run Python from the directory containing your modules:
+   ```
+   python my_script.py
+   ```
+
+2. Add the current directory to PYTHONPATH:
+   ```bash
+   export PYTHONPATH=$PYTHONPATH:.
+   ```
+   NB: $PYTHONPATH is the current value of PYTHONPATH, doing like this will append the current directory (which is defined by . in bash) to the existing PYTHONPATH.
+
+3. Modify `sys.path` in your script:
+   ```python
+   import sys
+   import os
+   sys.path.append(os.path.dirname(os.path.realpath(__file__)))
+   ```
+
+### Absolute vs. Relative Imports
+
+- Absolute imports use the full path from the project's root:
+  ```python
+  from mypackage.submodule import myfunction
+  ```
+
+- Relative imports use dots to refer to the current and parent packages:
+  ```python
+  from . import sibling_module
+  from .. import parent_package_module
+  ```
+
+Absolute imports are generally preferred for clarity.
+
+Certainly! I'll enhance the section on importing modules vs specific items to include this important detail. Here's an improved version of that section:
+
+### Importing Modules vs Specific Items
+
+When importing in Python, it's important to understand the difference between importing entire modules and importing specific items from modules. This distinction affects not only how you use the imported elements but also how Python executes the import process.
+
+- Importing a module:
+  ```python
+  import mymodule
+  mymodule.my_function()
+  ```
+
+- Importing specific items:
+  ```python
+  from mymodule import my_function
+  my_function()
+  ```
+
+Key points to understand:
+
+1. **Module Execution**: 
+   When you import a module (either the entire module or specific items), Python first executes the entire module from top to bottom. This happens regardless of whether you're importing the whole module or just specific functions or classes.
+
+2. **Namespace Differences**:
+   - When importing the entire module, you need to use the module name as a prefix to access its contents (e.g., `mymodule.my_function()`).
+   - When importing specific items, they are brought directly into the current namespace, allowing you to use them without the module prefix (e.g., `my_function()`).
+
+3. **Import Process**:
+   - For `import mymodule`:
+     1. Python executes all code in `mymodule`.
+     2. It creates a namespace for `mymodule` in the current scope.
+     3. You access items through this namespace (e.g., `mymodule.my_function()`).
+
+   - For `from mymodule import my_function`:
+     1. Python executes all code in `mymodule`.
+     2. It locates `my_function` within `mymodule`.
+     3. It creates a reference to `my_function` in the current namespace.
+
+4. **Performance and Memory**:
+   - Importing specific items doesn't save on initial execution time or memory, as the entire module is still executed.
+   - However, it can make your code slightly faster when accessing the imported items, as there's no need to go through the module namespace.
+
+5. **Potential Pitfalls**:
+   - Importing specific items can lead to naming conflicts if you import items with the same name from different modules.
+   - It can also make it less clear where a function or class is coming from when reading the code.
+
+### The Role of `__init__.py`
+
+The `__init__.py` file marks a directory as a Python package. It can be empty or contain initialization code. When you import a package, the `__init__.py` file is executed.
+
+#### Meaningful `__init__.py` Examples
+
+1. Simplifying imports for package users:
+
+```python
+# mypackage/__init__.py
+
+from .database import Database
+from .models import User, Product
+from .utils import format_currency
+
+__all__ = ['Database', 'User', 'Product', 'format_currency']
+```
+
+This allows users to do:
+
+```python
+from mypackage import Database, User, Product
+```
+
+Instead of:
+
+```python
+from mypackage.database import Database
+from mypackage.models import User, Product
+```
+
+2. Initializing package-level resources:
+
+```python
+# mypackage/__init__.py
+
+import logging
+
+# Set up package-level logger
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+# Initialize package-wide configurations
+CONFIG = {
+    'API_VERSION': 'v1',
+    'BASE_URL': 'https://api.example.com'
+}
+
+# Perform any necessary package initialization
+def initialize():
+    logger.info("Initializing mypackage...")
+    # Perform any startup tasks here
+
+initialize()
+```
+
+3. Version information and metadata:
+
+```python
+# mypackage/__init__.py
+
+__version__ = "1.0.0"
+__author__ = "Your Name"
+__license__ = "MIT"
+
+# You can even load version from a separate file
+from .version import __version__
+```
+
+### Import Order and Behavior
+
+1. Python first looks for built-in modules.
+2. If not found, it searches in the directories listed in `sys.path`.
+3. For a package, Python executes the `__init__.py` file.
+4. For a module, Python executes the entire file.
+
+### Importing Modules vs Specific Items
+
+- Importing a module:
+  ```python
+  import mymodule
+  mymodule.my_function()
+  ```
+
+- Importing specific items:
+  ```python
+  from mymodule import my_function
+  my_function()
+  ```
+
+Importing the entire module executes it but requires using the module name as a prefix. Importing specific items brings them directly into the current namespace.
+
+### Avoiding Circular Imports
+
+Circular imports occur when two modules import each other, directly or indirectly. Here's a realistic example and how to resolve it:
+
+Project structure:
+```
+myproject/
+├── __init__.py
+├── models.py
+├── services.py
+└── utils.py
+```
+
+```python
+# models.py
+from .services import DataService
+
+class User:
+    def __init__(self, username):
+        self.username = username
+    
+    def get_data(self):
+        return DataService.fetch_user_data(self.username)
+
+# services.py
+from .models import User
+from .utils import format_data
+
+class DataService:
+    @staticmethod
+    def fetch_user_data(username):
+        # Simulate fetching data
+        data = {username: "some data"}
+        return format_data(data)
+
+    @staticmethod
+    def create_user(username):
+        return User(username)
+
+# utils.py
+def format_data(data):
+    return str(data).upper()
+```
+
+This creates a circular import between `models.py` and `services.py`. Resolve it using `__init__.py`:
+
+```python
+# __init__.py
+
+# First, import modules that don't have dependencies
+from . import utils
+
+# Then import modules with dependencies, but don't use them yet
+from . import models
+from . import services
+
+# Now set up the references
+models.DataService = services.DataService
+services.User = models.User
+
+# Optionally, clean up the namespace
+del models, services
+
+# Expose what you want at the package level
+from .models import User
+from .services import DataService
+from .utils import format_data
+
+__all__ = ['User', 'DataService', 'format_data']
+```
+
+Now, users can simply do:
+
+```python
+from myproject import User, DataService
+
+user = User("alice")
+data = user.get_data()
+new_user = DataService.create_user("bob")
+```
+
+This approach:
+1. Breaks the circular dependency by importing modules in a specific order.
+2. Sets up the necessary references after all modules are loaded.
+3. Provides a clean, easy-to-use interface for the package users.
+
+### Conclusion
+
+Understanding Python's import system is crucial for structuring projects effectively. Proper use of `__init__.py` files, careful management of imports, and awareness of potential circular dependencies will help you create well-organized, maintainable Python packages.

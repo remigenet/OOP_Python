@@ -1,0 +1,148 @@
+---
+title: "Organizing Python Projects"
+weight: 10
+tags:
+  - Pandas
+  - Bases
+  - Libraries
+  - Cours
+categories:
+  - Cours
+  - Fondamentaux
+type: book
+description: "Learn how to organize Python projects effectively and create packages for distribution."
+image: .img/AST.webp
+filters:
+  - pyodide
+---
+
+# Organizing Python Projects and Creating Packages
+
+---
+
+## 1. Understanding Python Imports and Project Structure (45 minutes)
+
+### How Python Imports Work
+
+#### The Python Import System
+
+Python's import system is fundamental to how we organize and use code across multiple files and directories. Understanding it is crucial for structuring projects effectively.
+
+- When you use an `import` statement, Python searches for the module in several locations:
+  1. The directory containing the script
+  2. PYTHONPATH (if set)
+  3. Standard library directories
+  4. Site-packages directory (for installed third-party packages)
+
+#### Understanding PATH and PYTHONPATH
+
+- **PATH**: An environment variable that tells the operating system where to look for executables. It's not directly related to Python imports but is important for running Python from the command line.
+
+- **PYTHONPATH**: An environment variable that you can set to add additional directories where Python will look for modules and packages.
+
+#### Importing from the Current Directory
+
+To import modules from the current directory, you have several options:
+
+1. Run Python from the directory containing your modules:
+   ```
+   python my_script.py
+   ```
+
+2. Add the current directory to PYTHONPATH:
+   ```bash
+   export PYTHONPATH=$PYTHONPATH:.
+   ```
+
+3. Modify `sys.path` in your script:
+   ```python
+   import sys
+   import os
+   sys.path.append(os.path.dirname(os.path.realpath(__file__)))
+   ```
+
+#### Viewing the Module Search Path
+
+You can view the current module search path using:
+
+```python
+import sys
+print(sys.path)
+```
+
+#### Absolute vs. Relative Imports
+
+- Absolute imports use the full path from the project's root:
+
+```python
+from mypackage.submodule import myfunction
+```
+
+- Relative imports use dots to refer to the current and parent packages:
+
+```python
+from . import sibling_module
+from .. import parent_package_module
+```
+
+- Generally, absolute imports are preferred for clarity and to avoid confusion.
+
+### Best Practices for Directory Layout
+
+A well-organized project structure enhances readability and maintainability. Here's a common layout:
+
+```
+my_project/
+│
+├── my_package/
+│   ├── __init__.py
+│   ├── module1.py
+│   └── module2.py
+│
+├── tests/
+│   ├── test_module1.py
+│   └── test_module2.py
+│
+├── docs/
+│   └── index.md
+│
+├── pyproject.toml
+└── README.md
+```
+
+Note: Some projects use a `src/` directory (e.g., `src/my_package/`) to separate package code. While this can be beneficial for larger projects or when building distributions, it's not mandatory and can add complexity for smaller projects.
+
+### Separating Source Code, Tests, and Documentation
+
+- **Source Code (`my_package/`)**: Contains the actual package code
+- **Tests (`tests/`)**: Keeps tests separate from source code
+- **Documentation (`docs/`)**: Separates documentation from code
+- **Project Files**: `pyproject.toml` for project configuration, `README.md` for project overview
+
+### Practical Example
+
+Let's create a simple project structure:
+
+```bash
+# Create project directory
+mkdir my_project
+cd my_project
+
+# Create package directory
+mkdir my_package
+touch my_package/__init__.py
+touch my_package/module1.py
+
+# Create tests directory
+mkdir tests
+touch tests/test_module1.py
+
+# Create docs directory
+mkdir docs
+touch docs/index.md
+
+# Create project files
+touch pyproject.toml README.md
+```
+
+This structure sets the foundation for a well-organized Python project, making it easier to develop, test, and maintain your code.
