@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"options":{"label":"","out-width":"700px","read-only":"false","fig-height":5,"classes":"","fig-width":7,"autorun":"","dpi":72,"results":"markup","output":"true","warning":"true","out-height":"","message":"true","fig-cap":"","context":"interactive","comment":""},"code":"class CompteBancaire:\n    def __init__(self, proprietaire, solde_initial):\n        self.proprietaire = proprietaire  # Public\n        self._solde = solde_initial       # \"Privé\" par convention\n        self.__historique = []            # \"Private\" avec name mangling\n\n    def deposer(self, montant):\n        if montant > 0:\n            self._solde += montant\n            self.__ajouter_transaction(f\"Dépôt de {montant}\")\n            return True\n        return False\n\n    def retirer(self, montant):\n        if 0 < montant <= self._solde:\n            self._solde -= montant\n            self.__ajouter_transaction(f\"Retrait de {montant}\")\n            return True\n        return False\n\n    def obtenir_solde(self):\n        return self._solde\n\n    def __ajouter_transaction(self, transaction):\n        self.__historique.append(transaction)\n\n# Utilisation\ncompte = CompteBancaire(\"Alice\", 1000)\nprint(compte.proprietaire)  # Accès à un attribut public\ncompte.deposer(500)\nprint(compte.obtenir_solde())  # Utilisation d'une méthode publique pour accéder au solde\n\n# Les lignes suivantes sont possibles mais déconseillées :\nprint(compte._solde)  # Accès à un attribut \"privé\" par convention\n# print(compte.__historique)  # Ceci lèvera une AttributeError\nprint(compte._CompteBancaire__historique)  # Accès à l'attribut avec name mangling","id":1}];
+globalThis.qpyodideCellDetails = [{"code":"class CompteBancaire:\n    def __init__(self, proprietaire, solde_initial):\n        self.proprietaire = proprietaire  # Public\n        self._solde = solde_initial       # \"Privé\" par convention\n        self.__historique = []            # \"Private\" avec name mangling\n\n    def deposer(self, montant):\n        if montant > 0:\n            self._solde += montant\n            self.__ajouter_transaction(f\"Dépôt de {montant}\")\n            return True\n        return False\n\n    def retirer(self, montant):\n        if 0 < montant <= self._solde:\n            self._solde -= montant\n            self.__ajouter_transaction(f\"Retrait de {montant}\")\n            return True\n        return False\n\n    def obtenir_solde(self):\n        return self._solde\n\n    def __ajouter_transaction(self, transaction):\n        self.__historique.append(transaction)\n\n# Utilisation\ncompte = CompteBancaire(\"Alice\", 1000)\nprint(compte.proprietaire)  # Accès à un attribut public\ncompte.deposer(500)\nprint(compte.obtenir_solde())  # Utilisation d'une méthode publique pour accéder au solde\n\n# Les lignes suivantes sont possibles mais déconseillées :\nprint(compte._solde)  # Accès à un attribut \"privé\" par convention\n# print(compte.__historique)  # Ceci lèvera une AttributeError\nprint(compte._CompteBancaire__historique)  # Accès à l'attribut avec name mangling","id":1,"options":{"fig-width":7,"context":"interactive","label":"","results":"markup","out-width":"700px","output":"true","fig-cap":"","comment":"","message":"true","autorun":"","warning":"true","fig-height":5,"read-only":"false","dpi":72,"classes":"","out-height":""}}];
 
 
 </script>
@@ -688,8 +688,8 @@ globalThis._qpyodideGetInstance = function() {
  <span class="dropdown-text">Projets</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Projets/L3_EIF_2024.html">
- <span class="dropdown-text">Projets Introduction à Python - Millésime 2024</span></a>
+    <a class="dropdown-item" href="../../content/Projets/m2_EIF_2024.html">
+ <span class="dropdown-text">Projets POO - Millésime 2024-2025</span></a>
   </li>  
     </ul>
   </li>
