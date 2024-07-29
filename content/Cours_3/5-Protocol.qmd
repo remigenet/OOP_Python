@@ -1,0 +1,143 @@
+---
+title: "Protocol Classes"
+weight: 10
+tags:
+  - Pandas
+  - Bases
+  - Libraries
+  - Cours
+categories:
+  - Cours
+  - Fondamentaux
+type: book
+description:  "Learn about Protocol classes in Python, how to define and use them, and the advantages of using Protocols for defining interfaces and structural subtyping."
+image: .img/EventLoopPythonAsyncio-5.png
+filters:
+  - pyodide
+---
+
+# Protocol Classes in Python
+
+---
+
+## Introduction to Protocols
+
+Protocols, introduced in Python 3.8, provide a way to define structural subtyping (often called "duck typing"). They allow you to define interfaces in a more flexible and Pythonic way compared to abstract base classes.
+
+## Key Concepts
+
+1. **Structural Subtyping**: An object is considered a subtype if it has the required methods and attributes, regardless of inheritance.
+2. **No Runtime Enforcement**: Protocols are primarily used for static type checking and don't enforce method implementation at runtime.
+3. **Flexibility**: Classes don't need to explicitly inherit from a Protocol to be considered compatible.
+
+## Basic Usage of Protocols
+
+To use Protocols, you need to import from the `typing` module:
+
+```{pyodide-python}
+from typing import Protocol
+
+class Drawable(Protocol):
+    def draw(self) -> None:
+        ...
+
+def render(item: Drawable) -> None:
+    item.draw()
+
+# A class that's compatible with Drawable
+class Circle:
+    def draw(self) -> None:
+        print("Drawing a circle")
+
+# Usage
+render(Circle())  # This works because Circle has a draw method
+```
+
+In this example:
+- `Drawable` is a Protocol that defines an interface with a `draw` method.
+- `Circle` is compatible with `Drawable` because it has a `draw` method, even though it doesn't explicitly inherit from `Drawable`.
+
+## Advantages of Protocols
+
+1. **Flexibility**: You can define interfaces for existing classes without modifying them.
+2. **Duck Typing**: Aligns well with Python's "duck typing" philosophy.
+3. **Static Type Checking**: Provides benefits of static typing without runtime overhead.
+4. **Backwards Compatibility**: Can be used with existing codebases without modification.
+
+## More Complex Example
+
+Let's look at a more comprehensive example using Protocols:
+
+```{pyodide-python}
+from typing import Protocol, List
+
+class Sized(Protocol):
+    def __len__(self) -> int:
+        ...
+
+class Appendable(Protocol):
+    def append(self, item: str) -> None:
+        ...
+
+class StringContainer(Sized, Appendable, Protocol):
+    def __iter__(self) -> Iterator[str]:
+        ...
+
+def process_data(container: StringContainer) -> None:
+    print(f"Container has {len(container)} items")
+    container.append("New Item")
+    for item in container:
+        print(item)
+
+# A class that's compatible with StringContainer
+class MyList:
+    def __init__(self):
+        self._data: List[str] = []
+
+    def __len__(self) -> int:
+        return len(self._data)
+
+    def append(self, item: str) -> None:
+        self._data.append(item)
+
+    def __iter__(self):
+        return iter(self._data)
+
+# Usage
+my_list = MyList()
+my_list.append("Item 1")
+my_list.append("Item 2")
+
+process_data(my_list)  # This works because MyList is compatible with StringContainer
+```
+
+In this example:
+- We define multiple Protocols: `Sized`, `Appendable`, and `StringContainer`.
+- `StringContainer` combines multiple Protocols.
+- `MyList` is compatible with `StringContainer` because it implements all required methods.
+- `process_data` can work with any object that satisfies the `StringContainer` Protocol.
+
+## Runtime Checkable Protocols
+
+While Protocols are primarily for static type checking, you can make them runtime-checkable:
+
+```{pyodide-python}
+from typing import runtime_checkable, Protocol
+
+@runtime_checkable
+class Drawable(Protocol):
+    def draw(self) -> None:
+        ...
+
+class Circle:
+    def draw(self) -> None:
+        print("Drawing a circle")
+
+print(isinstance(Circle(), Drawable))  # True
+```
+
+The `@runtime_checkable` decorator allows `isinstance()` checks, but be cautious as it only checks for the existence of the methods, not their signatures.
+
+## Conclusion
+
+Protocols in Python provide a flexible and powerful way to define interfaces. They offer the benefits of static typing and interface definition while maintaining Python's dynamic and duck-typed nature. Protocols are especially useful in large codebases, for defining clear contracts between different parts of a system, and for working with existing code that can't be modified to inherit from specific base classes.

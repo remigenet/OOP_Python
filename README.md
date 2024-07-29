@@ -1,4 +1,6 @@
-# REPONAME
+# Python POO course for master 272
+
+Made with quarto, to build locally just install last quarto version for your OS, clone the repo and run quarto preview in the root folder.
 
 Shield: [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 

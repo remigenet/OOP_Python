@@ -1,0 +1,133 @@
+---
+title: "Python: tout n'est qu'objet"
+weight: 10
+tags:
+  - Basics
+  - OS
+  - PATH
+  - virtual environment
+  - Introduction
+  - Cours
+categories:
+  - Cours
+  - Introduction
+type: book
+description: Explorer la notion de PATH, un élément essentiel dans la configuration des environnements de développement.
+image: .img/path.png
+filters:
+  - pyodide
+---
+
+
+# Chapitre 4 - Python et les objets : Une approche générale
+
+---
+
+## 1. Le concept "Tout est objet" en Python
+
+En Python, absolument tout est un objet. Cette philosophie est fondamentale et distingue Python de nombreux autres langages de programmation.
+
+### 1.1 Implications du "Tout est objet"
+
+- Même les types de base (int, float, str) sont des objets
+- Les fonctions sont des objets
+- Les classes sont des objets
+- Les modules sont des objets
+
+### 1.2 Exemple concret
+
+```{pyodide-python}
+# Un entier est un objet
+x = 5
+print(type(x))  # <class 'int'>
+
+# Une fonction est un objet
+def ma_fonction():
+    pass
+print(type(ma_fonction))  # <class 'function'>
+```
+
+## 2. Objets de base vs objets en C++
+
+### 2.1 Représentation en mémoire
+
+- En C++, un `int` ou un `float` a une taille fixe et prédéfinie
+- En Python, même un simple entier est un objet complet avec des métadonnées
+
+### 2.2 Implications sur les performances
+
+- Opérations plus coûteuses en Python (plus d'indirections)
+- Pas de risque d'overflow/underflow pour les entiers en Python (entiers de taille arbitraire)
+
+### 2.3 Exemple
+
+```{pyodide-python}
+# En Python, pas de limite de taille pour les entiers
+grand_nombre = 10**1000
+print(grand_nombre)  # Affiche un nombre de 1001 chiffres sans problème
+```
+
+## 3. Flexibilité et dynamisme
+
+### 3.1 Typage dynamique
+
+- Les variables n'ont pas de type fixe
+- Le type est lié à l'objet, pas à la variable
+
+### 3.2 Exemple de flexibilité
+
+```{pyodide-python}
+x = 5        # x référence un objet entier
+x = "Hello"  # Maintenant x référence un objet chaîne
+x = [1, 2, 3] # Et maintenant une liste
+```
+
+## 4. Introspection et réflexion
+
+Comme tout est objet, Python offre de puissantes capacités d'introspection.
+
+### 4.1 Exemple d'introspection
+
+```{pyodide-python}
+# Inspecter les attributs et méthodes d'un objet
+x = 5
+print(dir(x))  # Affiche toutes les méthodes disponibles pour un entier
+```
+
+## 5. Implications sur la programmation
+
+### 5.1 Uniformité
+
+- Syntaxe cohérente pour manipuler différents types d'objets
+- Facilite l'apprentissage et l'utilisation du langage
+
+### 5.2 Extensibilité
+
+- Possibilité de créer des types personnalisés qui se comportent comme des types intégrés
+
+### 5.3 Exemple d'extensibilité
+
+```{pyodide-python}
+class MonNombre:
+    def __init__(self, valeur):
+        self.valeur = valeur
+    
+    def __add__(self, autre):
+        return MonNombre(self.valeur + autre.valeur)
+
+# Utilisation comme un type natif
+a = MonNombre(5)
+b = MonNombre(3)
+c = a + b
+print(c.valeur)  # Affiche 8
+```
+
+## 6. Compromis : Simplicité vs Performance
+
+- La nature "tout objet" de Python simplifie de nombreux concepts
+- Cependant, cela a un coût en termes de performance et d'utilisation mémoire
+- Python privilégie la lisibilité et la facilité de développement sur la performance brute
+
+## Conclusion
+
+L'approche "tout est objet" de Python offre une grande cohérence et flexibilité, mais avec un compromis sur les performances. Cette philosophie permet aux développeurs de se concentrer sur la logique de leur programme plutôt que sur les détails de bas niveau, rendant Python particulièrement adapté au prototypage rapide et au développement d'applications où la vitesse de développement prime sur l'efficacité d'exécution.

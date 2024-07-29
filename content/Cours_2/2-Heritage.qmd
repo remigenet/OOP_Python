@@ -1,0 +1,164 @@
+---
+title: "Héritage en Python : Concept et intérêt"
+weight: 10
+tags:
+  - Syntaxe
+  - Bases
+  - heritage
+  - mro
+categories:
+  - Cours
+  - Fondamentaux
+type: book
+description: "Découvrez le concept d'héritage en Python, son intérêt et son application dans la création de hiérarchies de classes. Apprenez comment Python gère l'héritage implicite de la classe `object`, l'héritage multiple, et la résolution de l'ordre des méthodes (MRO)."
+image: .img/basesyntax.png
+filters:
+  - pyodide
+---
+
+#  L'héritage en Python : Concept et intérêt
+
+---
+
+L'héritage est un mécanisme fondamental de la programmation orientée objet qui permet à une classe de baser sa définition sur celle d'une autre classe. Cela favorise la réutilisation du code et permet de créer des hiérarchies de classes.
+
+### 1.1 Intérêt de l'héritage
+
+1. **Réutilisation du code** : L'héritage permet d'éviter la duplication de code en définissant des comportements communs dans une classe parente.
+
+2. **Organisation logique** : Il permet de créer des hiérarchies de classes qui reflètent des relations logiques entre concepts.
+
+3. **Extensibilité** : Les classes dérivées peuvent étendre ou modifier le comportement des classes parentes, rendant le code plus flexible.
+
+4. **Polymorphisme** : L'héritage est à la base du polymorphisme, permettant de traiter des objets de classes différentes de manière uniforme.
+
+### 1.2 Héritage implicite de la classe `object`
+
+En Python, toutes les classes héritent implicitement de la classe `object`, même si ce n'est pas spécifié explicitement.
+
+```{pyodide-python}
+class MaClasse:
+    pass
+
+# Est équivalent à :
+class MaClasse(object):
+    pass
+```
+
+L'héritage de `object` fournit des méthodes de base comme `__init__`, `__str__`, `__repr__`, etc. C'est pourquoi toutes les classes en Python ont certaines méthodes en commun.
+
+## 2. Héritage multiple en Python
+
+Python supporte l'héritage multiple, ce qui signifie qu'une classe peut hériter de plusieurs classes parentes.
+
+### 2.1 Syntaxe de l'héritage multiple
+
+```{pyodide-python}
+class Classe1:
+    pass
+
+class Classe2:
+    pass
+
+class ClasseDerivee(Classe1, Classe2):
+    pass
+```
+
+### 2.2 Intérêt concret de l'héritage multiple
+
+1. **Combinaison de fonctionnalités** : Permet de combiner des fonctionnalités de différentes classes en une seule.
+
+2. **Réutilisation de code provenant de sources multiples** : Utile lorsqu'une classe doit hériter de comportements de plusieurs classes non liées.
+
+3. **Implémentation de designs complexes** : Permet de créer des structures de classes plus flexibles et adaptables.
+
+Exemple concret :
+
+```{pyodide-python}
+class Nageur:
+    def nager(self):
+        print("Je nage")
+
+class Volant:
+    def voler(self):
+        print("Je vole")
+
+class Canard(Nageur, Volant):
+    pass
+
+donald = Canard()
+donald.nager()  # Affiche: Je nage
+donald.voler()  # Affiche: Je vole
+```
+
+Ici, `Canard` hérite des capacités de `Nageur` et `Volant`, combinant ainsi ces deux comportements.
+
+## 3. Method Resolution Order (MRO) en détail
+
+La MRO est cruciale pour comprendre comment Python gère l'héritage, en particulier l'héritage multiple.
+
+### 3.1 Définition et importance
+
+La MRO définit l'ordre dans lequel Python recherche les méthodes et les attributs dans une hiérarchie de classes. Elle est particulièrement importante en cas d'héritage multiple, où plusieurs classes parentes peuvent définir la même méthode.
+
+### 3.2 Algorithme C3 de linéarisation
+
+Python utilise l'algorithme C3 pour déterminer la MRO. Cet algorithme garantit que :
+
+1. Les sous-classes apparaissent avant les classes parentes.
+2. L'ordre de déclaration des classes parentes est respecté.
+3. La MRO est monotone (une classe apparaît toujours avant ses parents).
+
+### 3.3 Visualisation de la MRO
+
+On peut visualiser la MRO d'une classe avec la méthode `mro()` ou l'attribut `__mro__` :
+
+```{pyodide-python}
+class A:
+    pass
+
+class B(A):
+    pass
+
+class C(A):
+    pass
+
+class D(B, C):
+    pass
+
+print(D.mro())
+# Affiche: [<class '__main__.D'>, <class '__main__.B'>, <class '__main__.C'>, <class '__main__.A'>, <class 'object'>]
+```
+
+### 3.4 Exemple détaillé de résolution de méthode
+
+Considérons cet exemple pour illustrer comment la MRO fonctionne :
+
+```{pyodide-python}
+class A:
+    def methode(self):
+        print("Méthode de A")
+
+class B(A):
+    def methode(self):
+        print("Méthode de B")
+
+class C(A):
+    def methode(self):
+        print("Méthode de C")
+
+class D(B, C):
+    pass
+
+d = D()
+d.methode()  # Affiche: Méthode de B
+```
+
+Ici, `D` hérite de `B` et `C`. Lorsque `d.methode()` est appelé, Python suit la MRO : `D -> B -> C -> A -> object`. Il trouve d'abord la méthode dans `B`, donc c'est celle-ci qui est exécutée.
+
+### 3.5 Implications pour le design
+
+La compréhension de la MRO est cruciale pour :
+- Éviter les conflits de noms dans l'héritage multiple.
+- Comprendre l'ordre d'exécution des méthodes.
+- Concevoir des hiérarchies de classes cohérentes et prévisibles.
