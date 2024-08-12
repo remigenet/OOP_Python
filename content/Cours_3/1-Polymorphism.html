@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.5.55">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"id":1,"code":"class Animal:\n    def make_sound(self):\n        pass\n\nclass Dog(Animal):\n    def make_sound(self):\n        return \"Woof!\"\n\nclass Cat(Animal):\n    def make_sound(self):\n        return \"Meow!\"\n\nclass Cow(Animal):\n    def make_sound(self):\n        return \"Moo!\"\n\n# Using polymorphism\nanimals = [Dog(), Cat(), Cow()]\nfor animal in animals:\n    print(animal.make_sound())","options":{"fig-cap":"","autorun":"","classes":"","out-height":"","label":"","read-only":"false","fig-height":5,"message":"true","context":"interactive","comment":"","fig-width":7,"dpi":72,"output":"true","warning":"true","out-width":"700px","results":"markup"}},{"id":2,"code":"class Shape:\n    def area(self):\n        return 0\n\nclass Rectangle(Shape):\n    def __init__(self, width, height):\n        self.width = width\n        self.height = height\n    \n    def area(self):\n        return self.width * self.height\n\nclass Circle(Shape):\n    def __init__(self, radius):\n        self.radius = radius\n    \n    def area(self):\n        return 3.14 * self.radius ** 2\n\n# Using method overriding\nshapes = [Rectangle(5, 3), Circle(4), Shape()]\nfor shape in shapes:\n    print(f\"Area: {shape.area()}\")","options":{"fig-cap":"","autorun":"","classes":"","out-height":"","label":"","read-only":"false","fig-height":5,"message":"true","context":"interactive","comment":"","fig-width":7,"dpi":72,"output":"true","warning":"true","out-width":"700px","results":"markup"}}];
+globalThis.qpyodideCellDetails = [{"code":"class Animal:\n    def make_sound(self):\n        pass\n\nclass Dog(Animal):\n    def make_sound(self):\n        return \"Woof!\"\n\nclass Cat(Animal):\n    def make_sound(self):\n        return \"Meow!\"\n\nclass Cow(Animal):\n    def make_sound(self):\n        return \"Moo!\"\n\n# Using polymorphism\nanimals = [Dog(), Cat(), Cow()]\nfor animal in animals:\n    print(animal.make_sound())","options":{"results":"markup","message":"true","comment":"","classes":"","fig-height":5,"label":"","context":"interactive","output":"true","read-only":"false","fig-cap":"","dpi":72,"warning":"true","out-width":"700px","autorun":"","fig-width":7,"out-height":""},"id":1},{"code":"class Shape:\n    def area(self):\n        return 0\n\nclass Rectangle(Shape):\n    def __init__(self, width, height):\n        self.width = width\n        self.height = height\n    \n    def area(self):\n        return self.width * self.height\n\nclass Circle(Shape):\n    def __init__(self, radius):\n        self.radius = radius\n    \n    def area(self):\n        return 3.14 * self.radius ** 2\n\n# Using method overriding\nshapes = [Rectangle(5, 3), Circle(4), Shape()]\nfor shape in shapes:\n    print(f\"Area: {shape.area()}\")","options":{"results":"markup","message":"true","comment":"","classes":"","fig-height":5,"label":"","context":"interactive","output":"true","read-only":"false","fig-cap":"","dpi":72,"warning":"true","out-width":"700px","autorun":"","fig-width":7,"out-height":""},"id":2}];
 
 
 </script>

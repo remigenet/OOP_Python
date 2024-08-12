@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.5.55">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -272,7 +272,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"options":{"context":"interactive","message":"true","read-only":"false","autorun":"","fig-height":5,"output":"true","classes":"","comment":"","warning":"true","dpi":72,"results":"markup","fig-cap":"","out-height":"","out-width":"700px","fig-width":7,"label":""},"id":1,"code":"class Vehicule:\n    def __init__(self, marque, modele):\n        self.marque = marque\n        self.modele = modele\n    \n    def afficher(self):\n        print(f\"Vehicule: {self.marque} {self.modele}\")\n\nclass Voiture(Vehicule):\n    def __init__(self, marque, modele, nombre_portes):\n        super().__init__(marque, modele)\n        self.nombre_portes = nombre_portes\n    \n    def afficher(self):\n        print(f\"Voiture: {self.marque} {self.modele} ({self.nombre_portes} portes)\")\n\nv1 = Vehicule(\"Générique\", \"Modèle X\")\nv2 = Voiture(\"Renault\", \"Clio\", 5)\n\nv1.afficher()  # Affiche: Vehicule: Générique Modèle X\nv2.afficher()  # Affiche: Voiture: Renault Clio (5 portes)"}];
+globalThis.qpyodideCellDetails = [{"id":1,"options":{"autorun":"","read-only":"false","dpi":72,"classes":"","label":"","comment":"","results":"markup","output":"true","fig-height":5,"warning":"true","message":"true","context":"interactive","out-height":"","out-width":"700px","fig-width":7,"fig-cap":""},"code":"class Vehicule:\n    def __init__(self, marque, modele):\n        self.marque = marque\n        self.modele = modele\n    \n    def afficher(self):\n        print(f\"Vehicule: {self.marque} {self.modele}\")\n\nclass Voiture(Vehicule):\n    def __init__(self, marque, modele, nombre_portes):\n        super().__init__(marque, modele)\n        self.nombre_portes = nombre_portes\n    \n    def afficher(self):\n        print(f\"Voiture: {self.marque} {self.modele} ({self.nombre_portes} portes)\")\n\nv1 = Vehicule(\"Générique\", \"Modèle X\")\nv2 = Voiture(\"Renault\", \"Clio\", 5)\n\nv1.afficher()  # Affiche: Vehicule: Générique Modèle X\nv2.afficher()  # Affiche: Voiture: Renault Clio (5 portes)"}];
 
 
 </script>

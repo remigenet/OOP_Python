@@ -1,171 +1,171 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_6/index.html</loc>
-    <lastmod>2024-08-12T09:56:54.037Z</lastmod>
-  </url>
-  <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_6/3-Structural_patterns.html</loc>
-    <lastmod>2024-08-12T09:56:54.037Z</lastmod>
-  </url>
-  <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_6/1-Python_Design_Pattern.html</loc>
-    <lastmod>2024-08-12T09:56:54.037Z</lastmod>
-  </url>
-  <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_5/index.html</loc>
-    <lastmod>2024-08-12T09:56:54.033Z</lastmod>
-  </url>
-  <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_5/4-Tests.html</loc>
-    <lastmod>2024-08-12T09:56:54.033Z</lastmod>
-  </url>
-  <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_5/TP.html</loc>
-    <lastmod>2024-08-12T09:56:54.033Z</lastmod>
-  </url>
-  <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Projets/index.html</loc>
-    <lastmod>2024-08-12T09:56:54.037Z</lastmod>
-  </url>
-  <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_4/4-builtin_decorator.html</loc>
-    <lastmod>2024-08-12T09:56:54.033Z</lastmod>
-  </url>
-  <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_4/3-Decorator_practically.html</loc>
-    <lastmod>2024-08-12T09:56:54.029Z</lastmod>
-  </url>
-  <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_4/2-Decorator_theory.html</loc>
-    <lastmod>2024-08-12T09:56:54.029Z</lastmod>
-  </url>
-  <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_2/3-Composition.html</loc>
-    <lastmod>2024-08-12T09:56:54.017Z</lastmod>
-  </url>
-  <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_2/1-Encapsulation.html</loc>
-    <lastmod>2024-08-12T09:56:54.017Z</lastmod>
-  </url>
-  <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_2/2-Heritage.html</loc>
-    <lastmod>2024-08-12T09:56:54.017Z</lastmod>
-  </url>
-  <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_3/index.html</loc>
-    <lastmod>2024-08-12T09:56:54.025Z</lastmod>
-  </url>
-  <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_3/2-Overloading.html</loc>
-    <lastmod>2024-08-12T09:56:54.025Z</lastmod>
+    <loc>https://remigenet.github.io/OOP_Python/index.html</loc>
+    <lastmod>2024-07-29T14:49:39.484Z</lastmod>
   </url>
   <url>
     <loc>https://remigenet.github.io/OOP_Python/content/Cours_3/5-Protocol.html</loc>
-    <lastmod>2024-08-12T09:56:54.025Z</lastmod>
-  </url>
-  <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_3/TP.html</loc>
-    <lastmod>2024-08-12T09:56:54.025Z</lastmod>
-  </url>
-  <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_1/3-NaissancePOO.html</loc>
-    <lastmod>2024-08-12T09:56:54.001Z</lastmod>
-  </url>
-  <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_1/6-Bases_of_classes_in_python.html</loc>
-    <lastmod>2024-08-12T09:56:54.001Z</lastmod>
-  </url>
-  <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_1/TP.html</loc>
-    <lastmod>2024-08-12T09:56:54.001Z</lastmod>
-  </url>
-  <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_1/2-Structuration_des_donnees.html</loc>
-    <lastmod>2024-08-12T09:56:54.001Z</lastmod>
-  </url>
-  <url>
-    <loc>https://remigenet.github.io/OOP_Python/index.html</loc>
-    <lastmod>2024-08-12T09:56:54.037Z</lastmod>
-  </url>
-  <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_1/5-Simplicity_and_performance.html</loc>
-    <lastmod>2024-08-12T09:56:54.001Z</lastmod>
-  </url>
-  <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_1/4-all_is_object.html</loc>
-    <lastmod>2024-08-12T09:56:54.001Z</lastmod>
-  </url>
-  <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_1/1-Histoire.html</loc>
-    <lastmod>2024-08-12T09:56:54.001Z</lastmod>
-  </url>
-  <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_1/index.html</loc>
-    <lastmod>2024-08-12T09:56:54.001Z</lastmod>
+    <lastmod>2024-07-29T14:16:22.629Z</lastmod>
   </url>
   <url>
     <loc>https://remigenet.github.io/OOP_Python/content/Cours_3/3-Type_Hinting.html</loc>
-    <lastmod>2024-08-12T09:56:54.025Z</lastmod>
+    <lastmod>2024-07-29T14:16:20.449Z</lastmod>
   </url>
   <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_3/1-Polymorphism.html</loc>
-    <lastmod>2024-08-12T09:56:54.025Z</lastmod>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_3/TP.html</loc>
+    <lastmod>2024-07-29T14:11:03.043Z</lastmod>
   </url>
   <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_3/4-Abstract_class.html</loc>
-    <lastmod>2024-08-12T09:56:54.025Z</lastmod>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_4/2-Decorator_theory.html</loc>
+    <lastmod>2024-07-29T12:10:48.561Z</lastmod>
   </url>
   <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_2/TP.html</loc>
-    <lastmod>2024-08-12T09:56:54.017Z</lastmod>
-  </url>
-  <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_2/4-Dunder.html</loc>
-    <lastmod>2024-08-12T09:56:54.017Z</lastmod>
-  </url>
-  <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_2/index.html</loc>
-    <lastmod>2024-08-12T09:56:54.017Z</lastmod>
-  </url>
-  <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_4/TP.html</loc>
-    <lastmod>2024-08-12T09:56:54.033Z</lastmod>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_4/3-Decorator_practically.html</loc>
+    <lastmod>2024-07-29T14:16:24.857Z</lastmod>
   </url>
   <url>
     <loc>https://remigenet.github.io/OOP_Python/content/Cours_4/1-Design_Pattern.html</loc>
-    <lastmod>2024-08-12T09:56:54.029Z</lastmod>
+    <lastmod>2024-07-29T12:24:31.526Z</lastmod>
   </url>
   <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_4/index.html</loc>
-    <lastmod>2024-08-12T09:56:54.033Z</lastmod>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_5/4-Tests.html</loc>
+    <lastmod>2024-07-29T14:19:28.866Z</lastmod>
   </url>
   <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Projets/m2_EIF_2024.html</loc>
-    <lastmod>2024-08-12T09:56:54.037Z</lastmod>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_5/index.html</loc>
+    <lastmod>2024-07-29T14:20:59.120Z</lastmod>
   </url>
   <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_5/2-Import.html</loc>
-    <lastmod>2024-08-12T09:56:54.033Z</lastmod>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_5/TP.html</loc>
+    <lastmod>2024-07-29T14:11:05.851Z</lastmod>
   </url>
   <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_5/1-Project_layout.html</loc>
-    <lastmod>2024-08-12T09:56:54.033Z</lastmod>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_2/1-Encapsulation.html</loc>
+    <lastmod>2024-07-29T14:16:48.560Z</lastmod>
   </url>
   <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_5/3-Packaging_and_environment.html</loc>
-    <lastmod>2024-08-12T09:56:54.033Z</lastmod>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_2/2-Heritage.html</loc>
+    <lastmod>2024-07-29T12:24:39.949Z</lastmod>
   </url>
   <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_6/TP.html</loc>
-    <lastmod>2024-08-12T09:56:54.037Z</lastmod>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_2/TP.html</loc>
+    <lastmod>2024-07-29T14:10:58.965Z</lastmod>
   </url>
   <url>
-    <loc>https://remigenet.github.io/OOP_Python/content/Cours_6/2-Creational_patterns.html</loc>
-    <lastmod>2024-08-12T09:56:54.037Z</lastmod>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_1/2-Structuration_des_donnees.html</loc>
+    <lastmod>2024-07-29T10:01:15.116Z</lastmod>
+  </url>
+  <url>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_1/5-Simplicity_and_performance.html</loc>
+    <lastmod>2024-07-29T10:13:09.243Z</lastmod>
+  </url>
+  <url>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_1/TP.html</loc>
+    <lastmod>2024-07-29T10:11:19.664Z</lastmod>
+  </url>
+  <url>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_1/6-Bases_of_classes_in_python.html</loc>
+    <lastmod>2024-07-29T10:11:15.945Z</lastmod>
+  </url>
+  <url>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_6/3-Structural_patterns.html</loc>
+    <lastmod>2024-07-29T14:21:02.202Z</lastmod>
   </url>
   <url>
     <loc>https://remigenet.github.io/OOP_Python/content/Cours_6/4-behavioral_patterns.html</loc>
-    <lastmod>2024-08-12T09:56:54.037Z</lastmod>
+    <lastmod>2024-07-29T14:20:48.075Z</lastmod>
+  </url>
+  <url>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_6/index.html</loc>
+    <lastmod>2024-07-29T14:06:53.085Z</lastmod>
+  </url>
+  <url>
+    <loc>https://remigenet.github.io/OOP_Python/content/Projets/index.html</loc>
+    <lastmod>2024-07-29T15:39:23.991Z</lastmod>
+  </url>
+  <url>
+    <loc>https://remigenet.github.io/OOP_Python/content/Projets/m2_EIF_2024.html</loc>
+    <lastmod>2024-07-29T15:39:20.790Z</lastmod>
+  </url>
+  <url>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_6/TP.html</loc>
+    <lastmod>2024-07-29T14:11:06.693Z</lastmod>
+  </url>
+  <url>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_6/2-Creational_patterns.html</loc>
+    <lastmod>2024-07-29T15:39:36.179Z</lastmod>
+  </url>
+  <url>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_6/1-Python_Design_Pattern.html</loc>
+    <lastmod>2024-07-29T15:39:45.327Z</lastmod>
+  </url>
+  <url>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_1/1-Histoire.html</loc>
+    <lastmod>2024-07-29T10:01:12.719Z</lastmod>
+  </url>
+  <url>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_1/4-all_is_object.html</loc>
+    <lastmod>2024-07-29T10:11:08.406Z</lastmod>
+  </url>
+  <url>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_1/index.html</loc>
+    <lastmod>2024-07-29T10:08:23.213Z</lastmod>
+  </url>
+  <url>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_1/3-NaissancePOO.html</loc>
+    <lastmod>2024-07-29T10:11:02.015Z</lastmod>
+  </url>
+  <url>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_2/4-Dunder.html</loc>
+    <lastmod>2024-07-29T14:16:16.621Z</lastmod>
+  </url>
+  <url>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_2/index.html</loc>
+    <lastmod>2024-08-12T09:56:08.122Z</lastmod>
+  </url>
+  <url>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_2/3-Composition.html</loc>
+    <lastmod>2024-07-29T14:16:14.392Z</lastmod>
+  </url>
+  <url>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_5/2-Import.html</loc>
+    <lastmod>2024-07-29T14:47:07.227Z</lastmod>
+  </url>
+  <url>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_5/1-Project_layout.html</loc>
+    <lastmod>2024-07-29T14:17:39.039Z</lastmod>
+  </url>
+  <url>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_5/3-Packaging_and_environment.html</loc>
+    <lastmod>2024-07-29T14:19:14.231Z</lastmod>
+  </url>
+  <url>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_4/TP.html</loc>
+    <lastmod>2024-07-29T14:11:04.303Z</lastmod>
+  </url>
+  <url>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_4/index.html</loc>
+    <lastmod>2024-07-29T12:24:25.913Z</lastmod>
+  </url>
+  <url>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_4/4-builtin_decorator.html</loc>
+    <lastmod>2024-07-29T14:16:23.868Z</lastmod>
+  </url>
+  <url>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_3/2-Overloading.html</loc>
+    <lastmod>2024-07-29T14:16:19.103Z</lastmod>
+  </url>
+  <url>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_3/index.html</loc>
+    <lastmod>2024-08-12T09:55:40.974Z</lastmod>
+  </url>
+  <url>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_3/4-Abstract_class.html</loc>
+    <lastmod>2024-07-29T14:16:21.302Z</lastmod>
+  </url>
+  <url>
+    <loc>https://remigenet.github.io/OOP_Python/content/Cours_3/1-Polymorphism.html</loc>
+    <lastmod>2024-07-29T14:16:17.521Z</lastmod>
   </url>
 </urlset>
