@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.55">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Remi Genet">
-<meta name="dcterms.date" content="2024-07-29">
+<meta name="dcterms.date" content="2024-08-12">
 <meta name="description" content="Learn about type hinting in Python, the typing module, and how to use linters for static type checking to improve code quality and maintainability.">
 
 <title>Type Hinting, Typing Module, and Linters in Python – Programmation Orientée Objet en Python</title>
@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"def greet(name: str) -> str:\n    return f\"Hello, {name}!\"\n\nx: int = 5\ny: float = 3.14\nnames: list[str] = [\"Alice\", \"Bob\", \"Charlie\"]","options":{"output":"true","label":"","context":"interactive","out-height":"","read-only":"false","autorun":"","results":"markup","fig-width":7,"classes":"","comment":"","message":"true","warning":"true","fig-cap":"","fig-height":5,"out-width":"700px","dpi":72},"id":1},{"code":"from typing import List, Dict, Tuple, Optional, Union, Any\n\ndef process_data(items: List[int]) -> Dict[str, int]:\n    ...\n\ndef get_user_info() -> Tuple[str, int, Optional[str]]:\n    ...\n\ndef handle_input(value: Union[int, str]) -> Any:\n    ...","options":{"output":"true","label":"","context":"interactive","out-height":"","read-only":"false","autorun":"","results":"markup","fig-width":7,"classes":"","comment":"","message":"true","warning":"true","fig-cap":"","fig-height":5,"out-width":"700px","dpi":72},"id":2},{"code":"from typing import List, Dict\n\nVector = List[float]\nMatrix = List[Vector]\n\ndef scale_vector(v: Vector, factor: float) -> Vector:\n    return [x * factor for x in v]","options":{"output":"true","label":"","context":"interactive","out-height":"","read-only":"false","autorun":"","results":"markup","fig-width":7,"classes":"","comment":"","message":"true","warning":"true","fig-cap":"","fig-height":5,"out-width":"700px","dpi":72},"id":3},{"code":"from typing import TypeVar, List\n\nT = TypeVar('T')\n\ndef first_element(l: List[T]) -> T:\n    return l[0]","options":{"output":"true","label":"","context":"interactive","out-height":"","read-only":"false","autorun":"","results":"markup","fig-width":7,"classes":"","comment":"","message":"true","warning":"true","fig-cap":"","fig-height":5,"out-width":"700px","dpi":72},"id":4},{"code":"from typing import List, Dict, Optional\n\nclass User:\n    def __init__(self, name: str, age: int):\n        self.name = name\n        self.age = age\n\ndef get_user_data(users: List[User]) -> Dict[str, int]:\n    return {user.name: user.age for user in users}\n\ndef find_user(users: List[User], name: str) -> Optional[User]:\n    for user in users:\n        if user.name == name:\n            return user\n    return None\n\n# Usage\nusers: List[User] = [User(\"Alice\", 30), User(\"Bob\", 25)]\nuser_data: Dict[str, int] = get_user_data(users)\nfound_user: Optional[User] = find_user(users, \"Alice\")\n\nif found_user:\n    print(f\"Found user: {found_user.name}, Age: {found_user.age}\")\nelse:\n    print(\"User not found\")","options":{"output":"true","label":"","context":"interactive","out-height":"","read-only":"false","autorun":"","results":"markup","fig-width":7,"classes":"","comment":"","message":"true","warning":"true","fig-cap":"","fig-height":5,"out-width":"700px","dpi":72},"id":5}];
+globalThis.qpyodideCellDetails = [{"id":1,"options":{"comment":"","output":"true","label":"","read-only":"false","warning":"true","autorun":"","context":"interactive","results":"markup","fig-height":5,"message":"true","fig-width":7,"fig-cap":"","dpi":72,"classes":"","out-height":"","out-width":"700px"},"code":"def greet(name: str) -> str:\n    return f\"Hello, {name}!\"\n\nx: int = 5\ny: float = 3.14\nnames: list[str] = [\"Alice\", \"Bob\", \"Charlie\"]"},{"id":2,"options":{"comment":"","output":"true","label":"","read-only":"false","warning":"true","autorun":"","context":"interactive","results":"markup","fig-height":5,"message":"true","fig-width":7,"fig-cap":"","dpi":72,"classes":"","out-height":"","out-width":"700px"},"code":"from typing import List, Dict, Tuple, Optional, Union, Any\n\ndef process_data(items: List[int]) -> Dict[str, int]:\n    ...\n\ndef get_user_info() -> Tuple[str, int, Optional[str]]:\n    ...\n\ndef handle_input(value: Union[int, str]) -> Any:\n    ..."},{"id":3,"options":{"comment":"","output":"true","label":"","read-only":"false","warning":"true","autorun":"","context":"interactive","results":"markup","fig-height":5,"message":"true","fig-width":7,"fig-cap":"","dpi":72,"classes":"","out-height":"","out-width":"700px"},"code":"from typing import List, Dict\n\nVector = List[float]\nMatrix = List[Vector]\n\ndef scale_vector(v: Vector, factor: float) -> Vector:\n    return [x * factor for x in v]"},{"id":4,"options":{"comment":"","output":"true","label":"","read-only":"false","warning":"true","autorun":"","context":"interactive","results":"markup","fig-height":5,"message":"true","fig-width":7,"fig-cap":"","dpi":72,"classes":"","out-height":"","out-width":"700px"},"code":"from typing import TypeVar, List\n\nT = TypeVar('T')\n\ndef first_element(l: List[T]) -> T:\n    return l[0]"},{"id":5,"options":{"comment":"","output":"true","label":"","read-only":"false","warning":"true","autorun":"","context":"interactive","results":"markup","fig-height":5,"message":"true","fig-width":7,"fig-cap":"","dpi":72,"classes":"","out-height":"","out-width":"700px"},"code":"from typing import List, Dict, Optional\n\nclass User:\n    def __init__(self, name: str, age: int):\n        self.name = name\n        self.age = age\n\ndef get_user_data(users: List[User]) -> Dict[str, int]:\n    return {user.name: user.age for user in users}\n\ndef find_user(users: List[User], name: str) -> Optional[User]:\n    for user in users:\n        if user.name == name:\n            return user\n    return None\n\n# Usage\nusers: List[User] = [User(\"Alice\", 30), User(\"Bob\", 25)]\nuser_data: Dict[str, int] = get_user_data(users)\nfound_user: Optional[User] = find_user(users, \"Alice\")\n\nif found_user:\n    print(f\"Found user: {found_user.name}, Age: {found_user.age}\")\nelse:\n    print(\"User not found\")"}];
 
 
 </script>
@@ -439,10 +439,10 @@ globalThis._qpyodideGetInstance = function() {
 <meta property="og:image:width" content="303">
 <meta name="citation_title" content="Type Hinting, Typing Module, and Linters in Python">
 <meta name="citation_author" content="Remi Genet">
-<meta name="citation_publication_date" content="2024-07-29">
-<meta name="citation_cover_date" content="2024-07-29">
+<meta name="citation_publication_date" content="2024-08-12">
+<meta name="citation_cover_date" content="2024-08-12">
 <meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-07-29">
+<meta name="citation_online_date" content="2024-08-12">
 <meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_3/3-Type_Hinting.html">
 <meta name="citation_language" content="en">
 </head>
@@ -553,7 +553,7 @@ globalThis._qpyodideGetInstance = function() {
     <ul class="dropdown-menu" aria-labelledby="nav-menu-polymorphisme-et-surcharge">    
         <li>
     <a class="dropdown-item" href="../../content/Cours_3/index.html">
- <span class="dropdown-text">Les Librairies Python</span></a>
+ <span class="dropdown-text">Polymorphisme et Surcharge</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../content/Cours_3/1-Polymorphism.html">
@@ -735,7 +735,7 @@ globalThis._qpyodideGetInstance = function() {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/Cours_3/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Les Librairies Python</span></a>
+ <span class="menu-text">Polymorphisme et Surcharge</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -861,7 +861,7 @@ globalThis._qpyodideGetInstance = function() {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-07-29</p>
+      <p class="date">2024-08-12</p>
     </div>
   </div>
   

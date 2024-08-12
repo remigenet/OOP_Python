@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.55">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Remi Genet">
-<meta name="dcterms.date" content="2024-07-29">
+<meta name="dcterms.date" content="2024-08-12">
 <meta name="description" content="Learn about Protocol classes in Python, how to define and use them, and the advantages of using Protocols for defining interfaces and structural subtyping.">
 
 <title>Protocol Classes – Programmation Orientée Objet en Python</title>
@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"id":1,"code":"from typing import Protocol\n\nclass Drawable(Protocol):\n    def draw(self) -> None:\n        ...\n\ndef render(item: Drawable) -> None:\n    item.draw()\n\n# A class that's compatible with Drawable\nclass Circle:\n    def draw(self) -> None:\n        print(\"Drawing a circle\")\n\n# Usage\nrender(Circle())  # This works because Circle has a draw method","options":{"output":"true","label":"","warning":"true","fig-cap":"","classes":"","message":"true","read-only":"false","context":"interactive","results":"markup","fig-width":7,"dpi":72,"comment":"","autorun":"","fig-height":5,"out-width":"700px","out-height":""}},{"id":2,"code":"from typing import Protocol, List\n\nclass Sized(Protocol):\n    def __len__(self) -> int:\n        ...\n\nclass Appendable(Protocol):\n    def append(self, item: str) -> None:\n        ...\n\nclass StringContainer(Sized, Appendable, Protocol):\n    def __iter__(self) -> Iterator[str]:\n        ...\n\ndef process_data(container: StringContainer) -> None:\n    print(f\"Container has {len(container)} items\")\n    container.append(\"New Item\")\n    for item in container:\n        print(item)\n\n# A class that's compatible with StringContainer\nclass MyList:\n    def __init__(self):\n        self._data: List[str] = []\n\n    def __len__(self) -> int:\n        return len(self._data)\n\n    def append(self, item: str) -> None:\n        self._data.append(item)\n\n    def __iter__(self):\n        return iter(self._data)\n\n# Usage\nmy_list = MyList()\nmy_list.append(\"Item 1\")\nmy_list.append(\"Item 2\")\n\nprocess_data(my_list)  # This works because MyList is compatible with StringContainer","options":{"output":"true","label":"","warning":"true","fig-cap":"","classes":"","message":"true","read-only":"false","context":"interactive","results":"markup","fig-width":7,"dpi":72,"comment":"","autorun":"","fig-height":5,"out-width":"700px","out-height":""}},{"id":3,"code":"from typing import runtime_checkable, Protocol\n\n@runtime_checkable\nclass Drawable(Protocol):\n    def draw(self) -> None:\n        ...\n\nclass Circle:\n    def draw(self) -> None:\n        print(\"Drawing a circle\")\n\nprint(isinstance(Circle(), Drawable))  # True","options":{"output":"true","label":"","warning":"true","fig-cap":"","classes":"","message":"true","read-only":"false","context":"interactive","results":"markup","fig-width":7,"dpi":72,"comment":"","autorun":"","fig-height":5,"out-width":"700px","out-height":""}}];
+globalThis.qpyodideCellDetails = [{"code":"from typing import Protocol\n\nclass Drawable(Protocol):\n    def draw(self) -> None:\n        ...\n\ndef render(item: Drawable) -> None:\n    item.draw()\n\n# A class that's compatible with Drawable\nclass Circle:\n    def draw(self) -> None:\n        print(\"Drawing a circle\")\n\n# Usage\nrender(Circle())  # This works because Circle has a draw method","options":{"classes":"","autorun":"","warning":"true","dpi":72,"output":"true","results":"markup","out-height":"","message":"true","read-only":"false","out-width":"700px","fig-width":7,"label":"","fig-cap":"","context":"interactive","comment":"","fig-height":5},"id":1},{"code":"from typing import Protocol, List\n\nclass Sized(Protocol):\n    def __len__(self) -> int:\n        ...\n\nclass Appendable(Protocol):\n    def append(self, item: str) -> None:\n        ...\n\nclass StringContainer(Sized, Appendable, Protocol):\n    def __iter__(self) -> Iterator[str]:\n        ...\n\ndef process_data(container: StringContainer) -> None:\n    print(f\"Container has {len(container)} items\")\n    container.append(\"New Item\")\n    for item in container:\n        print(item)\n\n# A class that's compatible with StringContainer\nclass MyList:\n    def __init__(self):\n        self._data: List[str] = []\n\n    def __len__(self) -> int:\n        return len(self._data)\n\n    def append(self, item: str) -> None:\n        self._data.append(item)\n\n    def __iter__(self):\n        return iter(self._data)\n\n# Usage\nmy_list = MyList()\nmy_list.append(\"Item 1\")\nmy_list.append(\"Item 2\")\n\nprocess_data(my_list)  # This works because MyList is compatible with StringContainer","options":{"classes":"","autorun":"","warning":"true","dpi":72,"output":"true","results":"markup","out-height":"","message":"true","read-only":"false","out-width":"700px","fig-width":7,"label":"","fig-cap":"","context":"interactive","comment":"","fig-height":5},"id":2},{"code":"from typing import runtime_checkable, Protocol\n\n@runtime_checkable\nclass Drawable(Protocol):\n    def draw(self) -> None:\n        ...\n\nclass Circle:\n    def draw(self) -> None:\n        print(\"Drawing a circle\")\n\nprint(isinstance(Circle(), Drawable))  # True","options":{"classes":"","autorun":"","warning":"true","dpi":72,"output":"true","results":"markup","out-height":"","message":"true","read-only":"false","out-width":"700px","fig-width":7,"label":"","fig-cap":"","context":"interactive","comment":"","fig-height":5},"id":3}];
 
 
 </script>
@@ -439,10 +439,10 @@ globalThis._qpyodideGetInstance = function() {
 <meta property="og:image:width" content="2000">
 <meta name="citation_title" content="Protocol Classes">
 <meta name="citation_author" content="Remi Genet">
-<meta name="citation_publication_date" content="2024-07-29">
-<meta name="citation_cover_date" content="2024-07-29">
+<meta name="citation_publication_date" content="2024-08-12">
+<meta name="citation_cover_date" content="2024-08-12">
 <meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-07-29">
+<meta name="citation_online_date" content="2024-08-12">
 <meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_3/5-Protocol.html">
 <meta name="citation_language" content="en">
 </head>
@@ -553,7 +553,7 @@ globalThis._qpyodideGetInstance = function() {
     <ul class="dropdown-menu" aria-labelledby="nav-menu-polymorphisme-et-surcharge">    
         <li>
     <a class="dropdown-item" href="../../content/Cours_3/index.html">
- <span class="dropdown-text">Les Librairies Python</span></a>
+ <span class="dropdown-text">Polymorphisme et Surcharge</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../content/Cours_3/1-Polymorphism.html">
@@ -735,7 +735,7 @@ globalThis._qpyodideGetInstance = function() {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/Cours_3/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Les Librairies Python</span></a>
+ <span class="menu-text">Polymorphisme et Surcharge</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -849,7 +849,7 @@ globalThis._qpyodideGetInstance = function() {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-07-29</p>
+      <p class="date">2024-08-12</p>
     </div>
   </div>
   

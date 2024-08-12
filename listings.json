@@ -1,5 +1,42 @@
 [
   {
+    "listing": "/content/Cours_6/index.html",
+    "items": [
+      "/content/Cours_6/4-behavioral_patterns.html",
+      "/content/Cours_6/2-Creational_patterns.html",
+      "/content/Cours_6/1-Python_Design_Pattern.html",
+      "/content/Cours_6/3-Structural_patterns.html",
+      "/content/Cours_6/TP.html"
+    ]
+  },
+  {
+    "listing": "/content/Cours_5/index.html",
+    "items": [
+      "/content/Cours_5/1-Project_layout.html",
+      "/content/Cours_5/3-Packaging_and_environment.html",
+      "/content/Cours_5/TP.html",
+      "/content/Cours_5/2-Import.html",
+      "/content/Cours_5/4-Tests.html"
+    ]
+  },
+  {
+    "listing": "/content/Projets/index.html",
+    "items": [
+      "/content/Projets/m2_EIF_2024.html"
+    ]
+  },
+  {
+    "listing": "/content/Cours_3/index.html",
+    "items": [
+      "/content/Cours_3/4-Abstract_class.html",
+      "/content/Cours_3/1-Polymorphism.html",
+      "/content/Cours_3/2-Overloading.html",
+      "/content/Cours_3/5-Protocol.html",
+      "/content/Cours_3/TP.html",
+      "/content/Cours_3/3-Type_Hinting.html"
+    ]
+  },
+  {
     "listing": "/index.html",
     "items": [
       "/content/Cours_1/1-Histoire.html",
@@ -39,13 +76,15 @@
     ]
   },
   {
-    "listing": "/content/Cours_5/index.html",
+    "listing": "/content/Cours_1/index.html",
     "items": [
-      "/content/Cours_5/1-Project_layout.html",
-      "/content/Cours_5/3-Packaging_and_environment.html",
-      "/content/Cours_5/TP.html",
-      "/content/Cours_5/2-Import.html",
-      "/content/Cours_5/4-Tests.html"
+      "/content/Cours_1/6-Bases_of_classes_in_python.html",
+      "/content/Cours_1/TP.html",
+      "/content/Cours_1/1-Histoire.html",
+      "/content/Cours_1/3-NaissancePOO.html",
+      "/content/Cours_1/2-Structuration_des_donnees.html",
+      "/content/Cours_1/5-Simplicity_and_performance.html",
+      "/content/Cours_1/4-all_is_object.html"
     ]
   },
   {
@@ -59,18 +98,6 @@
     ]
   },
   {
-    "listing": "/content/Cours_1/index.html",
-    "items": [
-      "/content/Cours_1/6-Bases_of_classes_in_python.html",
-      "/content/Cours_1/TP.html",
-      "/content/Cours_1/1-Histoire.html",
-      "/content/Cours_1/3-NaissancePOO.html",
-      "/content/Cours_1/2-Structuration_des_donnees.html",
-      "/content/Cours_1/5-Simplicity_and_performance.html",
-      "/content/Cours_1/4-all_is_object.html"
-    ]
-  },
-  {
     "listing": "/content/Cours_4/index.html",
     "items": [
       "/content/Cours_4/4-builtin_decorator.html",
@@ -78,33 +105,6 @@
       "/content/Cours_4/1-Design_Pattern.html",
       "/content/Cours_4/TP.html",
       "/content/Cours_4/2-Decorator_theory.html"
-    ]
-  },
-  {
-    "listing": "/content/Cours_3/index.html",
-    "items": [
-      "/content/Cours_3/4-Abstract_class.html",
-      "/content/Cours_3/1-Polymorphism.html",
-      "/content/Cours_3/2-Overloading.html",
-      "/content/Cours_3/5-Protocol.html",
-      "/content/Cours_3/TP.html",
-      "/content/Cours_3/3-Type_Hinting.html"
-    ]
-  },
-  {
-    "listing": "/content/Projets/index.html",
-    "items": [
-      "/content/Projets/m2_EIF_2024.html"
-    ]
-  },
-  {
-    "listing": "/content/Cours_6/index.html",
-    "items": [
-      "/content/Cours_6/4-behavioral_patterns.html",
-      "/content/Cours_6/2-Creational_patterns.html",
-      "/content/Cours_6/1-Python_Design_Pattern.html",
-      "/content/Cours_6/3-Structural_patterns.html",
-      "/content/Cours_6/TP.html"
     ]
   }
 ]

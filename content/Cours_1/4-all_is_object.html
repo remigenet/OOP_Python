@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.55">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Remi Genet">
-<meta name="dcterms.date" content="2024-07-29">
+<meta name="dcterms.date" content="2024-08-12">
 <meta name="description" content="Explorer la notion de PATH, un élément essentiel dans la configuration des environnements de développement.">
 
 <title>Python: tout n’est qu’objet – Programmation Orientée Objet en Python</title>
@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"# Un entier est un objet\nx = 5\nprint(type(x))  # <class 'int'>\n\n# Une fonction est un objet\ndef ma_fonction():\n    pass\nprint(type(ma_fonction))  # <class 'function'>","id":1,"options":{"fig-width":7,"out-width":"700px","context":"interactive","warning":"true","comment":"","results":"markup","fig-cap":"","label":"","fig-height":5,"autorun":"","output":"true","out-height":"","classes":"","dpi":72,"message":"true","read-only":"false"}},{"code":"# En Python, pas de limite de taille pour les entiers\ngrand_nombre = 10**1000\nprint(grand_nombre)  # Affiche un nombre de 1001 chiffres sans problème","id":2,"options":{"fig-width":7,"out-width":"700px","context":"interactive","warning":"true","comment":"","results":"markup","fig-cap":"","label":"","fig-height":5,"autorun":"","output":"true","out-height":"","classes":"","dpi":72,"message":"true","read-only":"false"}},{"code":"x = 5        # x référence un objet entier\nx = \"Hello\"  # Maintenant x référence un objet chaîne\nx = [1, 2, 3] # Et maintenant une liste","id":3,"options":{"fig-width":7,"out-width":"700px","context":"interactive","warning":"true","comment":"","results":"markup","fig-cap":"","label":"","fig-height":5,"autorun":"","output":"true","out-height":"","classes":"","dpi":72,"message":"true","read-only":"false"}},{"code":"# Inspecter les attributs et méthodes d'un objet\nx = 5\nprint(dir(x))  # Affiche toutes les méthodes disponibles pour un entier","id":4,"options":{"fig-width":7,"out-width":"700px","context":"interactive","warning":"true","comment":"","results":"markup","fig-cap":"","label":"","fig-height":5,"autorun":"","output":"true","out-height":"","classes":"","dpi":72,"message":"true","read-only":"false"}},{"code":"class MonNombre:\n    def __init__(self, valeur):\n        self.valeur = valeur\n    \n    def __add__(self, autre):\n        return MonNombre(self.valeur + autre.valeur)\n\n# Utilisation comme un type natif\na = MonNombre(5)\nb = MonNombre(3)\nc = a + b\nprint(c.valeur)  # Affiche 8","id":5,"options":{"fig-width":7,"out-width":"700px","context":"interactive","warning":"true","comment":"","results":"markup","fig-cap":"","label":"","fig-height":5,"autorun":"","output":"true","out-height":"","classes":"","dpi":72,"message":"true","read-only":"false"}}];
+globalThis.qpyodideCellDetails = [{"id":1,"code":"# Un entier est un objet\nx = 5\nprint(type(x))  # <class 'int'>\n\n# Une fonction est un objet\ndef ma_fonction():\n    pass\nprint(type(ma_fonction))  # <class 'function'>","options":{"out-width":"700px","read-only":"false","comment":"","out-height":"","warning":"true","results":"markup","fig-cap":"","message":"true","label":"","output":"true","context":"interactive","autorun":"","classes":"","fig-height":5,"fig-width":7,"dpi":72}},{"id":2,"code":"# En Python, pas de limite de taille pour les entiers\ngrand_nombre = 10**1000\nprint(grand_nombre)  # Affiche un nombre de 1001 chiffres sans problème","options":{"out-width":"700px","read-only":"false","comment":"","out-height":"","warning":"true","results":"markup","fig-cap":"","message":"true","label":"","output":"true","context":"interactive","autorun":"","classes":"","fig-height":5,"fig-width":7,"dpi":72}},{"id":3,"code":"x = 5        # x référence un objet entier\nx = \"Hello\"  # Maintenant x référence un objet chaîne\nx = [1, 2, 3] # Et maintenant une liste","options":{"out-width":"700px","read-only":"false","comment":"","out-height":"","warning":"true","results":"markup","fig-cap":"","message":"true","label":"","output":"true","context":"interactive","autorun":"","classes":"","fig-height":5,"fig-width":7,"dpi":72}},{"id":4,"code":"# Inspecter les attributs et méthodes d'un objet\nx = 5\nprint(dir(x))  # Affiche toutes les méthodes disponibles pour un entier","options":{"out-width":"700px","read-only":"false","comment":"","out-height":"","warning":"true","results":"markup","fig-cap":"","message":"true","label":"","output":"true","context":"interactive","autorun":"","classes":"","fig-height":5,"fig-width":7,"dpi":72}},{"id":5,"code":"class MonNombre:\n    def __init__(self, valeur):\n        self.valeur = valeur\n    \n    def __add__(self, autre):\n        return MonNombre(self.valeur + autre.valeur)\n\n# Utilisation comme un type natif\na = MonNombre(5)\nb = MonNombre(3)\nc = a + b\nprint(c.valeur)  # Affiche 8","options":{"out-width":"700px","read-only":"false","comment":"","out-height":"","warning":"true","results":"markup","fig-cap":"","message":"true","label":"","output":"true","context":"interactive","autorun":"","classes":"","fig-height":5,"fig-width":7,"dpi":72}}];
 
 
 </script>
@@ -439,10 +439,10 @@ globalThis._qpyodideGetInstance = function() {
 <meta property="og:image:width" content="1024">
 <meta name="citation_title" content="Python: tout n&amp;amp;#039;est qu'objet">
 <meta name="citation_author" content="Remi Genet">
-<meta name="citation_publication_date" content="2024-07-29">
-<meta name="citation_cover_date" content="2024-07-29">
+<meta name="citation_publication_date" content="2024-08-12">
+<meta name="citation_cover_date" content="2024-08-12">
 <meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-07-29">
+<meta name="citation_online_date" content="2024-08-12">
 <meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_1/4-all_is_object.html">
 <meta name="citation_language" content="en">
 </head>
@@ -553,7 +553,7 @@ globalThis._qpyodideGetInstance = function() {
     <ul class="dropdown-menu" aria-labelledby="nav-menu-polymorphisme-et-surcharge">    
         <li>
     <a class="dropdown-item" href="../../content/Cours_3/index.html">
- <span class="dropdown-text">Les Librairies Python</span></a>
+ <span class="dropdown-text">Polymorphisme et Surcharge</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../content/Cours_3/1-Polymorphism.html">
@@ -876,7 +876,7 @@ globalThis._qpyodideGetInstance = function() {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-07-29</p>
+      <p class="date">2024-08-12</p>
     </div>
   </div>
   

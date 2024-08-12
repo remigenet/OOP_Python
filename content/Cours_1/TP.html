@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.55">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Remi Genet">
-<meta name="dcterms.date" content="2024-07-29">
+<meta name="dcterms.date" content="2024-08-12">
 
 <title>Construire son propre DataFrame – Programmation Orientée Objet en Python</title>
 <style>
@@ -236,7 +236,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"options":{"fig-cap":"","out-height":"","warning":"true","context":"interactive","fig-height":5,"output":"true","fig-width":7,"read-only":"false","comment":"","label":"","dpi":72,"message":"true","classes":"","autorun":"","results":"markup","out-width":"700px"},"id":1,"code":"import unittest\nimport numpy as np\n\nclass DataFrameSimple:\n   #TODO\n   pass\n\nclass TestDataFrameSimple(unittest.TestCase):\n\n    def setUp(self):\n        self.data_dict = {\n            'A': [1, 2, 3, 4, 5],\n            'B': [10, 20, 30, 40, 50],\n            'C': [100, 200, 300, 400, 500]\n        }\n        self.df = DataFrameSimple(self.data_dict)\n\n    def test_creation(self):\n        self.assertIsInstance(self.df, DataFrameSimple)\n        self.assertEqual(list(self.df.colonnes), ['A', 'B', 'C'])\n\n    def test_afficher(self):\n        result = self.df.afficher()\n        self.assertIsInstance(result, str)\n        self.assertIn('A', result)\n        self.assertIn('B', result)\n        self.assertIn('C', result)\n\n    def test_moyenne(self):\n        self.assertEqual(self.df.moyenne('A'), 3)\n        self.assertEqual(self.df.moyenne('B'), 30)\n\n    def test_somme(self):\n        self.assertEqual(self.df.somme('A'), 15)\n        self.assertEqual(self.df.somme('B'), 150)\n\n    def test_min(self):\n        self.assertEqual(self.df.min('A'), 1)\n        self.assertEqual(self.df.min('B'), 10)\n\n    def test_max(self):\n        self.assertEqual(self.df.max('A'), 5)\n        self.assertEqual(self.df.max('B'), 50)\n\n    def test_select_colonne(self):\n        np.testing.assert_array_equal(self.df.select_colonne('A'), np.array([1, 2, 3, 4, 5]))\n\ndef run_tests():\n    unittest.main(argv=[''], verbosity=2, exit=False)\n\nif __name__ == '__main__':\n    run_tests()"}];
+globalThis.qpyodideCellDetails = [{"id":1,"code":"import unittest\nimport numpy as np\n\nclass DataFrameSimple:\n   #TODO\n   pass\n\nclass TestDataFrameSimple(unittest.TestCase):\n\n    def setUp(self):\n        self.data_dict = {\n            'A': [1, 2, 3, 4, 5],\n            'B': [10, 20, 30, 40, 50],\n            'C': [100, 200, 300, 400, 500]\n        }\n        self.df = DataFrameSimple(self.data_dict)\n\n    def test_creation(self):\n        self.assertIsInstance(self.df, DataFrameSimple)\n        self.assertEqual(list(self.df.colonnes), ['A', 'B', 'C'])\n\n    def test_afficher(self):\n        result = self.df.afficher()\n        self.assertIsInstance(result, str)\n        self.assertIn('A', result)\n        self.assertIn('B', result)\n        self.assertIn('C', result)\n\n    def test_moyenne(self):\n        self.assertEqual(self.df.moyenne('A'), 3)\n        self.assertEqual(self.df.moyenne('B'), 30)\n\n    def test_somme(self):\n        self.assertEqual(self.df.somme('A'), 15)\n        self.assertEqual(self.df.somme('B'), 150)\n\n    def test_min(self):\n        self.assertEqual(self.df.min('A'), 1)\n        self.assertEqual(self.df.min('B'), 10)\n\n    def test_max(self):\n        self.assertEqual(self.df.max('A'), 5)\n        self.assertEqual(self.df.max('B'), 50)\n\n    def test_select_colonne(self):\n        np.testing.assert_array_equal(self.df.select_colonne('A'), np.array([1, 2, 3, 4, 5]))\n\ndef run_tests():\n    unittest.main(argv=[''], verbosity=2, exit=False)\n\nif __name__ == '__main__':\n    run_tests()","options":{"results":"markup","output":"true","context":"interactive","fig-cap":"","read-only":"false","label":"","classes":"","autorun":"","message":"true","out-height":"","dpi":72,"warning":"true","out-width":"700px","fig-width":7,"comment":"","fig-height":5}}];
 
 
 </script>
@@ -437,10 +437,10 @@ globalThis._qpyodideGetInstance = function() {
 <meta property="og:image:width" content="1024">
 <meta name="citation_title" content="Construire son propre DataFrame">
 <meta name="citation_author" content="Remi Genet">
-<meta name="citation_publication_date" content="2024-07-29">
-<meta name="citation_cover_date" content="2024-07-29">
+<meta name="citation_publication_date" content="2024-08-12">
+<meta name="citation_cover_date" content="2024-08-12">
 <meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-07-29">
+<meta name="citation_online_date" content="2024-08-12">
 <meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_1/TP.html">
 <meta name="citation_language" content="en">
 </head>
@@ -551,7 +551,7 @@ globalThis._qpyodideGetInstance = function() {
     <ul class="dropdown-menu" aria-labelledby="nav-menu-polymorphisme-et-surcharge">    
         <li>
     <a class="dropdown-item" href="../../content/Cours_3/index.html">
- <span class="dropdown-text">Les Librairies Python</span></a>
+ <span class="dropdown-text">Polymorphisme et Surcharge</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../content/Cours_3/1-Polymorphism.html">
@@ -840,7 +840,7 @@ globalThis._qpyodideGetInstance = function() {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-07-29</p>
+      <p class="date">2024-08-12</p>
     </div>
   </div>
   

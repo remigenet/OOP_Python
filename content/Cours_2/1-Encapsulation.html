@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.55">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Remi Genet">
-<meta name="dcterms.date" content="2024-07-29">
+<meta name="dcterms.date" content="2024-08-12">
 <meta name="description" content="Comprendre l’encapsulation en Python et les conventions pour définir des attributs et méthodes publics et privés.">
 
 <title>Encapsulation en Python – Programmation Orientée Objet en Python</title>
@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"class CompteBancaire:\n    def __init__(self, proprietaire, solde_initial):\n        self.proprietaire = proprietaire  # Public\n        self._solde = solde_initial       # \"Privé\" par convention\n        self.__historique = []            # \"Private\" avec name mangling\n\n    def deposer(self, montant):\n        if montant > 0:\n            self._solde += montant\n            self.__ajouter_transaction(f\"Dépôt de {montant}\")\n            return True\n        return False\n\n    def retirer(self, montant):\n        if 0 < montant <= self._solde:\n            self._solde -= montant\n            self.__ajouter_transaction(f\"Retrait de {montant}\")\n            return True\n        return False\n\n    def obtenir_solde(self):\n        return self._solde\n\n    def __ajouter_transaction(self, transaction):\n        self.__historique.append(transaction)\n\n# Utilisation\ncompte = CompteBancaire(\"Alice\", 1000)\nprint(compte.proprietaire)  # Accès à un attribut public\ncompte.deposer(500)\nprint(compte.obtenir_solde())  # Utilisation d'une méthode publique pour accéder au solde\n\n# Les lignes suivantes sont possibles mais déconseillées :\nprint(compte._solde)  # Accès à un attribut \"privé\" par convention\n# print(compte.__historique)  # Ceci lèvera une AttributeError\nprint(compte._CompteBancaire__historique)  # Accès à l'attribut avec name mangling","id":1,"options":{"fig-width":7,"context":"interactive","label":"","results":"markup","out-width":"700px","output":"true","fig-cap":"","comment":"","message":"true","autorun":"","warning":"true","fig-height":5,"read-only":"false","dpi":72,"classes":"","out-height":""}}];
+globalThis.qpyodideCellDetails = [{"code":"class CompteBancaire:\n    def __init__(self, proprietaire, solde_initial):\n        self.proprietaire = proprietaire  # Public\n        self._solde = solde_initial       # \"Privé\" par convention\n        self.__historique = []            # \"Private\" avec name mangling\n\n    def deposer(self, montant):\n        if montant > 0:\n            self._solde += montant\n            self.__ajouter_transaction(f\"Dépôt de {montant}\")\n            return True\n        return False\n\n    def retirer(self, montant):\n        if 0 < montant <= self._solde:\n            self._solde -= montant\n            self.__ajouter_transaction(f\"Retrait de {montant}\")\n            return True\n        return False\n\n    def obtenir_solde(self):\n        return self._solde\n\n    def __ajouter_transaction(self, transaction):\n        self.__historique.append(transaction)\n\n# Utilisation\ncompte = CompteBancaire(\"Alice\", 1000)\nprint(compte.proprietaire)  # Accès à un attribut public\ncompte.deposer(500)\nprint(compte.obtenir_solde())  # Utilisation d'une méthode publique pour accéder au solde\n\n# Les lignes suivantes sont possibles mais déconseillées :\nprint(compte._solde)  # Accès à un attribut \"privé\" par convention\n# print(compte.__historique)  # Ceci lèvera une AttributeError\nprint(compte._CompteBancaire__historique)  # Accès à l'attribut avec name mangling","id":1,"options":{"warning":"true","comment":"","fig-cap":"","results":"markup","output":"true","context":"interactive","classes":"","fig-height":5,"fig-width":7,"autorun":"","message":"true","label":"","dpi":72,"out-width":"700px","read-only":"false","out-height":""}}];
 
 
 </script>
@@ -439,10 +439,10 @@ globalThis._qpyodideGetInstance = function() {
 <meta property="og:image:width" content="1024">
 <meta name="citation_title" content="Encapsulation en Python">
 <meta name="citation_author" content="Remi Genet">
-<meta name="citation_publication_date" content="2024-07-29">
-<meta name="citation_cover_date" content="2024-07-29">
+<meta name="citation_publication_date" content="2024-08-12">
+<meta name="citation_cover_date" content="2024-08-12">
 <meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-07-29">
+<meta name="citation_online_date" content="2024-08-12">
 <meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_2/1-Encapsulation.html">
 <meta name="citation_language" content="en">
 </head>
@@ -553,7 +553,7 @@ globalThis._qpyodideGetInstance = function() {
     <ul class="dropdown-menu" aria-labelledby="nav-menu-polymorphisme-et-surcharge">    
         <li>
     <a class="dropdown-item" href="../../content/Cours_3/index.html">
- <span class="dropdown-text">Les Librairies Python</span></a>
+ <span class="dropdown-text">Polymorphisme et Surcharge</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../content/Cours_3/1-Polymorphism.html">
@@ -840,7 +840,7 @@ globalThis._qpyodideGetInstance = function() {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-07-29</p>
+      <p class="date">2024-08-12</p>
     </div>
   </div>
   
