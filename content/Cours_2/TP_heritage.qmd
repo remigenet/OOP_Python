@@ -124,8 +124,7 @@ import math
 from scipy.stats import norm
 import numpy as np
 
-# TODO: Importez vos classes ici
-# from black_scholes import Option, Call, Put
+# TODO: Option, Call, Put
 
 class TestBlackScholes(unittest.TestCase):
     def setUp(self):
@@ -177,8 +176,7 @@ Et voici un ensemble de tests unitaires pour la Partie 2 (Monte Carlo) :
 import unittest
 import numpy as np
 
-# TODO: Importez vos classes ici
-# from monte_carlo import Derivative, EuropeanOption, Payoff, CallPayoff, PutPayoff
+# TODO: Creer vos classes Derivative, EuropeanOption, Payoff, CallPayoff, PutPayoff
 
 class TestMonteCarlo(unittest.TestCase):
     def setUp(self):

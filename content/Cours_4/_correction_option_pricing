@@ -1,0 +1,31 @@
+from functools import wraps
+
+def option_pricer(payoff_func):
+    @wraps(payoff_func)
+    def decorator(*args, **kwargs):
+        class OptionPricer(MonteCarloSimulator):
+            def payoff(self, ST):
+                return payoff_func(ST, *args, **kwargs)
+        
+        return OptionPricer
+    return decorator
+
+# OR
+from functools import wraps
+
+def option_pricer(payoff_func):
+    @wraps(payoff_func)
+    def decorator(*args, **kwargs):
+        def payoff_method(self, ST):
+            return payoff_func(ST, *args, **kwargs)
+        
+        class_name = f"{payoff_func.__name__.capitalize()}Pricer"
+        
+        OptionPricer = type(
+            class_name,
+            (MonteCarloSimulator,),
+            {"payoff": payoff_method}
+        )
+        
+        return OptionPricer
+    return decorator

@@ -1,0 +1,165 @@
+---
+title: "TP: Optimizing Heston Model Monte Carlo Simulation"
+weight: 22
+tags:
+ - Python
+ - Numba
+ - Caching
+ - Monte Carlo
+ - Heston Model
+ - Performance Optimization
+categories:
+ - Course
+ - Python Advanced
+ - Quantitative Finance
+type: book
+description: "A hands-on practical exercise on optimizing Heston model Monte Carlo simulations using Numba and caching in Python."
+image: .img/heston_monte_carlo_optimization_tp.webp
+filters:
+ - pyodide
+---
+
+# TP: Optimizing Heston Model Monte Carlo Simulation
+
+In this practical exercise, we'll optimize a Monte Carlo simulation for pricing options under the Heston model. We'll start with a basic implementation and then apply various optimization techniques, including Numba and caching. This TP is not to run on website directly as numba is not available on it.
+
+## Part 1: Baseline Implementation
+
+Here's our starting point - a basic implementation of the Heston model Monte Carlo simulation:
+
+```python
+import numpy as np
+import time
+from scipy.stats import norm
+
+def generate_random_values(num_simulations, num_steps):
+    return np.random.normal(0, 1, (num_simulations, num_steps, 2))
+
+def heston_monte_carlo(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps):
+    random_values = generate_random_values(num_simulations, num_steps)
+    dt = T / num_steps
+    prices = np.zeros((num_simulations, num_steps + 1))
+    variances = np.zeros((num_simulations, num_steps + 1))
+    
+    prices[:, 0] = S0
+    variances[:, 0] = v0
+    for sim in range(num_simulations):
+        for i in range(1, num_steps + 1):
+            dW1 = random_values[sim, i-1, 0]
+            dW2 = rho * dW1 + np.sqrt(1 - rho**2) * random_values[sim, i-1, 1]
+            
+            variances[sim, i] = np.maximum(variances[sim, i-1] + kappa * (theta - variances[sim, i-1]) * dt + 
+                                         sigma * np.sqrt(variances[sim, i-1] * dt) * dW2, 0)
+            
+            prices[sim, i] = prices[sim, i-1] * np.exp((r - 0.5 * variances[sim, i-1]) * dt + 
+                                                   np.sqrt(variances[sim, i-1] * dt) * dW1)
+        
+    option_prices = np.mean(np.maximum(prices[:, -1] - K, 0))
+    return np.exp(-r * T) * option_prices
+
+# Test the implementation
+num_options = 10
+kappa, theta, sigma, rho, v0 = 2, 0.04, 0.3, -0.7, 0.04
+S0s = np.random.randint(90, 110, num_options)
+Ks = np.random.randint(90, 110, num_options)
+T = 1
+r = 0.05
+num_simulations, num_steps = 1000, 252
+
+start_time = time.time()
+for option_row in range(num_options):
+    S0 = S0s[option_row]
+    K = Ks[option_row]
+    price = heston_monte_carlo(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps)
+    
+print(f"Basic implementation took {(time.time() - start_time)/num_options:.4f} seconds per option")
+```
+
+## Part 2: Optimization with Numba
+
+Your first task is to optimize the Monte Carlo simulation using Numba. Here's the structure you should follow:
+
+```python
+from numba import jit, prange
+
+@jit(nopython=True, cache=True, parallel=True)
+def heston_monte_carlo_numba(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps):
+    # Your implementation here
+    pass
+
+# Test the Numba-optimized function
+num_options = 1000
+# ... (use the same parameters as in the baseline implementation)
+
+start_time = time.time()
+for option_row in range(num_options):
+    S0 = S0s[option_row]
+    K = Ks[option_row]
+    price_numba = heston_monte_carlo_numba(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps)
+
+print(f"Numba implementation took {(time.time() - start_time)/num_options:.4f} seconds per option")
+```
+
+## Part 3: Optimization with Caching
+
+Next, implement a cached version of the Monte Carlo simulation. Here's the structure to follow:
+
+```python
+from functools import cache
+
+@cache
+def generate_random_values(num_simulations, num_steps):
+    return np.random.normal(0, 1, (num_simulations, num_steps, 2))
+
+@cache
+def heston_monte_carlo_cached(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps):
+    # Your implementation here
+    pass
+
+# Test the cached implementation
+start_time = time.time()
+for option_row in range(num_options):
+    S0 = S0s[option_row]
+    K = Ks[option_row]
+    price_cached = heston_monte_carlo_cached(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps)
+    
+print(f"First run of cached implementation took {time.time() - start_time:.2f} seconds")
+
+# Run it again to see the effect of caching
+start_time = time.time()
+for option_row in range(num_options):
+    S0 = S0s[option_row]
+    K = Ks[option_row]
+    price_cached = heston_monte_carlo_cached(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps)
+    
+print(f"Second run of cached implementation took {time.time() - start_time:.2f} seconds")
+```
+
+## Part 4: Analysis and Comparison
+
+1. Compare the performance of the three implementations (basic, Numba, and cached). What speedup do you achieve with each optimization technique?
+
+2. Experiment with different numbers of simulations and time steps. How does the performance of each implementation scale?
+
+3. Discuss the trade-offs between the different implementations in terms of speed, memory usage, and code complexity.
+
+## Part 5: Vectorization (Bonus)
+
+As a final task, implement a vectorized version of the initial implementation without using Numba:
+
+```python
+def heston_monte_carlo_vectorized(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps):
+    # Your vectorized implementation here
+    pass
+
+# Test the vectorized implementation
+start_time = time.time()
+for option_row in range(num_options):
+    S0 = S0s[option_row]
+    K = Ks[option_row]
+    price_vectorized = heston_monte_carlo_vectorized(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps)
+
+print(f"Vectorized implementation took {(time.time() - start_time)/num_options:.4f} seconds per option")
+```
+
+Compare the performance of this vectorized implementation with the previous versions. Discuss the advantages and potential limitations of vectorization in this context.

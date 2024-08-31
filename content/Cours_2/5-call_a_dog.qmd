@@ -1,0 +1,141 @@
+---
+title: "Python __call__ Method: A Fun Exploration"
+weight: 12
+tags:
+ - Python
+ - Dunder Methods
+ - __call__
+ - Memory Allocation
+ - Fun Examples
+categories:
+ - Course
+ - Python Quirks
+type: book
+description: "Explore the quirky side of Python's __call__ method with fun examples and insights into memory allocation. A lighthearted break in our Python deep dive."
+image: .img/python_fun.webp
+filters:
+ - pyodide
+---
+
+# Python `__call__` Method: A Fun Exploration
+
+After diving into the world of dunder methods, let's take a fun break and explore some quirky behavior of the `__call__` method in Python. This example showcases how we can create objects that can be "called" multiple times, and gives us some interesting insights into Python's memory allocation.
+
+## The Infinitely Callable Dog
+
+Let's start with a simple goal: we want to create a `Dog` class that allows us to add any number of parentheses after it. Something like this:
+
+```{pyodide-python}
+Dog()
+Dog()()
+Dog()()()()()
+Dog()()()()()()()()()()  # and so on...
+```
+
+### Step 1: Basic Implementation
+
+Let's start with a simple implementation:
+
+```{pyodide-python}
+class Dog:
+    def __call__(self):
+        return Dog
+
+print(Dog())          # <__main__.Dog object at 0x...>
+print(Dog()())        # <class '__main__.Dog'>
+print(Dog()()())      # <__main__.Dog object at 0x...>
+print(Dog()()()())    # <class '__main__.Dog'>
+print(Dog()()()()())  # <__main__.Dog object at 0x...>
+```
+
+In this implementation, we're alternating between returning a `Dog` instance and the `Dog` class itself. This allows us to chain as many calls as we want!
+
+### Step 2: Memory Allocation Insights
+
+Now, let's look at how Python handles memory allocation in this case:
+
+```{pyodide-python}
+dog = Dog()
+print(dog)  # <__main__.Dog object at 0x7f5d2983e2a0>
+dog = Dog()
+print(dog)  # <__main__.Dog object at 0x7f5d29859730>
+dog = dog()
+print(dog)  # <class '__main__.Dog'>
+dog = dog()
+print(dog)  # <__main__.Dog object at 0x7f5d2983e2a0>
+dog = dog()
+print(dog)  # <class '__main__.Dog'>
+dog = dog()
+print(dog)  # <__main__.Dog object at 0x7f5d2983e2a0>
+dog = Dog()
+print(dog)  # <__main__.Dog object at 0x7f5d29859790>
+```
+
+Interesting! When we create new instances and save them to a variable, Python allocates new memory. But when we chain calls without saving the intermediate results, Python often reuses the same memory address for new instances.
+
+### Step 3: Always Return Self
+
+What if we always want to return an instance, regardless of how many times we call it?
+
+```{pyodide-python}
+class Dog:
+    def __call__(self):
+        return self
+
+print(Dog())      # <__main__.Dog object at 0x7f5d2983fc20>
+print(Dog()())    # <__main__.Dog object at 0x7f5d2983fc20>
+print(Dog()()())  # <__main__.Dog object at 0x7f5d2983fc20>
+```
+
+Now we always get the same instance, no matter how many times we call it!
+
+### Step 4: New Instance Every Call
+
+What if we want a new instance every time?
+
+```{pyodide-python}
+class Dog:
+    def __call__(self):
+        return Dog()
+
+print(Dog())      # <__main__.Dog object at 0x7f5d28762c60>
+print(Dog()())    # <__main__.Dog object at 0x7f5d28763050>
+print(Dog()()())  # <__main__.Dog object at 0x7f5d28763050>
+```
+
+Interestingly, the address changes after the first call, then remains the same. This is due to Python's memory management optimizations.
+
+### Step 5: Unique Instance Every Time
+
+Finally, if we really want to ensure a unique instance every time:
+
+```{pyodide-python}
+class Dog:
+    c = 0
+    _instances = {}
+    def __new__(cls):
+        cls.c += 1
+        cls._instances[cls.c] = super().__new__(cls)
+        return cls._instances[cls.c]
+    
+    def __call__(self):
+        return Dog
+
+print(Dog())          # <__main__.Dog object at 0x7f5d28762930>
+print(Dog()())        # <class '__main__.Dog'>
+print(Dog()()())      # <__main__.Dog object at 0x7f5d287626c0>
+print(Dog()()()())    # <class '__main__.Dog'>
+print(Dog()()()()())  # <__main__.Dog object at 0x7f5d28762990>
+```
+
+Now we're forcing Python to create and track unique instances, resulting in different memory addresses for each new instance.
+
+## Conclusion
+
+This fun exploration of the `__call__` method and Python's memory allocation shows us a few things:
+
+1. The `__call__` method allows us to make our objects callable, leading to some interesting and flexible designs.
+2. Python's memory management is quite clever, often reusing memory addresses when it can.
+3. We can control instance creation and memory allocation by customizing `__new__` and `__call__`.
+
+Remember, while these examples are fun to explore and can teach us a lot about Python's inner workings, they're not typically something you'd use in production code. They're great for understanding Python better and maybe for solving some tricky coding puzzles!

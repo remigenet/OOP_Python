@@ -59,6 +59,7 @@ website:
        - content/Cours_2/2-Heritage.qmd
        - content/Cours_2/3-Composition.qmd
        - content/Cours_2/4-Dunder.qmd
+       - content/Cours_2/5-call_a_dog.qmd
        - section: Travaux Pratiques
          expanded: false
          contents:
@@ -70,9 +71,10 @@ website:
        - content/Cours_3/index.qmd
        - content/Cours_3/1-Polymorphism.qmd
        - content/Cours_3/2-Overloading.qmd
-       - content/Cours_3/3-Type_Hinting.qmd
-       - content/Cours_3/4-Abstract_class.qmd
-       - content/Cours_3/5-Protocol.qmd
+       - content/Cours_3/3-type_to_create.qmd
+       - content/Cours_3/4-Type_Hinting.qmd
+       - content/Cours_3/5-Abstract_class.qmd
+       - content/Cours_3/6-Protocol.qmd
        - section: Travaux Pratiques
          expanded: false
          contents:
@@ -84,10 +86,12 @@ website:
        - content/Cours_4/2-Decorator_theory.qmd
        - content/Cours_4/3-Decorator_practically.qmd
        - content/Cours_4/4-builtin_decorator.qmd
+       - content/Cours_4/5-library_decorators.qmd
        - section: Travaux Pratiques
          expanded: false
          contents:
-         - content/Cours_4/TP.qmd
+         - content/Cours_4/TP_option.qmd
+         - content/Cours_4/TP_library.qmd
     - id: packaging 
       title: "Project Management and Packaging"
       contents: 

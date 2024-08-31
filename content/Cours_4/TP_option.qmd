@@ -1,0 +1,124 @@
+---
+title: "TP: Monte Carlo Option Pricing with Decorators"
+weight: 15
+tags:
+ - Python
+ - Decorators
+ - Classes
+ - Monte Carlo
+ - Option Pricing
+categories:
+ - Course
+ - Financial Programming
+type: book
+description: "A hands-on practical exercise on creating a decorator that injects payoff functions into a Monte Carlo option pricing simulator, exploring advanced concepts in Python and financial modeling."
+image: .img/monte_carlo_option_tp.webp
+filters:
+ - pyodide
+---
+
+# TP: Monte Carlo Option Pricing with Decorators
+
+In this practical exercise, we'll create a Monte Carlo simulator for option pricing and use decorators to inject different payoff functions into the simulator. This approach will allow us to easily create and price various types of options using the same underlying simulation framework.
+
+## Scenario: Flexible Option Pricing System
+
+We want to build a system that can price different types of options using Monte Carlo simulation. The system should be flexible enough to handle various payoff structures without modifying the core simulation logic.
+
+## Step 1: Implement the Base Monte Carlo Simulator
+
+First, let's implement our base `MonteCarloSimulator` class:
+
+```{pyodide-python}
+import numpy as np
+
+class MonteCarloSimulator:
+    def __init__(self, S0, r, sigma, T):
+        self.S0 = S0      # Initial stock price
+        self.r = r        # Risk-free rate
+        self.sigma = sigma  # Volatility
+        self.T = T        # Time to maturity
+
+    def simulate_paths(self, num_simulations, num_steps):
+        dt = self.T / num_steps
+        paths = np.zeros((num_simulations, num_steps + 1))
+        paths[:, 0] = self.S0
+        
+        for i in range(1, num_steps + 1):
+            z = np.random.standard_normal(num_simulations)
+            paths[:, i] = paths[:, i-1] * np.exp((self.r - 0.5 * self.sigma**2) * dt + 
+                                                 self.sigma * np.sqrt(dt) * z)
+        return paths
+
+    def price_option(self, num_simulations, num_steps):
+        paths = self.simulate_paths(num_simulations, num_steps)
+        payoffs = self.payoff(paths[:, -1])
+        option_price = np.exp(-self.r * self.T) * np.mean(payoffs)
+        return option_price
+
+    def payoff(self, ST):
+        raise NotImplementedError("Subclasses must implement payoff method")
+
+```
+
+## Step 2: Implement the Decorator
+
+Now, implement a decorator called `option_pricer`. This decorator should:
+
+1. Take a payoff function as input
+2. Create a new class that inherits from `MonteCarloSimulator`
+3. Inject the input function as the `payoff` method of the new class
+4. Return the new class
+
+Here's the skeleton for the decorator:
+
+```{pyodide-python}
+def option_pricer(payoff_func):
+    # Your implementation here
+    pass
+```
+
+## Step 3: Use the Decorator
+
+Once you've implemented the decorator, you should be able to use it like this:
+
+```{pyodide-python}
+@option_pricer
+def european_call_payoff(ST, K=100):
+    return np.maximum(ST - K, 0)
+
+@option_pricer
+def european_put_payoff(ST, K=100):
+    return np.maximum(K - ST, 0)
+
+# Usage
+if __name__ == "__main__":
+    call_pricer = european_call_payoff(K=100)(S0=100, r=0.05, sigma=0.2, T=1)
+    call_price = call_pricer.price_option(num_simulations=100000, num_steps=252)
+    print(f"European Call Option Price: {call_price:.4f}")
+
+    put_pricer = european_put_payoff(K=100)(S0=100, r=0.05, sigma=0.2, T=1)
+    put_price = put_pricer.price_option(num_simulations=100000, num_steps=252)
+    print(f"European Put Option Price: {put_price:.4f}")
+```
+
+## Your Task
+
+1. Implement the `option_pricer` decorator to make the above code work.
+2. Ensure that the new classes created by the decorator inherit from `MonteCarloSimulator`.
+3. Make sure that the `payoff` method in the new classes calls the decorated function.
+
+## Hints
+
+- You can use `type()` to create a new class dynamically.
+- The payoff function will become a method, so it needs to take `self` as its first parameter.
+- You can use `__name__` attribute of the function to name your new class.
+- You can use functools wraps to keep tracking of the base function 
+
+## Bonus Challenges
+
+1. Modify the decorator to allow for additional parameters in the payoff function, such as strike price or barrier levels.
+
+2. Implement a more complex option type, such as an Asian option, where the payoff depends on the average stock price over the simulation period.
+
+3. Add a method to calculate the standard error of the Monte Carlo estimate and use it to compute confidence intervals for the option prices.

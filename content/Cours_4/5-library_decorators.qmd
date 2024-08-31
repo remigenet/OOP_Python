@@ -1,0 +1,158 @@
+---
+title: "Practical Decorators in Python Libraries"
+weight: 11
+tags:
+ - Python
+ - Decorators
+ - FastAPI
+ - Numba
+ - Pytest
+ - Practical Usage
+categories:
+ - Course
+ - Advanced Python
+type: book
+description: "Explore practical usage of decorators in popular Python libraries including FastAPI, Numba, and Pytest. Learn how to leverage these powerful tools in your Python projects."
+image: .img/practical_decorators.webp
+filters:
+ - pyodide
+---
+
+# Practical Decorators in Python Libraries
+
+This course builds upon your understanding of basic decorators and explores their practical usage in popular Python libraries. We'll focus on FastAPI, Numba, and Pytest, explaining how to use their decorators effectively in your projects.
+
+## 1. FastAPI Decorators
+
+FastAPI is a modern, fast web framework for building APIs with Python. It makes extensive use of decorators for routing, request handling, and more.
+
+### Basic Usage and Explanation
+
+```{pyodide-python}
+from fastapi import FastAPI, Path, Query, HTTPException
+from pydantic import BaseModel
+
+app = FastAPI()
+
+class Item(BaseModel):
+    name: str
+    price: float
+
+@app.get("/")
+async def root():
+    return {"message": "Hello World"}
+
+@app.get("/items/{item_id}")
+async def read_item(
+    item_id: int = Path(..., title="The ID of the item to get", ge=1),
+    q: str | None = Query(None, max_length=50)
+):
+    return {"item_id": item_id, "q": q}
+
+@app.post("/items/")
+async def create_item(item: Item):
+    if item.price < 0:
+        raise HTTPException(status_code=400, detail="Price must be positive")
+    return {"item_name": item.name, "item_price": item.price}
+```
+
+In this expanded FastAPI example:
+
+1. `@app.get("/")` defines a route for GET requests to the root URL. It returns a simple JSON response.
+
+2. `@app.get("/items/{item_id}")` sets up a route with a path parameter `item_id`. The `Path` function is used to add validation and metadata to the path parameter. The `Query` function is used to define an optional query parameter `q`.
+
+3. `@app.post("/items/")` defines a route for POST requests to create new items. It uses a Pydantic model `Item` for request body validation.
+
+FastAPI's decorators handle several tasks automatically:
+- Route registration
+- Request parsing and validation
+- Dependency injection
+- Response serialization
+- Automatic API documentation generation
+
+These decorators allow you to focus on your business logic while FastAPI handles the complexities of building a robust API.
+
+## 2. Numba Decorators
+
+Numba is a Just-In-Time (JIT) compiler for Python that can significantly speed up numerical Python code by compiling it to native machine instructions.
+
+### Basic Usage and Limitations
+
+```{pyodide-python}
+from numba import jit
+import numpy as np
+
+@jit(nopython=True)
+def sum_array(arr):
+    sum = 0
+    for i in range(arr.shape[0]):
+        sum += arr[i]
+    return sum
+
+# Usage
+arr = np.arange(1000000)
+result = sum_array(arr)
+```
+
+The `@jit(nopython=True)` decorator tells Numba to compile the function to machine code without using the Python interpreter. This can lead to significant performance improvements, especially for numerical computations.
+
+Important notes about Numba:
+- Numba compiles Python functions to optimized machine code at runtime.
+- It works best with numerical algorithms and NumPy arrays.
+- The `nopython=True` mode provides the best performance but has limitations on the Python features it supports.
+- Numba doesn't support all Python types or features. It works best with simple numeric types, NumPy arrays, and a subset of Python and NumPy functions.
+- External libraries (except for NumPy and a few others) are generally not supported in Numba-compiled functions.
+
+## 3. Pytest Decorators
+
+Pytest is a powerful testing framework for Python that uses decorators to enhance and customize test behavior.
+
+### Basic Usage
+
+```{pyodide-python}
+import pytest
+
+@pytest.fixture
+def example_fixture():
+    return "example"
+
+@pytest.mark.parametrize("test_input,expected", [
+    ("3+5", 8),
+    ("2+4", 6),
+    ("6*9", 54),
+])
+def test_eval(test_input, expected):
+    assert eval(test_input) == expected
+
+@pytest.mark.slow
+def test_slow_operation():
+    # Some time-consuming test
+    pass
+```
+
+In this Pytest example:
+
+1. `@pytest.fixture` defines a fixture named `example_fixture`. Fixtures in Pytest are used to provide data or objects to tests.
+
+2. `@pytest.mark.parametrize` allows you to run the same test function multiple times with different inputs. It's great for testing multiple scenarios without duplicating code.
+
+3. `@pytest.mark.slow` is a custom marker. You can use markers to categorize tests and selectively run them.
+
+Pytest's decorators allow you to:
+- Define and manage test fixtures
+- Parameterize tests for multiple inputs
+- Mark tests for organization and selective execution
+- Modify test behavior or skip tests based on conditions
+
+These decorators make it easier to write comprehensive, maintainable test suites.
+
+## Conclusion
+
+Decorators in libraries like FastAPI, Numba, and Pytest showcase the power and flexibility of Python's decorator system. They allow these libraries to provide clean, intuitive APIs that enhance productivity:
+
+- FastAPI's decorators simplify the process of building robust, well-documented APIs.
+- Numba's JIT decorator can dramatically speed up numerical computations, though with some limitations on supported Python features.
+- Pytest's decorators make it easier to write, organize, and customize tests.
+
+By understanding and leveraging these library-specific decorators, you can write more efficient, maintainable, and expressive Python code. Remember to consult each library's documentation for the most up-to-date and detailed information on their decorator usage and capabilities.

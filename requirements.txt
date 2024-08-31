@@ -2,6 +2,7 @@ fastapi
 jax
 pandas
 numpy
+numba
 matplotlib
 scikit-learn
 scipy
@@ -9,3 +10,4 @@ jupyter
 jupyter-cache
 scipy
 pytest
+pydantic
