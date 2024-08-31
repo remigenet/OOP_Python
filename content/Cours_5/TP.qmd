@@ -1,15 +1,125 @@
 ---
-title: "TP"
-weight: 10
+title: "TP: Creating a Linear Regression Package"
+weight: 15
 tags:
-  - TP
+ - Python
+ - Package Management
+ - Linear Regression
+ - Poetry
+ - PyPI
+ - GitHub Actions
 categories:
-  - Cours
-  - Fondamentaux
+ - Course
+ - Financial Programming
 type: book
-image: .img/exercice.webp
+description: "A hands-on practical exercise on creating a simple machine learning package for linear regression, exploring package management, testing, manual publishing, and automating the publishing process."
 ---
 
-# TODO
+## Introduction
 
----
+In this TP, you'll create a simple machine learning package focused on linear regression. You'll use modern Python tools like Poetry for package management, implement basic classes, write tests, set up continuous integration, manually publish your package, and finally automate the publishing process.
+
+## Objectives
+
+By the end of this TP, you will:
+
+1. Set up a Python project using Poetry
+2. Implement a basic linear regression class
+3. Write unit tests for your implementation
+4. Use GitHub Actions for continuous integration
+5. Manually publish your package to PyPI
+6. Automate the publishing process using GitHub Actions
+
+## Prerequisites
+
+- Basic understanding of Python and object-oriented programming
+- Familiarity with linear regression concepts
+- Git and GitHub account
+- Python 3.8 or higher installed
+
+## Step 1: Setting Up the Project
+
+Set up your project using Poetry.
+
+1. Install Poetry if you haven't already.
+2. Create a new project named `finance-ml`.
+3. Edit the `pyproject.toml` file to add necessary dependencies (numpy for calculations, pytest for testing).
+4. Install the dependencies using Poetry.
+
+**Exercise 1:** Set up the project structure as described above. Familiarize yourself with the `pyproject.toml` file and Poetry commands.
+
+## Step 2: Implementing Linear Regression
+
+Implement a basic linear regression class.
+
+Create a new file `src/finance_ml/linear_models.py` and implement a `LinearRegression` class with the following methods:
+
+- `__init__(self, use_intercept=True)`: Initialize the model parameters.
+- `fit(self, X, y)`: Fit the model to the training data.
+- `predict(self, X)`: Make predictions using the trained model.
+
+Your implementation should handle cases with and without an intercept term and use numpy for efficient calculations.
+
+**Exercise 2:** Implement the `LinearRegression` class as described above.
+
+## Step 3: Writing Tests
+
+Write tests for your `LinearRegression` class to ensure it works correctly.
+
+Create a new file `tests/test_linear_models.py` and write test functions to cover various scenarios and edge cases.
+
+**Exercise 3:** Implement the test functions for your `LinearRegression` class.
+
+## Step 4: Setting Up Basic GitHub Actions
+
+Set up a basic GitHub Actions workflow to run your tests automatically.
+
+Create a new file `.github/workflows/tests.yml`:
+
+```yaml
+name: Run Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+    - name: Install dependencies
+      run: |
+        pip install poetry
+        poetry install
+    - name: Run tests
+      run: poetry run pytest
+```
+
+**Exercise 4:** 
+1. Set up a GitHub repository for your project and add the GitHub Actions workflow as shown above. 
+2. Push your code and verify that the tests run automatically on push and pull requests.
+
+## Step 5: Manual Package Publishing
+
+Now, let's publish your package to PyPI manually using Poetry.
+
+1. Register an account on PyPI (https://pypi.org/)
+2. Build your package using Poetry
+3. Publish your package to PyPI using Poetry
+
+**Exercise 5:** Follow the steps above to manually publish your package to PyPI. Verify that you can install your package from PyPI using pip.
+
+## Step 6: Automating Package Publishing
+
+Finally, let's automate the publishing process using GitHub Actions.
+
+**Exercise 6:** 
+1. Modify the GitHub Actions workflow you created in Step 4 to include a job for publishing the package to PyPI when pushing to the main branch.
+2. Research how to securely add your PyPI credentials as secrets in GitHub Actions.
+3. Update your workflow to use these secrets for authentication when publishing.
+4. Test your automated publishing process by pushing a change to the main branch.
+
+Hint: You'll need to add a new job to your workflow, use conditional execution based on the branch, and incorporate the PyPI credentials as secrets.
