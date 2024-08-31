@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"# Un entier est un objet\nx = 5\nprint(type(x))  # <class 'int'>\n\n# Une fonction est un objet\ndef ma_fonction():\n    pass\nprint(type(ma_fonction))  # <class 'function'>","id":1,"options":{"message":"true","output":"true","classes":"","results":"markup","fig-height":5,"label":"","context":"interactive","read-only":"false","out-height":"","fig-width":7,"dpi":72,"autorun":"","warning":"true","comment":"","out-width":"700px","fig-cap":""}},{"code":"# En Python, pas de limite de taille pour les entiers\ngrand_nombre = 10**1000\nprint(grand_nombre)  # Affiche un nombre de 1001 chiffres sans problème","id":2,"options":{"message":"true","output":"true","classes":"","results":"markup","fig-height":5,"label":"","context":"interactive","read-only":"false","out-height":"","fig-width":7,"dpi":72,"autorun":"","warning":"true","comment":"","out-width":"700px","fig-cap":""}},{"code":"x = 5        # x référence un objet entier\nx = \"Hello\"  # Maintenant x référence un objet chaîne\nx = [1, 2, 3] # Et maintenant une liste","id":3,"options":{"message":"true","output":"true","classes":"","results":"markup","fig-height":5,"label":"","context":"interactive","read-only":"false","out-height":"","fig-width":7,"dpi":72,"autorun":"","warning":"true","comment":"","out-width":"700px","fig-cap":""}},{"code":"# Inspecter les attributs et méthodes d'un objet\nx = 5\nprint(dir(x))  # Affiche toutes les méthodes disponibles pour un entier","id":4,"options":{"message":"true","output":"true","classes":"","results":"markup","fig-height":5,"label":"","context":"interactive","read-only":"false","out-height":"","fig-width":7,"dpi":72,"autorun":"","warning":"true","comment":"","out-width":"700px","fig-cap":""}},{"code":"class MonNombre:\n    def __init__(self, valeur):\n        self.valeur = valeur\n    \n    def __add__(self, autre):\n        return MonNombre(self.valeur + autre.valeur)\n\n# Utilisation comme un type natif\na = MonNombre(5)\nb = MonNombre(3)\nc = a + b\nprint(c.valeur)  # Affiche 8","id":5,"options":{"message":"true","output":"true","classes":"","results":"markup","fig-height":5,"label":"","context":"interactive","read-only":"false","out-height":"","fig-width":7,"dpi":72,"autorun":"","warning":"true","comment":"","out-width":"700px","fig-cap":""}}];
+globalThis.qpyodideCellDetails = [{"code":"# Un entier est un objet\nx = 5\nprint(type(x))  # <class 'int'>\n\n# Une fonction est un objet\ndef ma_fonction():\n    pass\nprint(type(ma_fonction))  # <class 'function'>","options":{"dpi":72,"fig-height":5,"comment":"","label":"","fig-cap":"","autorun":"","context":"interactive","output":"true","read-only":"false","out-width":"700px","results":"markup","warning":"true","classes":"","out-height":"","fig-width":7,"message":"true"},"id":1},{"code":"# En Python, pas de limite de taille pour les entiers\ngrand_nombre = 10**1000\nprint(grand_nombre)  # Affiche un nombre de 1001 chiffres sans problème","options":{"dpi":72,"fig-height":5,"comment":"","label":"","fig-cap":"","autorun":"","context":"interactive","output":"true","read-only":"false","out-width":"700px","results":"markup","warning":"true","classes":"","out-height":"","fig-width":7,"message":"true"},"id":2},{"code":"x = 5        # x référence un objet entier\nx = \"Hello\"  # Maintenant x référence un objet chaîne\nx = [1, 2, 3] # Et maintenant une liste","options":{"dpi":72,"fig-height":5,"comment":"","label":"","fig-cap":"","autorun":"","context":"interactive","output":"true","read-only":"false","out-width":"700px","results":"markup","warning":"true","classes":"","out-height":"","fig-width":7,"message":"true"},"id":3},{"code":"# Inspecter les attributs et méthodes d'un objet\nx = 5\nprint(dir(x))  # Affiche toutes les méthodes disponibles pour un entier","options":{"dpi":72,"fig-height":5,"comment":"","label":"","fig-cap":"","autorun":"","context":"interactive","output":"true","read-only":"false","out-width":"700px","results":"markup","warning":"true","classes":"","out-height":"","fig-width":7,"message":"true"},"id":4},{"code":"class MonNombre:\n    def __init__(self, valeur):\n        self.valeur = valeur\n    \n    def __add__(self, autre):\n        return MonNombre(self.valeur + autre.valeur)\n\n# Utilisation comme un type natif\na = MonNombre(5)\nb = MonNombre(3)\nc = a + b\nprint(c.valeur)  # Affiche 8","options":{"dpi":72,"fig-height":5,"comment":"","label":"","fig-cap":"","autorun":"","context":"interactive","output":"true","read-only":"false","out-width":"700px","results":"markup","warning":"true","classes":"","out-height":"","fig-width":7,"message":"true"},"id":5}];
 
 
 </script>
@@ -538,6 +538,10 @@ globalThis._qpyodideGetInstance = function() {
     <a class="dropdown-item" href="../../content/Cours_2/4-Dunder.html">
  <span class="dropdown-text">Méthodes Dunder en Python</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/5-call_a_dog.html">
+ <span class="dropdown-text">Python <strong>call</strong> Method: A Fun Exploration</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
@@ -568,15 +572,19 @@ globalThis._qpyodideGetInstance = function() {
  <span class="dropdown-text">Polymorphism in Python: Function Overloading and Type Checking</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/3-Type_Hinting.html">
+    <a class="dropdown-item" href="../../content/Cours_3/3-type_to_create.html">
+ <span class="dropdown-text">Class Creation: Standard vs type()</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_3/4-Type_Hinting.html">
  <span class="dropdown-text">Type Hinting, Typing Module, and Linters in Python</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/4-Abstract_class.html">
+    <a class="dropdown-item" href="../../content/Cours_3/5-Abstract_class.html">
  <span class="dropdown-text">Abstract Classes</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/5-Protocol.html">
+    <a class="dropdown-item" href="../../content/Cours_3/6-Protocol.html">
  <span class="dropdown-text">Protocol Classes</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
@@ -608,11 +616,19 @@ globalThis._qpyodideGetInstance = function() {
     <a class="dropdown-item" href="../../content/Cours_4/4-builtin_decorator.html">
  <span class="dropdown-text">Built-in Decorators and Standard Library Decorators in Python</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_4/5-library_decorators.html">
+ <span class="dropdown-text">Practical Decorators in Python Libraries</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
-    <a class="dropdown-item" href="../../content/Cours_4/TP.html">
- <span class="dropdown-text">TP</span></a>
+    <a class="dropdown-item" href="../../content/Cours_4/TP_option.html">
+ <span class="dropdown-text">TP: Monte Carlo Option Pricing with Decorators</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_4/TP_library.html">
+ <span class="dropdown-text">TP: Optimizing Heston Model Monte Carlo Simulation</span></a>
   </li>  
     </ul>
   </li>

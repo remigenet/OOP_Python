@@ -51,19 +51,23 @@
       "/content/Cours_2/2-Heritage.html",
       "/content/Cours_2/3-Composition.html",
       "/content/Cours_2/4-Dunder.html",
+      "/content/Cours_2/5-call_a_dog.html",
       "/content/Cours_2/TP_dunder.html",
       "/content/Cours_2/TP_heritage.html",
       "/content/Cours_3/1-Polymorphism.html",
       "/content/Cours_3/2-Overloading.html",
-      "/content/Cours_3/3-Type_Hinting.html",
-      "/content/Cours_3/4-Abstract_class.html",
-      "/content/Cours_3/5-Protocol.html",
+      "/content/Cours_3/3-type_to_create.html",
+      "/content/Cours_3/4-Type_Hinting.html",
+      "/content/Cours_3/5-Abstract_class.html",
+      "/content/Cours_3/6-Protocol.html",
       "/content/Cours_3/TP.html",
       "/content/Cours_4/1-Design_Pattern.html",
       "/content/Cours_4/2-Decorator_theory.html",
       "/content/Cours_4/3-Decorator_practically.html",
       "/content/Cours_4/4-builtin_decorator.html",
-      "/content/Cours_4/TP.html",
+      "/content/Cours_4/5-library_decorators.html",
+      "/content/Cours_4/TP_library.html",
+      "/content/Cours_4/TP_option.html",
       "/content/Cours_5/1-Project_layout.html",
       "/content/Cours_5/2-Import.html",
       "/content/Cours_5/3-Packaging_and_environment.html",
@@ -80,12 +84,13 @@
   {
     "listing": "/content/Cours_3/index.html",
     "items": [
-      "/content/Cours_3/4-Abstract_class.html",
+      "/content/Cours_3/5-Abstract_class.html",
+      "/content/Cours_3/3-type_to_create.html",
       "/content/Cours_3/1-Polymorphism.html",
       "/content/Cours_3/2-Overloading.html",
-      "/content/Cours_3/5-Protocol.html",
+      "/content/Cours_3/6-Protocol.html",
       "/content/Cours_3/TP.html",
-      "/content/Cours_3/3-Type_Hinting.html"
+      "/content/Cours_3/4-Type_Hinting.html"
     ]
   },
   {
@@ -95,6 +100,7 @@
       "/content/Cours_2/2-Heritage.html",
       "/content/Cours_2/3-Composition.html",
       "/content/Cours_2/4-Dunder.html",
+      "/content/Cours_2/5-call_a_dog.html",
       "/content/Cours_2/TP_dunder.html",
       "/content/Cours_2/TP_heritage.html"
     ]
@@ -105,7 +111,9 @@
       "/content/Cours_4/4-builtin_decorator.html",
       "/content/Cours_4/3-Decorator_practically.html",
       "/content/Cours_4/1-Design_Pattern.html",
-      "/content/Cours_4/TP.html",
+      "/content/Cours_4/5-library_decorators.html",
+      "/content/Cours_4/TP_option.html",
+      "/content/Cours_4/TP_library.html",
       "/content/Cours_4/2-Decorator_theory.html"
     ]
   }

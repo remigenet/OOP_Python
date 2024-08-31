@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"id":1,"options":{"classes":"","warning":"true","read-only":"false","comment":"","output":"true","dpi":72,"results":"markup","context":"interactive","message":"true","out-height":"","label":"","fig-cap":"","fig-height":5,"fig-width":7,"out-width":"700px","autorun":""},"code":"class Animal:\n    def make_sound(self):\n        pass\n\nclass Dog(Animal):\n    def make_sound(self):\n        return \"Woof!\"\n\nclass Cat(Animal):\n    def make_sound(self):\n        return \"Meow!\"\n\nclass Cow(Animal):\n    def make_sound(self):\n        return \"Moo!\"\n\n# Using polymorphism\nanimals = [Dog(), Cat(), Cow()]\nfor animal in animals:\n    print(animal.make_sound())"},{"id":2,"options":{"classes":"","warning":"true","read-only":"false","comment":"","output":"true","dpi":72,"results":"markup","context":"interactive","message":"true","out-height":"","label":"","fig-cap":"","fig-height":5,"fig-width":7,"out-width":"700px","autorun":""},"code":"class Shape:\n    def area(self):\n        return 0\n\nclass Rectangle(Shape):\n    def __init__(self, width, height):\n        self.width = width\n        self.height = height\n    \n    def area(self):\n        return self.width * self.height\n\nclass Circle(Shape):\n    def __init__(self, radius):\n        self.radius = radius\n    \n    def area(self):\n        return 3.14 * self.radius ** 2\n\n# Using method overriding\nshapes = [Rectangle(5, 3), Circle(4), Shape()]\nfor shape in shapes:\n    print(f\"Area: {shape.area()}\")"}];
+globalThis.qpyodideCellDetails = [{"options":{"out-height":"","out-width":"700px","fig-height":5,"dpi":72,"comment":"","results":"markup","message":"true","output":"true","classes":"","read-only":"false","fig-width":7,"autorun":"","label":"","fig-cap":"","context":"interactive","warning":"true"},"id":1,"code":"class Animal:\n    def make_sound(self):\n        pass\n\nclass Dog(Animal):\n    def make_sound(self):\n        return \"Woof!\"\n\nclass Cat(Animal):\n    def make_sound(self):\n        return \"Meow!\"\n\nclass Cow(Animal):\n    def make_sound(self):\n        return \"Moo!\"\n\n# Using polymorphism\nanimals = [Dog(), Cat(), Cow()]\nfor animal in animals:\n    print(animal.make_sound())"},{"options":{"out-height":"","out-width":"700px","fig-height":5,"dpi":72,"comment":"","results":"markup","message":"true","output":"true","classes":"","read-only":"false","fig-width":7,"autorun":"","label":"","fig-cap":"","context":"interactive","warning":"true"},"id":2,"code":"class Shape:\n    def area(self):\n        return 0\n\nclass Rectangle(Shape):\n    def __init__(self, width, height):\n        self.width = width\n        self.height = height\n    \n    def area(self):\n        return self.width * self.height\n\nclass Circle(Shape):\n    def __init__(self, radius):\n        self.radius = radius\n    \n    def area(self):\n        return 3.14 * self.radius ** 2\n\n# Using method overriding\nshapes = [Rectangle(5, 3), Circle(4), Shape()]\nfor shape in shapes:\n    print(f\"Area: {shape.area()}\")"}];
 
 
 </script>
@@ -536,6 +536,10 @@ globalThis._qpyodideGetInstance = function() {
     <a class="dropdown-item" href="../../content/Cours_2/4-Dunder.html">
  <span class="dropdown-text">Méthodes Dunder en Python</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/5-call_a_dog.html">
+ <span class="dropdown-text">Python <strong>call</strong> Method: A Fun Exploration</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
@@ -566,15 +570,19 @@ globalThis._qpyodideGetInstance = function() {
  <span class="dropdown-text">Polymorphism in Python: Function Overloading and Type Checking</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/3-Type_Hinting.html">
+    <a class="dropdown-item" href="../../content/Cours_3/3-type_to_create.html">
+ <span class="dropdown-text">Class Creation: Standard vs type()</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_3/4-Type_Hinting.html">
  <span class="dropdown-text">Type Hinting, Typing Module, and Linters in Python</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/4-Abstract_class.html">
+    <a class="dropdown-item" href="../../content/Cours_3/5-Abstract_class.html">
  <span class="dropdown-text">Abstract Classes</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/5-Protocol.html">
+    <a class="dropdown-item" href="../../content/Cours_3/6-Protocol.html">
  <span class="dropdown-text">Protocol Classes</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
@@ -606,11 +614,19 @@ globalThis._qpyodideGetInstance = function() {
     <a class="dropdown-item" href="../../content/Cours_4/4-builtin_decorator.html">
  <span class="dropdown-text">Built-in Decorators and Standard Library Decorators in Python</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_4/5-library_decorators.html">
+ <span class="dropdown-text">Practical Decorators in Python Libraries</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
-    <a class="dropdown-item" href="../../content/Cours_4/TP.html">
- <span class="dropdown-text">TP</span></a>
+    <a class="dropdown-item" href="../../content/Cours_4/TP_option.html">
+ <span class="dropdown-text">TP: Monte Carlo Option Pricing with Decorators</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_4/TP_library.html">
+ <span class="dropdown-text">TP: Optimizing Heston Model Monte Carlo Simulation</span></a>
   </li>  
     </ul>
   </li>
@@ -754,19 +770,25 @@ globalThis._qpyodideGetInstance = function() {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_3/3-Type_Hinting.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/Cours_3/3-type_to_create.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class Creation: Standard vs type()</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_3/4-Type_Hinting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Type Hinting, Typing Module, and Linters in Python</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_3/4-Abstract_class.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/Cours_3/5-Abstract_class.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Abstract Classes</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_3/5-Protocol.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/Cours_3/6-Protocol.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Protocol Classes</span></a>
   </div>
 </li>

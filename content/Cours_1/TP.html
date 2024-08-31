@@ -236,7 +236,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"id":1,"code":"import unittest\nimport numpy as np\n\nclass DataFrameSimple:\n   #TODO\n   pass\n\nclass TestDataFrameSimple(unittest.TestCase):\n\n    def setUp(self):\n        self.data_dict = {\n            'A': [1, 2, 3, 4, 5],\n            'B': [10, 20, 30, 40, 50],\n            'C': [100, 200, 300, 400, 500]\n        }\n        self.df = DataFrameSimple(self.data_dict)\n\n    def test_creation(self):\n        self.assertIsInstance(self.df, DataFrameSimple)\n        self.assertEqual(list(self.df.colonnes), ['A', 'B', 'C'])\n\n    def test_afficher(self):\n        result = self.df.afficher()\n        self.assertIsInstance(result, str)\n        self.assertIn('A', result)\n        self.assertIn('B', result)\n        self.assertIn('C', result)\n\n    def test_moyenne(self):\n        self.assertEqual(self.df.moyenne('A'), 3)\n        self.assertEqual(self.df.moyenne('B'), 30)\n\n    def test_somme(self):\n        self.assertEqual(self.df.somme('A'), 15)\n        self.assertEqual(self.df.somme('B'), 150)\n\n    def test_min(self):\n        self.assertEqual(self.df.min('A'), 1)\n        self.assertEqual(self.df.min('B'), 10)\n\n    def test_max(self):\n        self.assertEqual(self.df.max('A'), 5)\n        self.assertEqual(self.df.max('B'), 50)\n\n    def test_select_colonne(self):\n        np.testing.assert_array_equal(self.df.select_colonne('A'), np.array([1, 2, 3, 4, 5]))\n\ndef run_tests():\n    unittest.main(argv=[''], verbosity=2, exit=False)\n\nif __name__ == '__main__':\n    run_tests()","options":{"read-only":"false","warning":"true","autorun":"","results":"markup","message":"true","comment":"","fig-width":7,"output":"true","out-height":"","context":"interactive","dpi":72,"classes":"","label":"","out-width":"700px","fig-height":5,"fig-cap":""}}];
+globalThis.qpyodideCellDetails = [{"id":1,"code":"import unittest\nimport numpy as np\n\nclass DataFrameSimple:\n   #TODO\n   pass\n\nclass TestDataFrameSimple(unittest.TestCase):\n\n    def setUp(self):\n        self.data_dict = {\n            'A': [1, 2, 3, 4, 5],\n            'B': [10, 20, 30, 40, 50],\n            'C': [100, 200, 300, 400, 500]\n        }\n        self.df = DataFrameSimple(self.data_dict)\n\n    def test_creation(self):\n        self.assertIsInstance(self.df, DataFrameSimple)\n        self.assertEqual(list(self.df.colonnes), ['A', 'B', 'C'])\n\n    def test_afficher(self):\n        result = self.df.afficher()\n        self.assertIsInstance(result, str)\n        self.assertIn('A', result)\n        self.assertIn('B', result)\n        self.assertIn('C', result)\n\n    def test_moyenne(self):\n        self.assertEqual(self.df.moyenne('A'), 3)\n        self.assertEqual(self.df.moyenne('B'), 30)\n\n    def test_somme(self):\n        self.assertEqual(self.df.somme('A'), 15)\n        self.assertEqual(self.df.somme('B'), 150)\n\n    def test_min(self):\n        self.assertEqual(self.df.min('A'), 1)\n        self.assertEqual(self.df.min('B'), 10)\n\n    def test_max(self):\n        self.assertEqual(self.df.max('A'), 5)\n        self.assertEqual(self.df.max('B'), 50)\n\n    def test_select_colonne(self):\n        np.testing.assert_array_equal(self.df.select_colonne('A'), np.array([1, 2, 3, 4, 5]))\n\ndef run_tests():\n    unittest.main(argv=[''], verbosity=2, exit=False)\n\nif __name__ == '__main__':\n    run_tests()","options":{"read-only":"false","classes":"","fig-cap":"","message":"true","results":"markup","comment":"","fig-height":5,"label":"","fig-width":7,"out-width":"700px","autorun":"","warning":"true","context":"interactive","dpi":72,"output":"true","out-height":""}}];
 
 
 </script>
@@ -536,6 +536,10 @@ globalThis._qpyodideGetInstance = function() {
     <a class="dropdown-item" href="../../content/Cours_2/4-Dunder.html">
  <span class="dropdown-text">Méthodes Dunder en Python</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/5-call_a_dog.html">
+ <span class="dropdown-text">Python <strong>call</strong> Method: A Fun Exploration</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
@@ -566,15 +570,19 @@ globalThis._qpyodideGetInstance = function() {
  <span class="dropdown-text">Polymorphism in Python: Function Overloading and Type Checking</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/3-Type_Hinting.html">
+    <a class="dropdown-item" href="../../content/Cours_3/3-type_to_create.html">
+ <span class="dropdown-text">Class Creation: Standard vs type()</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_3/4-Type_Hinting.html">
  <span class="dropdown-text">Type Hinting, Typing Module, and Linters in Python</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/4-Abstract_class.html">
+    <a class="dropdown-item" href="../../content/Cours_3/5-Abstract_class.html">
  <span class="dropdown-text">Abstract Classes</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/5-Protocol.html">
+    <a class="dropdown-item" href="../../content/Cours_3/6-Protocol.html">
  <span class="dropdown-text">Protocol Classes</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
@@ -606,11 +614,19 @@ globalThis._qpyodideGetInstance = function() {
     <a class="dropdown-item" href="../../content/Cours_4/4-builtin_decorator.html">
  <span class="dropdown-text">Built-in Decorators and Standard Library Decorators in Python</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_4/5-library_decorators.html">
+ <span class="dropdown-text">Practical Decorators in Python Libraries</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
-    <a class="dropdown-item" href="../../content/Cours_4/TP.html">
- <span class="dropdown-text">TP</span></a>
+    <a class="dropdown-item" href="../../content/Cours_4/TP_option.html">
+ <span class="dropdown-text">TP: Monte Carlo Option Pricing with Decorators</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_4/TP_library.html">
+ <span class="dropdown-text">TP: Optimizing Heston Model Monte Carlo Simulation</span></a>
   </li>  
     </ul>
   </li>

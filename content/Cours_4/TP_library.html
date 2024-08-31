@@ -8,8 +8,9 @@
 
 <meta name="author" content="Remi Genet">
 <meta name="dcterms.date" content="2024-08-31">
+<meta name="description" content="A hands-on practical exercise on optimizing Heston model Monte Carlo simulations using Numba and caching in Python.">
 
-<title>TP – Programmation Orientée Objet en Python</title>
+<title>TP: Optimizing Heston Model Monte Carlo Simulation – Programmation Orientée Objet en Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +23,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -32,7 +67,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../content/Cours_4/4-builtin_decorator.html" rel="prev">
+<link href="../../content/Cours_4/TP_option.html" rel="prev">
 <link href="../../content/.img/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -77,16 +112,17 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="TP – Programmation Orientée Objet en Python">
-<meta property="og:image" content="https://remigenet.github.io/OOP_Python/content/Cours_4/.img/exercice.webp">
+<meta property="og:title" content="TP: Optimizing Heston Model Monte Carlo Simulation – Programmation Orientée Objet en Python">
+<meta property="og:description" content="A hands-on practical exercise on optimizing Heston model Monte Carlo simulations using Numba and caching in Python.">
+<meta property="og:image" content="https://remigenet.github.io/OOP_Python/content/Cours_4/.img/heston_monte_carlo_optimization_tp.webp">
 <meta property="og:site_name" content="Programmation Orientée Objet en Python">
-<meta name="citation_title" content="TP">
+<meta name="citation_title" content="TP: Optimizing Heston Model Monte Carlo Simulation">
 <meta name="citation_author" content="Remi Genet">
 <meta name="citation_publication_date" content="2024-08-31">
 <meta name="citation_cover_date" content="2024-08-31">
 <meta name="citation_year" content="2024">
 <meta name="citation_online_date" content="2024-08-31">
-<meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_4/TP.html">
+<meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_4/TP_library.html">
 <meta name="citation_language" content="en">
 </head>
 
@@ -181,6 +217,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="../../content/Cours_2/4-Dunder.html">
  <span class="dropdown-text">Méthodes Dunder en Python</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/5-call_a_dog.html">
+ <span class="dropdown-text">Python <strong>call</strong> Method: A Fun Exploration</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
@@ -211,15 +251,19 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Polymorphism in Python: Function Overloading and Type Checking</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/3-Type_Hinting.html">
+    <a class="dropdown-item" href="../../content/Cours_3/3-type_to_create.html">
+ <span class="dropdown-text">Class Creation: Standard vs type()</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_3/4-Type_Hinting.html">
  <span class="dropdown-text">Type Hinting, Typing Module, and Linters in Python</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/4-Abstract_class.html">
+    <a class="dropdown-item" href="../../content/Cours_3/5-Abstract_class.html">
  <span class="dropdown-text">Abstract Classes</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/5-Protocol.html">
+    <a class="dropdown-item" href="../../content/Cours_3/6-Protocol.html">
  <span class="dropdown-text">Protocol Classes</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
@@ -251,11 +295,19 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="../../content/Cours_4/4-builtin_decorator.html">
  <span class="dropdown-text">Built-in Decorators and Standard Library Decorators in Python</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_4/5-library_decorators.html">
+ <span class="dropdown-text">Practical Decorators in Python Libraries</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
-    <a class="dropdown-item" href="../../content/Cours_4/TP.html">
- <span class="dropdown-text">TP</span></a>
+    <a class="dropdown-item" href="../../content/Cours_4/TP_option.html">
+ <span class="dropdown-text">TP: Monte Carlo Option Pricing with Decorators</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_4/TP_library.html">
+ <span class="dropdown-text">TP: Optimizing Heston Model Monte Carlo Simulation</span></a>
   </li>  
     </ul>
   </li>
@@ -367,7 +419,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_4/TP.html">Travaux Pratiques</a></li><li class="breadcrumb-item"><a href="../../content/Cours_4/TP.html">TP</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_4/TP_option.html">Travaux Pratiques</a></li><li class="breadcrumb-item"><a href="../../content/Cours_4/TP_library.html">TP: Optimizing Heston Model Monte Carlo Simulation</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -403,6 +455,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Built-in Decorators and Standard Library Decorators in Python</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_4/5-library_decorators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Practical Decorators in Python Libraries</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
@@ -414,8 +472,14 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_4/TP.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">TP</span></a>
+  <a href="../../content/Cours_4/TP_option.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP: Monte Carlo Option Pricing with Decorators</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_4/TP_library.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">TP: Optimizing Heston Model Monte Carlo Simulation</span></a>
   </div>
 </li>
       </ul>
@@ -430,22 +494,35 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#todo" id="toc-todo" class="nav-link active" data-scroll-target="#todo">TODO</a></li>
+  <li><a href="#tp-optimizing-heston-model-monte-carlo-simulation" id="toc-tp-optimizing-heston-model-monte-carlo-simulation" class="nav-link active" data-scroll-target="#tp-optimizing-heston-model-monte-carlo-simulation">TP: Optimizing Heston Model Monte Carlo Simulation</a>
+  <ul class="collapse">
+  <li><a href="#part-1-baseline-implementation" id="toc-part-1-baseline-implementation" class="nav-link" data-scroll-target="#part-1-baseline-implementation">Part 1: Baseline Implementation</a></li>
+  <li><a href="#part-2-optimization-with-numba" id="toc-part-2-optimization-with-numba" class="nav-link" data-scroll-target="#part-2-optimization-with-numba">Part 2: Optimization with Numba</a></li>
+  <li><a href="#part-3-optimization-with-caching" id="toc-part-3-optimization-with-caching" class="nav-link" data-scroll-target="#part-3-optimization-with-caching">Part 3: Optimization with Caching</a></li>
+  <li><a href="#part-4-analysis-and-comparison" id="toc-part-4-analysis-and-comparison" class="nav-link" data-scroll-target="#part-4-analysis-and-comparison">Part 4: Analysis and Comparison</a></li>
+  <li><a href="#part-5-vectorization-bonus" id="toc-part-5-vectorization-bonus" class="nav-link" data-scroll-target="#part-5-vectorization-bonus">Part 5: Vectorization (Bonus)</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_4/TP.html">Travaux Pratiques</a></li><li class="breadcrumb-item"><a href="../../content/Cours_4/TP.html">TP</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_4/TP_option.html">Travaux Pratiques</a></li><li class="breadcrumb-item"><a href="../../content/Cours_4/TP_library.html">TP: Optimizing Heston Model Monte Carlo Simulation</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">TP</h1>
+<h1 class="title">TP: Optimizing Heston Model Monte Carlo Simulation</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Cours</div>
-    <div class="quarto-category">Fondamentaux</div>
+    <div class="quarto-category">Course</div>
+    <div class="quarto-category">Python Advanced</div>
+    <div class="quarto-category">Quantitative Finance</div>
   </div>
   </div>
 
+<div>
+  <div class="description">
+    A hands-on practical exercise on optimizing Heston model Monte Carlo simulations using Numba and caching in Python.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta column-body">
@@ -472,11 +549,139 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="todo" class="level1">
-<h1>TODO</h1>
-<hr>
+<section id="tp-optimizing-heston-model-monte-carlo-simulation" class="level1">
+<h1>TP: Optimizing Heston Model Monte Carlo Simulation</h1>
+<p>In this practical exercise, we’ll optimize a Monte Carlo simulation for pricing options under the Heston model. We’ll start with a basic implementation and then apply various optimization techniques, including Numba and caching. This TP is not to run on website directly as numba is not available on it.</p>
+<section id="part-1-baseline-implementation" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-baseline-implementation">Part 1: Baseline Implementation</h2>
+<p>Here’s our starting point - a basic implementation of the Heston model Monte Carlo simulation:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_random_values(num_simulations, num_steps):</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, (num_simulations, num_steps, <span class="dv">2</span>))</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> heston_monte_carlo(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps):</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    random_values <span class="op">=</span> generate_random_values(num_simulations, num_steps)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    dt <span class="op">=</span> T <span class="op">/</span> num_steps</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    prices <span class="op">=</span> np.zeros((num_simulations, num_steps <span class="op">+</span> <span class="dv">1</span>))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    variances <span class="op">=</span> np.zeros((num_simulations, num_steps <span class="op">+</span> <span class="dv">1</span>))</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    prices[:, <span class="dv">0</span>] <span class="op">=</span> S0</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    variances[:, <span class="dv">0</span>] <span class="op">=</span> v0</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> sim <span class="kw">in</span> <span class="bu">range</span>(num_simulations):</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, num_steps <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>            dW1 <span class="op">=</span> random_values[sim, i<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>]</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>            dW2 <span class="op">=</span> rho <span class="op">*</span> dW1 <span class="op">+</span> np.sqrt(<span class="dv">1</span> <span class="op">-</span> rho<span class="op">**</span><span class="dv">2</span>) <span class="op">*</span> random_values[sim, i<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>]</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>            variances[sim, i] <span class="op">=</span> np.maximum(variances[sim, i<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> kappa <span class="op">*</span> (theta <span class="op">-</span> variances[sim, i<span class="op">-</span><span class="dv">1</span>]) <span class="op">*</span> dt <span class="op">+</span> </span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>                                         sigma <span class="op">*</span> np.sqrt(variances[sim, i<span class="op">-</span><span class="dv">1</span>] <span class="op">*</span> dt) <span class="op">*</span> dW2, <span class="dv">0</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>            prices[sim, i] <span class="op">=</span> prices[sim, i<span class="op">-</span><span class="dv">1</span>] <span class="op">*</span> np.exp((r <span class="op">-</span> <span class="fl">0.5</span> <span class="op">*</span> variances[sim, i<span class="op">-</span><span class="dv">1</span>]) <span class="op">*</span> dt <span class="op">+</span> </span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>                                                   np.sqrt(variances[sim, i<span class="op">-</span><span class="dv">1</span>] <span class="op">*</span> dt) <span class="op">*</span> dW1)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    option_prices <span class="op">=</span> np.mean(np.maximum(prices[:, <span class="op">-</span><span class="dv">1</span>] <span class="op">-</span> K, <span class="dv">0</span>))</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.exp(<span class="op">-</span>r <span class="op">*</span> T) <span class="op">*</span> option_prices</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Test the implementation</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>num_options <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>kappa, theta, sigma, rho, v0 <span class="op">=</span> <span class="dv">2</span>, <span class="fl">0.04</span>, <span class="fl">0.3</span>, <span class="op">-</span><span class="fl">0.7</span>, <span class="fl">0.04</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>S0s <span class="op">=</span> np.random.randint(<span class="dv">90</span>, <span class="dv">110</span>, num_options)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>Ks <span class="op">=</span> np.random.randint(<span class="dv">90</span>, <span class="dv">110</span>, num_options)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">0.05</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>num_simulations, num_steps <span class="op">=</span> <span class="dv">1000</span>, <span class="dv">252</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> time.time()</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> option_row <span class="kw">in</span> <span class="bu">range</span>(num_options):</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    S0 <span class="op">=</span> S0s[option_row]</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    K <span class="op">=</span> Ks[option_row]</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    price <span class="op">=</span> heston_monte_carlo(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Basic implementation took </span><span class="sc">{</span>(time.time() <span class="op">-</span> start_time)<span class="op">/</span>num_options<span class="sc">:.4f}</span><span class="ss"> seconds per option"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="part-2-optimization-with-numba" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-optimization-with-numba">Part 2: Optimization with Numba</h2>
+<p>Your first task is to optimize the Monte Carlo simulation using Numba. Here’s the structure you should follow:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numba <span class="im">import</span> jit, prange</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">@jit</span>(nopython<span class="op">=</span><span class="va">True</span>, cache<span class="op">=</span><span class="va">True</span>, parallel<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> heston_monte_carlo_numba(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps):</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your implementation here</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Test the Numba-optimized function</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>num_options <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># ... (use the same parameters as in the baseline implementation)</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> time.time()</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> option_row <span class="kw">in</span> <span class="bu">range</span>(num_options):</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    S0 <span class="op">=</span> S0s[option_row]</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    K <span class="op">=</span> Ks[option_row]</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    price_numba <span class="op">=</span> heston_monte_carlo_numba(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Numba implementation took </span><span class="sc">{</span>(time.time() <span class="op">-</span> start_time)<span class="op">/</span>num_options<span class="sc">:.4f}</span><span class="ss"> seconds per option"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="part-3-optimization-with-caching" class="level2">
+<h2 class="anchored" data-anchor-id="part-3-optimization-with-caching">Part 3: Optimization with Caching</h2>
+<p>Next, implement a cached version of the Monte Carlo simulation. Here’s the structure to follow:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> functools <span class="im">import</span> cache</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">@cache</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_random_values(num_simulations, num_steps):</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, (num_simulations, num_steps, <span class="dv">2</span>))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="at">@cache</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> heston_monte_carlo_cached(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps):</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your implementation here</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Test the cached implementation</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> time.time()</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> option_row <span class="kw">in</span> <span class="bu">range</span>(num_options):</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    S0 <span class="op">=</span> S0s[option_row]</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    K <span class="op">=</span> Ks[option_row]</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    price_cached <span class="op">=</span> heston_monte_carlo_cached(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"First run of cached implementation took </span><span class="sc">{</span>time<span class="sc">.</span>time() <span class="op">-</span> start_time<span class="sc">:.2f}</span><span class="ss"> seconds"</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Run it again to see the effect of caching</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> time.time()</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> option_row <span class="kw">in</span> <span class="bu">range</span>(num_options):</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    S0 <span class="op">=</span> S0s[option_row]</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    K <span class="op">=</span> Ks[option_row]</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    price_cached <span class="op">=</span> heston_monte_carlo_cached(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Second run of cached implementation took </span><span class="sc">{</span>time<span class="sc">.</span>time() <span class="op">-</span> start_time<span class="sc">:.2f}</span><span class="ss"> seconds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="part-4-analysis-and-comparison" class="level2">
+<h2 class="anchored" data-anchor-id="part-4-analysis-and-comparison">Part 4: Analysis and Comparison</h2>
+<ol type="1">
+<li><p>Compare the performance of the three implementations (basic, Numba, and cached). What speedup do you achieve with each optimization technique?</p></li>
+<li><p>Experiment with different numbers of simulations and time steps. How does the performance of each implementation scale?</p></li>
+<li><p>Discuss the trade-offs between the different implementations in terms of speed, memory usage, and code complexity.</p></li>
+</ol>
+</section>
+<section id="part-5-vectorization-bonus" class="level2">
+<h2 class="anchored" data-anchor-id="part-5-vectorization-bonus">Part 5: Vectorization (Bonus)</h2>
+<p>As a final task, implement a vectorized version of the initial implementation without using Numba:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> heston_monte_carlo_vectorized(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your vectorized implementation here</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Test the vectorized implementation</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> time.time()</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> option_row <span class="kw">in</span> <span class="bu">range</span>(num_options):</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    S0 <span class="op">=</span> S0s[option_row]</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    K <span class="op">=</span> Ks[option_row]</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    price_vectorized <span class="op">=</span> heston_monte_carlo_vectorized(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Vectorized implementation took </span><span class="sc">{</span>(time.time() <span class="op">-</span> start_time)<span class="op">/</span>num_options<span class="sc">:.4f}</span><span class="ss"> seconds per option"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Compare the performance of this vectorized implementation with the previous versions. Discuss the advantages and potential limitations of vectorization in this context.</p>
 
 
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -1046,8 +1251,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../../content/Cours_4/4-builtin_decorator.html" class="pagination-link" aria-label="Built-in Decorators and Standard Library Decorators in Python">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Built-in Decorators and Standard Library Decorators in Python</span>
+      <a href="../../content/Cours_4/TP_option.html" class="pagination-link" aria-label="TP: Monte Carlo Option Pricing with Decorators">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">TP: Monte Carlo Option Pricing with Decorators</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

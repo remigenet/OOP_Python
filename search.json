@@ -281,6 +281,72 @@
     ]
   },
   {
+    "objectID": "content/Cours_4/TP_library.html",
+    "href": "content/Cours_4/TP_library.html",
+    "title": "TP: Optimizing Heston Model Monte Carlo Simulation",
+    "section": "",
+    "text": "In this practical exercise, we’ll optimize a Monte Carlo simulation for pricing options under the Heston model. We’ll start with a basic implementation and then apply various optimization techniques, including Numba and caching. This TP is not to run on website directly as numba is not available on it.\n\n\nHere’s our starting point - a basic implementation of the Heston model Monte Carlo simulation:\nimport numpy as np\nimport time\nfrom scipy.stats import norm\n\ndef generate_random_values(num_simulations, num_steps):\n    return np.random.normal(0, 1, (num_simulations, num_steps, 2))\n\ndef heston_monte_carlo(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps):\n    random_values = generate_random_values(num_simulations, num_steps)\n    dt = T / num_steps\n    prices = np.zeros((num_simulations, num_steps + 1))\n    variances = np.zeros((num_simulations, num_steps + 1))\n    \n    prices[:, 0] = S0\n    variances[:, 0] = v0\n    for sim in range(num_simulations):\n        for i in range(1, num_steps + 1):\n            dW1 = random_values[sim, i-1, 0]\n            dW2 = rho * dW1 + np.sqrt(1 - rho**2) * random_values[sim, i-1, 1]\n            \n            variances[sim, i] = np.maximum(variances[sim, i-1] + kappa * (theta - variances[sim, i-1]) * dt + \n                                         sigma * np.sqrt(variances[sim, i-1] * dt) * dW2, 0)\n            \n            prices[sim, i] = prices[sim, i-1] * np.exp((r - 0.5 * variances[sim, i-1]) * dt + \n                                                   np.sqrt(variances[sim, i-1] * dt) * dW1)\n        \n    option_prices = np.mean(np.maximum(prices[:, -1] - K, 0))\n    return np.exp(-r * T) * option_prices\n\n# Test the implementation\nnum_options = 10\nkappa, theta, sigma, rho, v0 = 2, 0.04, 0.3, -0.7, 0.04\nS0s = np.random.randint(90, 110, num_options)\nKs = np.random.randint(90, 110, num_options)\nT = 1\nr = 0.05\nnum_simulations, num_steps = 1000, 252\n\nstart_time = time.time()\nfor option_row in range(num_options):\n    S0 = S0s[option_row]\n    K = Ks[option_row]\n    price = heston_monte_carlo(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps)\n    \nprint(f\"Basic implementation took {(time.time() - start_time)/num_options:.4f} seconds per option\")\n\n\n\nYour first task is to optimize the Monte Carlo simulation using Numba. Here’s the structure you should follow:\nfrom numba import jit, prange\n\n@jit(nopython=True, cache=True, parallel=True)\ndef heston_monte_carlo_numba(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps):\n    # Your implementation here\n    pass\n\n# Test the Numba-optimized function\nnum_options = 1000\n# ... (use the same parameters as in the baseline implementation)\n\nstart_time = time.time()\nfor option_row in range(num_options):\n    S0 = S0s[option_row]\n    K = Ks[option_row]\n    price_numba = heston_monte_carlo_numba(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps)\n\nprint(f\"Numba implementation took {(time.time() - start_time)/num_options:.4f} seconds per option\")\n\n\n\nNext, implement a cached version of the Monte Carlo simulation. Here’s the structure to follow:\nfrom functools import cache\n\n@cache\ndef generate_random_values(num_simulations, num_steps):\n    return np.random.normal(0, 1, (num_simulations, num_steps, 2))\n\n@cache\ndef heston_monte_carlo_cached(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps):\n    # Your implementation here\n    pass\n\n# Test the cached implementation\nstart_time = time.time()\nfor option_row in range(num_options):\n    S0 = S0s[option_row]\n    K = Ks[option_row]\n    price_cached = heston_monte_carlo_cached(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps)\n    \nprint(f\"First run of cached implementation took {time.time() - start_time:.2f} seconds\")\n\n# Run it again to see the effect of caching\nstart_time = time.time()\nfor option_row in range(num_options):\n    S0 = S0s[option_row]\n    K = Ks[option_row]\n    price_cached = heston_monte_carlo_cached(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps)\n    \nprint(f\"Second run of cached implementation took {time.time() - start_time:.2f} seconds\")\n\n\n\n\nCompare the performance of the three implementations (basic, Numba, and cached). What speedup do you achieve with each optimization technique?\nExperiment with different numbers of simulations and time steps. How does the performance of each implementation scale?\nDiscuss the trade-offs between the different implementations in terms of speed, memory usage, and code complexity.\n\n\n\n\nAs a final task, implement a vectorized version of the initial implementation without using Numba:\ndef heston_monte_carlo_vectorized(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps):\n    # Your vectorized implementation here\n    pass\n\n# Test the vectorized implementation\nstart_time = time.time()\nfor option_row in range(num_options):\n    S0 = S0s[option_row]\n    K = Ks[option_row]\n    price_vectorized = heston_monte_carlo_vectorized(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps)\n\nprint(f\"Vectorized implementation took {(time.time() - start_time)/num_options:.4f} seconds per option\")\nCompare the performance of this vectorized implementation with the previous versions. Discuss the advantages and potential limitations of vectorization in this context.",
+    "crumbs": [
+      "Travaux Pratiques",
+      "TP: Optimizing Heston Model Monte Carlo Simulation"
+    ]
+  },
+  {
+    "objectID": "content/Cours_4/TP_library.html#part-1-baseline-implementation",
+    "href": "content/Cours_4/TP_library.html#part-1-baseline-implementation",
+    "title": "TP: Optimizing Heston Model Monte Carlo Simulation",
+    "section": "",
+    "text": "Here’s our starting point - a basic implementation of the Heston model Monte Carlo simulation:\nimport numpy as np\nimport time\nfrom scipy.stats import norm\n\ndef generate_random_values(num_simulations, num_steps):\n    return np.random.normal(0, 1, (num_simulations, num_steps, 2))\n\ndef heston_monte_carlo(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps):\n    random_values = generate_random_values(num_simulations, num_steps)\n    dt = T / num_steps\n    prices = np.zeros((num_simulations, num_steps + 1))\n    variances = np.zeros((num_simulations, num_steps + 1))\n    \n    prices[:, 0] = S0\n    variances[:, 0] = v0\n    for sim in range(num_simulations):\n        for i in range(1, num_steps + 1):\n            dW1 = random_values[sim, i-1, 0]\n            dW2 = rho * dW1 + np.sqrt(1 - rho**2) * random_values[sim, i-1, 1]\n            \n            variances[sim, i] = np.maximum(variances[sim, i-1] + kappa * (theta - variances[sim, i-1]) * dt + \n                                         sigma * np.sqrt(variances[sim, i-1] * dt) * dW2, 0)\n            \n            prices[sim, i] = prices[sim, i-1] * np.exp((r - 0.5 * variances[sim, i-1]) * dt + \n                                                   np.sqrt(variances[sim, i-1] * dt) * dW1)\n        \n    option_prices = np.mean(np.maximum(prices[:, -1] - K, 0))\n    return np.exp(-r * T) * option_prices\n\n# Test the implementation\nnum_options = 10\nkappa, theta, sigma, rho, v0 = 2, 0.04, 0.3, -0.7, 0.04\nS0s = np.random.randint(90, 110, num_options)\nKs = np.random.randint(90, 110, num_options)\nT = 1\nr = 0.05\nnum_simulations, num_steps = 1000, 252\n\nstart_time = time.time()\nfor option_row in range(num_options):\n    S0 = S0s[option_row]\n    K = Ks[option_row]\n    price = heston_monte_carlo(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps)\n    \nprint(f\"Basic implementation took {(time.time() - start_time)/num_options:.4f} seconds per option\")",
+    "crumbs": [
+      "Travaux Pratiques",
+      "TP: Optimizing Heston Model Monte Carlo Simulation"
+    ]
+  },
+  {
+    "objectID": "content/Cours_4/TP_library.html#part-2-optimization-with-numba",
+    "href": "content/Cours_4/TP_library.html#part-2-optimization-with-numba",
+    "title": "TP: Optimizing Heston Model Monte Carlo Simulation",
+    "section": "",
+    "text": "Your first task is to optimize the Monte Carlo simulation using Numba. Here’s the structure you should follow:\nfrom numba import jit, prange\n\n@jit(nopython=True, cache=True, parallel=True)\ndef heston_monte_carlo_numba(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps):\n    # Your implementation here\n    pass\n\n# Test the Numba-optimized function\nnum_options = 1000\n# ... (use the same parameters as in the baseline implementation)\n\nstart_time = time.time()\nfor option_row in range(num_options):\n    S0 = S0s[option_row]\n    K = Ks[option_row]\n    price_numba = heston_monte_carlo_numba(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps)\n\nprint(f\"Numba implementation took {(time.time() - start_time)/num_options:.4f} seconds per option\")",
+    "crumbs": [
+      "Travaux Pratiques",
+      "TP: Optimizing Heston Model Monte Carlo Simulation"
+    ]
+  },
+  {
+    "objectID": "content/Cours_4/TP_library.html#part-3-optimization-with-caching",
+    "href": "content/Cours_4/TP_library.html#part-3-optimization-with-caching",
+    "title": "TP: Optimizing Heston Model Monte Carlo Simulation",
+    "section": "",
+    "text": "Next, implement a cached version of the Monte Carlo simulation. Here’s the structure to follow:\nfrom functools import cache\n\n@cache\ndef generate_random_values(num_simulations, num_steps):\n    return np.random.normal(0, 1, (num_simulations, num_steps, 2))\n\n@cache\ndef heston_monte_carlo_cached(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps):\n    # Your implementation here\n    pass\n\n# Test the cached implementation\nstart_time = time.time()\nfor option_row in range(num_options):\n    S0 = S0s[option_row]\n    K = Ks[option_row]\n    price_cached = heston_monte_carlo_cached(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps)\n    \nprint(f\"First run of cached implementation took {time.time() - start_time:.2f} seconds\")\n\n# Run it again to see the effect of caching\nstart_time = time.time()\nfor option_row in range(num_options):\n    S0 = S0s[option_row]\n    K = Ks[option_row]\n    price_cached = heston_monte_carlo_cached(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps)\n    \nprint(f\"Second run of cached implementation took {time.time() - start_time:.2f} seconds\")",
+    "crumbs": [
+      "Travaux Pratiques",
+      "TP: Optimizing Heston Model Monte Carlo Simulation"
+    ]
+  },
+  {
+    "objectID": "content/Cours_4/TP_library.html#part-4-analysis-and-comparison",
+    "href": "content/Cours_4/TP_library.html#part-4-analysis-and-comparison",
+    "title": "TP: Optimizing Heston Model Monte Carlo Simulation",
+    "section": "",
+    "text": "Compare the performance of the three implementations (basic, Numba, and cached). What speedup do you achieve with each optimization technique?\nExperiment with different numbers of simulations and time steps. How does the performance of each implementation scale?\nDiscuss the trade-offs between the different implementations in terms of speed, memory usage, and code complexity.",
+    "crumbs": [
+      "Travaux Pratiques",
+      "TP: Optimizing Heston Model Monte Carlo Simulation"
+    ]
+  },
+  {
+    "objectID": "content/Cours_4/TP_library.html#part-5-vectorization-bonus",
+    "href": "content/Cours_4/TP_library.html#part-5-vectorization-bonus",
+    "title": "TP: Optimizing Heston Model Monte Carlo Simulation",
+    "section": "",
+    "text": "As a final task, implement a vectorized version of the initial implementation without using Numba:\ndef heston_monte_carlo_vectorized(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps):\n    # Your vectorized implementation here\n    pass\n\n# Test the vectorized implementation\nstart_time = time.time()\nfor option_row in range(num_options):\n    S0 = S0s[option_row]\n    K = Ks[option_row]\n    price_vectorized = heston_monte_carlo_vectorized(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps)\n\nprint(f\"Vectorized implementation took {(time.time() - start_time)/num_options:.4f} seconds per option\")\nCompare the performance of this vectorized implementation with the previous versions. Discuss the advantages and potential limitations of vectorization in this context.",
+    "crumbs": [
+      "Travaux Pratiques",
+      "TP: Optimizing Heston Model Monte Carlo Simulation"
+    ]
+  },
+  {
     "objectID": "content/Cours_4/2-Decorator_theory.html",
     "href": "content/Cours_4/2-Decorator_theory.html",
     "title": "The decorator pattern",
@@ -466,138 +532,234 @@
     ]
   },
   {
-    "objectID": "content/Cours_2/4-Dunder.html",
-    "href": "content/Cours_2/4-Dunder.html",
-    "title": "Méthodes Dunder en Python",
+    "objectID": "content/Cours_2/1-Encapsulation.html",
+    "href": "content/Cours_2/1-Encapsulation.html",
+    "title": "Encapsulation en Python",
     "section": "",
-    "text": "Les méthodes dunder en Python\n\nLes méthodes dunder sont encadrées par des doubles tirets bas (__) et sont appelées automatiquement par Python dans certaines circonstances.\n\n1. Initialisation et destruction\n\ninit(self, …)\n\nAppelée lors de la création d’une instance.\nInitialise les attributs de l’objet.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\ndel(self)\n\nAppelée lorsque l’objet est sur le point d’être détruit.\nUtile pour le nettoyage de ressources.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n2. Représentation des objets\n\nstr(self)\n\nRetourne une représentation lisible de l’objet.\nUtilisée par str() et print().\n\n\n\nrepr(self)\n\nRetourne une représentation “officielle” de l’objet.\nUtilisée par repr() et dans l’interpréteur interactif.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n3. Opérations mathématiques\n\nadd(self, other), sub(self, other), mul(self, other), truediv(self, other)\n\nDéfinissent les opérations +, -, *, / respectivement.\n\n\n\nfloordiv(self, other), mod(self, other), pow(self, other)\n\nDéfinissent les opérations //, %, ** respectivement.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n4. Comparaisons\n\neq(self, other), ne(self, other)\n\nDéfinissent == et != respectivement.\n\n\n\nlt(self, other), le(self, other), gt(self, other), ge(self, other)\n\nDéfinissent &lt;, &lt;=, &gt;, &gt;= respectivement.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n5. Conteneurs et séquences\n\nlen(self)\n\nRetourne la longueur de l’objet.\nUtilisée par la fonction len().\n\n\n\ngetitem(self, key)\n\nPermet l’accès par index ou clé.\nUtilisée pour l’indexation obj[key].\n\n\n\nsetitem(self, key, value)\n\nPermet l’assignation par index ou clé.\n\n\n\niter(self)\n\nRetourne un itérateur pour l’objet.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n6. Gestion des attributs\n\ngetattr(self, name)\n\nAppelée lorsqu’un attribut non trouvé est accédé.\n\n\n\nsetattr(self, name, value)\n\nAppelée lors de l’assignation d’un attribut.\n\n\n\ndelattr(self, name)\n\nAppelée lors de la suppression d’un attribut.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n7. Appel de l’objet comme une fonction\n\ncall(self, …)\n\nPermet d’appeler l’objet comme une fonction.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n8. Gestion du contexte\n\nenter(self), exit(self, exc_type, exc_value, traceback)\n\nUtilisées pour le gestionnaire de contexte (with statement).\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n9. Autres méthodes dunder utiles\n\nbool(self): Définit le comportement pour bool().\nhash(self): Permet à l’objet d’être utilisé comme clé de dictionnaire.\nformat(self, format_spec): Personnalise le formatage de chaînes.\n\nCette liste, bien que non exhaustive, couvre la plupart des méthodes dunder couramment utilisées en Python. Chacune de ces méthodes permet de personnaliser le comportement des objets dans différents contextes, rendant le langage extrêmement flexible et puissant.\n\n\n\n\n\n Back to top",
+    "text": "Encapsulation en Python\n\nL’encapsulation est l’un des principes fondamentaux de la programmation orientée objet. Elle consiste à regrouper les données et les méthodes qui les manipulent au sein d’une même unité (la classe) et à contrôler l’accès à ces données depuis l’extérieur de la classe.\n\nNotion de public et privé en Python\nContrairement à certains langages comme Java ou C++, Python n’a pas de mécanisme strict pour définir des attributs ou des méthodes comme “privés” ou “publics”. Cependant, Python suit une convention basée sur le nommage pour indiquer l’intention du développeur quant à l’utilisation des attributs et méthodes.\n\nAttributs et méthodes publics :\n\nNommés normalement, sans underscore.\nExemple : self.attribut, def methode(self):\nConsidérés comme faisant partie de l’interface publique de la classe.\n\nAttributs et méthodes “privés” (convention) :\n\nPréfixés par un simple underscore _.\nExemple : self._attribut, def _methode(self):\nIndique que ces éléments sont destinés à un usage interne et ne devraient pas être accédés directement depuis l’extérieur de la classe.\nCette convention est basée sur la confiance : techniquement, ces éléments restent accessibles.\n\nAttributs et méthodes “name mangling” :\n\nPréfixés par un double underscore __ (sans underscore à la fin).\nExemple : self.__attribut, def __methode(self):\nPython applique le “name mangling” : le nom est modifié en interne pour inclure le nom de la classe.\nRend l’accès depuis l’extérieur plus difficile, mais pas impossible.\n\n\n\n\nExemple d’encapsulation en Python\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nPoints importants à retenir :\n\nL’encapsulation en Python est basée sur des conventions plutôt que sur des restrictions strictes.\nLes attributs et méthodes préfixés par un underscore _ sont considérés comme internes à la classe.\nLe double underscore __ déclenche le name mangling, rendant l’accès externe plus difficile mais pas impossible.\nL’encapsulation est une question de conception et de discipline de programmation en Python.\nUtilisez des méthodes publiques (getters/setters) pour contrôler l’accès aux données internes si nécessaire.\n\n\n\nAvantages de l’encapsulation :\n\nContrôle de l’accès aux données\nFlexibilité pour modifier l’implémentation interne sans affecter le code qui utilise la classe\nPrévention des modifications accidentelles des données internes\nClarté du code en distinguant l’interface publique des détails d’implémentation\n\n\n\n\n\n\n Back to top",
     "crumbs": [
-      "Méthodes Dunder en Python"
+      "Encapsulation en Python"
     ]
   },
   {
-    "objectID": "content/Cours_2/2-Heritage.html",
-    "href": "content/Cours_2/2-Heritage.html",
-    "title": "Héritage en Python : Concept et intérêt",
+    "objectID": "content/Cours_2/TP_heritage.html",
+    "href": "content/Cours_2/TP_heritage.html",
+    "title": "TP: Heritage avec le pricing d’option",
     "section": "",
-    "text": "L’héritage est un mécanisme fondamental de la programmation orientée objet qui permet à une classe de baser sa définition sur celle d’une autre classe. Cela favorise la réutilisation du code et permet de créer des hiérarchies de classes.\n\n\n\nRéutilisation du code : L’héritage permet d’éviter la duplication de code en définissant des comportements communs dans une classe parente.\nOrganisation logique : Il permet de créer des hiérarchies de classes qui reflètent des relations logiques entre concepts.\nExtensibilité : Les classes dérivées peuvent étendre ou modifier le comportement des classes parentes, rendant le code plus flexible.\nPolymorphisme : L’héritage est à la base du polymorphisme, permettant de traiter des objets de classes différentes de manière uniforme.\n\n\n\n\nEn Python, toutes les classes héritent implicitement de la classe object, même si ce n’est pas spécifié explicitement.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nL’héritage de object fournit des méthodes de base comme __init__, __str__, __repr__, etc. C’est pourquoi toutes les classes en Python ont certaines méthodes en commun.\n\n\n\nPython supporte l’héritage multiple, ce qui signifie qu’une classe peut hériter de plusieurs classes parentes.\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nCombinaison de fonctionnalités : Permet de combiner des fonctionnalités de différentes classes en une seule.\nRéutilisation de code provenant de sources multiples : Utile lorsqu’une classe doit hériter de comportements de plusieurs classes non liées.\nImplémentation de designs complexes : Permet de créer des structures de classes plus flexibles et adaptables.\n\nExemple concret :\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIci, Canard hérite des capacités de Nageur et Volant, combinant ainsi ces deux comportements.\n\n\n\n\nLa MRO est cruciale pour comprendre comment Python gère l’héritage, en particulier l’héritage multiple.\n\n\nLa MRO définit l’ordre dans lequel Python recherche les méthodes et les attributs dans une hiérarchie de classes. Elle est particulièrement importante en cas d’héritage multiple, où plusieurs classes parentes peuvent définir la même méthode.\n\n\n\nPython utilise l’algorithme C3 pour déterminer la MRO. Cet algorithme garantit que :\n\nLes sous-classes apparaissent avant les classes parentes.\nL’ordre de déclaration des classes parentes est respecté.\nLa MRO est monotone (une classe apparaît toujours avant ses parents).\n\n\n\n\nOn peut visualiser la MRO d’une classe avec la méthode mro() ou l’attribut __mro__ :\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nConsidérons cet exemple pour illustrer comment la MRO fonctionne :\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIci, D hérite de B et C. Lorsque d.methode() est appelé, Python suit la MRO : D -&gt; B -&gt; C -&gt; A -&gt; object. Il trouve d’abord la méthode dans B, donc c’est celle-ci qui est exécutée.\n\n\n\nLa compréhension de la MRO est cruciale pour : - Éviter les conflits de noms dans l’héritage multiple. - Comprendre l’ordre d’exécution des méthodes. - Concevoir des hiérarchies de classes cohérentes et prévisibles.",
+    "text": "Ce TP est divisé en deux parties pour explorer les concepts d’héritage, d’encapsulation et de composition en programmation orientée objet (POO). Vous allez implémenter des classes pour évaluer des options financières en utilisant deux méthodes différentes : la formule de Black-Scholes et la simulation de Monte Carlo.\n\n\n\n\nLa formule de Black-Scholes est utilisée pour calculer le prix théorique d’une option européenne. Voici les principales formules :\n\n\\(d_1 = \\frac{\\ln(S/K) + (r + \\sigma^2/2)T}{\\sigma\\sqrt{T}}\\)\n\\(d_2 = d_1 - \\sigma\\sqrt{T}\\)J’a\nPrix d’un Call : \\(C = SN(d_1) - Ke^{-rT}N(d_2)\\)\nPrix d’un Put : \\(P = Ke^{-rT}N(-d_2) - SN(-d_1)\\)\n\nOù : - \\(S\\) : prix spot de l’actif sous-jacent - \\(K\\) : prix d’exercice de l’option - \\(r\\) : taux d’intérêt sans risque - \\(T\\) : temps jusqu’à l’expiration (en années) - \\(\\sigma\\) : volatilité de l’actif sous-jacent - \\(N(x)\\) : fonction de répartition de la loi normale centrée réduite\n\n\n\nLes Grecs sont des mesures de sensibilité du prix de l’option par rapport à divers paramètres :\n\nDelta (Δ) :\n\nPour un Call : \\(\\Delta_C = N(d_1)\\)\nPour un Put : \\(\\Delta_P = N(d_1) - 1\\)\n\nGamma (Γ) : \\(\\Gamma = \\frac{N'(d_1)}{S\\sigma\\sqrt{T}}\\)\nVega (ν) : \\(\\nu = S\\sqrt{T}N'(d_1)\\)\nTheta (Θ) :\n\nPour un Call : \\(\\Theta_C = -\\frac{SN'(d_1)\\sigma}{2\\sqrt{T}} - rKe^{-rT}N(d_2)\\)\nPour un Put : \\(\\Theta_P = -\\frac{SN'(d_1)\\sigma}{2\\sqrt{T}} + rKe^{-rT}N(-d_2)\\)\n\nRho (ρ) :\n\nPour un Call : \\(\\rho_C = KTe^{-rT}N(d_2)\\)\nPour un Put : \\(\\rho_P = -KTe^{-rT}N(-d_2)\\)\n\n\n\n\n\nLa méthode de Monte Carlo pour l’évaluation d’options implique les étapes suivantes :\n\nGénérer un grand nombre de trajectoires de prix pour l’actif sous-jacent en utilisant le mouvement brownien géométrique :\n\\(S_T = S_0 \\exp((r - \\frac{\\sigma^2}{2})T + \\sigma\\sqrt{T}Z)\\)\noù \\(Z\\) est une variable aléatoire normale standard.\nPour chaque trajectoire, calculer le payoff de l’option à l’échéance.\nCalculer la moyenne des payoffs actualisés :\n\\(\\text{Prix de l'option} = e^{-rT} \\frac{1}{N} \\sum_{i=1}^N \\text{Payoff}_i\\)\noù \\(N\\) est le nombre de simulations.\n\n\n\n\n\n\nCréez un fichier nommé black_scholes.py.\nImplémentez les classes suivantes :\n\nOption : Classe de base pour les options\nCall : Classe dérivée de Option pour les options d’achat\nPut : Classe dérivée de Option pour les options de vente\n\nChaque classe doit avoir les méthodes suivantes :\n\n__init__ : Constructeur avec les paramètres nécessaires\ncompute_price() : Calcule le prix de l’option\ncompute_delta() : Calcule le delta de l’option\ncompute_gamma() : Calcule le gamma de l’option\ncompute_vega() : Calcule le vega de l’option\ncompute_theta() : Calcule le theta de l’option\ncompute_rho() : Calcule le rho de l’option\n\nUtilisez la formule de Black-Scholes pour les calculs.\n\n\n\n\n\nCréez un fichier nommé monte_carlo.py.\nImplémentez les classes suivantes :\n\nDerivative : Classe de base pour les produits dérivés\nEuropeanOption : Classe dérivée de Derivative pour les options européennes\nPayoff : Classe de base pour les fonctions de payoff\nCallPayoff : Classe dérivée de Payoff pour le payoff d’une option d’achat\nPutPayoff : Classe dérivée de Payoff pour le payoff d’une option de vente\n\nLa classe Derivative doit avoir une méthode price() qui utilise la simulation de Monte Carlo.\nLes classes EuropeanOption et Payoff doivent utiliser la composition pour lier les payoffs aux options.\n\n\n\n\nVoici un ensemble de tests unitaires pour vérifier votre implémentation de la Partie 1 (Black-Scholes) :\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nEt voici un ensemble de tests unitaires pour la Partie 2 (Monte Carlo) :\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nCommencez par implémenter la Partie 1 (Black-Scholes) avant de passer à la Partie 2 (Monte Carlo).\nUtilisez l’encapsulation pour protéger les attributs de vos classes.\nProfitez de l’héritage pour factoriser le code commun entre les classes Call et Put.\nPour la Partie 2, utilisez la composition pour lier les payoffs aux options européennes.\nN’oubliez pas d’importer les bibliothèques nécessaires (math, numpy, scipy.stats).\nTestez votre code régulièrement en utilisant les tests unitaires fournis.\nUtilisez les formules fournies dans les rappels théoriques pour implémenter vos méthodes.\n\nBonne chance !",
     "crumbs": [
-      "Héritage en Python : Concept et intérêt"
+      "Travaux Pratiques",
+      "TP: Heritage avec le pricing d'option"
     ]
   },
   {
-    "objectID": "content/Cours_2/2-Heritage.html#héritage-multiple-en-python",
-    "href": "content/Cours_2/2-Heritage.html#héritage-multiple-en-python",
-    "title": "Héritage en Python : Concept et intérêt",
+    "objectID": "content/Cours_2/TP_heritage.html#rappels-théoriques",
+    "href": "content/Cours_2/TP_heritage.html#rappels-théoriques",
+    "title": "TP: Heritage avec le pricing d’option",
     "section": "",
-    "text": "Python supporte l’héritage multiple, ce qui signifie qu’une classe peut hériter de plusieurs classes parentes.\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nCombinaison de fonctionnalités : Permet de combiner des fonctionnalités de différentes classes en une seule.\nRéutilisation de code provenant de sources multiples : Utile lorsqu’une classe doit hériter de comportements de plusieurs classes non liées.\nImplémentation de designs complexes : Permet de créer des structures de classes plus flexibles et adaptables.\n\nExemple concret :\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIci, Canard hérite des capacités de Nageur et Volant, combinant ainsi ces deux comportements.",
+    "text": "La formule de Black-Scholes est utilisée pour calculer le prix théorique d’une option européenne. Voici les principales formules :\n\n\\(d_1 = \\frac{\\ln(S/K) + (r + \\sigma^2/2)T}{\\sigma\\sqrt{T}}\\)\n\\(d_2 = d_1 - \\sigma\\sqrt{T}\\)J’a\nPrix d’un Call : \\(C = SN(d_1) - Ke^{-rT}N(d_2)\\)\nPrix d’un Put : \\(P = Ke^{-rT}N(-d_2) - SN(-d_1)\\)\n\nOù : - \\(S\\) : prix spot de l’actif sous-jacent - \\(K\\) : prix d’exercice de l’option - \\(r\\) : taux d’intérêt sans risque - \\(T\\) : temps jusqu’à l’expiration (en années) - \\(\\sigma\\) : volatilité de l’actif sous-jacent - \\(N(x)\\) : fonction de répartition de la loi normale centrée réduite\n\n\n\nLes Grecs sont des mesures de sensibilité du prix de l’option par rapport à divers paramètres :\n\nDelta (Δ) :\n\nPour un Call : \\(\\Delta_C = N(d_1)\\)\nPour un Put : \\(\\Delta_P = N(d_1) - 1\\)\n\nGamma (Γ) : \\(\\Gamma = \\frac{N'(d_1)}{S\\sigma\\sqrt{T}}\\)\nVega (ν) : \\(\\nu = S\\sqrt{T}N'(d_1)\\)\nTheta (Θ) :\n\nPour un Call : \\(\\Theta_C = -\\frac{SN'(d_1)\\sigma}{2\\sqrt{T}} - rKe^{-rT}N(d_2)\\)\nPour un Put : \\(\\Theta_P = -\\frac{SN'(d_1)\\sigma}{2\\sqrt{T}} + rKe^{-rT}N(-d_2)\\)\n\nRho (ρ) :\n\nPour un Call : \\(\\rho_C = KTe^{-rT}N(d_2)\\)\nPour un Put : \\(\\rho_P = -KTe^{-rT}N(-d_2)\\)\n\n\n\n\n\nLa méthode de Monte Carlo pour l’évaluation d’options implique les étapes suivantes :\n\nGénérer un grand nombre de trajectoires de prix pour l’actif sous-jacent en utilisant le mouvement brownien géométrique :\n\\(S_T = S_0 \\exp((r - \\frac{\\sigma^2}{2})T + \\sigma\\sqrt{T}Z)\\)\noù \\(Z\\) est une variable aléatoire normale standard.\nPour chaque trajectoire, calculer le payoff de l’option à l’échéance.\nCalculer la moyenne des payoffs actualisés :\n\\(\\text{Prix de l'option} = e^{-rT} \\frac{1}{N} \\sum_{i=1}^N \\text{Payoff}_i\\)\noù \\(N\\) est le nombre de simulations.",
     "crumbs": [
-      "Héritage en Python : Concept et intérêt"
+      "Travaux Pratiques",
+      "TP: Heritage avec le pricing d'option"
     ]
   },
   {
-    "objectID": "content/Cours_2/2-Heritage.html#method-resolution-order-mro-en-détail",
-    "href": "content/Cours_2/2-Heritage.html#method-resolution-order-mro-en-détail",
-    "title": "Héritage en Python : Concept et intérêt",
+    "objectID": "content/Cours_2/TP_heritage.html#partie-1-implémentation-de-black-scholes",
+    "href": "content/Cours_2/TP_heritage.html#partie-1-implémentation-de-black-scholes",
+    "title": "TP: Heritage avec le pricing d’option",
     "section": "",
-    "text": "La MRO est cruciale pour comprendre comment Python gère l’héritage, en particulier l’héritage multiple.\n\n\nLa MRO définit l’ordre dans lequel Python recherche les méthodes et les attributs dans une hiérarchie de classes. Elle est particulièrement importante en cas d’héritage multiple, où plusieurs classes parentes peuvent définir la même méthode.\n\n\n\nPython utilise l’algorithme C3 pour déterminer la MRO. Cet algorithme garantit que :\n\nLes sous-classes apparaissent avant les classes parentes.\nL’ordre de déclaration des classes parentes est respecté.\nLa MRO est monotone (une classe apparaît toujours avant ses parents).\n\n\n\n\nOn peut visualiser la MRO d’une classe avec la méthode mro() ou l’attribut __mro__ :\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nConsidérons cet exemple pour illustrer comment la MRO fonctionne :\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIci, D hérite de B et C. Lorsque d.methode() est appelé, Python suit la MRO : D -&gt; B -&gt; C -&gt; A -&gt; object. Il trouve d’abord la méthode dans B, donc c’est celle-ci qui est exécutée.\n\n\n\nLa compréhension de la MRO est cruciale pour : - Éviter les conflits de noms dans l’héritage multiple. - Comprendre l’ordre d’exécution des méthodes. - Concevoir des hiérarchies de classes cohérentes et prévisibles.",
+    "text": "Créez un fichier nommé black_scholes.py.\nImplémentez les classes suivantes :\n\nOption : Classe de base pour les options\nCall : Classe dérivée de Option pour les options d’achat\nPut : Classe dérivée de Option pour les options de vente\n\nChaque classe doit avoir les méthodes suivantes :\n\n__init__ : Constructeur avec les paramètres nécessaires\ncompute_price() : Calcule le prix de l’option\ncompute_delta() : Calcule le delta de l’option\ncompute_gamma() : Calcule le gamma de l’option\ncompute_vega() : Calcule le vega de l’option\ncompute_theta() : Calcule le theta de l’option\ncompute_rho() : Calcule le rho de l’option\n\nUtilisez la formule de Black-Scholes pour les calculs.",
     "crumbs": [
-      "Héritage en Python : Concept et intérêt"
+      "Travaux Pratiques",
+      "TP: Heritage avec le pricing d'option"
     ]
   },
   {
-    "objectID": "content/Cours_3/4-Abstract_class.html",
-    "href": "content/Cours_3/4-Abstract_class.html",
-    "title": "Abstract Classes",
+    "objectID": "content/Cours_2/TP_heritage.html#partie-2-implémentation-de-monte-carlo",
+    "href": "content/Cours_2/TP_heritage.html#partie-2-implémentation-de-monte-carlo",
+    "title": "TP: Heritage avec le pricing d’option",
     "section": "",
-    "text": "An abstract class is a class that is designed to be inherited from, but not instantiated directly. It often contains one or more abstract methods - methods that are declared, but don’t have an implementation in the abstract class.\n\n\n\nCannot be instantiated directly\nMay contain abstract methods (methods without a body)\nMay contain concrete methods (methods with an implementation)\nSubclasses must implement all abstract methods\n\n\n\n\n\nTo define a common interface for a set of subclasses\nTo enforce certain methods to be implemented by subclasses\nTo share code among several closely related classes\n\n\n\n\n\nPython provides the abc module to work with abstract base classes.\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn this example: - Animal is an abstract base class - make_sound is an abstract method - move is a concrete method\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nThe @abstractmethod decorator marks a method as abstract\nSubclasses must implement all abstract methods\nAbstract classes can have both abstract and concrete methods\nTrying to instantiate an abstract class directly will raise a TypeError\n\n\n\n\n\n\nEnforcing a common interface: Abstract classes ensure that all subclasses implement certain methods, guaranteeing a common interface.\nCode reuse: You can implement common functionality in the abstract base class, which all subclasses can use.\nDesigning frameworks: Abstract classes are useful when designing large frameworks where you want to provide default behaviors but require specific implementations in subclasses.\n\n\n\n\nHere’s a more practical example using shapes:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn this example, Shape is an abstract base class that defines the common interface for all shapes. Circle and Rectangle are concrete implementations of Shape.\n\n\n\nAbstract base classes in Python provide a powerful way to define interfaces and ensure that derived classes implement certain methods. They’re useful for creating frameworks and libraries, ensuring consistency across related classes, and defining clear contracts for subclasses to follow.\nBy using abstract classes, you can create more robust and well-structured code, especially when dealing with complex hierarchies of related classes.",
+    "text": "Créez un fichier nommé monte_carlo.py.\nImplémentez les classes suivantes :\n\nDerivative : Classe de base pour les produits dérivés\nEuropeanOption : Classe dérivée de Derivative pour les options européennes\nPayoff : Classe de base pour les fonctions de payoff\nCallPayoff : Classe dérivée de Payoff pour le payoff d’une option d’achat\nPutPayoff : Classe dérivée de Payoff pour le payoff d’une option de vente\n\nLa classe Derivative doit avoir une méthode price() qui utilise la simulation de Monte Carlo.\nLes classes EuropeanOption et Payoff doivent utiliser la composition pour lier les payoffs aux options.",
     "crumbs": [
-      "Abstract Classes"
+      "Travaux Pratiques",
+      "TP: Heritage avec le pricing d'option"
     ]
   },
   {
-    "objectID": "content/Cours_3/4-Abstract_class.html#concept-and-purpose",
-    "href": "content/Cours_3/4-Abstract_class.html#concept-and-purpose",
-    "title": "Abstract Classes",
+    "objectID": "content/Cours_2/TP_heritage.html#tests-unitaires",
+    "href": "content/Cours_2/TP_heritage.html#tests-unitaires",
+    "title": "TP: Heritage avec le pricing d’option",
     "section": "",
-    "text": "An abstract class is a class that is designed to be inherited from, but not instantiated directly. It often contains one or more abstract methods - methods that are declared, but don’t have an implementation in the abstract class.\n\n\n\nCannot be instantiated directly\nMay contain abstract methods (methods without a body)\nMay contain concrete methods (methods with an implementation)\nSubclasses must implement all abstract methods\n\n\n\n\n\nTo define a common interface for a set of subclasses\nTo enforce certain methods to be implemented by subclasses\nTo share code among several closely related classes",
+    "text": "Voici un ensemble de tests unitaires pour vérifier votre implémentation de la Partie 1 (Black-Scholes) :\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nEt voici un ensemble de tests unitaires pour la Partie 2 (Monte Carlo) :\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
-      "Abstract Classes"
+      "Travaux Pratiques",
+      "TP: Heritage avec le pricing d'option"
     ]
   },
   {
-    "objectID": "content/Cours_3/4-Abstract_class.html#abstract-base-classes-abc-in-python",
-    "href": "content/Cours_3/4-Abstract_class.html#abstract-base-classes-abc-in-python",
-    "title": "Abstract Classes",
+    "objectID": "content/Cours_2/TP_heritage.html#conseils",
+    "href": "content/Cours_2/TP_heritage.html#conseils",
+    "title": "TP: Heritage avec le pricing d’option",
     "section": "",
-    "text": "Python provides the abc module to work with abstract base classes.\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn this example: - Animal is an abstract base class - make_sound is an abstract method - move is a concrete method\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nThe @abstractmethod decorator marks a method as abstract\nSubclasses must implement all abstract methods\nAbstract classes can have both abstract and concrete methods\nTrying to instantiate an abstract class directly will raise a TypeError",
+    "text": "Commencez par implémenter la Partie 1 (Black-Scholes) avant de passer à la Partie 2 (Monte Carlo).\nUtilisez l’encapsulation pour protéger les attributs de vos classes.\nProfitez de l’héritage pour factoriser le code commun entre les classes Call et Put.\nPour la Partie 2, utilisez la composition pour lier les payoffs aux options européennes.\nN’oubliez pas d’importer les bibliothèques nécessaires (math, numpy, scipy.stats).\nTestez votre code régulièrement en utilisant les tests unitaires fournis.\nUtilisez les formules fournies dans les rappels théoriques pour implémenter vos méthodes.\n\nBonne chance !",
     "crumbs": [
-      "Abstract Classes"
+      "Travaux Pratiques",
+      "TP: Heritage avec le pricing d'option"
     ]
   },
   {
-    "objectID": "content/Cours_3/4-Abstract_class.html#why-use-abstract-classes",
-    "href": "content/Cours_3/4-Abstract_class.html#why-use-abstract-classes",
-    "title": "Abstract Classes",
+    "objectID": "content/Cours_3/3-type_to_create.html",
+    "href": "content/Cours_3/3-type_to_create.html",
+    "title": "Class Creation: Standard vs type()",
     "section": "",
-    "text": "Enforcing a common interface: Abstract classes ensure that all subclasses implement certain methods, guaranteeing a common interface.\nCode reuse: You can implement common functionality in the abstract base class, which all subclasses can use.\nDesigning frameworks: Abstract classes are useful when designing large frameworks where you want to provide default behaviors but require specific implementations in subclasses.",
+    "text": "In Python, we typically create classes using the class keyword. However, Python also provides a way to create classes dynamically using the type() function. Let’s compare these two methods and understand when and why you might use type() for class creation.\n\n\nHere’s how we normally create a class in Python:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nNow, let’s create the exact same class using type():\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThe type() function takes three arguments: 1. The name of the class as a string 2. A tuple of base classes (empty in this case) 3. A dictionary of attributes and methods\n\n\n\nLet’s see how inheritance works with both methods:\nStandard way:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nUsing type():\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nIt’s important to understand that these two methods are equivalent - they produce the same result. The class keyword is syntactic sugar for what type() does under the hood.\nUsing type() can be useful in scenarios where you need to create classes dynamically based on runtime information. For example:\n\nGenerating classes based on data schemas\nImplementing plugin systems\nCreating domain-specific languages\n\nHowever, for most use cases, the standard class syntax is more readable and maintainable.\n\n\n\nWhen using multiprocessing in Python, dynamically created classes can sometimes cause issues. This is because classes created with type() at runtime might not be picklable, which is required for multiprocessing in Python.\nFor example:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThis code might raise a PicklingError because the dynamically created class is not defined at the top level of a module.\n\n\n\nWhile type() provides a way to create classes dynamically, it’s generally better to stick with the standard class syntax for most use cases. Dynamic class creation can be powerful but can also lead to code that’s harder to understand and maintain. It’s a tool best reserved for specific scenarios where runtime class creation is necessary.\nRemember, clear and readable code is usually preferable to clever tricks. Use dynamic class creation judiciously and always consider the long-term maintainability of your code.",
     "crumbs": [
-      "Abstract Classes"
+      "Class Creation: Standard vs type()"
     ]
   },
   {
-    "objectID": "content/Cours_3/4-Abstract_class.html#example-shape-hierarchy",
-    "href": "content/Cours_3/4-Abstract_class.html#example-shape-hierarchy",
-    "title": "Abstract Classes",
+    "objectID": "content/Cours_3/3-type_to_create.html#standard-class-creation",
+    "href": "content/Cours_3/3-type_to_create.html#standard-class-creation",
+    "title": "Class Creation: Standard vs type()",
     "section": "",
-    "text": "Here’s a more practical example using shapes:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn this example, Shape is an abstract base class that defines the common interface for all shapes. Circle and Rectangle are concrete implementations of Shape.",
+    "text": "Here’s how we normally create a class in Python:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
-      "Abstract Classes"
+      "Class Creation: Standard vs type()"
     ]
   },
   {
-    "objectID": "content/Cours_3/4-Abstract_class.html#conclusion",
-    "href": "content/Cours_3/4-Abstract_class.html#conclusion",
-    "title": "Abstract Classes",
+    "objectID": "content/Cours_3/3-type_to_create.html#class-creation-with-type",
+    "href": "content/Cours_3/3-type_to_create.html#class-creation-with-type",
+    "title": "Class Creation: Standard vs type()",
     "section": "",
-    "text": "Abstract base classes in Python provide a powerful way to define interfaces and ensure that derived classes implement certain methods. They’re useful for creating frameworks and libraries, ensuring consistency across related classes, and defining clear contracts for subclasses to follow.\nBy using abstract classes, you can create more robust and well-structured code, especially when dealing with complex hierarchies of related classes.",
+    "text": "Now, let’s create the exact same class using type():\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThe type() function takes three arguments: 1. The name of the class as a string 2. A tuple of base classes (empty in this case) 3. A dictionary of attributes and methods",
     "crumbs": [
-      "Abstract Classes"
+      "Class Creation: Standard vs type()"
     ]
   },
   {
-    "objectID": "content/Cours_3/1-Polymorphism.html",
-    "href": "content/Cours_3/1-Polymorphism.html",
-    "title": "Polymorphism in Object-Oriented Programming",
+    "objectID": "content/Cours_3/3-type_to_create.html#inheritance-example",
+    "href": "content/Cours_3/3-type_to_create.html#inheritance-example",
+    "title": "Class Creation: Standard vs type()",
     "section": "",
-    "text": "Polymorphism is a fundamental principle in object-oriented programming (OOP) that allows objects of different types to be treated as objects of a common base type. The word “polymorphism” comes from Greek, meaning “many forms.” In OOP, it refers to the ability of a single interface to represent different underlying forms (data types or classes).\n\n\n\nSame Interface, Different Implementations: Polymorphism allows different classes to have methods with the same name, but with different implementations.\nFlexibility: It provides a way to use a class exactly like its parent, but with its own specific implementation.\nSimplification: It simplifies programming interfaces, making code more modular and extensible.\nRuntime Decision: The specific method that gets called is often determined at runtime, based on the actual type of the object.\n\n\n\n\n\nCompile-time Polymorphism (Static):\n\nAchieved through method overloading\nResolved at compile time\n\nRuntime Polymorphism (Dynamic):\n\nAchieved through method overriding\nResolved at runtime\n\n\n\n\n\nConsider a base class Animal with a method make_sound(). Different animals can implement this method differently:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn this example, each animal class implements the make_sound() method differently, but they can all be treated as Animal objects.\n\n\n\n\nMethod overriding is a fundamental aspect of runtime polymorphism. It occurs when a derived class (child class) has a method with the same name and signature as a method in its base class (parent class).\n\n\n\nSame Name and Signature: The overriding method must have the same name and parameter list as the method in the parent class.\nRuntime Decision: The method to be invoked is determined at runtime based on the object’s type.\nExtends or Modifies Behavior: Overriding allows a child class to provide a specific implementation of a method that is already defined in its parent class.\nPolymorphic Behavior: It’s a key mechanism for achieving polymorphic behavior in OOP.\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn this example: - The Shape class provides a default implementation of area(). - Rectangle and Circle override this method with their specific implementations. - We can treat all objects as Shape instances, but each will use its own area() method.\n\n\n\n\nCustomization: Allows subclasses to provide specific implementations of methods.\nCode Reusability: Reuses the method name from the parent class, maintaining a logical hierarchy.\nRuntime Flexibility: Enables objects to behave differently based on their actual class, while still using a common interface.\n\nMethod overriding is a powerful feature that, when used correctly, can lead to more flexible and maintainable code structures in object-oriented programming.",
+    "text": "Let’s see how inheritance works with both methods:\nStandard way:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nUsing type():\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
-      "Polymorphism in Object-Oriented Programming"
+      "Class Creation: Standard vs type()"
     ]
   },
   {
-    "objectID": "content/Cours_3/1-Polymorphism.html#general-concept",
-    "href": "content/Cours_3/1-Polymorphism.html#general-concept",
-    "title": "Polymorphism in Object-Oriented Programming",
+    "objectID": "content/Cours_3/3-type_to_create.html#equivalence-and-use-cases",
+    "href": "content/Cours_3/3-type_to_create.html#equivalence-and-use-cases",
+    "title": "Class Creation: Standard vs type()",
     "section": "",
-    "text": "Polymorphism is a fundamental principle in object-oriented programming (OOP) that allows objects of different types to be treated as objects of a common base type. The word “polymorphism” comes from Greek, meaning “many forms.” In OOP, it refers to the ability of a single interface to represent different underlying forms (data types or classes).\n\n\n\nSame Interface, Different Implementations: Polymorphism allows different classes to have methods with the same name, but with different implementations.\nFlexibility: It provides a way to use a class exactly like its parent, but with its own specific implementation.\nSimplification: It simplifies programming interfaces, making code more modular and extensible.\nRuntime Decision: The specific method that gets called is often determined at runtime, based on the actual type of the object.\n\n\n\n\n\nCompile-time Polymorphism (Static):\n\nAchieved through method overloading\nResolved at compile time\n\nRuntime Polymorphism (Dynamic):\n\nAchieved through method overriding\nResolved at runtime\n\n\n\n\n\nConsider a base class Animal with a method make_sound(). Different animals can implement this method differently:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn this example, each animal class implements the make_sound() method differently, but they can all be treated as Animal objects.",
+    "text": "It’s important to understand that these two methods are equivalent - they produce the same result. The class keyword is syntactic sugar for what type() does under the hood.\nUsing type() can be useful in scenarios where you need to create classes dynamically based on runtime information. For example:\n\nGenerating classes based on data schemas\nImplementing plugin systems\nCreating domain-specific languages\n\nHowever, for most use cases, the standard class syntax is more readable and maintainable.",
     "crumbs": [
-      "Polymorphism in Object-Oriented Programming"
+      "Class Creation: Standard vs type()"
     ]
   },
   {
-    "objectID": "content/Cours_3/1-Polymorphism.html#method-overriding",
-    "href": "content/Cours_3/1-Polymorphism.html#method-overriding",
-    "title": "Polymorphism in Object-Oriented Programming",
+    "objectID": "content/Cours_3/3-type_to_create.html#potential-issues-with-multiprocessing",
+    "href": "content/Cours_3/3-type_to_create.html#potential-issues-with-multiprocessing",
+    "title": "Class Creation: Standard vs type()",
     "section": "",
-    "text": "Method overriding is a fundamental aspect of runtime polymorphism. It occurs when a derived class (child class) has a method with the same name and signature as a method in its base class (parent class).\n\n\n\nSame Name and Signature: The overriding method must have the same name and parameter list as the method in the parent class.\nRuntime Decision: The method to be invoked is determined at runtime based on the object’s type.\nExtends or Modifies Behavior: Overriding allows a child class to provide a specific implementation of a method that is already defined in its parent class.\nPolymorphic Behavior: It’s a key mechanism for achieving polymorphic behavior in OOP.\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn this example: - The Shape class provides a default implementation of area(). - Rectangle and Circle override this method with their specific implementations. - We can treat all objects as Shape instances, but each will use its own area() method.\n\n\n\n\nCustomization: Allows subclasses to provide specific implementations of methods.\nCode Reusability: Reuses the method name from the parent class, maintaining a logical hierarchy.\nRuntime Flexibility: Enables objects to behave differently based on their actual class, while still using a common interface.\n\nMethod overriding is a powerful feature that, when used correctly, can lead to more flexible and maintainable code structures in object-oriented programming.",
+    "text": "When using multiprocessing in Python, dynamically created classes can sometimes cause issues. This is because classes created with type() at runtime might not be picklable, which is required for multiprocessing in Python.\nFor example:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThis code might raise a PicklingError because the dynamically created class is not defined at the top level of a module.",
     "crumbs": [
-      "Polymorphism in Object-Oriented Programming"
+      "Class Creation: Standard vs type()"
     ]
   },
   {
-    "objectID": "content/Cours_3/3-Type_Hinting.html",
-    "href": "content/Cours_3/3-Type_Hinting.html",
+    "objectID": "content/Cours_3/3-type_to_create.html#conclusion",
+    "href": "content/Cours_3/3-type_to_create.html#conclusion",
+    "title": "Class Creation: Standard vs type()",
+    "section": "",
+    "text": "While type() provides a way to create classes dynamically, it’s generally better to stick with the standard class syntax for most use cases. Dynamic class creation can be powerful but can also lead to code that’s harder to understand and maintain. It’s a tool best reserved for specific scenarios where runtime class creation is necessary.\nRemember, clear and readable code is usually preferable to clever tricks. Use dynamic class creation judiciously and always consider the long-term maintainability of your code.",
+    "crumbs": [
+      "Class Creation: Standard vs type()"
+    ]
+  },
+  {
+    "objectID": "content/Cours_3/6-Protocol.html",
+    "href": "content/Cours_3/6-Protocol.html",
+    "title": "Protocol Classes",
+    "section": "",
+    "text": "Protocols, introduced in Python 3.8, provide a way to define structural subtyping (often called “duck typing”). They allow you to define interfaces in a more flexible and Pythonic way compared to abstract base classes.\n\n\n\n\nStructural Subtyping: An object is considered a subtype if it has the required methods and attributes, regardless of inheritance.\nNo Runtime Enforcement: Protocols are primarily used for static type checking and don’t enforce method implementation at runtime.\nFlexibility: Classes don’t need to explicitly inherit from a Protocol to be considered compatible.\n\n\n\n\nTo use Protocols, you need to import from the typing module:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn this example: - Drawable is a Protocol that defines an interface with a draw method. - Circle is compatible with Drawable because it has a draw method, even though it doesn’t explicitly inherit from Drawable.\n\n\n\n\nFlexibility: You can define interfaces for existing classes without modifying them.\nDuck Typing: Aligns well with Python’s “duck typing” philosophy.\nStatic Type Checking: Provides benefits of static typing without runtime overhead.\nBackwards Compatibility: Can be used with existing codebases without modification.\n\n\n\n\nLet’s look at a more comprehensive example using Protocols:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn this example: - We define multiple Protocols: Sized, Appendable, and StringContainer. - StringContainer combines multiple Protocols. - MyList is compatible with StringContainer because it implements all required methods. - process_data can work with any object that satisfies the StringContainer Protocol.\n\n\n\nWhile Protocols are primarily for static type checking, you can make them runtime-checkable:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThe @runtime_checkable decorator allows isinstance() checks, but be cautious as it only checks for the existence of the methods, not their signatures.\n\n\n\nProtocols in Python provide a flexible and powerful way to define interfaces. They offer the benefits of static typing and interface definition while maintaining Python’s dynamic and duck-typed nature. Protocols are especially useful in large codebases, for defining clear contracts between different parts of a system, and for working with existing code that can’t be modified to inherit from specific base classes.",
+    "crumbs": [
+      "Protocol Classes"
+    ]
+  },
+  {
+    "objectID": "content/Cours_3/6-Protocol.html#introduction-to-protocols",
+    "href": "content/Cours_3/6-Protocol.html#introduction-to-protocols",
+    "title": "Protocol Classes",
+    "section": "",
+    "text": "Protocols, introduced in Python 3.8, provide a way to define structural subtyping (often called “duck typing”). They allow you to define interfaces in a more flexible and Pythonic way compared to abstract base classes.",
+    "crumbs": [
+      "Protocol Classes"
+    ]
+  },
+  {
+    "objectID": "content/Cours_3/6-Protocol.html#key-concepts",
+    "href": "content/Cours_3/6-Protocol.html#key-concepts",
+    "title": "Protocol Classes",
+    "section": "",
+    "text": "Structural Subtyping: An object is considered a subtype if it has the required methods and attributes, regardless of inheritance.\nNo Runtime Enforcement: Protocols are primarily used for static type checking and don’t enforce method implementation at runtime.\nFlexibility: Classes don’t need to explicitly inherit from a Protocol to be considered compatible.",
+    "crumbs": [
+      "Protocol Classes"
+    ]
+  },
+  {
+    "objectID": "content/Cours_3/6-Protocol.html#basic-usage-of-protocols",
+    "href": "content/Cours_3/6-Protocol.html#basic-usage-of-protocols",
+    "title": "Protocol Classes",
+    "section": "",
+    "text": "To use Protocols, you need to import from the typing module:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn this example: - Drawable is a Protocol that defines an interface with a draw method. - Circle is compatible with Drawable because it has a draw method, even though it doesn’t explicitly inherit from Drawable.",
+    "crumbs": [
+      "Protocol Classes"
+    ]
+  },
+  {
+    "objectID": "content/Cours_3/6-Protocol.html#advantages-of-protocols",
+    "href": "content/Cours_3/6-Protocol.html#advantages-of-protocols",
+    "title": "Protocol Classes",
+    "section": "",
+    "text": "Flexibility: You can define interfaces for existing classes without modifying them.\nDuck Typing: Aligns well with Python’s “duck typing” philosophy.\nStatic Type Checking: Provides benefits of static typing without runtime overhead.\nBackwards Compatibility: Can be used with existing codebases without modification.",
+    "crumbs": [
+      "Protocol Classes"
+    ]
+  },
+  {
+    "objectID": "content/Cours_3/6-Protocol.html#more-complex-example",
+    "href": "content/Cours_3/6-Protocol.html#more-complex-example",
+    "title": "Protocol Classes",
+    "section": "",
+    "text": "Let’s look at a more comprehensive example using Protocols:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn this example: - We define multiple Protocols: Sized, Appendable, and StringContainer. - StringContainer combines multiple Protocols. - MyList is compatible with StringContainer because it implements all required methods. - process_data can work with any object that satisfies the StringContainer Protocol.",
+    "crumbs": [
+      "Protocol Classes"
+    ]
+  },
+  {
+    "objectID": "content/Cours_3/6-Protocol.html#runtime-checkable-protocols",
+    "href": "content/Cours_3/6-Protocol.html#runtime-checkable-protocols",
+    "title": "Protocol Classes",
+    "section": "",
+    "text": "While Protocols are primarily for static type checking, you can make them runtime-checkable:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThe @runtime_checkable decorator allows isinstance() checks, but be cautious as it only checks for the existence of the methods, not their signatures.",
+    "crumbs": [
+      "Protocol Classes"
+    ]
+  },
+  {
+    "objectID": "content/Cours_3/6-Protocol.html#conclusion",
+    "href": "content/Cours_3/6-Protocol.html#conclusion",
+    "title": "Protocol Classes",
+    "section": "",
+    "text": "Protocols in Python provide a flexible and powerful way to define interfaces. They offer the benefits of static typing and interface definition while maintaining Python’s dynamic and duck-typed nature. Protocols are especially useful in large codebases, for defining clear contracts between different parts of a system, and for working with existing code that can’t be modified to inherit from specific base classes.",
+    "crumbs": [
+      "Protocol Classes"
+    ]
+  },
+  {
+    "objectID": "content/Cours_3/4-Type_Hinting.html",
+    "href": "content/Cours_3/4-Type_Hinting.html",
     "title": "Type Hinting, Typing Module, and Linters in Python",
     "section": "",
     "text": "Type hinting, introduced in Python 3.5 (PEP 484), allows developers to indicate the expected types of variables, function parameters, and return values. While Python remains dynamically typed, type hints provide several benefits:\n\nImproved code readability\nBetter IDE support (autocomplete, error detection)\nEasier maintenance, especially for large codebases\nCatch certain types of errors before runtime\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nThe typing module provides support for type hints. It includes a collection of types and tools for working with type annotations.\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nWhile Python doesn’t enforce type hints at runtime, various tools can perform static type checking:\n\n\nMypy is a static type checker for Python. It can catch many type-related errors before runtime.\nInstallation:\npip install mypy\nUsage:\nmypy your_script.py\n\n\n\nPylint is a linter that can check for coding standards, errors, and code smells. It also supports type checking.\nInstallation:\npip install pylint\nUsage:\npylint your_script.py\n\n\n\nPopular IDEs like PyCharm and VS Code have built-in support for type checking and can highlight type-related issues in real-time.\n\n\n\n\n\nStart with critical or complex functions\nUse type hints consistently throughout a module or project\nUtilize tools like Mypy to catch type-related errors\nDon’t overuse Any - it defeats the purpose of type hinting\nConsider using type hints in combination with docstrings for comprehensive documentation\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nType hinting, along with the typing module and linters, provides a powerful set of tools for improving code quality, readability, and maintainability in Python. While not enforced at runtime, these features can catch many errors early in the development process and provide better documentation and IDE support. As Python projects grow in size and complexity, incorporating type hints and static type checking becomes increasingly valuable.",
@@ -606,8 +768,8 @@
     ]
   },
   {
-    "objectID": "content/Cours_3/3-Type_Hinting.html#introduction-to-type-hinting",
-    "href": "content/Cours_3/3-Type_Hinting.html#introduction-to-type-hinting",
+    "objectID": "content/Cours_3/4-Type_Hinting.html#introduction-to-type-hinting",
+    "href": "content/Cours_3/4-Type_Hinting.html#introduction-to-type-hinting",
     "title": "Type Hinting, Typing Module, and Linters in Python",
     "section": "",
     "text": "Type hinting, introduced in Python 3.5 (PEP 484), allows developers to indicate the expected types of variables, function parameters, and return values. While Python remains dynamically typed, type hints provide several benefits:\n\nImproved code readability\nBetter IDE support (autocomplete, error detection)\nEasier maintenance, especially for large codebases\nCatch certain types of errors before runtime\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
@@ -616,8 +778,8 @@
     ]
   },
   {
-    "objectID": "content/Cours_3/3-Type_Hinting.html#the-typing-module",
-    "href": "content/Cours_3/3-Type_Hinting.html#the-typing-module",
+    "objectID": "content/Cours_3/4-Type_Hinting.html#the-typing-module",
+    "href": "content/Cours_3/4-Type_Hinting.html#the-typing-module",
     "title": "Type Hinting, Typing Module, and Linters in Python",
     "section": "",
     "text": "The typing module provides support for type hints. It includes a collection of types and tools for working with type annotations.\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
@@ -626,8 +788,8 @@
     ]
   },
   {
-    "objectID": "content/Cours_3/3-Type_Hinting.html#type-checking-and-linters",
-    "href": "content/Cours_3/3-Type_Hinting.html#type-checking-and-linters",
+    "objectID": "content/Cours_3/4-Type_Hinting.html#type-checking-and-linters",
+    "href": "content/Cours_3/4-Type_Hinting.html#type-checking-and-linters",
     "title": "Type Hinting, Typing Module, and Linters in Python",
     "section": "",
     "text": "While Python doesn’t enforce type hints at runtime, various tools can perform static type checking:\n\n\nMypy is a static type checker for Python. It can catch many type-related errors before runtime.\nInstallation:\npip install mypy\nUsage:\nmypy your_script.py\n\n\n\nPylint is a linter that can check for coding standards, errors, and code smells. It also supports type checking.\nInstallation:\npip install pylint\nUsage:\npylint your_script.py\n\n\n\nPopular IDEs like PyCharm and VS Code have built-in support for type checking and can highlight type-related issues in real-time.",
@@ -636,8 +798,8 @@
     ]
   },
   {
-    "objectID": "content/Cours_3/3-Type_Hinting.html#best-practices-for-type-hinting",
-    "href": "content/Cours_3/3-Type_Hinting.html#best-practices-for-type-hinting",
+    "objectID": "content/Cours_3/4-Type_Hinting.html#best-practices-for-type-hinting",
+    "href": "content/Cours_3/4-Type_Hinting.html#best-practices-for-type-hinting",
     "title": "Type Hinting, Typing Module, and Linters in Python",
     "section": "",
     "text": "Start with critical or complex functions\nUse type hints consistently throughout a module or project\nUtilize tools like Mypy to catch type-related errors\nDon’t overuse Any - it defeats the purpose of type hinting\nConsider using type hints in combination with docstrings for comprehensive documentation",
@@ -646,8 +808,8 @@
     ]
   },
   {
-    "objectID": "content/Cours_3/3-Type_Hinting.html#example-putting-it-all-together",
-    "href": "content/Cours_3/3-Type_Hinting.html#example-putting-it-all-together",
+    "objectID": "content/Cours_3/4-Type_Hinting.html#example-putting-it-all-together",
+    "href": "content/Cours_3/4-Type_Hinting.html#example-putting-it-all-together",
     "title": "Type Hinting, Typing Module, and Linters in Python",
     "section": "",
     "text": "Please enable JavaScript to experience the dynamic code cell content on this page.",
@@ -656,13 +818,73 @@
     ]
   },
   {
-    "objectID": "content/Cours_3/3-Type_Hinting.html#conclusion",
-    "href": "content/Cours_3/3-Type_Hinting.html#conclusion",
+    "objectID": "content/Cours_3/4-Type_Hinting.html#conclusion",
+    "href": "content/Cours_3/4-Type_Hinting.html#conclusion",
     "title": "Type Hinting, Typing Module, and Linters in Python",
     "section": "",
     "text": "Type hinting, along with the typing module and linters, provides a powerful set of tools for improving code quality, readability, and maintainability in Python. While not enforced at runtime, these features can catch many errors early in the development process and provide better documentation and IDE support. As Python projects grow in size and complexity, incorporating type hints and static type checking becomes increasingly valuable.",
     "crumbs": [
       "Type Hinting, Typing Module, and Linters in Python"
+    ]
+  },
+  {
+    "objectID": "content/Cours_3/5-Abstract_class.html",
+    "href": "content/Cours_3/5-Abstract_class.html",
+    "title": "Abstract Classes",
+    "section": "",
+    "text": "An abstract class is a class that is designed to be inherited from, but not instantiated directly. It often contains one or more abstract methods - methods that are declared, but don’t have an implementation in the abstract class.\n\n\n\nCannot be instantiated directly\nMay contain abstract methods (methods without a body)\nMay contain concrete methods (methods with an implementation)\nSubclasses must implement all abstract methods\n\n\n\n\n\nTo define a common interface for a set of subclasses\nTo enforce certain methods to be implemented by subclasses\nTo share code among several closely related classes\n\n\n\n\n\nPython provides the abc module to work with abstract base classes.\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn this example: - Animal is an abstract base class - make_sound is an abstract method - move is a concrete method\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nThe @abstractmethod decorator marks a method as abstract\nSubclasses must implement all abstract methods\nAbstract classes can have both abstract and concrete methods\nTrying to instantiate an abstract class directly will raise a TypeError\n\n\n\n\n\n\nEnforcing a common interface: Abstract classes ensure that all subclasses implement certain methods, guaranteeing a common interface.\nCode reuse: You can implement common functionality in the abstract base class, which all subclasses can use.\nDesigning frameworks: Abstract classes are useful when designing large frameworks where you want to provide default behaviors but require specific implementations in subclasses.\n\n\n\n\nHere’s a more practical example using shapes:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn this example, Shape is an abstract base class that defines the common interface for all shapes. Circle and Rectangle are concrete implementations of Shape.\n\n\n\nAbstract base classes in Python provide a powerful way to define interfaces and ensure that derived classes implement certain methods. They’re useful for creating frameworks and libraries, ensuring consistency across related classes, and defining clear contracts for subclasses to follow.\nBy using abstract classes, you can create more robust and well-structured code, especially when dealing with complex hierarchies of related classes.",
+    "crumbs": [
+      "Abstract Classes"
+    ]
+  },
+  {
+    "objectID": "content/Cours_3/5-Abstract_class.html#concept-and-purpose",
+    "href": "content/Cours_3/5-Abstract_class.html#concept-and-purpose",
+    "title": "Abstract Classes",
+    "section": "",
+    "text": "An abstract class is a class that is designed to be inherited from, but not instantiated directly. It often contains one or more abstract methods - methods that are declared, but don’t have an implementation in the abstract class.\n\n\n\nCannot be instantiated directly\nMay contain abstract methods (methods without a body)\nMay contain concrete methods (methods with an implementation)\nSubclasses must implement all abstract methods\n\n\n\n\n\nTo define a common interface for a set of subclasses\nTo enforce certain methods to be implemented by subclasses\nTo share code among several closely related classes",
+    "crumbs": [
+      "Abstract Classes"
+    ]
+  },
+  {
+    "objectID": "content/Cours_3/5-Abstract_class.html#abstract-base-classes-abc-in-python",
+    "href": "content/Cours_3/5-Abstract_class.html#abstract-base-classes-abc-in-python",
+    "title": "Abstract Classes",
+    "section": "",
+    "text": "Python provides the abc module to work with abstract base classes.\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn this example: - Animal is an abstract base class - make_sound is an abstract method - move is a concrete method\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nThe @abstractmethod decorator marks a method as abstract\nSubclasses must implement all abstract methods\nAbstract classes can have both abstract and concrete methods\nTrying to instantiate an abstract class directly will raise a TypeError",
+    "crumbs": [
+      "Abstract Classes"
+    ]
+  },
+  {
+    "objectID": "content/Cours_3/5-Abstract_class.html#why-use-abstract-classes",
+    "href": "content/Cours_3/5-Abstract_class.html#why-use-abstract-classes",
+    "title": "Abstract Classes",
+    "section": "",
+    "text": "Enforcing a common interface: Abstract classes ensure that all subclasses implement certain methods, guaranteeing a common interface.\nCode reuse: You can implement common functionality in the abstract base class, which all subclasses can use.\nDesigning frameworks: Abstract classes are useful when designing large frameworks where you want to provide default behaviors but require specific implementations in subclasses.",
+    "crumbs": [
+      "Abstract Classes"
+    ]
+  },
+  {
+    "objectID": "content/Cours_3/5-Abstract_class.html#example-shape-hierarchy",
+    "href": "content/Cours_3/5-Abstract_class.html#example-shape-hierarchy",
+    "title": "Abstract Classes",
+    "section": "",
+    "text": "Here’s a more practical example using shapes:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn this example, Shape is an abstract base class that defines the common interface for all shapes. Circle and Rectangle are concrete implementations of Shape.",
+    "crumbs": [
+      "Abstract Classes"
+    ]
+  },
+  {
+    "objectID": "content/Cours_3/5-Abstract_class.html#conclusion",
+    "href": "content/Cours_3/5-Abstract_class.html#conclusion",
+    "title": "Abstract Classes",
+    "section": "",
+    "text": "Abstract base classes in Python provide a powerful way to define interfaces and ensure that derived classes implement certain methods. They’re useful for creating frameworks and libraries, ensuring consistency across related classes, and defining clear contracts for subclasses to follow.\nBy using abstract classes, you can create more robust and well-structured code, especially when dealing with complex hierarchies of related classes.",
+    "crumbs": [
+      "Abstract Classes"
     ]
   },
   {
@@ -1142,83 +1364,33 @@
     ]
   },
   {
-    "objectID": "content/Cours_3/5-Protocol.html",
-    "href": "content/Cours_3/5-Protocol.html",
-    "title": "Protocol Classes",
+    "objectID": "content/Cours_3/1-Polymorphism.html",
+    "href": "content/Cours_3/1-Polymorphism.html",
+    "title": "Polymorphism in Object-Oriented Programming",
     "section": "",
-    "text": "Protocols, introduced in Python 3.8, provide a way to define structural subtyping (often called “duck typing”). They allow you to define interfaces in a more flexible and Pythonic way compared to abstract base classes.\n\n\n\n\nStructural Subtyping: An object is considered a subtype if it has the required methods and attributes, regardless of inheritance.\nNo Runtime Enforcement: Protocols are primarily used for static type checking and don’t enforce method implementation at runtime.\nFlexibility: Classes don’t need to explicitly inherit from a Protocol to be considered compatible.\n\n\n\n\nTo use Protocols, you need to import from the typing module:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn this example: - Drawable is a Protocol that defines an interface with a draw method. - Circle is compatible with Drawable because it has a draw method, even though it doesn’t explicitly inherit from Drawable.\n\n\n\n\nFlexibility: You can define interfaces for existing classes without modifying them.\nDuck Typing: Aligns well with Python’s “duck typing” philosophy.\nStatic Type Checking: Provides benefits of static typing without runtime overhead.\nBackwards Compatibility: Can be used with existing codebases without modification.\n\n\n\n\nLet’s look at a more comprehensive example using Protocols:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn this example: - We define multiple Protocols: Sized, Appendable, and StringContainer. - StringContainer combines multiple Protocols. - MyList is compatible with StringContainer because it implements all required methods. - process_data can work with any object that satisfies the StringContainer Protocol.\n\n\n\nWhile Protocols are primarily for static type checking, you can make them runtime-checkable:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThe @runtime_checkable decorator allows isinstance() checks, but be cautious as it only checks for the existence of the methods, not their signatures.\n\n\n\nProtocols in Python provide a flexible and powerful way to define interfaces. They offer the benefits of static typing and interface definition while maintaining Python’s dynamic and duck-typed nature. Protocols are especially useful in large codebases, for defining clear contracts between different parts of a system, and for working with existing code that can’t be modified to inherit from specific base classes.",
+    "text": "Polymorphism is a fundamental principle in object-oriented programming (OOP) that allows objects of different types to be treated as objects of a common base type. The word “polymorphism” comes from Greek, meaning “many forms.” In OOP, it refers to the ability of a single interface to represent different underlying forms (data types or classes).\n\n\n\nSame Interface, Different Implementations: Polymorphism allows different classes to have methods with the same name, but with different implementations.\nFlexibility: It provides a way to use a class exactly like its parent, but with its own specific implementation.\nSimplification: It simplifies programming interfaces, making code more modular and extensible.\nRuntime Decision: The specific method that gets called is often determined at runtime, based on the actual type of the object.\n\n\n\n\n\nCompile-time Polymorphism (Static):\n\nAchieved through method overloading\nResolved at compile time\n\nRuntime Polymorphism (Dynamic):\n\nAchieved through method overriding\nResolved at runtime\n\n\n\n\n\nConsider a base class Animal with a method make_sound(). Different animals can implement this method differently:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn this example, each animal class implements the make_sound() method differently, but they can all be treated as Animal objects.\n\n\n\n\nMethod overriding is a fundamental aspect of runtime polymorphism. It occurs when a derived class (child class) has a method with the same name and signature as a method in its base class (parent class).\n\n\n\nSame Name and Signature: The overriding method must have the same name and parameter list as the method in the parent class.\nRuntime Decision: The method to be invoked is determined at runtime based on the object’s type.\nExtends or Modifies Behavior: Overriding allows a child class to provide a specific implementation of a method that is already defined in its parent class.\nPolymorphic Behavior: It’s a key mechanism for achieving polymorphic behavior in OOP.\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn this example: - The Shape class provides a default implementation of area(). - Rectangle and Circle override this method with their specific implementations. - We can treat all objects as Shape instances, but each will use its own area() method.\n\n\n\n\nCustomization: Allows subclasses to provide specific implementations of methods.\nCode Reusability: Reuses the method name from the parent class, maintaining a logical hierarchy.\nRuntime Flexibility: Enables objects to behave differently based on their actual class, while still using a common interface.\n\nMethod overriding is a powerful feature that, when used correctly, can lead to more flexible and maintainable code structures in object-oriented programming.",
     "crumbs": [
-      "Protocol Classes"
+      "Polymorphism in Object-Oriented Programming"
     ]
   },
   {
-    "objectID": "content/Cours_3/5-Protocol.html#introduction-to-protocols",
-    "href": "content/Cours_3/5-Protocol.html#introduction-to-protocols",
-    "title": "Protocol Classes",
+    "objectID": "content/Cours_3/1-Polymorphism.html#general-concept",
+    "href": "content/Cours_3/1-Polymorphism.html#general-concept",
+    "title": "Polymorphism in Object-Oriented Programming",
     "section": "",
-    "text": "Protocols, introduced in Python 3.8, provide a way to define structural subtyping (often called “duck typing”). They allow you to define interfaces in a more flexible and Pythonic way compared to abstract base classes.",
+    "text": "Polymorphism is a fundamental principle in object-oriented programming (OOP) that allows objects of different types to be treated as objects of a common base type. The word “polymorphism” comes from Greek, meaning “many forms.” In OOP, it refers to the ability of a single interface to represent different underlying forms (data types or classes).\n\n\n\nSame Interface, Different Implementations: Polymorphism allows different classes to have methods with the same name, but with different implementations.\nFlexibility: It provides a way to use a class exactly like its parent, but with its own specific implementation.\nSimplification: It simplifies programming interfaces, making code more modular and extensible.\nRuntime Decision: The specific method that gets called is often determined at runtime, based on the actual type of the object.\n\n\n\n\n\nCompile-time Polymorphism (Static):\n\nAchieved through method overloading\nResolved at compile time\n\nRuntime Polymorphism (Dynamic):\n\nAchieved through method overriding\nResolved at runtime\n\n\n\n\n\nConsider a base class Animal with a method make_sound(). Different animals can implement this method differently:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn this example, each animal class implements the make_sound() method differently, but they can all be treated as Animal objects.",
     "crumbs": [
-      "Protocol Classes"
+      "Polymorphism in Object-Oriented Programming"
     ]
   },
   {
-    "objectID": "content/Cours_3/5-Protocol.html#key-concepts",
-    "href": "content/Cours_3/5-Protocol.html#key-concepts",
-    "title": "Protocol Classes",
+    "objectID": "content/Cours_3/1-Polymorphism.html#method-overriding",
+    "href": "content/Cours_3/1-Polymorphism.html#method-overriding",
+    "title": "Polymorphism in Object-Oriented Programming",
     "section": "",
-    "text": "Structural Subtyping: An object is considered a subtype if it has the required methods and attributes, regardless of inheritance.\nNo Runtime Enforcement: Protocols are primarily used for static type checking and don’t enforce method implementation at runtime.\nFlexibility: Classes don’t need to explicitly inherit from a Protocol to be considered compatible.",
+    "text": "Method overriding is a fundamental aspect of runtime polymorphism. It occurs when a derived class (child class) has a method with the same name and signature as a method in its base class (parent class).\n\n\n\nSame Name and Signature: The overriding method must have the same name and parameter list as the method in the parent class.\nRuntime Decision: The method to be invoked is determined at runtime based on the object’s type.\nExtends or Modifies Behavior: Overriding allows a child class to provide a specific implementation of a method that is already defined in its parent class.\nPolymorphic Behavior: It’s a key mechanism for achieving polymorphic behavior in OOP.\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn this example: - The Shape class provides a default implementation of area(). - Rectangle and Circle override this method with their specific implementations. - We can treat all objects as Shape instances, but each will use its own area() method.\n\n\n\n\nCustomization: Allows subclasses to provide specific implementations of methods.\nCode Reusability: Reuses the method name from the parent class, maintaining a logical hierarchy.\nRuntime Flexibility: Enables objects to behave differently based on their actual class, while still using a common interface.\n\nMethod overriding is a powerful feature that, when used correctly, can lead to more flexible and maintainable code structures in object-oriented programming.",
     "crumbs": [
-      "Protocol Classes"
-    ]
-  },
-  {
-    "objectID": "content/Cours_3/5-Protocol.html#basic-usage-of-protocols",
-    "href": "content/Cours_3/5-Protocol.html#basic-usage-of-protocols",
-    "title": "Protocol Classes",
-    "section": "",
-    "text": "To use Protocols, you need to import from the typing module:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn this example: - Drawable is a Protocol that defines an interface with a draw method. - Circle is compatible with Drawable because it has a draw method, even though it doesn’t explicitly inherit from Drawable.",
-    "crumbs": [
-      "Protocol Classes"
-    ]
-  },
-  {
-    "objectID": "content/Cours_3/5-Protocol.html#advantages-of-protocols",
-    "href": "content/Cours_3/5-Protocol.html#advantages-of-protocols",
-    "title": "Protocol Classes",
-    "section": "",
-    "text": "Flexibility: You can define interfaces for existing classes without modifying them.\nDuck Typing: Aligns well with Python’s “duck typing” philosophy.\nStatic Type Checking: Provides benefits of static typing without runtime overhead.\nBackwards Compatibility: Can be used with existing codebases without modification.",
-    "crumbs": [
-      "Protocol Classes"
-    ]
-  },
-  {
-    "objectID": "content/Cours_3/5-Protocol.html#more-complex-example",
-    "href": "content/Cours_3/5-Protocol.html#more-complex-example",
-    "title": "Protocol Classes",
-    "section": "",
-    "text": "Let’s look at a more comprehensive example using Protocols:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn this example: - We define multiple Protocols: Sized, Appendable, and StringContainer. - StringContainer combines multiple Protocols. - MyList is compatible with StringContainer because it implements all required methods. - process_data can work with any object that satisfies the StringContainer Protocol.",
-    "crumbs": [
-      "Protocol Classes"
-    ]
-  },
-  {
-    "objectID": "content/Cours_3/5-Protocol.html#runtime-checkable-protocols",
-    "href": "content/Cours_3/5-Protocol.html#runtime-checkable-protocols",
-    "title": "Protocol Classes",
-    "section": "",
-    "text": "While Protocols are primarily for static type checking, you can make them runtime-checkable:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThe @runtime_checkable decorator allows isinstance() checks, but be cautious as it only checks for the existence of the methods, not their signatures.",
-    "crumbs": [
-      "Protocol Classes"
-    ]
-  },
-  {
-    "objectID": "content/Cours_3/5-Protocol.html#conclusion",
-    "href": "content/Cours_3/5-Protocol.html#conclusion",
-    "title": "Protocol Classes",
-    "section": "",
-    "text": "Protocols in Python provide a flexible and powerful way to define interfaces. They offer the benefits of static typing and interface definition while maintaining Python’s dynamic and duck-typed nature. Protocols are especially useful in large codebases, for defining clear contracts between different parts of a system, and for working with existing code that can’t be modified to inherit from specific base classes.",
-    "crumbs": [
-      "Protocol Classes"
+      "Polymorphism in Object-Oriented Programming"
     ]
   },
   {
@@ -1276,85 +1448,79 @@
     "href": "content/Cours_3/index.html",
     "title": "Polymorphisme et Surcharge",
     "section": "",
-    "text": "Les cours de cette partie sont:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAbstract Classes\n\n\nLearn about abstract classes in Python, how to define and use them, and the benefits of using abstract classes for creating a common interface and enforcing method…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPolymorphism in Object-Oriented Programming\n\n\nLearn about polymorphism in object-oriented programming (OOP), including method overriding, runtime polymorphism, and how it enables flexible and extensible code structures.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPolymorphism in Python: Function Overloading and Type Checking\n\n\nLearn how to achieve polymorphism in Python through function overloading, type checking, and class-based polymorphism\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nProtocol Classes\n\n\nLearn about Protocol classes in Python, how to define and use them, and the advantages of using Protocols for defining interfaces and structural subtyping.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTP\n\n\n\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nType Hinting, Typing Module, and Linters in Python\n\n\nLearn about type hinting in Python, the typing module, and how to use linters for static type checking to improve code quality and maintainability.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\nNo matching items\n\n Back to top",
+    "text": "Les cours de cette partie sont:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAbstract Classes\n\n\nLearn about abstract classes in Python, how to define and use them, and the benefits of using abstract classes for creating a common interface and enforcing method…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nClass Creation: Standard vs type()\n\n\nCompare standard class creation with dynamic creation using type() in Python, understanding their equivalence and potential issues.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPolymorphism in Object-Oriented Programming\n\n\nLearn about polymorphism in object-oriented programming (OOP), including method overriding, runtime polymorphism, and how it enables flexible and extensible code structures.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPolymorphism in Python: Function Overloading and Type Checking\n\n\nLearn how to achieve polymorphism in Python through function overloading, type checking, and class-based polymorphism\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nProtocol Classes\n\n\nLearn about Protocol classes in Python, how to define and use them, and the advantages of using Protocols for defining interfaces and structural subtyping.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTP\n\n\n\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nType Hinting, Typing Module, and Linters in Python\n\n\nLearn about type hinting in Python, the typing module, and how to use linters for static type checking to improve code quality and maintainability.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\nNo matching items\n\n Back to top",
     "crumbs": [
       "Polymorphisme et Surcharge"
     ]
   },
   {
-    "objectID": "content/Cours_2/TP_heritage.html",
-    "href": "content/Cours_2/TP_heritage.html",
-    "title": "TP: Heritage avec le pricing d’option",
+    "objectID": "content/Cours_2/2-Heritage.html",
+    "href": "content/Cours_2/2-Heritage.html",
+    "title": "Héritage en Python : Concept et intérêt",
     "section": "",
-    "text": "Ce TP est divisé en deux parties pour explorer les concepts d’héritage, d’encapsulation et de composition en programmation orientée objet (POO). Vous allez implémenter des classes pour évaluer des options financières en utilisant deux méthodes différentes : la formule de Black-Scholes et la simulation de Monte Carlo.\n\n\n\n\nLa formule de Black-Scholes est utilisée pour calculer le prix théorique d’une option européenne. Voici les principales formules :\n\n\\(d_1 = \\frac{\\ln(S/K) + (r + \\sigma^2/2)T}{\\sigma\\sqrt{T}}\\)\n\\(d_2 = d_1 - \\sigma\\sqrt{T}\\)J’a\nPrix d’un Call : \\(C = SN(d_1) - Ke^{-rT}N(d_2)\\)\nPrix d’un Put : \\(P = Ke^{-rT}N(-d_2) - SN(-d_1)\\)\n\nOù : - \\(S\\) : prix spot de l’actif sous-jacent - \\(K\\) : prix d’exercice de l’option - \\(r\\) : taux d’intérêt sans risque - \\(T\\) : temps jusqu’à l’expiration (en années) - \\(\\sigma\\) : volatilité de l’actif sous-jacent - \\(N(x)\\) : fonction de répartition de la loi normale centrée réduite\n\n\n\nLes Grecs sont des mesures de sensibilité du prix de l’option par rapport à divers paramètres :\n\nDelta (Δ) :\n\nPour un Call : \\(\\Delta_C = N(d_1)\\)\nPour un Put : \\(\\Delta_P = N(d_1) - 1\\)\n\nGamma (Γ) : \\(\\Gamma = \\frac{N'(d_1)}{S\\sigma\\sqrt{T}}\\)\nVega (ν) : \\(\\nu = S\\sqrt{T}N'(d_1)\\)\nTheta (Θ) :\n\nPour un Call : \\(\\Theta_C = -\\frac{SN'(d_1)\\sigma}{2\\sqrt{T}} - rKe^{-rT}N(d_2)\\)\nPour un Put : \\(\\Theta_P = -\\frac{SN'(d_1)\\sigma}{2\\sqrt{T}} + rKe^{-rT}N(-d_2)\\)\n\nRho (ρ) :\n\nPour un Call : \\(\\rho_C = KTe^{-rT}N(d_2)\\)\nPour un Put : \\(\\rho_P = -KTe^{-rT}N(-d_2)\\)\n\n\n\n\n\nLa méthode de Monte Carlo pour l’évaluation d’options implique les étapes suivantes :\n\nGénérer un grand nombre de trajectoires de prix pour l’actif sous-jacent en utilisant le mouvement brownien géométrique :\n\\(S_T = S_0 \\exp((r - \\frac{\\sigma^2}{2})T + \\sigma\\sqrt{T}Z)\\)\noù \\(Z\\) est une variable aléatoire normale standard.\nPour chaque trajectoire, calculer le payoff de l’option à l’échéance.\nCalculer la moyenne des payoffs actualisés :\n\\(\\text{Prix de l'option} = e^{-rT} \\frac{1}{N} \\sum_{i=1}^N \\text{Payoff}_i\\)\noù \\(N\\) est le nombre de simulations.\n\n\n\n\n\n\nCréez un fichier nommé black_scholes.py.\nImplémentez les classes suivantes :\n\nOption : Classe de base pour les options\nCall : Classe dérivée de Option pour les options d’achat\nPut : Classe dérivée de Option pour les options de vente\n\nChaque classe doit avoir les méthodes suivantes :\n\n__init__ : Constructeur avec les paramètres nécessaires\ncompute_price() : Calcule le prix de l’option\ncompute_delta() : Calcule le delta de l’option\ncompute_gamma() : Calcule le gamma de l’option\ncompute_vega() : Calcule le vega de l’option\ncompute_theta() : Calcule le theta de l’option\ncompute_rho() : Calcule le rho de l’option\n\nUtilisez la formule de Black-Scholes pour les calculs.\n\n\n\n\n\nCréez un fichier nommé monte_carlo.py.\nImplémentez les classes suivantes :\n\nDerivative : Classe de base pour les produits dérivés\nEuropeanOption : Classe dérivée de Derivative pour les options européennes\nPayoff : Classe de base pour les fonctions de payoff\nCallPayoff : Classe dérivée de Payoff pour le payoff d’une option d’achat\nPutPayoff : Classe dérivée de Payoff pour le payoff d’une option de vente\n\nLa classe Derivative doit avoir une méthode price() qui utilise la simulation de Monte Carlo.\nLes classes EuropeanOption et Payoff doivent utiliser la composition pour lier les payoffs aux options.\n\n\n\n\nVoici un ensemble de tests unitaires pour vérifier votre implémentation de la Partie 1 (Black-Scholes) :\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nEt voici un ensemble de tests unitaires pour la Partie 2 (Monte Carlo) :\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nCommencez par implémenter la Partie 1 (Black-Scholes) avant de passer à la Partie 2 (Monte Carlo).\nUtilisez l’encapsulation pour protéger les attributs de vos classes.\nProfitez de l’héritage pour factoriser le code commun entre les classes Call et Put.\nPour la Partie 2, utilisez la composition pour lier les payoffs aux options européennes.\nN’oubliez pas d’importer les bibliothèques nécessaires (math, numpy, scipy.stats).\nTestez votre code régulièrement en utilisant les tests unitaires fournis.\nUtilisez les formules fournies dans les rappels théoriques pour implémenter vos méthodes.\n\nBonne chance !",
+    "text": "L’héritage est un mécanisme fondamental de la programmation orientée objet qui permet à une classe de baser sa définition sur celle d’une autre classe. Cela favorise la réutilisation du code et permet de créer des hiérarchies de classes.\n\n\n\nRéutilisation du code : L’héritage permet d’éviter la duplication de code en définissant des comportements communs dans une classe parente.\nOrganisation logique : Il permet de créer des hiérarchies de classes qui reflètent des relations logiques entre concepts.\nExtensibilité : Les classes dérivées peuvent étendre ou modifier le comportement des classes parentes, rendant le code plus flexible.\nPolymorphisme : L’héritage est à la base du polymorphisme, permettant de traiter des objets de classes différentes de manière uniforme.\n\n\n\n\nEn Python, toutes les classes héritent implicitement de la classe object, même si ce n’est pas spécifié explicitement.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nL’héritage de object fournit des méthodes de base comme __init__, __str__, __repr__, etc. C’est pourquoi toutes les classes en Python ont certaines méthodes en commun.\n\n\n\nPython supporte l’héritage multiple, ce qui signifie qu’une classe peut hériter de plusieurs classes parentes.\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nCombinaison de fonctionnalités : Permet de combiner des fonctionnalités de différentes classes en une seule.\nRéutilisation de code provenant de sources multiples : Utile lorsqu’une classe doit hériter de comportements de plusieurs classes non liées.\nImplémentation de designs complexes : Permet de créer des structures de classes plus flexibles et adaptables.\n\nExemple concret :\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIci, Canard hérite des capacités de Nageur et Volant, combinant ainsi ces deux comportements.\n\n\n\n\nLa MRO est cruciale pour comprendre comment Python gère l’héritage, en particulier l’héritage multiple.\n\n\nLa MRO définit l’ordre dans lequel Python recherche les méthodes et les attributs dans une hiérarchie de classes. Elle est particulièrement importante en cas d’héritage multiple, où plusieurs classes parentes peuvent définir la même méthode.\n\n\n\nPython utilise l’algorithme C3 pour déterminer la MRO. Cet algorithme garantit que :\n\nLes sous-classes apparaissent avant les classes parentes.\nL’ordre de déclaration des classes parentes est respecté.\nLa MRO est monotone (une classe apparaît toujours avant ses parents).\n\n\n\n\nOn peut visualiser la MRO d’une classe avec la méthode mro() ou l’attribut __mro__ :\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nConsidérons cet exemple pour illustrer comment la MRO fonctionne :\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIci, D hérite de B et C. Lorsque d.methode() est appelé, Python suit la MRO : D -&gt; B -&gt; C -&gt; A -&gt; object. Il trouve d’abord la méthode dans B, donc c’est celle-ci qui est exécutée.\n\n\n\nLa compréhension de la MRO est cruciale pour : - Éviter les conflits de noms dans l’héritage multiple. - Comprendre l’ordre d’exécution des méthodes. - Concevoir des hiérarchies de classes cohérentes et prévisibles.",
     "crumbs": [
-      "Travaux Pratiques",
-      "TP: Heritage avec le pricing d'option"
+      "Héritage en Python : Concept et intérêt"
     ]
   },
   {
-    "objectID": "content/Cours_2/TP_heritage.html#rappels-théoriques",
-    "href": "content/Cours_2/TP_heritage.html#rappels-théoriques",
-    "title": "TP: Heritage avec le pricing d’option",
+    "objectID": "content/Cours_2/2-Heritage.html#héritage-multiple-en-python",
+    "href": "content/Cours_2/2-Heritage.html#héritage-multiple-en-python",
+    "title": "Héritage en Python : Concept et intérêt",
     "section": "",
-    "text": "La formule de Black-Scholes est utilisée pour calculer le prix théorique d’une option européenne. Voici les principales formules :\n\n\\(d_1 = \\frac{\\ln(S/K) + (r + \\sigma^2/2)T}{\\sigma\\sqrt{T}}\\)\n\\(d_2 = d_1 - \\sigma\\sqrt{T}\\)J’a\nPrix d’un Call : \\(C = SN(d_1) - Ke^{-rT}N(d_2)\\)\nPrix d’un Put : \\(P = Ke^{-rT}N(-d_2) - SN(-d_1)\\)\n\nOù : - \\(S\\) : prix spot de l’actif sous-jacent - \\(K\\) : prix d’exercice de l’option - \\(r\\) : taux d’intérêt sans risque - \\(T\\) : temps jusqu’à l’expiration (en années) - \\(\\sigma\\) : volatilité de l’actif sous-jacent - \\(N(x)\\) : fonction de répartition de la loi normale centrée réduite\n\n\n\nLes Grecs sont des mesures de sensibilité du prix de l’option par rapport à divers paramètres :\n\nDelta (Δ) :\n\nPour un Call : \\(\\Delta_C = N(d_1)\\)\nPour un Put : \\(\\Delta_P = N(d_1) - 1\\)\n\nGamma (Γ) : \\(\\Gamma = \\frac{N'(d_1)}{S\\sigma\\sqrt{T}}\\)\nVega (ν) : \\(\\nu = S\\sqrt{T}N'(d_1)\\)\nTheta (Θ) :\n\nPour un Call : \\(\\Theta_C = -\\frac{SN'(d_1)\\sigma}{2\\sqrt{T}} - rKe^{-rT}N(d_2)\\)\nPour un Put : \\(\\Theta_P = -\\frac{SN'(d_1)\\sigma}{2\\sqrt{T}} + rKe^{-rT}N(-d_2)\\)\n\nRho (ρ) :\n\nPour un Call : \\(\\rho_C = KTe^{-rT}N(d_2)\\)\nPour un Put : \\(\\rho_P = -KTe^{-rT}N(-d_2)\\)\n\n\n\n\n\nLa méthode de Monte Carlo pour l’évaluation d’options implique les étapes suivantes :\n\nGénérer un grand nombre de trajectoires de prix pour l’actif sous-jacent en utilisant le mouvement brownien géométrique :\n\\(S_T = S_0 \\exp((r - \\frac{\\sigma^2}{2})T + \\sigma\\sqrt{T}Z)\\)\noù \\(Z\\) est une variable aléatoire normale standard.\nPour chaque trajectoire, calculer le payoff de l’option à l’échéance.\nCalculer la moyenne des payoffs actualisés :\n\\(\\text{Prix de l'option} = e^{-rT} \\frac{1}{N} \\sum_{i=1}^N \\text{Payoff}_i\\)\noù \\(N\\) est le nombre de simulations.",
+    "text": "Python supporte l’héritage multiple, ce qui signifie qu’une classe peut hériter de plusieurs classes parentes.\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nCombinaison de fonctionnalités : Permet de combiner des fonctionnalités de différentes classes en une seule.\nRéutilisation de code provenant de sources multiples : Utile lorsqu’une classe doit hériter de comportements de plusieurs classes non liées.\nImplémentation de designs complexes : Permet de créer des structures de classes plus flexibles et adaptables.\n\nExemple concret :\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIci, Canard hérite des capacités de Nageur et Volant, combinant ainsi ces deux comportements.",
     "crumbs": [
-      "Travaux Pratiques",
-      "TP: Heritage avec le pricing d'option"
+      "Héritage en Python : Concept et intérêt"
     ]
   },
   {
-    "objectID": "content/Cours_2/TP_heritage.html#partie-1-implémentation-de-black-scholes",
-    "href": "content/Cours_2/TP_heritage.html#partie-1-implémentation-de-black-scholes",
-    "title": "TP: Heritage avec le pricing d’option",
+    "objectID": "content/Cours_2/2-Heritage.html#method-resolution-order-mro-en-détail",
+    "href": "content/Cours_2/2-Heritage.html#method-resolution-order-mro-en-détail",
+    "title": "Héritage en Python : Concept et intérêt",
     "section": "",
-    "text": "Créez un fichier nommé black_scholes.py.\nImplémentez les classes suivantes :\n\nOption : Classe de base pour les options\nCall : Classe dérivée de Option pour les options d’achat\nPut : Classe dérivée de Option pour les options de vente\n\nChaque classe doit avoir les méthodes suivantes :\n\n__init__ : Constructeur avec les paramètres nécessaires\ncompute_price() : Calcule le prix de l’option\ncompute_delta() : Calcule le delta de l’option\ncompute_gamma() : Calcule le gamma de l’option\ncompute_vega() : Calcule le vega de l’option\ncompute_theta() : Calcule le theta de l’option\ncompute_rho() : Calcule le rho de l’option\n\nUtilisez la formule de Black-Scholes pour les calculs.",
+    "text": "La MRO est cruciale pour comprendre comment Python gère l’héritage, en particulier l’héritage multiple.\n\n\nLa MRO définit l’ordre dans lequel Python recherche les méthodes et les attributs dans une hiérarchie de classes. Elle est particulièrement importante en cas d’héritage multiple, où plusieurs classes parentes peuvent définir la même méthode.\n\n\n\nPython utilise l’algorithme C3 pour déterminer la MRO. Cet algorithme garantit que :\n\nLes sous-classes apparaissent avant les classes parentes.\nL’ordre de déclaration des classes parentes est respecté.\nLa MRO est monotone (une classe apparaît toujours avant ses parents).\n\n\n\n\nOn peut visualiser la MRO d’une classe avec la méthode mro() ou l’attribut __mro__ :\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nConsidérons cet exemple pour illustrer comment la MRO fonctionne :\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIci, D hérite de B et C. Lorsque d.methode() est appelé, Python suit la MRO : D -&gt; B -&gt; C -&gt; A -&gt; object. Il trouve d’abord la méthode dans B, donc c’est celle-ci qui est exécutée.\n\n\n\nLa compréhension de la MRO est cruciale pour : - Éviter les conflits de noms dans l’héritage multiple. - Comprendre l’ordre d’exécution des méthodes. - Concevoir des hiérarchies de classes cohérentes et prévisibles.",
     "crumbs": [
-      "Travaux Pratiques",
-      "TP: Heritage avec le pricing d'option"
+      "Héritage en Python : Concept et intérêt"
     ]
   },
   {
-    "objectID": "content/Cours_2/TP_heritage.html#partie-2-implémentation-de-monte-carlo",
-    "href": "content/Cours_2/TP_heritage.html#partie-2-implémentation-de-monte-carlo",
-    "title": "TP: Heritage avec le pricing d’option",
+    "objectID": "content/Cours_2/4-Dunder.html",
+    "href": "content/Cours_2/4-Dunder.html",
+    "title": "Méthodes Dunder en Python",
     "section": "",
-    "text": "Créez un fichier nommé monte_carlo.py.\nImplémentez les classes suivantes :\n\nDerivative : Classe de base pour les produits dérivés\nEuropeanOption : Classe dérivée de Derivative pour les options européennes\nPayoff : Classe de base pour les fonctions de payoff\nCallPayoff : Classe dérivée de Payoff pour le payoff d’une option d’achat\nPutPayoff : Classe dérivée de Payoff pour le payoff d’une option de vente\n\nLa classe Derivative doit avoir une méthode price() qui utilise la simulation de Monte Carlo.\nLes classes EuropeanOption et Payoff doivent utiliser la composition pour lier les payoffs aux options.",
+    "text": "Les méthodes dunder en Python\n\nLes méthodes dunder sont encadrées par des doubles tirets bas (__) et sont appelées automatiquement par Python dans certaines circonstances.\n\n1. Initialisation et destruction\n\ninit(self, …)\n\nAppelée lors de la création d’une instance.\nInitialise les attributs de l’objet.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\ndel(self)\n\nAppelée lorsque l’objet est sur le point d’être détruit.\nUtile pour le nettoyage de ressources.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n2. Représentation des objets\n\nstr(self)\n\nRetourne une représentation lisible de l’objet.\nUtilisée par str() et print().\n\n\n\nrepr(self)\n\nRetourne une représentation “officielle” de l’objet.\nUtilisée par repr() et dans l’interpréteur interactif.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n3. Opérations mathématiques\n\nadd(self, other), sub(self, other), mul(self, other), truediv(self, other)\n\nDéfinissent les opérations +, -, *, / respectivement.\n\n\n\nfloordiv(self, other), mod(self, other), pow(self, other)\n\nDéfinissent les opérations //, %, ** respectivement.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n4. Comparaisons\n\neq(self, other), ne(self, other)\n\nDéfinissent == et != respectivement.\n\n\n\nlt(self, other), le(self, other), gt(self, other), ge(self, other)\n\nDéfinissent &lt;, &lt;=, &gt;, &gt;= respectivement.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n5. Conteneurs et séquences\n\nlen(self)\n\nRetourne la longueur de l’objet.\nUtilisée par la fonction len().\n\n\n\ngetitem(self, key)\n\nPermet l’accès par index ou clé.\nUtilisée pour l’indexation obj[key].\n\n\n\nsetitem(self, key, value)\n\nPermet l’assignation par index ou clé.\n\n\n\niter(self)\n\nRetourne un itérateur pour l’objet.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n6. Gestion des attributs\n\ngetattr(self, name)\n\nAppelée lorsqu’un attribut non trouvé est accédé.\n\n\n\nsetattr(self, name, value)\n\nAppelée lors de l’assignation d’un attribut.\n\n\n\ndelattr(self, name)\n\nAppelée lors de la suppression d’un attribut.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n7. Appel de l’objet comme une fonction\n\ncall(self, …)\n\nPermet d’appeler l’objet comme une fonction.\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n8. Gestion du contexte\n\nenter(self), exit(self, exc_type, exc_value, traceback)\n\nUtilisées pour le gestionnaire de contexte (with statement).\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n9. Autres méthodes dunder utiles\n\nbool(self): Définit le comportement pour bool().\nhash(self): Permet à l’objet d’être utilisé comme clé de dictionnaire.\nformat(self, format_spec): Personnalise le formatage de chaînes.\n\nCette liste, bien que non exhaustive, couvre la plupart des méthodes dunder couramment utilisées en Python. Chacune de ces méthodes permet de personnaliser le comportement des objets dans différents contextes, rendant le langage extrêmement flexible et puissant.\n\n\n\n\n\n Back to top",
     "crumbs": [
-      "Travaux Pratiques",
-      "TP: Heritage avec le pricing d'option"
+      "Méthodes Dunder en Python"
     ]
   },
   {
-    "objectID": "content/Cours_2/TP_heritage.html#tests-unitaires",
-    "href": "content/Cours_2/TP_heritage.html#tests-unitaires",
-    "title": "TP: Heritage avec le pricing d’option",
+    "objectID": "content/Cours_2/5-call_a_dog.html",
+    "href": "content/Cours_2/5-call_a_dog.html",
+    "title": "Python call Method: A Fun Exploration",
     "section": "",
-    "text": "Voici un ensemble de tests unitaires pour vérifier votre implémentation de la Partie 1 (Black-Scholes) :\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nEt voici un ensemble de tests unitaires pour la Partie 2 (Monte Carlo) :\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "text": "After diving into the world of dunder methods, let’s take a fun break and explore some quirky behavior of the __call__ method in Python. This example showcases how we can create objects that can be “called” multiple times, and gives us some interesting insights into Python’s memory allocation.\n\n\nLet’s start with a simple goal: we want to create a Dog class that allows us to add any number of parentheses after it. Something like this:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nLet’s start with a simple implementation:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn this implementation, we’re alternating between returning a Dog instance and the Dog class itself. This allows us to chain as many calls as we want!\n\n\n\nNow, let’s look at how Python handles memory allocation in this case:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nInteresting! When we create new instances and save them to a variable, Python allocates new memory. But when we chain calls without saving the intermediate results, Python often reuses the same memory address for new instances.\n\n\n\nWhat if we always want to return an instance, regardless of how many times we call it?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nNow we always get the same instance, no matter how many times we call it!\n\n\n\nWhat if we want a new instance every time?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nInterestingly, the address changes after the first call, then remains the same. This is due to Python’s memory management optimizations.\n\n\n\nFinally, if we really want to ensure a unique instance every time:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nNow we’re forcing Python to create and track unique instances, resulting in different memory addresses for each new instance.\n\n\n\n\nThis fun exploration of the __call__ method and Python’s memory allocation shows us a few things:\n\nThe __call__ method allows us to make our objects callable, leading to some interesting and flexible designs.\nPython’s memory management is quite clever, often reusing memory addresses when it can.\nWe can control instance creation and memory allocation by customizing __new__ and __call__.\n\nRemember, while these examples are fun to explore and can teach us a lot about Python’s inner workings, they’re not typically something you’d use in production code. They’re great for understanding Python better and maybe for solving some tricky coding puzzles!",
     "crumbs": [
-      "Travaux Pratiques",
-      "TP: Heritage avec le pricing d'option"
+      "Python __call__ Method: A Fun Exploration"
     ]
   },
   {
-    "objectID": "content/Cours_2/TP_heritage.html#conseils",
-    "href": "content/Cours_2/TP_heritage.html#conseils",
-    "title": "TP: Heritage avec le pricing d’option",
+    "objectID": "content/Cours_2/5-call_a_dog.html#the-infinitely-callable-dog",
+    "href": "content/Cours_2/5-call_a_dog.html#the-infinitely-callable-dog",
+    "title": "Python call Method: A Fun Exploration",
     "section": "",
-    "text": "Commencez par implémenter la Partie 1 (Black-Scholes) avant de passer à la Partie 2 (Monte Carlo).\nUtilisez l’encapsulation pour protéger les attributs de vos classes.\nProfitez de l’héritage pour factoriser le code commun entre les classes Call et Put.\nPour la Partie 2, utilisez la composition pour lier les payoffs aux options européennes.\nN’oubliez pas d’importer les bibliothèques nécessaires (math, numpy, scipy.stats).\nTestez votre code régulièrement en utilisant les tests unitaires fournis.\nUtilisez les formules fournies dans les rappels théoriques pour implémenter vos méthodes.\n\nBonne chance !",
+    "text": "Let’s start with a simple goal: we want to create a Dog class that allows us to add any number of parentheses after it. Something like this:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nLet’s start with a simple implementation:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn this implementation, we’re alternating between returning a Dog instance and the Dog class itself. This allows us to chain as many calls as we want!\n\n\n\nNow, let’s look at how Python handles memory allocation in this case:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nInteresting! When we create new instances and save them to a variable, Python allocates new memory. But when we chain calls without saving the intermediate results, Python often reuses the same memory address for new instances.\n\n\n\nWhat if we always want to return an instance, regardless of how many times we call it?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nNow we always get the same instance, no matter how many times we call it!\n\n\n\nWhat if we want a new instance every time?\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nInterestingly, the address changes after the first call, then remains the same. This is due to Python’s memory management optimizations.\n\n\n\nFinally, if we really want to ensure a unique instance every time:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nNow we’re forcing Python to create and track unique instances, resulting in different memory addresses for each new instance.",
     "crumbs": [
-      "Travaux Pratiques",
-      "TP: Heritage avec le pricing d'option"
+      "Python __call__ Method: A Fun Exploration"
     ]
   },
   {
-    "objectID": "content/Cours_2/1-Encapsulation.html",
-    "href": "content/Cours_2/1-Encapsulation.html",
-    "title": "Encapsulation en Python",
+    "objectID": "content/Cours_2/5-call_a_dog.html#conclusion",
+    "href": "content/Cours_2/5-call_a_dog.html#conclusion",
+    "title": "Python call Method: A Fun Exploration",
     "section": "",
-    "text": "Encapsulation en Python\n\nL’encapsulation est l’un des principes fondamentaux de la programmation orientée objet. Elle consiste à regrouper les données et les méthodes qui les manipulent au sein d’une même unité (la classe) et à contrôler l’accès à ces données depuis l’extérieur de la classe.\n\nNotion de public et privé en Python\nContrairement à certains langages comme Java ou C++, Python n’a pas de mécanisme strict pour définir des attributs ou des méthodes comme “privés” ou “publics”. Cependant, Python suit une convention basée sur le nommage pour indiquer l’intention du développeur quant à l’utilisation des attributs et méthodes.\n\nAttributs et méthodes publics :\n\nNommés normalement, sans underscore.\nExemple : self.attribut, def methode(self):\nConsidérés comme faisant partie de l’interface publique de la classe.\n\nAttributs et méthodes “privés” (convention) :\n\nPréfixés par un simple underscore _.\nExemple : self._attribut, def _methode(self):\nIndique que ces éléments sont destinés à un usage interne et ne devraient pas être accédés directement depuis l’extérieur de la classe.\nCette convention est basée sur la confiance : techniquement, ces éléments restent accessibles.\n\nAttributs et méthodes “name mangling” :\n\nPréfixés par un double underscore __ (sans underscore à la fin).\nExemple : self.__attribut, def __methode(self):\nPython applique le “name mangling” : le nom est modifié en interne pour inclure le nom de la classe.\nRend l’accès depuis l’extérieur plus difficile, mais pas impossible.\n\n\n\n\nExemple d’encapsulation en Python\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nPoints importants à retenir :\n\nL’encapsulation en Python est basée sur des conventions plutôt que sur des restrictions strictes.\nLes attributs et méthodes préfixés par un underscore _ sont considérés comme internes à la classe.\nLe double underscore __ déclenche le name mangling, rendant l’accès externe plus difficile mais pas impossible.\nL’encapsulation est une question de conception et de discipline de programmation en Python.\nUtilisez des méthodes publiques (getters/setters) pour contrôler l’accès aux données internes si nécessaire.\n\n\n\nAvantages de l’encapsulation :\n\nContrôle de l’accès aux données\nFlexibilité pour modifier l’implémentation interne sans affecter le code qui utilise la classe\nPrévention des modifications accidentelles des données internes\nClarté du code en distinguant l’interface publique des détails d’implémentation\n\n\n\n\n\n\n Back to top",
+    "text": "This fun exploration of the __call__ method and Python’s memory allocation shows us a few things:\n\nThe __call__ method allows us to make our objects callable, leading to some interesting and flexible designs.\nPython’s memory management is quite clever, often reusing memory addresses when it can.\nWe can control instance creation and memory allocation by customizing __new__ and __call__.\n\nRemember, while these examples are fun to explore and can teach us a lot about Python’s inner workings, they’re not typically something you’d use in production code. They’re great for understanding Python better and maybe for solving some tricky coding puzzles!",
     "crumbs": [
-      "Encapsulation en Python"
+      "Python __call__ Method: A Fun Exploration"
     ]
   },
   {
@@ -1362,20 +1528,97 @@
     "href": "content/Cours_2/index.html",
     "title": "Encapsulation, Heritage, Composition et Dunder",
     "section": "",
-    "text": "Les cours de cette partie sont:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEncapsulation en Python\n\n\nComprendre l’encapsulation en Python et les conventions pour définir des attributs et méthodes publics et privés.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHéritage en Python : Concept et intérêt\n\n\nDécouvrez le concept d’héritage en Python, son intérêt et son application dans la création de hiérarchies de classes. Apprenez comment Python gère l’héritage implicite de la…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHéritage vs Composition\n\n\nDécouvrez les différences entre l’héritage et la composition en programmation orientée objet, leurs avantages et inconvénients, et comment choisir la meilleure approche pour…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMéthodes Dunder en Python\n\n\nDécouvrez les méthodes dunder en Python, des méthodes spéciales encadrées par des doubles tirets bas (__), qui permettent de personnaliser le comportement des objets dans…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTP: Heritage avec le pricing d’option\n\n\n\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTP: Heritage avec le pricing d’option\n\n\n\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\nNo matching items\n\n Back to top",
+    "text": "Les cours de cette partie sont:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEncapsulation en Python\n\n\nComprendre l’encapsulation en Python et les conventions pour définir des attributs et méthodes publics et privés.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHéritage en Python : Concept et intérêt\n\n\nDécouvrez le concept d’héritage en Python, son intérêt et son application dans la création de hiérarchies de classes. Apprenez comment Python gère l’héritage implicite de la…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHéritage vs Composition\n\n\nDécouvrez les différences entre l’héritage et la composition en programmation orientée objet, leurs avantages et inconvénients, et comment choisir la meilleure approche pour…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMéthodes Dunder en Python\n\n\nDécouvrez les méthodes dunder en Python, des méthodes spéciales encadrées par des doubles tirets bas (__), qui permettent de personnaliser le comportement des objets dans…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPython call Method: A Fun Exploration\n\n\nExplore the quirky side of Python’s call method with fun examples and insights into memory allocation. A lighthearted break in our Python deep dive.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTP: Heritage avec le pricing d’option\n\n\n\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTP: Heritage avec le pricing d’option\n\n\n\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\nNo matching items\n\n Back to top",
     "crumbs": [
       "Encapsulation, Heritage, Composition et Dunder"
     ]
   },
   {
-    "objectID": "content/Cours_4/TP.html",
-    "href": "content/Cours_4/TP.html",
-    "title": "TP",
+    "objectID": "content/Cours_4/TP_option.html",
+    "href": "content/Cours_4/TP_option.html",
+    "title": "TP: Monte Carlo Option Pricing with Decorators",
     "section": "",
-    "text": "TODO\n\n\n\n\n\n Back to top",
+    "text": "In this practical exercise, we’ll create a Monte Carlo simulator for option pricing and use decorators to inject different payoff functions into the simulator. This approach will allow us to easily create and price various types of options using the same underlying simulation framework.\n\n\nWe want to build a system that can price different types of options using Monte Carlo simulation. The system should be flexible enough to handle various payoff structures without modifying the core simulation logic.\n\n\n\nFirst, let’s implement our base MonteCarloSimulator class:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nNow, implement a decorator called option_pricer. This decorator should:\n\nTake a payoff function as input\nCreate a new class that inherits from MonteCarloSimulator\nInject the input function as the payoff method of the new class\nReturn the new class\n\nHere’s the skeleton for the decorator:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nOnce you’ve implemented the decorator, you should be able to use it like this:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nImplement the option_pricer decorator to make the above code work.\nEnsure that the new classes created by the decorator inherit from MonteCarloSimulator.\nMake sure that the payoff method in the new classes calls the decorated function.\n\n\n\n\n\nYou can use type() to create a new class dynamically.\nThe payoff function will become a method, so it needs to take self as its first parameter.\nYou can use __name__ attribute of the function to name your new class.\nYou can use functools wraps to keep tracking of the base function\n\n\n\n\n\nModify the decorator to allow for additional parameters in the payoff function, such as strike price or barrier levels.\nImplement a more complex option type, such as an Asian option, where the payoff depends on the average stock price over the simulation period.\nAdd a method to calculate the standard error of the Monte Carlo estimate and use it to compute confidence intervals for the option prices.",
     "crumbs": [
       "Travaux Pratiques",
-      "TP"
+      "TP: Monte Carlo Option Pricing with Decorators"
+    ]
+  },
+  {
+    "objectID": "content/Cours_4/TP_option.html#scenario-flexible-option-pricing-system",
+    "href": "content/Cours_4/TP_option.html#scenario-flexible-option-pricing-system",
+    "title": "TP: Monte Carlo Option Pricing with Decorators",
+    "section": "",
+    "text": "We want to build a system that can price different types of options using Monte Carlo simulation. The system should be flexible enough to handle various payoff structures without modifying the core simulation logic.",
+    "crumbs": [
+      "Travaux Pratiques",
+      "TP: Monte Carlo Option Pricing with Decorators"
+    ]
+  },
+  {
+    "objectID": "content/Cours_4/TP_option.html#step-1-implement-the-base-monte-carlo-simulator",
+    "href": "content/Cours_4/TP_option.html#step-1-implement-the-base-monte-carlo-simulator",
+    "title": "TP: Monte Carlo Option Pricing with Decorators",
+    "section": "",
+    "text": "First, let’s implement our base MonteCarloSimulator class:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Travaux Pratiques",
+      "TP: Monte Carlo Option Pricing with Decorators"
+    ]
+  },
+  {
+    "objectID": "content/Cours_4/TP_option.html#step-2-implement-the-decorator",
+    "href": "content/Cours_4/TP_option.html#step-2-implement-the-decorator",
+    "title": "TP: Monte Carlo Option Pricing with Decorators",
+    "section": "",
+    "text": "Now, implement a decorator called option_pricer. This decorator should:\n\nTake a payoff function as input\nCreate a new class that inherits from MonteCarloSimulator\nInject the input function as the payoff method of the new class\nReturn the new class\n\nHere’s the skeleton for the decorator:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Travaux Pratiques",
+      "TP: Monte Carlo Option Pricing with Decorators"
+    ]
+  },
+  {
+    "objectID": "content/Cours_4/TP_option.html#step-3-use-the-decorator",
+    "href": "content/Cours_4/TP_option.html#step-3-use-the-decorator",
+    "title": "TP: Monte Carlo Option Pricing with Decorators",
+    "section": "",
+    "text": "Once you’ve implemented the decorator, you should be able to use it like this:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Travaux Pratiques",
+      "TP: Monte Carlo Option Pricing with Decorators"
+    ]
+  },
+  {
+    "objectID": "content/Cours_4/TP_option.html#your-task",
+    "href": "content/Cours_4/TP_option.html#your-task",
+    "title": "TP: Monte Carlo Option Pricing with Decorators",
+    "section": "",
+    "text": "Implement the option_pricer decorator to make the above code work.\nEnsure that the new classes created by the decorator inherit from MonteCarloSimulator.\nMake sure that the payoff method in the new classes calls the decorated function.",
+    "crumbs": [
+      "Travaux Pratiques",
+      "TP: Monte Carlo Option Pricing with Decorators"
+    ]
+  },
+  {
+    "objectID": "content/Cours_4/TP_option.html#hints",
+    "href": "content/Cours_4/TP_option.html#hints",
+    "title": "TP: Monte Carlo Option Pricing with Decorators",
+    "section": "",
+    "text": "You can use type() to create a new class dynamically.\nThe payoff function will become a method, so it needs to take self as its first parameter.\nYou can use __name__ attribute of the function to name your new class.\nYou can use functools wraps to keep tracking of the base function",
+    "crumbs": [
+      "Travaux Pratiques",
+      "TP: Monte Carlo Option Pricing with Decorators"
+    ]
+  },
+  {
+    "objectID": "content/Cours_4/TP_option.html#bonus-challenges",
+    "href": "content/Cours_4/TP_option.html#bonus-challenges",
+    "title": "TP: Monte Carlo Option Pricing with Decorators",
+    "section": "",
+    "text": "Modify the decorator to allow for additional parameters in the payoff function, such as strike price or barrier levels.\nImplement a more complex option type, such as an Asian option, where the payoff depends on the average stock price over the simulation period.\nAdd a method to calculate the standard error of the Monte Carlo estimate and use it to compute confidence intervals for the option prices.",
+    "crumbs": [
+      "Travaux Pratiques",
+      "TP: Monte Carlo Option Pricing with Decorators"
     ]
   },
   {
@@ -1469,11 +1712,61 @@
     ]
   },
   {
+    "objectID": "content/Cours_4/5-library_decorators.html",
+    "href": "content/Cours_4/5-library_decorators.html",
+    "title": "Practical Decorators in Python Libraries",
+    "section": "",
+    "text": "This course builds upon your understanding of basic decorators and explores their practical usage in popular Python libraries. We’ll focus on FastAPI, Numba, and Pytest, explaining how to use their decorators effectively in your projects.\n\n\nFastAPI is a modern, fast web framework for building APIs with Python. It makes extensive use of decorators for routing, request handling, and more.\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn this expanded FastAPI example:\n\n@app.get(\"/\") defines a route for GET requests to the root URL. It returns a simple JSON response.\n@app.get(\"/items/{item_id}\") sets up a route with a path parameter item_id. The Path function is used to add validation and metadata to the path parameter. The Query function is used to define an optional query parameter q.\n@app.post(\"/items/\") defines a route for POST requests to create new items. It uses a Pydantic model Item for request body validation.\n\nFastAPI’s decorators handle several tasks automatically: - Route registration - Request parsing and validation - Dependency injection - Response serialization - Automatic API documentation generation\nThese decorators allow you to focus on your business logic while FastAPI handles the complexities of building a robust API.\n\n\n\n\nNumba is a Just-In-Time (JIT) compiler for Python that can significantly speed up numerical Python code by compiling it to native machine instructions.\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThe @jit(nopython=True) decorator tells Numba to compile the function to machine code without using the Python interpreter. This can lead to significant performance improvements, especially for numerical computations.\nImportant notes about Numba: - Numba compiles Python functions to optimized machine code at runtime. - It works best with numerical algorithms and NumPy arrays. - The nopython=True mode provides the best performance but has limitations on the Python features it supports. - Numba doesn’t support all Python types or features. It works best with simple numeric types, NumPy arrays, and a subset of Python and NumPy functions. - External libraries (except for NumPy and a few others) are generally not supported in Numba-compiled functions.\n\n\n\n\nPytest is a powerful testing framework for Python that uses decorators to enhance and customize test behavior.\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn this Pytest example:\n\n@pytest.fixture defines a fixture named example_fixture. Fixtures in Pytest are used to provide data or objects to tests.\n@pytest.mark.parametrize allows you to run the same test function multiple times with different inputs. It’s great for testing multiple scenarios without duplicating code.\n@pytest.mark.slow is a custom marker. You can use markers to categorize tests and selectively run them.\n\nPytest’s decorators allow you to: - Define and manage test fixtures - Parameterize tests for multiple inputs - Mark tests for organization and selective execution - Modify test behavior or skip tests based on conditions\nThese decorators make it easier to write comprehensive, maintainable test suites.\n\n\n\n\nDecorators in libraries like FastAPI, Numba, and Pytest showcase the power and flexibility of Python’s decorator system. They allow these libraries to provide clean, intuitive APIs that enhance productivity:\n\nFastAPI’s decorators simplify the process of building robust, well-documented APIs.\nNumba’s JIT decorator can dramatically speed up numerical computations, though with some limitations on supported Python features.\nPytest’s decorators make it easier to write, organize, and customize tests.\n\nBy understanding and leveraging these library-specific decorators, you can write more efficient, maintainable, and expressive Python code. Remember to consult each library’s documentation for the most up-to-date and detailed information on their decorator usage and capabilities.",
+    "crumbs": [
+      "Practical Decorators in Python Libraries"
+    ]
+  },
+  {
+    "objectID": "content/Cours_4/5-library_decorators.html#fastapi-decorators",
+    "href": "content/Cours_4/5-library_decorators.html#fastapi-decorators",
+    "title": "Practical Decorators in Python Libraries",
+    "section": "",
+    "text": "FastAPI is a modern, fast web framework for building APIs with Python. It makes extensive use of decorators for routing, request handling, and more.\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn this expanded FastAPI example:\n\n@app.get(\"/\") defines a route for GET requests to the root URL. It returns a simple JSON response.\n@app.get(\"/items/{item_id}\") sets up a route with a path parameter item_id. The Path function is used to add validation and metadata to the path parameter. The Query function is used to define an optional query parameter q.\n@app.post(\"/items/\") defines a route for POST requests to create new items. It uses a Pydantic model Item for request body validation.\n\nFastAPI’s decorators handle several tasks automatically: - Route registration - Request parsing and validation - Dependency injection - Response serialization - Automatic API documentation generation\nThese decorators allow you to focus on your business logic while FastAPI handles the complexities of building a robust API.",
+    "crumbs": [
+      "Practical Decorators in Python Libraries"
+    ]
+  },
+  {
+    "objectID": "content/Cours_4/5-library_decorators.html#numba-decorators",
+    "href": "content/Cours_4/5-library_decorators.html#numba-decorators",
+    "title": "Practical Decorators in Python Libraries",
+    "section": "",
+    "text": "Numba is a Just-In-Time (JIT) compiler for Python that can significantly speed up numerical Python code by compiling it to native machine instructions.\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThe @jit(nopython=True) decorator tells Numba to compile the function to machine code without using the Python interpreter. This can lead to significant performance improvements, especially for numerical computations.\nImportant notes about Numba: - Numba compiles Python functions to optimized machine code at runtime. - It works best with numerical algorithms and NumPy arrays. - The nopython=True mode provides the best performance but has limitations on the Python features it supports. - Numba doesn’t support all Python types or features. It works best with simple numeric types, NumPy arrays, and a subset of Python and NumPy functions. - External libraries (except for NumPy and a few others) are generally not supported in Numba-compiled functions.",
+    "crumbs": [
+      "Practical Decorators in Python Libraries"
+    ]
+  },
+  {
+    "objectID": "content/Cours_4/5-library_decorators.html#pytest-decorators",
+    "href": "content/Cours_4/5-library_decorators.html#pytest-decorators",
+    "title": "Practical Decorators in Python Libraries",
+    "section": "",
+    "text": "Pytest is a powerful testing framework for Python that uses decorators to enhance and customize test behavior.\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nIn this Pytest example:\n\n@pytest.fixture defines a fixture named example_fixture. Fixtures in Pytest are used to provide data or objects to tests.\n@pytest.mark.parametrize allows you to run the same test function multiple times with different inputs. It’s great for testing multiple scenarios without duplicating code.\n@pytest.mark.slow is a custom marker. You can use markers to categorize tests and selectively run them.\n\nPytest’s decorators allow you to: - Define and manage test fixtures - Parameterize tests for multiple inputs - Mark tests for organization and selective execution - Modify test behavior or skip tests based on conditions\nThese decorators make it easier to write comprehensive, maintainable test suites.",
+    "crumbs": [
+      "Practical Decorators in Python Libraries"
+    ]
+  },
+  {
+    "objectID": "content/Cours_4/5-library_decorators.html#conclusion",
+    "href": "content/Cours_4/5-library_decorators.html#conclusion",
+    "title": "Practical Decorators in Python Libraries",
+    "section": "",
+    "text": "Decorators in libraries like FastAPI, Numba, and Pytest showcase the power and flexibility of Python’s decorator system. They allow these libraries to provide clean, intuitive APIs that enhance productivity:\n\nFastAPI’s decorators simplify the process of building robust, well-documented APIs.\nNumba’s JIT decorator can dramatically speed up numerical computations, though with some limitations on supported Python features.\nPytest’s decorators make it easier to write, organize, and customize tests.\n\nBy understanding and leveraging these library-specific decorators, you can write more efficient, maintainable, and expressive Python code. Remember to consult each library’s documentation for the most up-to-date and detailed information on their decorator usage and capabilities.",
+    "crumbs": [
+      "Practical Decorators in Python Libraries"
+    ]
+  },
+  {
     "objectID": "content/Cours_4/index.html",
     "href": "content/Cours_4/index.html",
     "title": "Decorators",
     "section": "",
-    "text": "Les cours de cette partie sont:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBuilt-in Decorators and Standard Library Decorators in Python\n\n\nLearn about built-in decorators and standard library decorators in Python, including @property, @classmethod, @staticmethod, @dataclass, and decorators from the functools…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDecorator Practically\n\n\nLearn about decorators in Python with concrete examples, including basic function decorators, decorators with arguments, class decorators, decorators with parameters, and…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDesign Patterns\n\n\nLearn about design patterns in software development, their purpose, benefits, and common categories, and understand how they provide reusable solutions to common problems in…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTP\n\n\n\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe decorator pattern\n\n\nLearn about the origins and evolution of the decorator pattern in programming, its key concepts, advantages over traditional inheritance, and its impact on modern…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\nNo matching items\n\n Back to top"
+    "text": "Les cours de cette partie sont:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBuilt-in Decorators and Standard Library Decorators in Python\n\n\nLearn about built-in decorators and standard library decorators in Python, including @property, @classmethod, @staticmethod, @dataclass, and decorators from the functools…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDecorator Practically\n\n\nLearn about decorators in Python with concrete examples, including basic function decorators, decorators with arguments, class decorators, decorators with parameters, and…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDesign Patterns\n\n\nLearn about design patterns in software development, their purpose, benefits, and common categories, and understand how they provide reusable solutions to common problems in…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPractical Decorators in Python Libraries\n\n\nExplore practical usage of decorators in popular Python libraries including FastAPI, Numba, and Pytest. Learn how to leverage these powerful tools in your Python projects.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTP: Monte Carlo Option Pricing with Decorators\n\n\nA hands-on practical exercise on creating a decorator that injects payoff functions into a Monte Carlo option pricing simulator, exploring advanced concepts in Python and…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTP: Optimizing Heston Model Monte Carlo Simulation\n\n\nA hands-on practical exercise on optimizing Heston model Monte Carlo simulations using Numba and caching in Python.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe decorator pattern\n\n\nLearn about the origins and evolution of the decorator pattern in programming, its key concepts, advantages over traditional inheritance, and its impact on modern…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\nNo matching items\n\n Back to top"
   },
   {
     "objectID": "content/Projets/m2_EIF_2024.html",

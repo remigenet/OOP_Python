@@ -8,9 +8,9 @@
 
 <meta name="author" content="Remi Genet">
 <meta name="dcterms.date" content="2024-08-31">
-<meta name="description" content="Learn about abstract classes in Python, how to define and use them, and the benefits of using abstract classes for creating a common interface and enforcing method implementations in subclasses.">
+<meta name="description" content="Explore practical usage of decorators in popular Python libraries including FastAPI, Numba, and Pytest. Learn how to leverage these powerful tools in your Python projects.">
 
-<title>Abstract Classes – Programmation Orientée Objet en Python</title>
+<title>Practical Decorators in Python Libraries – Programmation Orientée Objet en Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,8 +33,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../content/Cours_3/5-Protocol.html" rel="next">
-<link href="../../content/Cours_3/3-Type_Hinting.html" rel="prev">
+<link href="../../content/Cours_4/TP_option.html" rel="next">
+<link href="../../content/Cours_4/4-builtin_decorator.html" rel="prev">
 <link href="../../content/.img/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"from abc import ABC, abstractmethod\n\nclass Animal(ABC):\n    @abstractmethod\n    def make_sound(self):\n        pass\n\n    def move(self):\n        print(\"Moving...\")","options":{"out-height":"","fig-cap":"","message":"true","output":"true","warning":"true","fig-width":7,"context":"interactive","label":"","comment":"","read-only":"false","fig-height":5,"out-width":"700px","classes":"","results":"markup","dpi":72,"autorun":""},"id":1},{"code":"class Dog(Animal):\n    def make_sound(self):\n        return \"Woof!\"\n\nclass Cat(Animal):\n    def make_sound(self):\n        return \"Meow!\"\n\n# Usage\ndog = Dog()\nprint(dog.make_sound())  # Output: Woof!\ndog.move()  # Output: Moving...\n\ncat = Cat()\nprint(cat.make_sound())  # Output: Meow!\n\n# This would raise an error:\n# animal = Animal()  # TypeError: Can't instantiate abstract class Animal","options":{"out-height":"","fig-cap":"","message":"true","output":"true","warning":"true","fig-width":7,"context":"interactive","label":"","comment":"","read-only":"false","fig-height":5,"out-width":"700px","classes":"","results":"markup","dpi":72,"autorun":""},"id":2},{"code":"from abc import ABC, abstractmethod\nimport math\n\nclass Shape(ABC):\n    @abstractmethod\n    def area(self):\n        pass\n\n    @abstractmethod\n    def perimeter(self):\n        pass\n\n    def describe(self):\n        print(f\"This shape has an area of {self.area()} and a perimeter of {self.perimeter()}\")\n\nclass Circle(Shape):\n    def __init__(self, radius):\n        self.radius = radius\n\n    def area(self):\n        return math.pi * self.radius ** 2\n\n    def perimeter(self):\n        return 2 * math.pi * self.radius\n\nclass Rectangle(Shape):\n    def __init__(self, width, height):\n        self.width = width\n        self.height = height\n\n    def area(self):\n        return self.width * self.height\n\n    def perimeter(self):\n        return 2 * (self.width + self.height)\n\n# Usage\ncircle = Circle(5)\nrectangle = Rectangle(4, 6)\n\ncircle.describe()\nrectangle.describe()","options":{"out-height":"","fig-cap":"","message":"true","output":"true","warning":"true","fig-width":7,"context":"interactive","label":"","comment":"","read-only":"false","fig-height":5,"out-width":"700px","classes":"","results":"markup","dpi":72,"autorun":""},"id":3}];
+globalThis.qpyodideCellDetails = [{"code":"from fastapi import FastAPI, Path, Query, HTTPException\nfrom pydantic import BaseModel\n\napp = FastAPI()\n\nclass Item(BaseModel):\n    name: str\n    price: float\n\n@app.get(\"/\")\nasync def root():\n    return {\"message\": \"Hello World\"}\n\n@app.get(\"/items/{item_id}\")\nasync def read_item(\n    item_id: int = Path(..., title=\"The ID of the item to get\", ge=1),\n    q: str | None = Query(None, max_length=50)\n):\n    return {\"item_id\": item_id, \"q\": q}\n\n@app.post(\"/items/\")\nasync def create_item(item: Item):\n    if item.price < 0:\n        raise HTTPException(status_code=400, detail=\"Price must be positive\")\n    return {\"item_name\": item.name, \"item_price\": item.price}","id":1,"options":{"context":"interactive","label":"","out-height":"","message":"true","classes":"","fig-height":5,"dpi":72,"warning":"true","read-only":"false","output":"true","out-width":"700px","comment":"","autorun":"","fig-width":7,"fig-cap":"","results":"markup"}},{"code":"from numba import jit\nimport numpy as np\n\n@jit(nopython=True)\ndef sum_array(arr):\n    sum = 0\n    for i in range(arr.shape[0]):\n        sum += arr[i]\n    return sum\n\n# Usage\narr = np.arange(1000000)\nresult = sum_array(arr)","id":2,"options":{"context":"interactive","label":"","out-height":"","message":"true","classes":"","fig-height":5,"dpi":72,"warning":"true","read-only":"false","output":"true","out-width":"700px","comment":"","autorun":"","fig-width":7,"fig-cap":"","results":"markup"}},{"code":"import pytest\n\n@pytest.fixture\ndef example_fixture():\n    return \"example\"\n\n@pytest.mark.parametrize(\"test_input,expected\", [\n    (\"3+5\", 8),\n    (\"2+4\", 6),\n    (\"6*9\", 54),\n])\ndef test_eval(test_input, expected):\n    assert eval(test_input) == expected\n\n@pytest.mark.slow\ndef test_slow_operation():\n    # Some time-consuming test\n    pass","id":3,"options":{"context":"interactive","label":"","out-height":"","message":"true","classes":"","fig-height":5,"dpi":72,"warning":"true","read-only":"false","output":"true","out-width":"700px","comment":"","autorun":"","fig-width":7,"fig-cap":"","results":"markup"}}];
 
 
 </script>
@@ -431,19 +431,17 @@ globalThis._qpyodideGetInstance = function() {
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Abstract Classes – Programmation Orientée Objet en Python">
-<meta property="og:description" content="Learn about abstract classes in Python, how to define and use them, and the benefits of using abstract classes for creating a common interface and enforcing method implementations in subclasses.">
-<meta property="og:image" content="https://remigenet.github.io/OOP_Python/content/Cours_3/.img/sklearn.png">
+<meta property="og:title" content="Practical Decorators in Python Libraries – Programmation Orientée Objet en Python">
+<meta property="og:description" content="Explore practical usage of decorators in popular Python libraries including FastAPI, Numba, and Pytest. Learn how to leverage these powerful tools in your Python projects.">
+<meta property="og:image" content="https://remigenet.github.io/OOP_Python/content/Cours_4/.img/practical_decorators.webp">
 <meta property="og:site_name" content="Programmation Orientée Objet en Python">
-<meta property="og:image:height" content="165">
-<meta property="og:image:width" content="306">
-<meta name="citation_title" content="Abstract Classes">
+<meta name="citation_title" content="Practical Decorators in Python Libraries">
 <meta name="citation_author" content="Remi Genet">
 <meta name="citation_publication_date" content="2024-08-31">
 <meta name="citation_cover_date" content="2024-08-31">
 <meta name="citation_year" content="2024">
 <meta name="citation_online_date" content="2024-08-31">
-<meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_3/4-Abstract_class.html">
+<meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_4/5-library_decorators.html">
 <meta name="citation_language" content="en">
 </head>
 
@@ -538,6 +536,10 @@ globalThis._qpyodideGetInstance = function() {
     <a class="dropdown-item" href="../../content/Cours_2/4-Dunder.html">
  <span class="dropdown-text">Méthodes Dunder en Python</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/5-call_a_dog.html">
+ <span class="dropdown-text">Python <strong>call</strong> Method: A Fun Exploration</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
@@ -568,15 +570,19 @@ globalThis._qpyodideGetInstance = function() {
  <span class="dropdown-text">Polymorphism in Python: Function Overloading and Type Checking</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/3-Type_Hinting.html">
+    <a class="dropdown-item" href="../../content/Cours_3/3-type_to_create.html">
+ <span class="dropdown-text">Class Creation: Standard vs type()</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_3/4-Type_Hinting.html">
  <span class="dropdown-text">Type Hinting, Typing Module, and Linters in Python</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/4-Abstract_class.html">
+    <a class="dropdown-item" href="../../content/Cours_3/5-Abstract_class.html">
  <span class="dropdown-text">Abstract Classes</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/5-Protocol.html">
+    <a class="dropdown-item" href="../../content/Cours_3/6-Protocol.html">
  <span class="dropdown-text">Protocol Classes</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
@@ -608,11 +614,19 @@ globalThis._qpyodideGetInstance = function() {
     <a class="dropdown-item" href="../../content/Cours_4/4-builtin_decorator.html">
  <span class="dropdown-text">Built-in Decorators and Standard Library Decorators in Python</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_4/5-library_decorators.html">
+ <span class="dropdown-text">Practical Decorators in Python Libraries</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
-    <a class="dropdown-item" href="../../content/Cours_4/TP.html">
- <span class="dropdown-text">TP</span></a>
+    <a class="dropdown-item" href="../../content/Cours_4/TP_option.html">
+ <span class="dropdown-text">TP: Monte Carlo Option Pricing with Decorators</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_4/TP_library.html">
+ <span class="dropdown-text">TP: Optimizing Heston Model Monte Carlo Simulation</span></a>
   </li>  
     </ul>
   </li>
@@ -724,7 +738,7 @@ globalThis._qpyodideGetInstance = function() {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_3/4-Abstract_class.html">Abstract Classes</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_4/5-library_decorators.html">Practical Decorators in Python Libraries</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -738,38 +752,32 @@ globalThis._qpyodideGetInstance = function() {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_3/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Polymorphisme et Surcharge</span></a>
+  <a href="../../content/Cours_4/1-Design_Pattern.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Design Patterns</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_3/1-Polymorphism.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Polymorphism in Object-Oriented Programming</span></a>
+  <a href="../../content/Cours_4/2-Decorator_theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The decorator pattern</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_3/2-Overloading.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Polymorphism in Python: Function Overloading and Type Checking</span></a>
+  <a href="../../content/Cours_4/3-Decorator_practically.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Decorator Practically</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_3/3-Type_Hinting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Type Hinting, Typing Module, and Linters in Python</span></a>
+  <a href="../../content/Cours_4/4-builtin_decorator.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Built-in Decorators and Standard Library Decorators in Python</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_3/4-Abstract_class.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Abstract Classes</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_3/5-Protocol.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Protocol Classes</span></a>
+  <a href="../../content/Cours_4/5-library_decorators.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Practical Decorators in Python Libraries</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -783,8 +791,14 @@ globalThis._qpyodideGetInstance = function() {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_3/TP.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">TP</span></a>
+  <a href="../../content/Cours_4/TP_option.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP: Monte Carlo Option Pricing with Decorators</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_4/TP_library.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP: Optimizing Heston Model Monte Carlo Simulation</span></a>
   </div>
 </li>
       </ul>
@@ -799,21 +813,20 @@ globalThis._qpyodideGetInstance = function() {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#abstract-classes-in-python" id="toc-abstract-classes-in-python" class="nav-link active" data-scroll-target="#abstract-classes-in-python">Abstract Classes in Python</a>
+  <li><a href="#practical-decorators-in-python-libraries" id="toc-practical-decorators-in-python-libraries" class="nav-link active" data-scroll-target="#practical-decorators-in-python-libraries">Practical Decorators in Python Libraries</a>
   <ul class="collapse">
-  <li><a href="#concept-and-purpose" id="toc-concept-and-purpose" class="nav-link" data-scroll-target="#concept-and-purpose">Concept and Purpose</a>
+  <li><a href="#fastapi-decorators" id="toc-fastapi-decorators" class="nav-link" data-scroll-target="#fastapi-decorators">1. FastAPI Decorators</a>
   <ul class="collapse">
-  <li><a href="#key-characteristics" id="toc-key-characteristics" class="nav-link" data-scroll-target="#key-characteristics">Key characteristics:</a></li>
-  <li><a href="#purpose" id="toc-purpose" class="nav-link" data-scroll-target="#purpose">Purpose:</a></li>
+  <li><a href="#basic-usage-and-explanation" id="toc-basic-usage-and-explanation" class="nav-link" data-scroll-target="#basic-usage-and-explanation">Basic Usage and Explanation</a></li>
   </ul></li>
-  <li><a href="#abstract-base-classes-abc-in-python" id="toc-abstract-base-classes-abc-in-python" class="nav-link" data-scroll-target="#abstract-base-classes-abc-in-python">Abstract Base Classes (ABC) in Python</a>
+  <li><a href="#numba-decorators" id="toc-numba-decorators" class="nav-link" data-scroll-target="#numba-decorators">2. Numba Decorators</a>
   <ul class="collapse">
-  <li><a href="#basic-usage" id="toc-basic-usage" class="nav-link" data-scroll-target="#basic-usage">Basic Usage:</a></li>
-  <li><a href="#implementing-an-abstract-class" id="toc-implementing-an-abstract-class" class="nav-link" data-scroll-target="#implementing-an-abstract-class">Implementing an Abstract Class:</a></li>
-  <li><a href="#key-points" id="toc-key-points" class="nav-link" data-scroll-target="#key-points">Key Points:</a></li>
+  <li><a href="#basic-usage-and-limitations" id="toc-basic-usage-and-limitations" class="nav-link" data-scroll-target="#basic-usage-and-limitations">Basic Usage and Limitations</a></li>
   </ul></li>
-  <li><a href="#why-use-abstract-classes" id="toc-why-use-abstract-classes" class="nav-link" data-scroll-target="#why-use-abstract-classes">Why Use Abstract Classes?</a></li>
-  <li><a href="#example-shape-hierarchy" id="toc-example-shape-hierarchy" class="nav-link" data-scroll-target="#example-shape-hierarchy">Example: Shape Hierarchy</a></li>
+  <li><a href="#pytest-decorators" id="toc-pytest-decorators" class="nav-link" data-scroll-target="#pytest-decorators">3. Pytest Decorators</a>
+  <ul class="collapse">
+  <li><a href="#basic-usage" id="toc-basic-usage" class="nav-link" data-scroll-target="#basic-usage">Basic Usage</a></li>
+  </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul></li>
   </ul>
@@ -834,16 +847,16 @@ globalThis._qpyodideGetInstance = function() {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Abstract Classes</h1>
+<h1 class="title">Practical Decorators in Python Libraries</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Cours</div>
-    <div class="quarto-category">Fondamentaux</div>
+    <div class="quarto-category">Course</div>
+    <div class="quarto-category">Advanced Python</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    Learn about abstract classes in Python, how to define and use them, and the benefits of using abstract classes for creating a common interface and enforcing method implementations in subclasses.
+    Explore practical usage of decorators in popular Python libraries including FastAPI, Numba, and Pytest. Learn how to leverage these powerful tools in your Python projects.
   </div>
 </div>
 
@@ -872,73 +885,63 @@ globalThis._qpyodideGetInstance = function() {
 </header>
 
 
-<section id="abstract-classes-in-python" class="level1">
-<h1>Abstract Classes in Python</h1>
-<hr>
-<section id="concept-and-purpose" class="level2">
-<h2 class="anchored" data-anchor-id="concept-and-purpose">Concept and Purpose</h2>
-<p>An abstract class is a class that is designed to be inherited from, but not instantiated directly. It often contains one or more abstract methods - methods that are declared, but don’t have an implementation in the abstract class.</p>
-<section id="key-characteristics" class="level3">
-<h3 class="anchored" data-anchor-id="key-characteristics">Key characteristics:</h3>
-<ol type="1">
-<li>Cannot be instantiated directly</li>
-<li>May contain abstract methods (methods without a body)</li>
-<li>May contain concrete methods (methods with an implementation)</li>
-<li>Subclasses must implement all abstract methods</li>
-</ol>
-</section>
-<section id="purpose" class="level3">
-<h3 class="anchored" data-anchor-id="purpose">Purpose:</h3>
-<ol type="1">
-<li>To define a common interface for a set of subclasses</li>
-<li>To enforce certain methods to be implemented by subclasses</li>
-<li>To share code among several closely related classes</li>
-</ol>
-</section>
-</section>
-<section id="abstract-base-classes-abc-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="abstract-base-classes-abc-in-python">Abstract Base Classes (ABC) in Python</h2>
-<p>Python provides the <code>abc</code> module to work with abstract base classes.</p>
-<section id="basic-usage" class="level3">
-<h3 class="anchored" data-anchor-id="basic-usage">Basic Usage:</h3>
+<section id="practical-decorators-in-python-libraries" class="level1">
+<h1>Practical Decorators in Python Libraries</h1>
+<p>This course builds upon your understanding of basic decorators and explores their practical usage in popular Python libraries. We’ll focus on FastAPI, Numba, and Pytest, explaining how to use their decorators effectively in your projects.</p>
+<section id="fastapi-decorators" class="level2">
+<h2 class="anchored" data-anchor-id="fastapi-decorators">1. FastAPI Decorators</h2>
+<p>FastAPI is a modern, fast web framework for building APIs with Python. It makes extensive use of decorators for routing, request handling, and more.</p>
+<section id="basic-usage-and-explanation" class="level3">
+<h3 class="anchored" data-anchor-id="basic-usage-and-explanation">Basic Usage and Explanation</h3>
 <div id="qpyodide-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>In this example: - <code>Animal</code> is an abstract base class - <code>make_sound</code> is an abstract method - <code>move</code> is a concrete method</p>
+<p>In this expanded FastAPI example:</p>
+<ol type="1">
+<li><p><code>@app.get("/")</code> defines a route for GET requests to the root URL. It returns a simple JSON response.</p></li>
+<li><p><code>@app.get("/items/{item_id}")</code> sets up a route with a path parameter <code>item_id</code>. The <code>Path</code> function is used to add validation and metadata to the path parameter. The <code>Query</code> function is used to define an optional query parameter <code>q</code>.</p></li>
+<li><p><code>@app.post("/items/")</code> defines a route for POST requests to create new items. It uses a Pydantic model <code>Item</code> for request body validation.</p></li>
+</ol>
+<p>FastAPI’s decorators handle several tasks automatically: - Route registration - Request parsing and validation - Dependency injection - Response serialization - Automatic API documentation generation</p>
+<p>These decorators allow you to focus on your business logic while FastAPI handles the complexities of building a robust API.</p>
 </section>
-<section id="implementing-an-abstract-class" class="level3">
-<h3 class="anchored" data-anchor-id="implementing-an-abstract-class">Implementing an Abstract Class:</h3>
+</section>
+<section id="numba-decorators" class="level2">
+<h2 class="anchored" data-anchor-id="numba-decorators">2. Numba Decorators</h2>
+<p>Numba is a Just-In-Time (JIT) compiler for Python that can significantly speed up numerical Python code by compiling it to native machine instructions.</p>
+<section id="basic-usage-and-limitations" class="level3">
+<h3 class="anchored" data-anchor-id="basic-usage-and-limitations">Basic Usage and Limitations</h3>
 <div id="qpyodide-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
-<section id="key-points" class="level3">
-<h3 class="anchored" data-anchor-id="key-points">Key Points:</h3>
-<ol type="1">
-<li>The <code>@abstractmethod</code> decorator marks a method as abstract</li>
-<li>Subclasses must implement all abstract methods</li>
-<li>Abstract classes can have both abstract and concrete methods</li>
-<li>Trying to instantiate an abstract class directly will raise a <code>TypeError</code></li>
-</ol>
+<p>The <code>@jit(nopython=True)</code> decorator tells Numba to compile the function to machine code without using the Python interpreter. This can lead to significant performance improvements, especially for numerical computations.</p>
+<p>Important notes about Numba: - Numba compiles Python functions to optimized machine code at runtime. - It works best with numerical algorithms and NumPy arrays. - The <code>nopython=True</code> mode provides the best performance but has limitations on the Python features it supports. - Numba doesn’t support all Python types or features. It works best with simple numeric types, NumPy arrays, and a subset of Python and NumPy functions. - External libraries (except for NumPy and a few others) are generally not supported in Numba-compiled functions.</p>
 </section>
 </section>
-<section id="why-use-abstract-classes" class="level2">
-<h2 class="anchored" data-anchor-id="why-use-abstract-classes">Why Use Abstract Classes?</h2>
-<ol type="1">
-<li><p><strong>Enforcing a common interface</strong>: Abstract classes ensure that all subclasses implement certain methods, guaranteeing a common interface.</p></li>
-<li><p><strong>Code reuse</strong>: You can implement common functionality in the abstract base class, which all subclasses can use.</p></li>
-<li><p><strong>Designing frameworks</strong>: Abstract classes are useful when designing large frameworks where you want to provide default behaviors but require specific implementations in subclasses.</p></li>
-</ol>
-</section>
-<section id="example-shape-hierarchy" class="level2">
-<h2 class="anchored" data-anchor-id="example-shape-hierarchy">Example: Shape Hierarchy</h2>
-<p>Here’s a more practical example using shapes:</p>
+<section id="pytest-decorators" class="level2">
+<h2 class="anchored" data-anchor-id="pytest-decorators">3. Pytest Decorators</h2>
+<p>Pytest is a powerful testing framework for Python that uses decorators to enhance and customize test behavior.</p>
+<section id="basic-usage" class="level3">
+<h3 class="anchored" data-anchor-id="basic-usage">Basic Usage</h3>
 <div id="qpyodide-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>In this example, <code>Shape</code> is an abstract base class that defines the common interface for all shapes. <code>Circle</code> and <code>Rectangle</code> are concrete implementations of <code>Shape</code>.</p>
+<p>In this Pytest example:</p>
+<ol type="1">
+<li><p><code>@pytest.fixture</code> defines a fixture named <code>example_fixture</code>. Fixtures in Pytest are used to provide data or objects to tests.</p></li>
+<li><p><code>@pytest.mark.parametrize</code> allows you to run the same test function multiple times with different inputs. It’s great for testing multiple scenarios without duplicating code.</p></li>
+<li><p><code>@pytest.mark.slow</code> is a custom marker. You can use markers to categorize tests and selectively run them.</p></li>
+</ol>
+<p>Pytest’s decorators allow you to: - Define and manage test fixtures - Parameterize tests for multiple inputs - Mark tests for organization and selective execution - Modify test behavior or skip tests based on conditions</p>
+<p>These decorators make it easier to write comprehensive, maintainable test suites.</p>
+</section>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>Abstract base classes in Python provide a powerful way to define interfaces and ensure that derived classes implement certain methods. They’re useful for creating frameworks and libraries, ensuring consistency across related classes, and defining clear contracts for subclasses to follow.</p>
-<p>By using abstract classes, you can create more robust and well-structured code, especially when dealing with complex hierarchies of related classes.</p>
+<p>Decorators in libraries like FastAPI, Numba, and Pytest showcase the power and flexibility of Python’s decorator system. They allow these libraries to provide clean, intuitive APIs that enhance productivity:</p>
+<ul>
+<li>FastAPI’s decorators simplify the process of building robust, well-documented APIs.</li>
+<li>Numba’s JIT decorator can dramatically speed up numerical computations, though with some limitations on supported Python features.</li>
+<li>Pytest’s decorators make it easier to write, organize, and customize tests.</li>
+</ul>
+<p>By understanding and leveraging these library-specific decorators, you can write more efficient, maintainable, and expressive Python code. Remember to consult each library’s documentation for the most up-to-date and detailed information on their decorator usage and capabilities.</p>
 
 
 </section>
@@ -1511,13 +1514,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../../content/Cours_3/3-Type_Hinting.html" class="pagination-link" aria-label="Type Hinting, Typing Module, and Linters in Python">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Type Hinting, Typing Module, and Linters in Python</span>
+      <a href="../../content/Cours_4/4-builtin_decorator.html" class="pagination-link" aria-label="Built-in Decorators and Standard Library Decorators in Python">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Built-in Decorators and Standard Library Decorators in Python</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../content/Cours_3/5-Protocol.html" class="pagination-link" aria-label="Protocol Classes">
-        <span class="nav-page-text">Protocol Classes</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../content/Cours_4/TP_option.html" class="pagination-link" aria-label="TP: Monte Carlo Option Pricing with Decorators">
+        <span class="nav-page-text">TP: Monte Carlo Option Pricing with Decorators</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

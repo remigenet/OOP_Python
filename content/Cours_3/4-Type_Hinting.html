@@ -8,9 +8,9 @@
 
 <meta name="author" content="Remi Genet">
 <meta name="dcterms.date" content="2024-08-31">
-<meta name="description" content="Découvrez les différences entre l’héritage et la composition en programmation orientée objet, leurs avantages et inconvénients, et comment choisir la meilleure approche pour concevoir des classes flexibles et extensibles.">
+<meta name="description" content="Learn about type hinting in Python, the typing module, and how to use linters for static type checking to improve code quality and maintainability.">
 
-<title>Héritage vs Composition – Programmation Orientée Objet en Python</title>
+<title>Type Hinting, Typing Module, and Linters in Python – Programmation Orientée Objet en Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,8 +33,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../content/Cours_2/4-Dunder.html" rel="next">
-<link href="../../content/Cours_2/2-Heritage.html" rel="prev">
+<link href="../../content/Cours_3/5-Abstract_class.html" rel="next">
+<link href="../../content/Cours_3/3-type_to_create.html" rel="prev">
 <link href="../../content/.img/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"class Animal:\n    def __init__(self, nom):\n        self.nom = nom\n\n    def faire_du_bruit(self):\n        pass\n\nclass Chien(Animal):\n    def faire_du_bruit(self):\n        return \"Woof!\"","options":{"out-width":"700px","warning":"true","output":"true","context":"interactive","results":"markup","comment":"","label":"","dpi":72,"read-only":"false","fig-width":7,"fig-height":5,"fig-cap":"","autorun":"","message":"true","classes":"","out-height":""},"id":1},{"code":"class Moteur:\n    def demarrer(self):\n        return \"Moteur démarré\"\n\nclass Voiture:\n    def __init__(self):\n        self.moteur = Moteur()\n\n    def demarrer_voiture(self):\n        return self.moteur.demarrer()","options":{"out-width":"700px","warning":"true","output":"true","context":"interactive","results":"markup","comment":"","label":"","dpi":72,"read-only":"false","fig-width":7,"fig-height":5,"fig-cap":"","autorun":"","message":"true","classes":"","out-height":""},"id":2},{"code":"class Arme:\n    def attaquer(self):\n        pass\n\nclass Epee(Arme):\n    def attaquer(self):\n        return \"Coup d'épée!\"\n\nclass Personnage:\n    def __init__(self, nom):\n        self.nom = nom\n        self.arme = None\n\n    def equiper(self, arme):\n        self.arme = arme\n\n    def attaquer(self):\n        if self.arme:\n            return f\"{self.nom} attaque : {self.arme.attaquer()}\"\n        return f\"{self.nom} attaque à mains nues!\"\n\nclass Guerrier(Personnage):\n    def cri_de_guerre(self):\n        return \"Pour l'honneur!\"","options":{"out-width":"700px","warning":"true","output":"true","context":"interactive","results":"markup","comment":"","label":"","dpi":72,"read-only":"false","fig-width":7,"fig-height":5,"fig-cap":"","autorun":"","message":"true","classes":"","out-height":""},"id":3}];
+globalThis.qpyodideCellDetails = [{"options":{"warning":"true","label":"","results":"markup","fig-cap":"","out-width":"700px","message":"true","output":"true","comment":"","fig-height":5,"autorun":"","context":"interactive","read-only":"false","dpi":72,"classes":"","fig-width":7,"out-height":""},"id":1,"code":"def greet(name: str) -> str:\n    return f\"Hello, {name}!\"\n\nx: int = 5\ny: float = 3.14\nnames: list[str] = [\"Alice\", \"Bob\", \"Charlie\"]"},{"options":{"warning":"true","label":"","results":"markup","fig-cap":"","out-width":"700px","message":"true","output":"true","comment":"","fig-height":5,"autorun":"","context":"interactive","read-only":"false","dpi":72,"classes":"","fig-width":7,"out-height":""},"id":2,"code":"from typing import List, Dict, Tuple, Optional, Union, Any\n\ndef process_data(items: List[int]) -> Dict[str, int]:\n    ...\n\ndef get_user_info() -> Tuple[str, int, Optional[str]]:\n    ...\n\ndef handle_input(value: Union[int, str]) -> Any:\n    ..."},{"options":{"warning":"true","label":"","results":"markup","fig-cap":"","out-width":"700px","message":"true","output":"true","comment":"","fig-height":5,"autorun":"","context":"interactive","read-only":"false","dpi":72,"classes":"","fig-width":7,"out-height":""},"id":3,"code":"from typing import List, Dict\n\nVector = List[float]\nMatrix = List[Vector]\n\ndef scale_vector(v: Vector, factor: float) -> Vector:\n    return [x * factor for x in v]"},{"options":{"warning":"true","label":"","results":"markup","fig-cap":"","out-width":"700px","message":"true","output":"true","comment":"","fig-height":5,"autorun":"","context":"interactive","read-only":"false","dpi":72,"classes":"","fig-width":7,"out-height":""},"id":4,"code":"from typing import TypeVar, List\n\nT = TypeVar('T')\n\ndef first_element(l: List[T]) -> T:\n    return l[0]"},{"options":{"warning":"true","label":"","results":"markup","fig-cap":"","out-width":"700px","message":"true","output":"true","comment":"","fig-height":5,"autorun":"","context":"interactive","read-only":"false","dpi":72,"classes":"","fig-width":7,"out-height":""},"id":5,"code":"from typing import List, Dict, Optional\n\nclass User:\n    def __init__(self, name: str, age: int):\n        self.name = name\n        self.age = age\n\ndef get_user_data(users: List[User]) -> Dict[str, int]:\n    return {user.name: user.age for user in users}\n\ndef find_user(users: List[User], name: str) -> Optional[User]:\n    for user in users:\n        if user.name == name:\n            return user\n    return None\n\n# Usage\nusers: List[User] = [User(\"Alice\", 30), User(\"Bob\", 25)]\nuser_data: Dict[str, int] = get_user_data(users)\nfound_user: Optional[User] = find_user(users, \"Alice\")\n\nif found_user:\n    print(f\"Found user: {found_user.name}, Age: {found_user.age}\")\nelse:\n    print(\"User not found\")"}];
 
 
 </script>
@@ -431,19 +431,19 @@ globalThis._qpyodideGetInstance = function() {
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Héritage vs Composition – Programmation Orientée Objet en Python">
-<meta property="og:description" content="Découvrez les différences entre l’héritage et la composition en programmation orientée objet, leurs avantages et inconvénients, et comment choisir la meilleure approche pour concevoir des classes flexibles et extensibles.">
-<meta property="og:image" content="https://remigenet.github.io/OOP_Python/content/Cours_2/.img/poo.png">
+<meta property="og:title" content="Type Hinting, Typing Module, and Linters in Python – Programmation Orientée Objet en Python">
+<meta property="og:description" content="Learn about type hinting in Python, the typing module, and how to use linters for static type checking to improve code quality and maintainability.">
+<meta property="og:image" content="https://remigenet.github.io/OOP_Python/content/Cours_3/.img/numpy.png">
 <meta property="og:site_name" content="Programmation Orientée Objet en Python">
-<meta property="og:image:height" content="1024">
-<meta property="og:image:width" content="1024">
-<meta name="citation_title" content="Héritage vs Composition">
+<meta property="og:image:height" content="166">
+<meta property="og:image:width" content="303">
+<meta name="citation_title" content="Type Hinting, Typing Module, and Linters in Python">
 <meta name="citation_author" content="Remi Genet">
 <meta name="citation_publication_date" content="2024-08-31">
 <meta name="citation_cover_date" content="2024-08-31">
 <meta name="citation_year" content="2024">
 <meta name="citation_online_date" content="2024-08-31">
-<meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_2/3-Composition.html">
+<meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_3/4-Type_Hinting.html">
 <meta name="citation_language" content="en">
 </head>
 
@@ -740,7 +740,7 @@ globalThis._qpyodideGetInstance = function() {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_2/3-Composition.html">Héritage vs Composition</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_3/4-Type_Hinting.html">Type Hinting, Typing Module, and Linters in Python</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -754,38 +754,44 @@ globalThis._qpyodideGetInstance = function() {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_2/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Encapsulation, Heritage, Composition et Dunder</span></a>
+  <a href="../../content/Cours_3/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Polymorphisme et Surcharge</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_2/1-Encapsulation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Encapsulation en Python</span></a>
+  <a href="../../content/Cours_3/1-Polymorphism.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Polymorphism in Object-Oriented Programming</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_2/2-Heritage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Héritage en Python : Concept et intérêt</span></a>
+  <a href="../../content/Cours_3/2-Overloading.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Polymorphism in Python: Function Overloading and Type Checking</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_2/3-Composition.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Héritage vs Composition</span></a>
+  <a href="../../content/Cours_3/3-type_to_create.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class Creation: Standard vs type()</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_2/4-Dunder.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Méthodes Dunder en Python</span></a>
+  <a href="../../content/Cours_3/4-Type_Hinting.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Type Hinting, Typing Module, and Linters in Python</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_2/5-call_a_dog.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python <strong>call</strong> Method: A Fun Exploration</span></a>
+  <a href="../../content/Cours_3/5-Abstract_class.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Abstract Classes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_3/6-Protocol.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Protocol Classes</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -799,14 +805,8 @@ globalThis._qpyodideGetInstance = function() {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_2/TP_heritage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">TP: Heritage avec le pricing d’option</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_2/TP_dunder.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">TP: Heritage avec le pricing d’option</span></a>
+  <a href="../../content/Cours_3/TP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP</span></a>
   </div>
 </li>
       </ul>
@@ -821,14 +821,27 @@ globalThis._qpyodideGetInstance = function() {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#héritage-vs-composition" id="toc-héritage-vs-composition" class="nav-link active" data-scroll-target="#héritage-vs-composition">Héritage vs Composition</a>
+  <li><a href="#type-hinting-typing-module-and-linters-in-python" id="toc-type-hinting-typing-module-and-linters-in-python" class="nav-link active" data-scroll-target="#type-hinting-typing-module-and-linters-in-python">Type Hinting, Typing Module, and Linters in Python</a>
   <ul class="collapse">
-  <li><a href="#définitions" id="toc-définitions" class="nav-link" data-scroll-target="#définitions">Définitions</a></li>
-  <li><a href="#comparaison" id="toc-comparaison" class="nav-link" data-scroll-target="#comparaison">Comparaison</a></li>
-  <li><a href="#avantages-et-inconvénients" id="toc-avantages-et-inconvénients" class="nav-link" data-scroll-target="#avantages-et-inconvénients">Avantages et inconvénients</a></li>
-  <li><a href="#quand-utiliser-lun-ou-lautre" id="toc-quand-utiliser-lun-ou-lautre" class="nav-link" data-scroll-target="#quand-utiliser-lun-ou-lautre">Quand utiliser l’un ou l’autre ?</a></li>
-  <li><a href="#principe-de-conception-favoriser-la-composition-sur-lhéritage" id="toc-principe-de-conception-favoriser-la-composition-sur-lhéritage" class="nav-link" data-scroll-target="#principe-de-conception-favoriser-la-composition-sur-lhéritage">Principe de conception : “Favoriser la composition sur l’héritage”</a></li>
-  <li><a href="#exemple-combinant-héritage-et-composition" id="toc-exemple-combinant-héritage-et-composition" class="nav-link" data-scroll-target="#exemple-combinant-héritage-et-composition">Exemple combinant héritage et composition</a></li>
+  <li><a href="#introduction-to-type-hinting" id="toc-introduction-to-type-hinting" class="nav-link" data-scroll-target="#introduction-to-type-hinting">Introduction to Type Hinting</a>
+  <ul class="collapse">
+  <li><a href="#basic-type-hinting" id="toc-basic-type-hinting" class="nav-link" data-scroll-target="#basic-type-hinting">Basic Type Hinting</a></li>
+  </ul></li>
+  <li><a href="#the-typing-module" id="toc-the-typing-module" class="nav-link" data-scroll-target="#the-typing-module">The Typing Module</a>
+  <ul class="collapse">
+  <li><a href="#common-types-from-the-typing-module" id="toc-common-types-from-the-typing-module" class="nav-link" data-scroll-target="#common-types-from-the-typing-module">Common Types from the Typing Module</a></li>
+  <li><a href="#type-aliases" id="toc-type-aliases" class="nav-link" data-scroll-target="#type-aliases">Type Aliases</a></li>
+  <li><a href="#generic-types" id="toc-generic-types" class="nav-link" data-scroll-target="#generic-types">Generic Types</a></li>
+  </ul></li>
+  <li><a href="#type-checking-and-linters" id="toc-type-checking-and-linters" class="nav-link" data-scroll-target="#type-checking-and-linters">Type Checking and Linters</a>
+  <ul class="collapse">
+  <li><a href="#mypy" id="toc-mypy" class="nav-link" data-scroll-target="#mypy">Mypy</a></li>
+  <li><a href="#pylint" id="toc-pylint" class="nav-link" data-scroll-target="#pylint">Pylint</a></li>
+  <li><a href="#pycharm-and-visual-studio-code" id="toc-pycharm-and-visual-studio-code" class="nav-link" data-scroll-target="#pycharm-and-visual-studio-code">PyCharm and Visual Studio Code</a></li>
+  </ul></li>
+  <li><a href="#best-practices-for-type-hinting" id="toc-best-practices-for-type-hinting" class="nav-link" data-scroll-target="#best-practices-for-type-hinting">Best Practices for Type Hinting</a></li>
+  <li><a href="#example-putting-it-all-together" id="toc-example-putting-it-all-together" class="nav-link" data-scroll-target="#example-putting-it-all-together">Example: Putting It All Together</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -848,7 +861,7 @@ globalThis._qpyodideGetInstance = function() {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Héritage vs Composition</h1>
+<h1 class="title">Type Hinting, Typing Module, and Linters in Python</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Cours</div>
     <div class="quarto-category">Fondamentaux</div>
@@ -857,7 +870,7 @@ globalThis._qpyodideGetInstance = function() {
 
 <div>
   <div class="description">
-    Découvrez les différences entre l’héritage et la composition en programmation orientée objet, leurs avantages et inconvénients, et comment choisir la meilleure approche pour concevoir des classes flexibles et extensibles.
+    Learn about type hinting in Python, the typing module, and how to use linters for static type checking to improve code quality and maintainability.
   </div>
 </div>
 
@@ -886,71 +899,85 @@ globalThis._qpyodideGetInstance = function() {
 </header>
 
 
-<section id="héritage-vs-composition" class="level1">
-<h1>Héritage vs Composition</h1>
+<section id="type-hinting-typing-module-and-linters-in-python" class="level1">
+<h1>Type Hinting, Typing Module, and Linters in Python</h1>
 <hr>
-<section id="définitions" class="level3">
-<h3 class="anchored" data-anchor-id="définitions">Définitions</h3>
+<section id="introduction-to-type-hinting" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-to-type-hinting">Introduction to Type Hinting</h2>
+<p>Type hinting, introduced in Python 3.5 (PEP 484), allows developers to indicate the expected types of variables, function parameters, and return values. While Python remains dynamically typed, type hints provide several benefits:</p>
 <ol type="1">
-<li><p><strong>Héritage</strong> : Une relation “est-un” où une classe dérive d’une autre, héritant de ses attributs et méthodes.</p></li>
-<li><p><strong>Composition</strong> : Une relation “a-un” où une classe contient une instance d’une autre classe comme attribut.</p></li>
+<li>Improved code readability</li>
+<li>Better IDE support (autocomplete, error detection)</li>
+<li>Easier maintenance, especially for large codebases</li>
+<li>Catch certain types of errors before runtime</li>
 </ol>
-</section>
-<section id="comparaison" class="level3">
-<h3 class="anchored" data-anchor-id="comparaison">Comparaison</h3>
-<section id="héritage" class="level4">
-<h4 class="anchored" data-anchor-id="héritage">Héritage</h4>
+<section id="basic-type-hinting" class="level3">
+<h3 class="anchored" data-anchor-id="basic-type-hinting">Basic Type Hinting</h3>
 <div id="qpyodide-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
-<section id="composition" class="level4">
-<h4 class="anchored" data-anchor-id="composition">Composition</h4>
+</section>
+<section id="the-typing-module" class="level2">
+<h2 class="anchored" data-anchor-id="the-typing-module">The Typing Module</h2>
+<p>The <code>typing</code> module provides support for type hints. It includes a collection of types and tools for working with type annotations.</p>
+<section id="common-types-from-the-typing-module" class="level3">
+<h3 class="anchored" data-anchor-id="common-types-from-the-typing-module">Common Types from the Typing Module</h3>
 <div id="qpyodide-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
-</section>
-<section id="avantages-et-inconvénients" class="level3">
-<h3 class="anchored" data-anchor-id="avantages-et-inconvénients">Avantages et inconvénients</h3>
-<section id="héritage-1" class="level4">
-<h4 class="anchored" data-anchor-id="héritage-1">Héritage</h4>
-<p>Avantages : - Permet une réutilisation directe du code - Représente bien les relations hiérarchiques naturelles - Facilite le polymorphisme</p>
-<p>Inconvénients : - Peut créer un couplage fort entre les classes - Peut devenir complexe avec l’héritage multiple - Peut violer le principe de substitution de Liskov si mal utilisé</p>
-</section>
-<section id="composition-1" class="level4">
-<h4 class="anchored" data-anchor-id="composition-1">Composition</h4>
-<p>Avantages : - Offre une plus grande flexibilité - Permet une meilleure encapsulation - Facilite les changements de comportement à l’exécution</p>
-<p>Inconvénients : - Peut nécessiter plus de code initial - Peut être moins intuitif pour représenter certaines relations</p>
-</section>
-</section>
-<section id="quand-utiliser-lun-ou-lautre" class="level3">
-<h3 class="anchored" data-anchor-id="quand-utiliser-lun-ou-lautre">Quand utiliser l’un ou l’autre ?</h3>
-<ol type="1">
-<li><p><strong>Utilisez l’héritage quand</strong> :</p>
-<ul>
-<li>Il existe une relation “est-un” claire et logique</li>
-<li>Vous voulez réutiliser le code dans plusieurs classes dérivées</li>
-<li>Le comportement de la classe de base ne change pas souvent</li>
-</ul>
-<p>Exemple : <code>Chien</code> est un <code>Animal</code>, <code>Carré</code> est une <code>Forme</code></p></li>
-<li><p><strong>Utilisez la composition quand</strong> :</p>
-<ul>
-<li>Il existe une relation “a-un” ou “utilise-un”</li>
-<li>Vous voulez une plus grande flexibilité pour changer les comportements</li>
-<li>Vous voulez éviter les problèmes liés à l’héritage multiple</li>
-</ul>
-<p>Exemple : <code>Voiture</code> a un <code>Moteur</code>, <code>Ordinateur</code> a une <code>CPU</code></p></li>
-</ol>
-</section>
-<section id="principe-de-conception-favoriser-la-composition-sur-lhéritage" class="level3">
-<h3 class="anchored" data-anchor-id="principe-de-conception-favoriser-la-composition-sur-lhéritage">Principe de conception : “Favoriser la composition sur l’héritage”</h3>
-<p>Ce principe suggère d’utiliser la composition comme première approche, car elle offre généralement plus de flexibilité et un couplage plus faible. L’héritage devrait être utilisé judicieusement, lorsqu’il représente vraiment une relation “est-un”.</p>
-</section>
-<section id="exemple-combinant-héritage-et-composition" class="level3">
-<h3 class="anchored" data-anchor-id="exemple-combinant-héritage-et-composition">Exemple combinant héritage et composition</h3>
+<section id="type-aliases" class="level3">
+<h3 class="anchored" data-anchor-id="type-aliases">Type Aliases</h3>
 <div id="qpyodide-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>Dans cet exemple : - <code>Epee</code> hérite de <code>Arme</code> (relation “est-un”) - <code>Guerrier</code> hérite de <code>Personnage</code> (relation “est-un”) - <code>Personnage</code> utilise la composition avec <code>Arme</code> (relation “a-un”)</p>
-<p>Cette approche combine les avantages de l’héritage et de la composition, permettant une structure flexible et extensible.</p>
+</section>
+<section id="generic-types" class="level3">
+<h3 class="anchored" data-anchor-id="generic-types">Generic Types</h3>
+<div id="qpyodide-insertion-location-4"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+</section>
+<section id="type-checking-and-linters" class="level2">
+<h2 class="anchored" data-anchor-id="type-checking-and-linters">Type Checking and Linters</h2>
+<p>While Python doesn’t enforce type hints at runtime, various tools can perform static type checking:</p>
+<section id="mypy" class="level3">
+<h3 class="anchored" data-anchor-id="mypy">Mypy</h3>
+<p>Mypy is a static type checker for Python. It can catch many type-related errors before runtime.</p>
+<p>Installation:</p>
+<pre><code>pip install mypy</code></pre>
+<p>Usage:</p>
+<pre><code>mypy your_script.py</code></pre>
+</section>
+<section id="pylint" class="level3">
+<h3 class="anchored" data-anchor-id="pylint">Pylint</h3>
+<p>Pylint is a linter that can check for coding standards, errors, and code smells. It also supports type checking.</p>
+<p>Installation:</p>
+<pre><code>pip install pylint</code></pre>
+<p>Usage:</p>
+<pre><code>pylint your_script.py</code></pre>
+</section>
+<section id="pycharm-and-visual-studio-code" class="level3">
+<h3 class="anchored" data-anchor-id="pycharm-and-visual-studio-code">PyCharm and Visual Studio Code</h3>
+<p>Popular IDEs like PyCharm and VS Code have built-in support for type checking and can highlight type-related issues in real-time.</p>
+</section>
+</section>
+<section id="best-practices-for-type-hinting" class="level2">
+<h2 class="anchored" data-anchor-id="best-practices-for-type-hinting">Best Practices for Type Hinting</h2>
+<ol type="1">
+<li>Start with critical or complex functions</li>
+<li>Use type hints consistently throughout a module or project</li>
+<li>Utilize tools like Mypy to catch type-related errors</li>
+<li>Don’t overuse <code>Any</code> - it defeats the purpose of type hinting</li>
+<li>Consider using type hints in combination with docstrings for comprehensive documentation</li>
+</ol>
+</section>
+<section id="example-putting-it-all-together" class="level2">
+<h2 class="anchored" data-anchor-id="example-putting-it-all-together">Example: Putting It All Together</h2>
+<div id="qpyodide-insertion-location-5"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Type hinting, along with the <code>typing</code> module and linters, provides a powerful set of tools for improving code quality, readability, and maintainability in Python. While not enforced at runtime, these features can catch many errors early in the development process and provide better documentation and IDE support. As Python projects grow in size and complexity, incorporating type hints and static type checking becomes increasingly valuable.</p>
 
 
 </section>
@@ -1523,13 +1550,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../../content/Cours_2/2-Heritage.html" class="pagination-link" aria-label="Héritage en Python : Concept et intérêt">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Héritage en Python : Concept et intérêt</span>
+      <a href="../../content/Cours_3/3-type_to_create.html" class="pagination-link" aria-label="Class Creation: Standard vs type()">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Class Creation: Standard vs type()</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../content/Cours_2/4-Dunder.html" class="pagination-link" aria-label="Méthodes Dunder en Python">
-        <span class="nav-page-text">Méthodes Dunder en Python</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../content/Cours_3/5-Abstract_class.html" class="pagination-link" aria-label="Abstract Classes">
+        <span class="nav-page-text">Abstract Classes</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

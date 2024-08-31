@@ -8,9 +8,9 @@
 
 <meta name="author" content="Remi Genet">
 <meta name="dcterms.date" content="2024-08-31">
-<meta name="description" content="Learn about Protocol classes in Python, how to define and use them, and the advantages of using Protocols for defining interfaces and structural subtyping.">
+<meta name="description" content="A hands-on practical exercise on creating a decorator that injects payoff functions into a Monte Carlo option pricing simulator, exploring advanced concepts in Python and financial modeling.">
 
-<title>Protocol Classes – Programmation Orientée Objet en Python</title>
+<title>TP: Monte Carlo Option Pricing with Decorators – Programmation Orientée Objet en Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,8 +33,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../content/Cours_3/TP.html" rel="next">
-<link href="../../content/Cours_3/4-Abstract_class.html" rel="prev">
+<link href="../../content/Cours_4/TP_library.html" rel="next">
+<link href="../../content/Cours_4/5-library_decorators.html" rel="prev">
 <link href="../../content/.img/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"options":{"results":"markup","fig-width":7,"message":"true","out-height":"","context":"interactive","fig-height":5,"comment":"","label":"","autorun":"","read-only":"false","output":"true","classes":"","fig-cap":"","warning":"true","out-width":"700px","dpi":72},"id":1,"code":"from typing import Protocol\n\nclass Drawable(Protocol):\n    def draw(self) -> None:\n        ...\n\ndef render(item: Drawable) -> None:\n    item.draw()\n\n# A class that's compatible with Drawable\nclass Circle:\n    def draw(self) -> None:\n        print(\"Drawing a circle\")\n\n# Usage\nrender(Circle())  # This works because Circle has a draw method"},{"options":{"results":"markup","fig-width":7,"message":"true","out-height":"","context":"interactive","fig-height":5,"comment":"","label":"","autorun":"","read-only":"false","output":"true","classes":"","fig-cap":"","warning":"true","out-width":"700px","dpi":72},"id":2,"code":"from typing import Protocol, List\n\nclass Sized(Protocol):\n    def __len__(self) -> int:\n        ...\n\nclass Appendable(Protocol):\n    def append(self, item: str) -> None:\n        ...\n\nclass StringContainer(Sized, Appendable, Protocol):\n    def __iter__(self) -> Iterator[str]:\n        ...\n\ndef process_data(container: StringContainer) -> None:\n    print(f\"Container has {len(container)} items\")\n    container.append(\"New Item\")\n    for item in container:\n        print(item)\n\n# A class that's compatible with StringContainer\nclass MyList:\n    def __init__(self):\n        self._data: List[str] = []\n\n    def __len__(self) -> int:\n        return len(self._data)\n\n    def append(self, item: str) -> None:\n        self._data.append(item)\n\n    def __iter__(self):\n        return iter(self._data)\n\n# Usage\nmy_list = MyList()\nmy_list.append(\"Item 1\")\nmy_list.append(\"Item 2\")\n\nprocess_data(my_list)  # This works because MyList is compatible with StringContainer"},{"options":{"results":"markup","fig-width":7,"message":"true","out-height":"","context":"interactive","fig-height":5,"comment":"","label":"","autorun":"","read-only":"false","output":"true","classes":"","fig-cap":"","warning":"true","out-width":"700px","dpi":72},"id":3,"code":"from typing import runtime_checkable, Protocol\n\n@runtime_checkable\nclass Drawable(Protocol):\n    def draw(self) -> None:\n        ...\n\nclass Circle:\n    def draw(self) -> None:\n        print(\"Drawing a circle\")\n\nprint(isinstance(Circle(), Drawable))  # True"}];
+globalThis.qpyodideCellDetails = [{"options":{"comment":"","context":"interactive","fig-cap":"","fig-height":5,"warning":"true","dpi":72,"label":"","message":"true","out-width":"700px","read-only":"false","fig-width":7,"autorun":"","out-height":"","classes":"","output":"true","results":"markup"},"id":1,"code":"import numpy as np\n\nclass MonteCarloSimulator:\n    def __init__(self, S0, r, sigma, T):\n        self.S0 = S0      # Initial stock price\n        self.r = r        # Risk-free rate\n        self.sigma = sigma  # Volatility\n        self.T = T        # Time to maturity\n\n    def simulate_paths(self, num_simulations, num_steps):\n        dt = self.T / num_steps\n        paths = np.zeros((num_simulations, num_steps + 1))\n        paths[:, 0] = self.S0\n        \n        for i in range(1, num_steps + 1):\n            z = np.random.standard_normal(num_simulations)\n            paths[:, i] = paths[:, i-1] * np.exp((self.r - 0.5 * self.sigma**2) * dt + \n                                                 self.sigma * np.sqrt(dt) * z)\n        return paths\n\n    def price_option(self, num_simulations, num_steps):\n        paths = self.simulate_paths(num_simulations, num_steps)\n        payoffs = self.payoff(paths[:, -1])\n        option_price = np.exp(-self.r * self.T) * np.mean(payoffs)\n        return option_price\n\n    def payoff(self, ST):\n        raise NotImplementedError(\"Subclasses must implement payoff method\")"},{"options":{"comment":"","context":"interactive","fig-cap":"","fig-height":5,"warning":"true","dpi":72,"label":"","message":"true","out-width":"700px","read-only":"false","fig-width":7,"autorun":"","out-height":"","classes":"","output":"true","results":"markup"},"id":2,"code":"def option_pricer(payoff_func):\n    # Your implementation here\n    pass"},{"options":{"comment":"","context":"interactive","fig-cap":"","fig-height":5,"warning":"true","dpi":72,"label":"","message":"true","out-width":"700px","read-only":"false","fig-width":7,"autorun":"","out-height":"","classes":"","output":"true","results":"markup"},"id":3,"code":"@option_pricer\ndef european_call_payoff(ST, K=100):\n    return np.maximum(ST - K, 0)\n\n@option_pricer\ndef european_put_payoff(ST, K=100):\n    return np.maximum(K - ST, 0)\n\n# Usage\nif __name__ == \"__main__\":\n    call_pricer = european_call_payoff(K=100)(S0=100, r=0.05, sigma=0.2, T=1)\n    call_price = call_pricer.price_option(num_simulations=100000, num_steps=252)\n    print(f\"European Call Option Price: {call_price:.4f}\")\n\n    put_pricer = european_put_payoff(K=100)(S0=100, r=0.05, sigma=0.2, T=1)\n    put_price = put_pricer.price_option(num_simulations=100000, num_steps=252)\n    print(f\"European Put Option Price: {put_price:.4f}\")"}];
 
 
 </script>
@@ -431,19 +431,17 @@ globalThis._qpyodideGetInstance = function() {
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Protocol Classes – Programmation Orientée Objet en Python">
-<meta property="og:description" content="Learn about Protocol classes in Python, how to define and use them, and the advantages of using Protocols for defining interfaces and structural subtyping.">
-<meta property="og:image" content="https://remigenet.github.io/OOP_Python/content/Cours_3/.img/EventLoopPythonAsyncio-5.png">
+<meta property="og:title" content="TP: Monte Carlo Option Pricing with Decorators – Programmation Orientée Objet en Python">
+<meta property="og:description" content="A hands-on practical exercise on creating a decorator that injects payoff functions into a Monte Carlo option pricing simulator, exploring advanced concepts in Python and financial modeling.">
+<meta property="og:image" content="https://remigenet.github.io/OOP_Python/content/Cours_4/.img/monte_carlo_option_tp.webp">
 <meta property="og:site_name" content="Programmation Orientée Objet en Python">
-<meta property="og:image:height" content="1221">
-<meta property="og:image:width" content="2000">
-<meta name="citation_title" content="Protocol Classes">
+<meta name="citation_title" content="TP: Monte Carlo Option Pricing with Decorators">
 <meta name="citation_author" content="Remi Genet">
 <meta name="citation_publication_date" content="2024-08-31">
 <meta name="citation_cover_date" content="2024-08-31">
 <meta name="citation_year" content="2024">
 <meta name="citation_online_date" content="2024-08-31">
-<meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_3/5-Protocol.html">
+<meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_4/TP_option.html">
 <meta name="citation_language" content="en">
 </head>
 
@@ -538,6 +536,10 @@ globalThis._qpyodideGetInstance = function() {
     <a class="dropdown-item" href="../../content/Cours_2/4-Dunder.html">
  <span class="dropdown-text">Méthodes Dunder en Python</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/5-call_a_dog.html">
+ <span class="dropdown-text">Python <strong>call</strong> Method: A Fun Exploration</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
@@ -568,15 +570,19 @@ globalThis._qpyodideGetInstance = function() {
  <span class="dropdown-text">Polymorphism in Python: Function Overloading and Type Checking</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/3-Type_Hinting.html">
+    <a class="dropdown-item" href="../../content/Cours_3/3-type_to_create.html">
+ <span class="dropdown-text">Class Creation: Standard vs type()</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_3/4-Type_Hinting.html">
  <span class="dropdown-text">Type Hinting, Typing Module, and Linters in Python</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/4-Abstract_class.html">
+    <a class="dropdown-item" href="../../content/Cours_3/5-Abstract_class.html">
  <span class="dropdown-text">Abstract Classes</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/5-Protocol.html">
+    <a class="dropdown-item" href="../../content/Cours_3/6-Protocol.html">
  <span class="dropdown-text">Protocol Classes</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
@@ -608,11 +614,19 @@ globalThis._qpyodideGetInstance = function() {
     <a class="dropdown-item" href="../../content/Cours_4/4-builtin_decorator.html">
  <span class="dropdown-text">Built-in Decorators and Standard Library Decorators in Python</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_4/5-library_decorators.html">
+ <span class="dropdown-text">Practical Decorators in Python Libraries</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
-    <a class="dropdown-item" href="../../content/Cours_4/TP.html">
- <span class="dropdown-text">TP</span></a>
+    <a class="dropdown-item" href="../../content/Cours_4/TP_option.html">
+ <span class="dropdown-text">TP: Monte Carlo Option Pricing with Decorators</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_4/TP_library.html">
+ <span class="dropdown-text">TP: Optimizing Heston Model Monte Carlo Simulation</span></a>
   </li>  
     </ul>
   </li>
@@ -724,7 +738,7 @@ globalThis._qpyodideGetInstance = function() {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_3/5-Protocol.html">Protocol Classes</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_4/TP_option.html">Travaux Pratiques</a></li><li class="breadcrumb-item"><a href="../../content/Cours_4/TP_option.html">TP: Monte Carlo Option Pricing with Decorators</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -738,38 +752,32 @@ globalThis._qpyodideGetInstance = function() {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_3/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Polymorphisme et Surcharge</span></a>
+  <a href="../../content/Cours_4/1-Design_Pattern.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Design Patterns</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_3/1-Polymorphism.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Polymorphism in Object-Oriented Programming</span></a>
+  <a href="../../content/Cours_4/2-Decorator_theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The decorator pattern</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_3/2-Overloading.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Polymorphism in Python: Function Overloading and Type Checking</span></a>
+  <a href="../../content/Cours_4/3-Decorator_practically.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Decorator Practically</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_3/3-Type_Hinting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Type Hinting, Typing Module, and Linters in Python</span></a>
+  <a href="../../content/Cours_4/4-builtin_decorator.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Built-in Decorators and Standard Library Decorators in Python</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_3/4-Abstract_class.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Abstract Classes</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_3/5-Protocol.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Protocol Classes</span></a>
+  <a href="../../content/Cours_4/5-library_decorators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Practical Decorators in Python Libraries</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -783,8 +791,14 @@ globalThis._qpyodideGetInstance = function() {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_3/TP.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">TP</span></a>
+  <a href="../../content/Cours_4/TP_option.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">TP: Monte Carlo Option Pricing with Decorators</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_4/TP_library.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP: Optimizing Heston Model Monte Carlo Simulation</span></a>
   </div>
 </li>
       </ul>
@@ -799,15 +813,15 @@ globalThis._qpyodideGetInstance = function() {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#protocol-classes-in-python" id="toc-protocol-classes-in-python" class="nav-link active" data-scroll-target="#protocol-classes-in-python">Protocol Classes in Python</a>
+  <li><a href="#tp-monte-carlo-option-pricing-with-decorators" id="toc-tp-monte-carlo-option-pricing-with-decorators" class="nav-link active" data-scroll-target="#tp-monte-carlo-option-pricing-with-decorators">TP: Monte Carlo Option Pricing with Decorators</a>
   <ul class="collapse">
-  <li><a href="#introduction-to-protocols" id="toc-introduction-to-protocols" class="nav-link" data-scroll-target="#introduction-to-protocols">Introduction to Protocols</a></li>
-  <li><a href="#key-concepts" id="toc-key-concepts" class="nav-link" data-scroll-target="#key-concepts">Key Concepts</a></li>
-  <li><a href="#basic-usage-of-protocols" id="toc-basic-usage-of-protocols" class="nav-link" data-scroll-target="#basic-usage-of-protocols">Basic Usage of Protocols</a></li>
-  <li><a href="#advantages-of-protocols" id="toc-advantages-of-protocols" class="nav-link" data-scroll-target="#advantages-of-protocols">Advantages of Protocols</a></li>
-  <li><a href="#more-complex-example" id="toc-more-complex-example" class="nav-link" data-scroll-target="#more-complex-example">More Complex Example</a></li>
-  <li><a href="#runtime-checkable-protocols" id="toc-runtime-checkable-protocols" class="nav-link" data-scroll-target="#runtime-checkable-protocols">Runtime Checkable Protocols</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#scenario-flexible-option-pricing-system" id="toc-scenario-flexible-option-pricing-system" class="nav-link" data-scroll-target="#scenario-flexible-option-pricing-system">Scenario: Flexible Option Pricing System</a></li>
+  <li><a href="#step-1-implement-the-base-monte-carlo-simulator" id="toc-step-1-implement-the-base-monte-carlo-simulator" class="nav-link" data-scroll-target="#step-1-implement-the-base-monte-carlo-simulator">Step 1: Implement the Base Monte Carlo Simulator</a></li>
+  <li><a href="#step-2-implement-the-decorator" id="toc-step-2-implement-the-decorator" class="nav-link" data-scroll-target="#step-2-implement-the-decorator">Step 2: Implement the Decorator</a></li>
+  <li><a href="#step-3-use-the-decorator" id="toc-step-3-use-the-decorator" class="nav-link" data-scroll-target="#step-3-use-the-decorator">Step 3: Use the Decorator</a></li>
+  <li><a href="#your-task" id="toc-your-task" class="nav-link" data-scroll-target="#your-task">Your Task</a></li>
+  <li><a href="#hints" id="toc-hints" class="nav-link" data-scroll-target="#hints">Hints</a></li>
+  <li><a href="#bonus-challenges" id="toc-bonus-challenges" class="nav-link" data-scroll-target="#bonus-challenges">Bonus Challenges</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -825,18 +839,18 @@ globalThis._qpyodideGetInstance = function() {
   });
 </script>
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_4/TP_option.html">Travaux Pratiques</a></li><li class="breadcrumb-item"><a href="../../content/Cours_4/TP_option.html">TP: Monte Carlo Option Pricing with Decorators</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Protocol Classes</h1>
+<h1 class="title">TP: Monte Carlo Option Pricing with Decorators</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Cours</div>
-    <div class="quarto-category">Fondamentaux</div>
+    <div class="quarto-category">Course</div>
+    <div class="quarto-category">Financial Programming</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    Learn about Protocol classes in Python, how to define and use them, and the advantages of using Protocols for defining interfaces and structural subtyping.
+    A hands-on practical exercise on creating a decorator that injects payoff functions into a Monte Carlo option pricing simulator, exploring advanced concepts in Python and financial modeling.
   </div>
 </div>
 
@@ -865,54 +879,62 @@ globalThis._qpyodideGetInstance = function() {
 </header>
 
 
-<section id="protocol-classes-in-python" class="level1">
-<h1>Protocol Classes in Python</h1>
-<hr>
-<section id="introduction-to-protocols" class="level2">
-<h2 class="anchored" data-anchor-id="introduction-to-protocols">Introduction to Protocols</h2>
-<p>Protocols, introduced in Python 3.8, provide a way to define structural subtyping (often called “duck typing”). They allow you to define interfaces in a more flexible and Pythonic way compared to abstract base classes.</p>
+<section id="tp-monte-carlo-option-pricing-with-decorators" class="level1">
+<h1>TP: Monte Carlo Option Pricing with Decorators</h1>
+<p>In this practical exercise, we’ll create a Monte Carlo simulator for option pricing and use decorators to inject different payoff functions into the simulator. This approach will allow us to easily create and price various types of options using the same underlying simulation framework.</p>
+<section id="scenario-flexible-option-pricing-system" class="level2">
+<h2 class="anchored" data-anchor-id="scenario-flexible-option-pricing-system">Scenario: Flexible Option Pricing System</h2>
+<p>We want to build a system that can price different types of options using Monte Carlo simulation. The system should be flexible enough to handle various payoff structures without modifying the core simulation logic.</p>
 </section>
-<section id="key-concepts" class="level2">
-<h2 class="anchored" data-anchor-id="key-concepts">Key Concepts</h2>
-<ol type="1">
-<li><strong>Structural Subtyping</strong>: An object is considered a subtype if it has the required methods and attributes, regardless of inheritance.</li>
-<li><strong>No Runtime Enforcement</strong>: Protocols are primarily used for static type checking and don’t enforce method implementation at runtime.</li>
-<li><strong>Flexibility</strong>: Classes don’t need to explicitly inherit from a Protocol to be considered compatible.</li>
-</ol>
-</section>
-<section id="basic-usage-of-protocols" class="level2">
-<h2 class="anchored" data-anchor-id="basic-usage-of-protocols">Basic Usage of Protocols</h2>
-<p>To use Protocols, you need to import from the <code>typing</code> module:</p>
+<section id="step-1-implement-the-base-monte-carlo-simulator" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-implement-the-base-monte-carlo-simulator">Step 1: Implement the Base Monte Carlo Simulator</h2>
+<p>First, let’s implement our base <code>MonteCarloSimulator</code> class:</p>
 <div id="qpyodide-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>In this example: - <code>Drawable</code> is a Protocol that defines an interface with a <code>draw</code> method. - <code>Circle</code> is compatible with <code>Drawable</code> because it has a <code>draw</code> method, even though it doesn’t explicitly inherit from <code>Drawable</code>.</p>
 </section>
-<section id="advantages-of-protocols" class="level2">
-<h2 class="anchored" data-anchor-id="advantages-of-protocols">Advantages of Protocols</h2>
+<section id="step-2-implement-the-decorator" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-implement-the-decorator">Step 2: Implement the Decorator</h2>
+<p>Now, implement a decorator called <code>option_pricer</code>. This decorator should:</p>
 <ol type="1">
-<li><strong>Flexibility</strong>: You can define interfaces for existing classes without modifying them.</li>
-<li><strong>Duck Typing</strong>: Aligns well with Python’s “duck typing” philosophy.</li>
-<li><strong>Static Type Checking</strong>: Provides benefits of static typing without runtime overhead.</li>
-<li><strong>Backwards Compatibility</strong>: Can be used with existing codebases without modification.</li>
+<li>Take a payoff function as input</li>
+<li>Create a new class that inherits from <code>MonteCarloSimulator</code></li>
+<li>Inject the input function as the <code>payoff</code> method of the new class</li>
+<li>Return the new class</li>
 </ol>
-</section>
-<section id="more-complex-example" class="level2">
-<h2 class="anchored" data-anchor-id="more-complex-example">More Complex Example</h2>
-<p>Let’s look at a more comprehensive example using Protocols:</p>
+<p>Here’s the skeleton for the decorator:</p>
 <div id="qpyodide-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>In this example: - We define multiple Protocols: <code>Sized</code>, <code>Appendable</code>, and <code>StringContainer</code>. - <code>StringContainer</code> combines multiple Protocols. - <code>MyList</code> is compatible with <code>StringContainer</code> because it implements all required methods. - <code>process_data</code> can work with any object that satisfies the <code>StringContainer</code> Protocol.</p>
 </section>
-<section id="runtime-checkable-protocols" class="level2">
-<h2 class="anchored" data-anchor-id="runtime-checkable-protocols">Runtime Checkable Protocols</h2>
-<p>While Protocols are primarily for static type checking, you can make them runtime-checkable:</p>
+<section id="step-3-use-the-decorator" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-use-the-decorator">Step 3: Use the Decorator</h2>
+<p>Once you’ve implemented the decorator, you should be able to use it like this:</p>
 <div id="qpyodide-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>The <code>@runtime_checkable</code> decorator allows <code>isinstance()</code> checks, but be cautious as it only checks for the existence of the methods, not their signatures.</p>
 </section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>Protocols in Python provide a flexible and powerful way to define interfaces. They offer the benefits of static typing and interface definition while maintaining Python’s dynamic and duck-typed nature. Protocols are especially useful in large codebases, for defining clear contracts between different parts of a system, and for working with existing code that can’t be modified to inherit from specific base classes.</p>
+<section id="your-task" class="level2">
+<h2 class="anchored" data-anchor-id="your-task">Your Task</h2>
+<ol type="1">
+<li>Implement the <code>option_pricer</code> decorator to make the above code work.</li>
+<li>Ensure that the new classes created by the decorator inherit from <code>MonteCarloSimulator</code>.</li>
+<li>Make sure that the <code>payoff</code> method in the new classes calls the decorated function.</li>
+</ol>
+</section>
+<section id="hints" class="level2">
+<h2 class="anchored" data-anchor-id="hints">Hints</h2>
+<ul>
+<li>You can use <code>type()</code> to create a new class dynamically.</li>
+<li>The payoff function will become a method, so it needs to take <code>self</code> as its first parameter.</li>
+<li>You can use <code>__name__</code> attribute of the function to name your new class.</li>
+<li>You can use functools wraps to keep tracking of the base function</li>
+</ul>
+</section>
+<section id="bonus-challenges" class="level2">
+<h2 class="anchored" data-anchor-id="bonus-challenges">Bonus Challenges</h2>
+<ol type="1">
+<li><p>Modify the decorator to allow for additional parameters in the payoff function, such as strike price or barrier levels.</p></li>
+<li><p>Implement a more complex option type, such as an Asian option, where the payoff depends on the average stock price over the simulation period.</p></li>
+<li><p>Add a method to calculate the standard error of the Monte Carlo estimate and use it to compute confidence intervals for the option prices.</p></li>
+</ol>
 
 
 </section>
@@ -1485,13 +1507,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../../content/Cours_3/4-Abstract_class.html" class="pagination-link" aria-label="Abstract Classes">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Abstract Classes</span>
+      <a href="../../content/Cours_4/5-library_decorators.html" class="pagination-link" aria-label="Practical Decorators in Python Libraries">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Practical Decorators in Python Libraries</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../content/Cours_3/TP.html" class="pagination-link" aria-label="TP">
-        <span class="nav-page-text">TP</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../content/Cours_4/TP_library.html" class="pagination-link" aria-label="TP: Optimizing Heston Model Monte Carlo Simulation">
+        <span class="nav-page-text">TP: Optimizing Heston Model Monte Carlo Simulation</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

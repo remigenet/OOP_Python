@@ -8,9 +8,9 @@
 
 <meta name="author" content="Remi Genet">
 <meta name="dcterms.date" content="2024-08-31">
-<meta name="description" content="Learn about type hinting in Python, the typing module, and how to use linters for static type checking to improve code quality and maintainability.">
+<meta name="description" content="Explore the quirky side of Python’s call method with fun examples and insights into memory allocation. A lighthearted break in our Python deep dive.">
 
-<title>Type Hinting, Typing Module, and Linters in Python – Programmation Orientée Objet en Python</title>
+<title>Python call Method: A Fun Exploration – Programmation Orientée Objet en Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,8 +33,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../content/Cours_3/4-Abstract_class.html" rel="next">
-<link href="../../content/Cours_3/2-Overloading.html" rel="prev">
+<link href="../../content/Cours_2/TP_heritage.html" rel="next">
+<link href="../../content/Cours_2/4-Dunder.html" rel="prev">
 <link href="../../content/.img/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"def greet(name: str) -> str:\n    return f\"Hello, {name}!\"\n\nx: int = 5\ny: float = 3.14\nnames: list[str] = [\"Alice\", \"Bob\", \"Charlie\"]","options":{"message":"true","fig-height":5,"label":"","read-only":"false","warning":"true","comment":"","fig-width":7,"autorun":"","context":"interactive","output":"true","dpi":72,"fig-cap":"","out-width":"700px","results":"markup","classes":"","out-height":""},"id":1},{"code":"from typing import List, Dict, Tuple, Optional, Union, Any\n\ndef process_data(items: List[int]) -> Dict[str, int]:\n    ...\n\ndef get_user_info() -> Tuple[str, int, Optional[str]]:\n    ...\n\ndef handle_input(value: Union[int, str]) -> Any:\n    ...","options":{"message":"true","fig-height":5,"label":"","read-only":"false","warning":"true","comment":"","fig-width":7,"autorun":"","context":"interactive","output":"true","dpi":72,"fig-cap":"","out-width":"700px","results":"markup","classes":"","out-height":""},"id":2},{"code":"from typing import List, Dict\n\nVector = List[float]\nMatrix = List[Vector]\n\ndef scale_vector(v: Vector, factor: float) -> Vector:\n    return [x * factor for x in v]","options":{"message":"true","fig-height":5,"label":"","read-only":"false","warning":"true","comment":"","fig-width":7,"autorun":"","context":"interactive","output":"true","dpi":72,"fig-cap":"","out-width":"700px","results":"markup","classes":"","out-height":""},"id":3},{"code":"from typing import TypeVar, List\n\nT = TypeVar('T')\n\ndef first_element(l: List[T]) -> T:\n    return l[0]","options":{"message":"true","fig-height":5,"label":"","read-only":"false","warning":"true","comment":"","fig-width":7,"autorun":"","context":"interactive","output":"true","dpi":72,"fig-cap":"","out-width":"700px","results":"markup","classes":"","out-height":""},"id":4},{"code":"from typing import List, Dict, Optional\n\nclass User:\n    def __init__(self, name: str, age: int):\n        self.name = name\n        self.age = age\n\ndef get_user_data(users: List[User]) -> Dict[str, int]:\n    return {user.name: user.age for user in users}\n\ndef find_user(users: List[User], name: str) -> Optional[User]:\n    for user in users:\n        if user.name == name:\n            return user\n    return None\n\n# Usage\nusers: List[User] = [User(\"Alice\", 30), User(\"Bob\", 25)]\nuser_data: Dict[str, int] = get_user_data(users)\nfound_user: Optional[User] = find_user(users, \"Alice\")\n\nif found_user:\n    print(f\"Found user: {found_user.name}, Age: {found_user.age}\")\nelse:\n    print(\"User not found\")","options":{"message":"true","fig-height":5,"label":"","read-only":"false","warning":"true","comment":"","fig-width":7,"autorun":"","context":"interactive","output":"true","dpi":72,"fig-cap":"","out-width":"700px","results":"markup","classes":"","out-height":""},"id":5}];
+globalThis.qpyodideCellDetails = [{"id":1,"options":{"output":"true","results":"markup","comment":"","context":"interactive","autorun":"","warning":"true","message":"true","read-only":"false","out-width":"700px","out-height":"","label":"","fig-height":5,"dpi":72,"fig-cap":"","classes":"","fig-width":7},"code":"Dog()\nDog()()\nDog()()()()()\nDog()()()()()()()()()()  # and so on..."},{"id":2,"options":{"output":"true","results":"markup","comment":"","context":"interactive","autorun":"","warning":"true","message":"true","read-only":"false","out-width":"700px","out-height":"","label":"","fig-height":5,"dpi":72,"fig-cap":"","classes":"","fig-width":7},"code":"class Dog:\n    def __call__(self):\n        return Dog\n\nprint(Dog())          # <__main__.Dog object at 0x...>\nprint(Dog()())        # <class '__main__.Dog'>\nprint(Dog()()())      # <__main__.Dog object at 0x...>\nprint(Dog()()()())    # <class '__main__.Dog'>\nprint(Dog()()()()())  # <__main__.Dog object at 0x...>"},{"id":3,"options":{"output":"true","results":"markup","comment":"","context":"interactive","autorun":"","warning":"true","message":"true","read-only":"false","out-width":"700px","out-height":"","label":"","fig-height":5,"dpi":72,"fig-cap":"","classes":"","fig-width":7},"code":"dog = Dog()\nprint(dog)  # <__main__.Dog object at 0x7f5d2983e2a0>\ndog = Dog()\nprint(dog)  # <__main__.Dog object at 0x7f5d29859730>\ndog = dog()\nprint(dog)  # <class '__main__.Dog'>\ndog = dog()\nprint(dog)  # <__main__.Dog object at 0x7f5d2983e2a0>\ndog = dog()\nprint(dog)  # <class '__main__.Dog'>\ndog = dog()\nprint(dog)  # <__main__.Dog object at 0x7f5d2983e2a0>\ndog = Dog()\nprint(dog)  # <__main__.Dog object at 0x7f5d29859790>"},{"id":4,"options":{"output":"true","results":"markup","comment":"","context":"interactive","autorun":"","warning":"true","message":"true","read-only":"false","out-width":"700px","out-height":"","label":"","fig-height":5,"dpi":72,"fig-cap":"","classes":"","fig-width":7},"code":"class Dog:\n    def __call__(self):\n        return self\n\nprint(Dog())      # <__main__.Dog object at 0x7f5d2983fc20>\nprint(Dog()())    # <__main__.Dog object at 0x7f5d2983fc20>\nprint(Dog()()())  # <__main__.Dog object at 0x7f5d2983fc20>"},{"id":5,"options":{"output":"true","results":"markup","comment":"","context":"interactive","autorun":"","warning":"true","message":"true","read-only":"false","out-width":"700px","out-height":"","label":"","fig-height":5,"dpi":72,"fig-cap":"","classes":"","fig-width":7},"code":"class Dog:\n    def __call__(self):\n        return Dog()\n\nprint(Dog())      # <__main__.Dog object at 0x7f5d28762c60>\nprint(Dog()())    # <__main__.Dog object at 0x7f5d28763050>\nprint(Dog()()())  # <__main__.Dog object at 0x7f5d28763050>"},{"id":6,"options":{"output":"true","results":"markup","comment":"","context":"interactive","autorun":"","warning":"true","message":"true","read-only":"false","out-width":"700px","out-height":"","label":"","fig-height":5,"dpi":72,"fig-cap":"","classes":"","fig-width":7},"code":"class Dog:\n    c = 0\n    _instances = {}\n    def __new__(cls):\n        cls.c += 1\n        cls._instances[cls.c] = super().__new__(cls)\n        return cls._instances[cls.c]\n    \n    def __call__(self):\n        return Dog\n\nprint(Dog())          # <__main__.Dog object at 0x7f5d28762930>\nprint(Dog()())        # <class '__main__.Dog'>\nprint(Dog()()())      # <__main__.Dog object at 0x7f5d287626c0>\nprint(Dog()()()())    # <class '__main__.Dog'>\nprint(Dog()()()()())  # <__main__.Dog object at 0x7f5d28762990>"}];
 
 
 </script>
@@ -431,19 +431,17 @@ globalThis._qpyodideGetInstance = function() {
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Type Hinting, Typing Module, and Linters in Python – Programmation Orientée Objet en Python">
-<meta property="og:description" content="Learn about type hinting in Python, the typing module, and how to use linters for static type checking to improve code quality and maintainability.">
-<meta property="og:image" content="https://remigenet.github.io/OOP_Python/content/Cours_3/.img/numpy.png">
+<meta property="og:title" content="Python call Method: A Fun Exploration – Programmation Orientée Objet en Python">
+<meta property="og:description" content="Explore the quirky side of Python’s call method with fun examples and insights into memory allocation. A lighthearted break in our Python deep dive.">
+<meta property="og:image" content="https://remigenet.github.io/OOP_Python/content/Cours_2/.img/python_fun.webp">
 <meta property="og:site_name" content="Programmation Orientée Objet en Python">
-<meta property="og:image:height" content="166">
-<meta property="og:image:width" content="303">
-<meta name="citation_title" content="Type Hinting, Typing Module, and Linters in Python">
+<meta name="citation_title" content="Python __call__ Method: A Fun Exploration">
 <meta name="citation_author" content="Remi Genet">
 <meta name="citation_publication_date" content="2024-08-31">
 <meta name="citation_cover_date" content="2024-08-31">
 <meta name="citation_year" content="2024">
 <meta name="citation_online_date" content="2024-08-31">
-<meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_3/3-Type_Hinting.html">
+<meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_2/5-call_a_dog.html">
 <meta name="citation_language" content="en">
 </head>
 
@@ -538,6 +536,10 @@ globalThis._qpyodideGetInstance = function() {
     <a class="dropdown-item" href="../../content/Cours_2/4-Dunder.html">
  <span class="dropdown-text">Méthodes Dunder en Python</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/5-call_a_dog.html">
+ <span class="dropdown-text">Python <strong>call</strong> Method: A Fun Exploration</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
@@ -568,15 +570,19 @@ globalThis._qpyodideGetInstance = function() {
  <span class="dropdown-text">Polymorphism in Python: Function Overloading and Type Checking</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/3-Type_Hinting.html">
+    <a class="dropdown-item" href="../../content/Cours_3/3-type_to_create.html">
+ <span class="dropdown-text">Class Creation: Standard vs type()</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_3/4-Type_Hinting.html">
  <span class="dropdown-text">Type Hinting, Typing Module, and Linters in Python</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/4-Abstract_class.html">
+    <a class="dropdown-item" href="../../content/Cours_3/5-Abstract_class.html">
  <span class="dropdown-text">Abstract Classes</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/5-Protocol.html">
+    <a class="dropdown-item" href="../../content/Cours_3/6-Protocol.html">
  <span class="dropdown-text">Protocol Classes</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
@@ -608,11 +614,19 @@ globalThis._qpyodideGetInstance = function() {
     <a class="dropdown-item" href="../../content/Cours_4/4-builtin_decorator.html">
  <span class="dropdown-text">Built-in Decorators and Standard Library Decorators in Python</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_4/5-library_decorators.html">
+ <span class="dropdown-text">Practical Decorators in Python Libraries</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
-    <a class="dropdown-item" href="../../content/Cours_4/TP.html">
- <span class="dropdown-text">TP</span></a>
+    <a class="dropdown-item" href="../../content/Cours_4/TP_option.html">
+ <span class="dropdown-text">TP: Monte Carlo Option Pricing with Decorators</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_4/TP_library.html">
+ <span class="dropdown-text">TP: Optimizing Heston Model Monte Carlo Simulation</span></a>
   </li>  
     </ul>
   </li>
@@ -724,7 +738,7 @@ globalThis._qpyodideGetInstance = function() {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_3/3-Type_Hinting.html">Type Hinting, Typing Module, and Linters in Python</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_2/5-call_a_dog.html">Python <strong>call</strong> Method: A Fun Exploration</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -738,38 +752,38 @@ globalThis._qpyodideGetInstance = function() {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_3/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Polymorphisme et Surcharge</span></a>
+  <a href="../../content/Cours_2/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Encapsulation, Heritage, Composition et Dunder</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_3/1-Polymorphism.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Polymorphism in Object-Oriented Programming</span></a>
+  <a href="../../content/Cours_2/1-Encapsulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Encapsulation en Python</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_3/2-Overloading.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Polymorphism in Python: Function Overloading and Type Checking</span></a>
+  <a href="../../content/Cours_2/2-Heritage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Héritage en Python : Concept et intérêt</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_3/3-Type_Hinting.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Type Hinting, Typing Module, and Linters in Python</span></a>
+  <a href="../../content/Cours_2/3-Composition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Héritage vs Composition</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_3/4-Abstract_class.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Abstract Classes</span></a>
+  <a href="../../content/Cours_2/4-Dunder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Méthodes Dunder en Python</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_3/5-Protocol.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Protocol Classes</span></a>
+  <a href="../../content/Cours_2/5-call_a_dog.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Python <strong>call</strong> Method: A Fun Exploration</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -783,8 +797,14 @@ globalThis._qpyodideGetInstance = function() {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_3/TP.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">TP</span></a>
+  <a href="../../content/Cours_2/TP_heritage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP: Heritage avec le pricing d’option</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_2/TP_dunder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP: Heritage avec le pricing d’option</span></a>
   </div>
 </li>
       </ul>
@@ -799,26 +819,16 @@ globalThis._qpyodideGetInstance = function() {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#type-hinting-typing-module-and-linters-in-python" id="toc-type-hinting-typing-module-and-linters-in-python" class="nav-link active" data-scroll-target="#type-hinting-typing-module-and-linters-in-python">Type Hinting, Typing Module, and Linters in Python</a>
+  <li><a href="#python-__call__-method-a-fun-exploration" id="toc-python-__call__-method-a-fun-exploration" class="nav-link active" data-scroll-target="#python-__call__-method-a-fun-exploration">Python <code>__call__</code> Method: A Fun Exploration</a>
   <ul class="collapse">
-  <li><a href="#introduction-to-type-hinting" id="toc-introduction-to-type-hinting" class="nav-link" data-scroll-target="#introduction-to-type-hinting">Introduction to Type Hinting</a>
+  <li><a href="#the-infinitely-callable-dog" id="toc-the-infinitely-callable-dog" class="nav-link" data-scroll-target="#the-infinitely-callable-dog">The Infinitely Callable Dog</a>
   <ul class="collapse">
-  <li><a href="#basic-type-hinting" id="toc-basic-type-hinting" class="nav-link" data-scroll-target="#basic-type-hinting">Basic Type Hinting</a></li>
+  <li><a href="#step-1-basic-implementation" id="toc-step-1-basic-implementation" class="nav-link" data-scroll-target="#step-1-basic-implementation">Step 1: Basic Implementation</a></li>
+  <li><a href="#step-2-memory-allocation-insights" id="toc-step-2-memory-allocation-insights" class="nav-link" data-scroll-target="#step-2-memory-allocation-insights">Step 2: Memory Allocation Insights</a></li>
+  <li><a href="#step-3-always-return-self" id="toc-step-3-always-return-self" class="nav-link" data-scroll-target="#step-3-always-return-self">Step 3: Always Return Self</a></li>
+  <li><a href="#step-4-new-instance-every-call" id="toc-step-4-new-instance-every-call" class="nav-link" data-scroll-target="#step-4-new-instance-every-call">Step 4: New Instance Every Call</a></li>
+  <li><a href="#step-5-unique-instance-every-time" id="toc-step-5-unique-instance-every-time" class="nav-link" data-scroll-target="#step-5-unique-instance-every-time">Step 5: Unique Instance Every Time</a></li>
   </ul></li>
-  <li><a href="#the-typing-module" id="toc-the-typing-module" class="nav-link" data-scroll-target="#the-typing-module">The Typing Module</a>
-  <ul class="collapse">
-  <li><a href="#common-types-from-the-typing-module" id="toc-common-types-from-the-typing-module" class="nav-link" data-scroll-target="#common-types-from-the-typing-module">Common Types from the Typing Module</a></li>
-  <li><a href="#type-aliases" id="toc-type-aliases" class="nav-link" data-scroll-target="#type-aliases">Type Aliases</a></li>
-  <li><a href="#generic-types" id="toc-generic-types" class="nav-link" data-scroll-target="#generic-types">Generic Types</a></li>
-  </ul></li>
-  <li><a href="#type-checking-and-linters" id="toc-type-checking-and-linters" class="nav-link" data-scroll-target="#type-checking-and-linters">Type Checking and Linters</a>
-  <ul class="collapse">
-  <li><a href="#mypy" id="toc-mypy" class="nav-link" data-scroll-target="#mypy">Mypy</a></li>
-  <li><a href="#pylint" id="toc-pylint" class="nav-link" data-scroll-target="#pylint">Pylint</a></li>
-  <li><a href="#pycharm-and-visual-studio-code" id="toc-pycharm-and-visual-studio-code" class="nav-link" data-scroll-target="#pycharm-and-visual-studio-code">PyCharm and Visual Studio Code</a></li>
-  </ul></li>
-  <li><a href="#best-practices-for-type-hinting" id="toc-best-practices-for-type-hinting" class="nav-link" data-scroll-target="#best-practices-for-type-hinting">Best Practices for Type Hinting</a></li>
-  <li><a href="#example-putting-it-all-together" id="toc-example-putting-it-all-together" class="nav-link" data-scroll-target="#example-putting-it-all-together">Example: Putting It All Together</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul></li>
   </ul>
@@ -839,16 +849,16 @@ globalThis._qpyodideGetInstance = function() {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Type Hinting, Typing Module, and Linters in Python</h1>
+<h1 class="title">Python <strong>call</strong> Method: A Fun Exploration</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Cours</div>
-    <div class="quarto-category">Fondamentaux</div>
+    <div class="quarto-category">Course</div>
+    <div class="quarto-category">Python Quirks</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    Learn about type hinting in Python, the typing module, and how to use linters for static type checking to improve code quality and maintainability.
+    Explore the quirky side of Python’s <strong>call</strong> method with fun examples and insights into memory allocation. A lighthearted break in our Python deep dive.
   </div>
 </div>
 
@@ -877,85 +887,59 @@ globalThis._qpyodideGetInstance = function() {
 </header>
 
 
-<section id="type-hinting-typing-module-and-linters-in-python" class="level1">
-<h1>Type Hinting, Typing Module, and Linters in Python</h1>
-<hr>
-<section id="introduction-to-type-hinting" class="level2">
-<h2 class="anchored" data-anchor-id="introduction-to-type-hinting">Introduction to Type Hinting</h2>
-<p>Type hinting, introduced in Python 3.5 (PEP 484), allows developers to indicate the expected types of variables, function parameters, and return values. While Python remains dynamically typed, type hints provide several benefits:</p>
-<ol type="1">
-<li>Improved code readability</li>
-<li>Better IDE support (autocomplete, error detection)</li>
-<li>Easier maintenance, especially for large codebases</li>
-<li>Catch certain types of errors before runtime</li>
-</ol>
-<section id="basic-type-hinting" class="level3">
-<h3 class="anchored" data-anchor-id="basic-type-hinting">Basic Type Hinting</h3>
+<section id="python-__call__-method-a-fun-exploration" class="level1">
+<h1>Python <code>__call__</code> Method: A Fun Exploration</h1>
+<p>After diving into the world of dunder methods, let’s take a fun break and explore some quirky behavior of the <code>__call__</code> method in Python. This example showcases how we can create objects that can be “called” multiple times, and gives us some interesting insights into Python’s memory allocation.</p>
+<section id="the-infinitely-callable-dog" class="level2">
+<h2 class="anchored" data-anchor-id="the-infinitely-callable-dog">The Infinitely Callable Dog</h2>
+<p>Let’s start with a simple goal: we want to create a <code>Dog</code> class that allows us to add any number of parentheses after it. Something like this:</p>
 <div id="qpyodide-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
-</section>
-<section id="the-typing-module" class="level2">
-<h2 class="anchored" data-anchor-id="the-typing-module">The Typing Module</h2>
-<p>The <code>typing</code> module provides support for type hints. It includes a collection of types and tools for working with type annotations.</p>
-<section id="common-types-from-the-typing-module" class="level3">
-<h3 class="anchored" data-anchor-id="common-types-from-the-typing-module">Common Types from the Typing Module</h3>
+<section id="step-1-basic-implementation" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-basic-implementation">Step 1: Basic Implementation</h3>
+<p>Let’s start with a simple implementation:</p>
 <div id="qpyodide-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>In this implementation, we’re alternating between returning a <code>Dog</code> instance and the <code>Dog</code> class itself. This allows us to chain as many calls as we want!</p>
 </section>
-<section id="type-aliases" class="level3">
-<h3 class="anchored" data-anchor-id="type-aliases">Type Aliases</h3>
+<section id="step-2-memory-allocation-insights" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-memory-allocation-insights">Step 2: Memory Allocation Insights</h3>
+<p>Now, let’s look at how Python handles memory allocation in this case:</p>
 <div id="qpyodide-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Interesting! When we create new instances and save them to a variable, Python allocates new memory. But when we chain calls without saving the intermediate results, Python often reuses the same memory address for new instances.</p>
 </section>
-<section id="generic-types" class="level3">
-<h3 class="anchored" data-anchor-id="generic-types">Generic Types</h3>
+<section id="step-3-always-return-self" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-always-return-self">Step 3: Always Return Self</h3>
+<p>What if we always want to return an instance, regardless of how many times we call it?</p>
 <div id="qpyodide-insertion-location-4"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Now we always get the same instance, no matter how many times we call it!</p>
 </section>
-</section>
-<section id="type-checking-and-linters" class="level2">
-<h2 class="anchored" data-anchor-id="type-checking-and-linters">Type Checking and Linters</h2>
-<p>While Python doesn’t enforce type hints at runtime, various tools can perform static type checking:</p>
-<section id="mypy" class="level3">
-<h3 class="anchored" data-anchor-id="mypy">Mypy</h3>
-<p>Mypy is a static type checker for Python. It can catch many type-related errors before runtime.</p>
-<p>Installation:</p>
-<pre><code>pip install mypy</code></pre>
-<p>Usage:</p>
-<pre><code>mypy your_script.py</code></pre>
-</section>
-<section id="pylint" class="level3">
-<h3 class="anchored" data-anchor-id="pylint">Pylint</h3>
-<p>Pylint is a linter that can check for coding standards, errors, and code smells. It also supports type checking.</p>
-<p>Installation:</p>
-<pre><code>pip install pylint</code></pre>
-<p>Usage:</p>
-<pre><code>pylint your_script.py</code></pre>
-</section>
-<section id="pycharm-and-visual-studio-code" class="level3">
-<h3 class="anchored" data-anchor-id="pycharm-and-visual-studio-code">PyCharm and Visual Studio Code</h3>
-<p>Popular IDEs like PyCharm and VS Code have built-in support for type checking and can highlight type-related issues in real-time.</p>
-</section>
-</section>
-<section id="best-practices-for-type-hinting" class="level2">
-<h2 class="anchored" data-anchor-id="best-practices-for-type-hinting">Best Practices for Type Hinting</h2>
-<ol type="1">
-<li>Start with critical or complex functions</li>
-<li>Use type hints consistently throughout a module or project</li>
-<li>Utilize tools like Mypy to catch type-related errors</li>
-<li>Don’t overuse <code>Any</code> - it defeats the purpose of type hinting</li>
-<li>Consider using type hints in combination with docstrings for comprehensive documentation</li>
-</ol>
-</section>
-<section id="example-putting-it-all-together" class="level2">
-<h2 class="anchored" data-anchor-id="example-putting-it-all-together">Example: Putting It All Together</h2>
+<section id="step-4-new-instance-every-call" class="level3">
+<h3 class="anchored" data-anchor-id="step-4-new-instance-every-call">Step 4: New Instance Every Call</h3>
+<p>What if we want a new instance every time?</p>
 <div id="qpyodide-insertion-location-5"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Interestingly, the address changes after the first call, then remains the same. This is due to Python’s memory management optimizations.</p>
+</section>
+<section id="step-5-unique-instance-every-time" class="level3">
+<h3 class="anchored" data-anchor-id="step-5-unique-instance-every-time">Step 5: Unique Instance Every Time</h3>
+<p>Finally, if we really want to ensure a unique instance every time:</p>
+<div id="qpyodide-insertion-location-6"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Now we’re forcing Python to create and track unique instances, resulting in different memory addresses for each new instance.</p>
+</section>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>Type hinting, along with the <code>typing</code> module and linters, provides a powerful set of tools for improving code quality, readability, and maintainability in Python. While not enforced at runtime, these features can catch many errors early in the development process and provide better documentation and IDE support. As Python projects grow in size and complexity, incorporating type hints and static type checking becomes increasingly valuable.</p>
+<p>This fun exploration of the <code>__call__</code> method and Python’s memory allocation shows us a few things:</p>
+<ol type="1">
+<li>The <code>__call__</code> method allows us to make our objects callable, leading to some interesting and flexible designs.</li>
+<li>Python’s memory management is quite clever, often reusing memory addresses when it can.</li>
+<li>We can control instance creation and memory allocation by customizing <code>__new__</code> and <code>__call__</code>.</li>
+</ol>
+<p>Remember, while these examples are fun to explore and can teach us a lot about Python’s inner workings, they’re not typically something you’d use in production code. They’re great for understanding Python better and maybe for solving some tricky coding puzzles!</p>
 
 
 </section>
@@ -1528,13 +1512,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../../content/Cours_3/2-Overloading.html" class="pagination-link" aria-label="Polymorphism in Python: Function Overloading and Type Checking">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Polymorphism in Python: Function Overloading and Type Checking</span>
+      <a href="../../content/Cours_2/4-Dunder.html" class="pagination-link" aria-label="Méthodes Dunder en Python">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Méthodes Dunder en Python</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../content/Cours_3/4-Abstract_class.html" class="pagination-link" aria-label="Abstract Classes">
-        <span class="nav-page-text">Abstract Classes</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../content/Cours_2/TP_heritage.html" class="pagination-link" aria-label="TP: Heritage avec le pricing d'option">
+        <span class="nav-page-text">TP: Heritage avec le pricing d’option</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

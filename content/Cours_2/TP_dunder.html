@@ -236,7 +236,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"options":{"comment":"","warning":"true","fig-width":7,"context":"interactive","fig-cap":"","results":"markup","out-height":"","message":"true","out-width":"700px","read-only":"false","output":"true","autorun":"","classes":"","label":"","dpi":72,"fig-height":5},"code":"import numpy as np\n\nclass Tensor:\n    def __init__(self, data, _children=(), _op=''):\n        self.data = np.array(data).astype(np.float64)\n        self.grad = np.zeros_like(self.data)\n        self._backward = lambda: None\n        self._prev = set(_children)\n        self._op = _op\n\n    def __add__(self, other):\n        other = other if isinstance(other, Tensor) else Tensor(other)\n        out = Tensor(self.data + other.data, (self, other), '+')\n\n        def _backward():\n            self.grad += out.grad\n            other.grad += out.grad\n        out._backward = _backward\n\n        return out\n\n    def __mul__(self, other):\n        other = other if isinstance(other, Tensor) else Tensor(other)\n        out = Tensor(self.data * other.data, (self, other), '*')\n\n        def _backward():\n            self.grad += other.data * out.grad\n            other.grad += self.data * out.grad\n        out._backward = _backward\n\n        return out\n\n    def __pow__(self, other):\n        assert isinstance(other, (int, float)), \"only supporting int/float powers for now\"\n        out = Tensor(self.data**other, (self,), f'**{other}')\n\n        def _backward():\n            self.grad += (other * self.data**(other-1)) * out.grad\n        out._backward = _backward\n\n        return out\n\n    def backward(self):\n        topo = []\n        visited = set()\n        def build_topo(v):\n            if v not in visited:\n                visited.add(v)\n                for child in v._prev:\n                    build_topo(child)\n                topo.append(v)\n        build_topo(self)\n\n        self.grad = np.ones_like(self.data)\n        for v in reversed(topo):\n            v._backward()\n\ndef tensor(data):\n    return Tensor(data)","id":1},{"options":{"comment":"","warning":"true","fig-width":7,"context":"interactive","fig-cap":"","results":"markup","out-height":"","message":"true","out-width":"700px","read-only":"false","output":"true","autorun":"","classes":"","label":"","dpi":72,"fig-height":5},"code":"def f(x, y):\n    return (x**2 + 2*y) * Tensor.sin(x + y)\n\n# Create input tensors\nx = tensor(1.0)\ny = tensor(2.0)\n\n# Compute the function\nresult = f(x, y)\n\n# Compute gradients\nresult.backward()\n\nprint(f\"f({x.data}, {y.data}) = {result.data}\")\nprint(f\"df/dx = {x.grad}\")\nprint(f\"df/dy = {y.grad}\")","id":2},{"options":{"comment":"","warning":"true","fig-width":7,"context":"interactive","fig-cap":"","results":"markup","out-height":"","message":"true","out-width":"700px","read-only":"false","output":"true","autorun":"","classes":"","label":"","dpi":72,"fig-height":5},"code":"import unittest\nimport numpy as np\n\nclass TestTensor(unittest.TestCase):\n    def setUp(self):\n        self.x = tensor(2.0)\n        self.y = tensor(3.0)\n\n    def test_add(self):\n        z = self.x + self.y\n        z.backward()\n        self.assertEqual(z.data, 5.0)\n        self.assertEqual(self.x.grad, 1.0)\n        self.assertEqual(self.y.grad, 1.0)\n\n    def test_mul(self):\n        z = self.x * self.y\n        z.backward()\n        self.assertEqual(z.data, 6.0)\n        self.assertEqual(self.x.grad, 3.0)\n        self.assertEqual(self.y.grad, 2.0)\n\n    def test_pow(self):\n        z = self.x ** 2\n        z.backward()\n        self.assertEqual(z.data, 4.0)\n        self.assertEqual(self.x.grad, 4.0)\n\n    def test_sub(self):\n        z = self.x - self.y\n        z.backward()\n        self.assertEqual(z.data, -1.0)\n        self.assertEqual(self.x.grad, 1.0)\n        self.assertEqual(self.y.grad, -1.0)\n\n    def test_div(self):\n        z = self.x / self.y\n        z.backward()\n        self.assertAlmostEqual(z.data, 2/3, places=5)\n        self.assertAlmostEqual(self.x.grad, 1/3, places=5)\n        self.assertAlmostEqual(self.y.grad, -2/9, places=5)\n\n    def test_sin(self):\n        z = Tensor.sin(self.x)\n        z.backward()\n        self.assertAlmostEqual(z.data, np.sin(2.0), places=5)\n        self.assertAlmostEqual(self.x.grad, np.cos(2.0), places=5)\n\n    def test_complex_function(self):\n        def f(x, y):\n            return (x**2 + 2*y) * Tensor.sin(x + y)\n        \n        x = tensor(1.0)\n        y = tensor(2.0)\n        z = f(x, y)\n        z.backward()\n        \n        expected_z = (1**2 + 2*2) * np.sin(1 + 2)\n        expected_dx = 2 * np.sin(3) + 5 * np.cos(3)\n        expected_dy = 2 * np.sin(3) + 5 * np.cos(3)\n        \n        self.assertAlmostEqual(z.data, expected_z, places=5)\n        self.assertAlmostEqual(x.grad, expected_dx, places=5)\n        self.assertAlmostEqual(y.grad, expected_dy, places=5)\n\ndef run_tests():\n    unittest.main(argv=[''], verbosity=2, exit=False)\n\nif __name__ == '__main__':\n    run_tests()","id":3}];
+globalThis.qpyodideCellDetails = [{"id":1,"options":{"autorun":"","out-height":"","comment":"","out-width":"700px","results":"markup","dpi":72,"output":"true","message":"true","warning":"true","classes":"","context":"interactive","fig-width":7,"label":"","fig-height":5,"fig-cap":"","read-only":"false"},"code":"import numpy as np\n\nclass Tensor:\n    def __init__(self, data, _children=(), _op=''):\n        self.data = np.array(data).astype(np.float64)\n        self.grad = np.zeros_like(self.data)\n        self._backward = lambda: None\n        self._prev = set(_children)\n        self._op = _op\n\n    def __add__(self, other):\n        other = other if isinstance(other, Tensor) else Tensor(other)\n        out = Tensor(self.data + other.data, (self, other), '+')\n\n        def _backward():\n            self.grad += out.grad\n            other.grad += out.grad\n        out._backward = _backward\n\n        return out\n\n    def __mul__(self, other):\n        other = other if isinstance(other, Tensor) else Tensor(other)\n        out = Tensor(self.data * other.data, (self, other), '*')\n\n        def _backward():\n            self.grad += other.data * out.grad\n            other.grad += self.data * out.grad\n        out._backward = _backward\n\n        return out\n\n    def __pow__(self, other):\n        assert isinstance(other, (int, float)), \"only supporting int/float powers for now\"\n        out = Tensor(self.data**other, (self,), f'**{other}')\n\n        def _backward():\n            self.grad += (other * self.data**(other-1)) * out.grad\n        out._backward = _backward\n\n        return out\n\n    def backward(self):\n        topo = []\n        visited = set()\n        def build_topo(v):\n            if v not in visited:\n                visited.add(v)\n                for child in v._prev:\n                    build_topo(child)\n                topo.append(v)\n        build_topo(self)\n\n        self.grad = np.ones_like(self.data)\n        for v in reversed(topo):\n            v._backward()\n\ndef tensor(data):\n    return Tensor(data)"},{"id":2,"options":{"autorun":"","out-height":"","comment":"","out-width":"700px","results":"markup","dpi":72,"output":"true","message":"true","warning":"true","classes":"","context":"interactive","fig-width":7,"label":"","fig-height":5,"fig-cap":"","read-only":"false"},"code":"def f(x, y):\n    return (x**2 + 2*y) * Tensor.sin(x + y)\n\n# Create input tensors\nx = tensor(1.0)\ny = tensor(2.0)\n\n# Compute the function\nresult = f(x, y)\n\n# Compute gradients\nresult.backward()\n\nprint(f\"f({x.data}, {y.data}) = {result.data}\")\nprint(f\"df/dx = {x.grad}\")\nprint(f\"df/dy = {y.grad}\")"},{"id":3,"options":{"autorun":"","out-height":"","comment":"","out-width":"700px","results":"markup","dpi":72,"output":"true","message":"true","warning":"true","classes":"","context":"interactive","fig-width":7,"label":"","fig-height":5,"fig-cap":"","read-only":"false"},"code":"import unittest\nimport numpy as np\n\nclass TestTensor(unittest.TestCase):\n    def setUp(self):\n        self.x = tensor(2.0)\n        self.y = tensor(3.0)\n\n    def test_add(self):\n        z = self.x + self.y\n        z.backward()\n        self.assertEqual(z.data, 5.0)\n        self.assertEqual(self.x.grad, 1.0)\n        self.assertEqual(self.y.grad, 1.0)\n\n    def test_mul(self):\n        z = self.x * self.y\n        z.backward()\n        self.assertEqual(z.data, 6.0)\n        self.assertEqual(self.x.grad, 3.0)\n        self.assertEqual(self.y.grad, 2.0)\n\n    def test_pow(self):\n        z = self.x ** 2\n        z.backward()\n        self.assertEqual(z.data, 4.0)\n        self.assertEqual(self.x.grad, 4.0)\n\n    def test_sub(self):\n        z = self.x - self.y\n        z.backward()\n        self.assertEqual(z.data, -1.0)\n        self.assertEqual(self.x.grad, 1.0)\n        self.assertEqual(self.y.grad, -1.0)\n\n    def test_div(self):\n        z = self.x / self.y\n        z.backward()\n        self.assertAlmostEqual(z.data, 2/3, places=5)\n        self.assertAlmostEqual(self.x.grad, 1/3, places=5)\n        self.assertAlmostEqual(self.y.grad, -2/9, places=5)\n\n    def test_sin(self):\n        z = Tensor.sin(self.x)\n        z.backward()\n        self.assertAlmostEqual(z.data, np.sin(2.0), places=5)\n        self.assertAlmostEqual(self.x.grad, np.cos(2.0), places=5)\n\n    def test_complex_function(self):\n        def f(x, y):\n            return (x**2 + 2*y) * Tensor.sin(x + y)\n        \n        x = tensor(1.0)\n        y = tensor(2.0)\n        z = f(x, y)\n        z.backward()\n        \n        expected_z = (1**2 + 2*2) * np.sin(1 + 2)\n        expected_dx = 2 * np.sin(3) + 5 * np.cos(3)\n        expected_dy = 2 * np.sin(3) + 5 * np.cos(3)\n        \n        self.assertAlmostEqual(z.data, expected_z, places=5)\n        self.assertAlmostEqual(x.grad, expected_dx, places=5)\n        self.assertAlmostEqual(y.grad, expected_dy, places=5)\n\ndef run_tests():\n    unittest.main(argv=[''], verbosity=2, exit=False)\n\nif __name__ == '__main__':\n    run_tests()"}];
 
 
 </script>
@@ -563,6 +563,10 @@ window.Quarto = {
     <a class="dropdown-item" href="../../content/Cours_2/4-Dunder.html">
  <span class="dropdown-text">Méthodes Dunder en Python</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/5-call_a_dog.html">
+ <span class="dropdown-text">Python <strong>call</strong> Method: A Fun Exploration</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
@@ -593,15 +597,19 @@ window.Quarto = {
  <span class="dropdown-text">Polymorphism in Python: Function Overloading and Type Checking</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/3-Type_Hinting.html">
+    <a class="dropdown-item" href="../../content/Cours_3/3-type_to_create.html">
+ <span class="dropdown-text">Class Creation: Standard vs type()</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_3/4-Type_Hinting.html">
  <span class="dropdown-text">Type Hinting, Typing Module, and Linters in Python</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/4-Abstract_class.html">
+    <a class="dropdown-item" href="../../content/Cours_3/5-Abstract_class.html">
  <span class="dropdown-text">Abstract Classes</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/5-Protocol.html">
+    <a class="dropdown-item" href="../../content/Cours_3/6-Protocol.html">
  <span class="dropdown-text">Protocol Classes</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
@@ -633,11 +641,19 @@ window.Quarto = {
     <a class="dropdown-item" href="../../content/Cours_4/4-builtin_decorator.html">
  <span class="dropdown-text">Built-in Decorators and Standard Library Decorators in Python</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_4/5-library_decorators.html">
+ <span class="dropdown-text">Practical Decorators in Python Libraries</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
-    <a class="dropdown-item" href="../../content/Cours_4/TP.html">
- <span class="dropdown-text">TP</span></a>
+    <a class="dropdown-item" href="../../content/Cours_4/TP_option.html">
+ <span class="dropdown-text">TP: Monte Carlo Option Pricing with Decorators</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_4/TP_library.html">
+ <span class="dropdown-text">TP: Optimizing Heston Model Monte Carlo Simulation</span></a>
   </li>  
     </ul>
   </li>
@@ -789,6 +805,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../../content/Cours_2/4-Dunder.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Méthodes Dunder en Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_2/5-call_a_dog.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python <strong>call</strong> Method: A Fun Exploration</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">

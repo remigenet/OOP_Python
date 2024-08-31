@@ -33,7 +33,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../content/Cours_4/TP.html" rel="next">
+<link href="../../content/Cours_4/5-library_decorators.html" rel="next">
 <link href="../../content/Cours_4/3-Decorator_practically.html" rel="prev">
 <link href="../../content/.img/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"options":{"warning":"true","output":"true","out-width":"700px","fig-cap":"","label":"","results":"markup","classes":"","read-only":"false","fig-width":7,"out-height":"","dpi":72,"comment":"","context":"interactive","fig-height":5,"autorun":"","message":"true"},"id":1,"code":"class Circle:\n    def __init__(self, radius):\n        self._radius = radius\n\n    @property\n    def diameter(self):\n        return self._radius * 2\n\ncircle = Circle(5)\nprint(circle.diameter)  # Output: 10"},{"options":{"warning":"true","output":"true","out-width":"700px","fig-cap":"","label":"","results":"markup","classes":"","read-only":"false","fig-width":7,"out-height":"","dpi":72,"comment":"","context":"interactive","fig-height":5,"autorun":"","message":"true"},"id":2,"code":"class Date:\n    def __init__(self, year, month, day):\n        self.year = year\n        self.month = month\n        self.day = day\n\n    @classmethod\n    def from_string(cls, date_string):\n        year, month, day = map(int, date_string.split('-'))\n        return cls(year, month, day)\n\ndate = Date.from_string(\"2024-07-29\")\nprint(date.year)  # Output: 2024"},{"options":{"warning":"true","output":"true","out-width":"700px","fig-cap":"","label":"","results":"markup","classes":"","read-only":"false","fig-width":7,"out-height":"","dpi":72,"comment":"","context":"interactive","fig-height":5,"autorun":"","message":"true"},"id":3,"code":"class MathOperations:\n    @staticmethod\n    def add(x, y):\n        return x + y\n\nprint(MathOperations.add(5, 3))  # Output: 8"},{"options":{"warning":"true","output":"true","out-width":"700px","fig-cap":"","label":"","results":"markup","classes":"","read-only":"false","fig-width":7,"out-height":"","dpi":72,"comment":"","context":"interactive","fig-height":5,"autorun":"","message":"true"},"id":4,"code":"from dataclasses import dataclass\n\n@dataclass\nclass Point:\n    x: float\n    y: float\n\np = Point(1.0, 2.0)\nprint(p)  # Output: Point(x=1.0, y=2.0)"},{"options":{"warning":"true","output":"true","out-width":"700px","fig-cap":"","label":"","results":"markup","classes":"","read-only":"false","fig-width":7,"out-height":"","dpi":72,"comment":"","context":"interactive","fig-height":5,"autorun":"","message":"true"},"id":5,"code":"from functools import lru_cache\n\n@lru_cache(maxsize=None)\ndef fibonacci(n):\n    if n < 2:\n        return n\n    return fibonacci(n-1) + fibonacci(n-2)\n\nprint(fibonacci(100))  # Computes quickly due to caching"},{"options":{"warning":"true","output":"true","out-width":"700px","fig-cap":"","label":"","results":"markup","classes":"","read-only":"false","fig-width":7,"out-height":"","dpi":72,"comment":"","context":"interactive","fig-height":5,"autorun":"","message":"true"},"id":6,"code":"from functools import cache\n\n@cache\ndef factorial(n):\n    return n * factorial(n-1) if n else 1\n\nprint(factorial(10))  # Subsequent calls are faster due to caching"},{"options":{"warning":"true","output":"true","out-width":"700px","fig-cap":"","label":"","results":"markup","classes":"","read-only":"false","fig-width":7,"out-height":"","dpi":72,"comment":"","context":"interactive","fig-height":5,"autorun":"","message":"true"},"id":7,"code":"from functools import wraps\n\ndef my_decorator(func):\n    @wraps(func)\n    def wrapper(*args, **kwargs):\n        \"\"\"This is the wrapper function\"\"\"\n        print('Before the function is called.')\n        result = func(*args, **kwargs)\n        print('After the function is called.')\n        return result\n    return wrapper\n\n@my_decorator\ndef say_hello(name):\n    \"\"\"This function says hello\"\"\"\n    print(f'Hello, {name}!')\n\nsay_hello('Alice')\nprint(say_hello.__doc__)  # Output: This function says hello"},{"options":{"warning":"true","output":"true","out-width":"700px","fig-cap":"","label":"","results":"markup","classes":"","read-only":"false","fig-width":7,"out-height":"","dpi":72,"comment":"","context":"interactive","fig-height":5,"autorun":"","message":"true"},"id":8,"code":"from functools import total_ordering\n\n@total_ordering\nclass Person:\n    def __init__(self, name, age):\n        self.name = name\n        self.age = age\n\n    def __eq__(self, other):\n        return self.age == other.age\n\n    def __lt__(self, other):\n        return self.age < other.age\n\np1 = Person(\"Alice\", 30)\np2 = Person(\"Bob\", 25)\nprint(p1 > p2)  # Output: True"}];
+globalThis.qpyodideCellDetails = [{"options":{"warning":"true","autorun":"","fig-cap":"","comment":"","label":"","classes":"","out-width":"700px","results":"markup","output":"true","out-height":"","read-only":"false","message":"true","context":"interactive","fig-width":7,"fig-height":5,"dpi":72},"id":1,"code":"class Circle:\n    def __init__(self, radius):\n        self._radius = radius\n\n    @property\n    def diameter(self):\n        return self._radius * 2\n\ncircle = Circle(5)\nprint(circle.diameter)  # Output: 10"},{"options":{"warning":"true","autorun":"","fig-cap":"","comment":"","label":"","classes":"","out-width":"700px","results":"markup","output":"true","out-height":"","read-only":"false","message":"true","context":"interactive","fig-width":7,"fig-height":5,"dpi":72},"id":2,"code":"class Date:\n    def __init__(self, year, month, day):\n        self.year = year\n        self.month = month\n        self.day = day\n\n    @classmethod\n    def from_string(cls, date_string):\n        year, month, day = map(int, date_string.split('-'))\n        return cls(year, month, day)\n\ndate = Date.from_string(\"2024-07-29\")\nprint(date.year)  # Output: 2024"},{"options":{"warning":"true","autorun":"","fig-cap":"","comment":"","label":"","classes":"","out-width":"700px","results":"markup","output":"true","out-height":"","read-only":"false","message":"true","context":"interactive","fig-width":7,"fig-height":5,"dpi":72},"id":3,"code":"class MathOperations:\n    @staticmethod\n    def add(x, y):\n        return x + y\n\nprint(MathOperations.add(5, 3))  # Output: 8"},{"options":{"warning":"true","autorun":"","fig-cap":"","comment":"","label":"","classes":"","out-width":"700px","results":"markup","output":"true","out-height":"","read-only":"false","message":"true","context":"interactive","fig-width":7,"fig-height":5,"dpi":72},"id":4,"code":"from dataclasses import dataclass\n\n@dataclass\nclass Point:\n    x: float\n    y: float\n\np = Point(1.0, 2.0)\nprint(p)  # Output: Point(x=1.0, y=2.0)"},{"options":{"warning":"true","autorun":"","fig-cap":"","comment":"","label":"","classes":"","out-width":"700px","results":"markup","output":"true","out-height":"","read-only":"false","message":"true","context":"interactive","fig-width":7,"fig-height":5,"dpi":72},"id":5,"code":"from functools import lru_cache\n\n@lru_cache(maxsize=None)\ndef fibonacci(n):\n    if n < 2:\n        return n\n    return fibonacci(n-1) + fibonacci(n-2)\n\nprint(fibonacci(100))  # Computes quickly due to caching"},{"options":{"warning":"true","autorun":"","fig-cap":"","comment":"","label":"","classes":"","out-width":"700px","results":"markup","output":"true","out-height":"","read-only":"false","message":"true","context":"interactive","fig-width":7,"fig-height":5,"dpi":72},"id":6,"code":"from functools import cache\n\n@cache\ndef factorial(n):\n    return n * factorial(n-1) if n else 1\n\nprint(factorial(10))  # Subsequent calls are faster due to caching"},{"options":{"warning":"true","autorun":"","fig-cap":"","comment":"","label":"","classes":"","out-width":"700px","results":"markup","output":"true","out-height":"","read-only":"false","message":"true","context":"interactive","fig-width":7,"fig-height":5,"dpi":72},"id":7,"code":"from functools import wraps\n\ndef my_decorator(func):\n    @wraps(func)\n    def wrapper(*args, **kwargs):\n        \"\"\"This is the wrapper function\"\"\"\n        print('Before the function is called.')\n        result = func(*args, **kwargs)\n        print('After the function is called.')\n        return result\n    return wrapper\n\n@my_decorator\ndef say_hello(name):\n    \"\"\"This function says hello\"\"\"\n    print(f'Hello, {name}!')\n\nsay_hello('Alice')\nprint(say_hello.__doc__)  # Output: This function says hello"},{"options":{"warning":"true","autorun":"","fig-cap":"","comment":"","label":"","classes":"","out-width":"700px","results":"markup","output":"true","out-height":"","read-only":"false","message":"true","context":"interactive","fig-width":7,"fig-height":5,"dpi":72},"id":8,"code":"from functools import total_ordering\n\n@total_ordering\nclass Person:\n    def __init__(self, name, age):\n        self.name = name\n        self.age = age\n\n    def __eq__(self, other):\n        return self.age == other.age\n\n    def __lt__(self, other):\n        return self.age < other.age\n\np1 = Person(\"Alice\", 30)\np2 = Person(\"Bob\", 25)\nprint(p1 > p2)  # Output: True"}];
 
 
 </script>
@@ -536,6 +536,10 @@ globalThis._qpyodideGetInstance = function() {
     <a class="dropdown-item" href="../../content/Cours_2/4-Dunder.html">
  <span class="dropdown-text">Méthodes Dunder en Python</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/5-call_a_dog.html">
+ <span class="dropdown-text">Python <strong>call</strong> Method: A Fun Exploration</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
@@ -566,15 +570,19 @@ globalThis._qpyodideGetInstance = function() {
  <span class="dropdown-text">Polymorphism in Python: Function Overloading and Type Checking</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/3-Type_Hinting.html">
+    <a class="dropdown-item" href="../../content/Cours_3/3-type_to_create.html">
+ <span class="dropdown-text">Class Creation: Standard vs type()</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_3/4-Type_Hinting.html">
  <span class="dropdown-text">Type Hinting, Typing Module, and Linters in Python</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/4-Abstract_class.html">
+    <a class="dropdown-item" href="../../content/Cours_3/5-Abstract_class.html">
  <span class="dropdown-text">Abstract Classes</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/5-Protocol.html">
+    <a class="dropdown-item" href="../../content/Cours_3/6-Protocol.html">
  <span class="dropdown-text">Protocol Classes</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
@@ -606,11 +614,19 @@ globalThis._qpyodideGetInstance = function() {
     <a class="dropdown-item" href="../../content/Cours_4/4-builtin_decorator.html">
  <span class="dropdown-text">Built-in Decorators and Standard Library Decorators in Python</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_4/5-library_decorators.html">
+ <span class="dropdown-text">Practical Decorators in Python Libraries</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
-    <a class="dropdown-item" href="../../content/Cours_4/TP.html">
- <span class="dropdown-text">TP</span></a>
+    <a class="dropdown-item" href="../../content/Cours_4/TP_option.html">
+ <span class="dropdown-text">TP: Monte Carlo Option Pricing with Decorators</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_4/TP_library.html">
+ <span class="dropdown-text">TP: Optimizing Heston Model Monte Carlo Simulation</span></a>
   </li>  
     </ul>
   </li>
@@ -758,6 +774,12 @@ globalThis._qpyodideGetInstance = function() {
  <span class="menu-text">Built-in Decorators and Standard Library Decorators in Python</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_4/5-library_decorators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Practical Decorators in Python Libraries</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
@@ -769,8 +791,14 @@ globalThis._qpyodideGetInstance = function() {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_4/TP.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">TP</span></a>
+  <a href="../../content/Cours_4/TP_option.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP: Monte Carlo Option Pricing with Decorators</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_4/TP_library.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP: Optimizing Heston Model Monte Carlo Simulation</span></a>
   </div>
 </li>
       </ul>
@@ -1499,8 +1527,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../content/Cours_4/TP.html" class="pagination-link" aria-label="TP">
-        <span class="nav-page-text">TP</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../content/Cours_4/5-library_decorators.html" class="pagination-link" aria-label="Practical Decorators in Python Libraries">
+        <span class="nav-page-text">Practical Decorators in Python Libraries</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

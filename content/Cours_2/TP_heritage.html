@@ -33,7 +33,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
 <link href="../../content/Cours_2/TP_dunder.html" rel="next">
-<link href="../../content/Cours_2/4-Dunder.html" rel="prev">
+<link href="../../content/Cours_2/5-call_a_dog.html" rel="prev">
 <link href="../../content/.img/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -237,7 +237,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"id":1,"options":{"warning":"true","results":"markup","fig-cap":"","message":"true","context":"interactive","label":"","out-width":"700px","comment":"","fig-width":7,"read-only":"false","fig-height":5,"dpi":72,"classes":"","out-height":"","autorun":"","output":"true"},"code":"import unittest\nimport math\nfrom scipy.stats import norm\nimport numpy as np\n\n# TODO: Importez vos classes ici\n# from black_scholes import Option, Call, Put\n\nclass TestBlackScholes(unittest.TestCase):\n    def setUp(self):\n        self.spot = 100\n        self.strike = 100\n        self.risk_free = 0.05\n        self.time_to_maturity = 1\n        self.volatility = 0.2\n\n        self.call = Call(self.spot, self.strike, self.risk_free, self.time_to_maturity, self.volatility)\n        self.put = Put(self.spot, self.strike, self.risk_free, self.time_to_maturity, self.volatility)\n\n    def test_call_price(self):\n        expected_price = 10.450583\n        self.assertAlmostEqual(self.call.compute_price(), expected_price, places=6)\n\n    def test_put_price(self):\n        expected_price = 5.57352\n        self.assertAlmostEqual(self.put.compute_price(), expected_price, places=6)\n\n    def test_call_delta(self):\n        expected_delta = 0.63683065\n        self.assertAlmostEqual(self.call.compute_delta(), expected_delta, places=4)\n\n    def test_put_delta(self):\n        expected_delta = -0.36316934\n        self.assertAlmostEqual(self.put.compute_delta(), expected_delta, places=4)\n\n    def test_gamma(self):\n        expected_gamma = 0.01876201\n        self.assertAlmostEqual(self.call.compute_gamma(), expected_gamma, places=4)\n        self.assertAlmostEqual(self.put.compute_gamma(), expected_gamma, places=4)\n\n    def test_vega(self):\n        expected_vega = 37.524034\n        self.assertAlmostEqual(self.call.compute_vega(), expected_vega, places=4)\n        self.assertAlmostEqual(self.put.compute_vega(), expected_vega, places=4)\n\ndef run_tests():\n    unittest.main(argv=[''], verbosity=2, exit=False)\n\nif __name__ == '__main__':\n    run_tests()"},{"id":2,"options":{"warning":"true","results":"markup","fig-cap":"","message":"true","context":"interactive","label":"","out-width":"700px","comment":"","fig-width":7,"read-only":"false","fig-height":5,"dpi":72,"classes":"","out-height":"","autorun":"","output":"true"},"code":"import unittest\nimport numpy as np\n\n# TODO: Importez vos classes ici\n# from monte_carlo import Derivative, EuropeanOption, Payoff, CallPayoff, PutPayoff\n\nclass TestMonteCarlo(unittest.TestCase):\n    def setUp(self):\n        self.spot = 100\n        self.strike = 100\n        self.risk_free = 0.05\n        self.time_to_maturity = 1\n        self.volatility = 0.2\n        self.num_simulations = 100000\n\n        self.call_payoff = CallPayoff(self.strike)\n        self.put_payoff = PutPayoff(self.strike)\n\n        self.call_option = EuropeanOption(self.spot, self.risk_free, self.time_to_maturity, self.volatility, self.call_payoff)\n        self.put_option = EuropeanOption(self.spot, self.risk_free, self.time_to_maturity, self.volatility, self.put_payoff)\n\n    def test_call_price(self):\n        expected_price = 10.450583\n        simulated_price = self.call_option.price(self.num_simulations)\n        self.assertAlmostEqual(simulated_price, expected_price, delta=0.1)\n\n    def test_put_price(self):\n        expected_price = 5.57352\n        simulated_price = self.put_option.price(self.num_simulations)\n        self.assertAlmostEqual(simulated_price, expected_price, delta=0.1)\n\n    def test_call_payoff(self):\n        stock_price = 110\n        expected_payoff = 10\n        self.assertEqual(self.call_payoff.calculate(stock_price), expected_payoff)\n\n    def test_put_payoff(self):\n        stock_price = 90\n        expected_payoff = 10\n        self.assertEqual(self.put_payoff.calculate(stock_price), expected_payoff)\n\ndef run_tests():\n    unittest.main(argv=[''], verbosity=2, exit=False)\n\nif __name__ == '__main__':\n    run_tests()"}];
+globalThis.qpyodideCellDetails = [{"id":1,"code":"import unittest\nimport math\nfrom scipy.stats import norm\nimport numpy as np\n\n# TODO: Option, Call, Put\n\nclass TestBlackScholes(unittest.TestCase):\n    def setUp(self):\n        self.spot = 100\n        self.strike = 100\n        self.risk_free = 0.05\n        self.time_to_maturity = 1\n        self.volatility = 0.2\n\n        self.call = Call(self.spot, self.strike, self.risk_free, self.time_to_maturity, self.volatility)\n        self.put = Put(self.spot, self.strike, self.risk_free, self.time_to_maturity, self.volatility)\n\n    def test_call_price(self):\n        expected_price = 10.450583\n        self.assertAlmostEqual(self.call.compute_price(), expected_price, places=6)\n\n    def test_put_price(self):\n        expected_price = 5.57352\n        self.assertAlmostEqual(self.put.compute_price(), expected_price, places=6)\n\n    def test_call_delta(self):\n        expected_delta = 0.63683065\n        self.assertAlmostEqual(self.call.compute_delta(), expected_delta, places=4)\n\n    def test_put_delta(self):\n        expected_delta = -0.36316934\n        self.assertAlmostEqual(self.put.compute_delta(), expected_delta, places=4)\n\n    def test_gamma(self):\n        expected_gamma = 0.01876201\n        self.assertAlmostEqual(self.call.compute_gamma(), expected_gamma, places=4)\n        self.assertAlmostEqual(self.put.compute_gamma(), expected_gamma, places=4)\n\n    def test_vega(self):\n        expected_vega = 37.524034\n        self.assertAlmostEqual(self.call.compute_vega(), expected_vega, places=4)\n        self.assertAlmostEqual(self.put.compute_vega(), expected_vega, places=4)\n\ndef run_tests():\n    unittest.main(argv=[''], verbosity=2, exit=False)\n\nif __name__ == '__main__':\n    run_tests()","options":{"results":"markup","warning":"true","classes":"","out-height":"","fig-height":5,"fig-width":7,"context":"interactive","out-width":"700px","read-only":"false","comment":"","autorun":"","label":"","message":"true","dpi":72,"fig-cap":"","output":"true"}},{"id":2,"code":"import unittest\nimport numpy as np\n\n# TODO: Creer vos classes Derivative, EuropeanOption, Payoff, CallPayoff, PutPayoff\n\nclass TestMonteCarlo(unittest.TestCase):\n    def setUp(self):\n        self.spot = 100\n        self.strike = 100\n        self.risk_free = 0.05\n        self.time_to_maturity = 1\n        self.volatility = 0.2\n        self.num_simulations = 100000\n\n        self.call_payoff = CallPayoff(self.strike)\n        self.put_payoff = PutPayoff(self.strike)\n\n        self.call_option = EuropeanOption(self.spot, self.risk_free, self.time_to_maturity, self.volatility, self.call_payoff)\n        self.put_option = EuropeanOption(self.spot, self.risk_free, self.time_to_maturity, self.volatility, self.put_payoff)\n\n    def test_call_price(self):\n        expected_price = 10.450583\n        simulated_price = self.call_option.price(self.num_simulations)\n        self.assertAlmostEqual(simulated_price, expected_price, delta=0.1)\n\n    def test_put_price(self):\n        expected_price = 5.57352\n        simulated_price = self.put_option.price(self.num_simulations)\n        self.assertAlmostEqual(simulated_price, expected_price, delta=0.1)\n\n    def test_call_payoff(self):\n        stock_price = 110\n        expected_payoff = 10\n        self.assertEqual(self.call_payoff.calculate(stock_price), expected_payoff)\n\n    def test_put_payoff(self):\n        stock_price = 90\n        expected_payoff = 10\n        self.assertEqual(self.put_payoff.calculate(stock_price), expected_payoff)\n\ndef run_tests():\n    unittest.main(argv=[''], verbosity=2, exit=False)\n\nif __name__ == '__main__':\n    run_tests()","options":{"results":"markup","warning":"true","classes":"","out-height":"","fig-height":5,"fig-width":7,"context":"interactive","out-width":"700px","read-only":"false","comment":"","autorun":"","label":"","message":"true","dpi":72,"fig-cap":"","output":"true"}}];
 
 
 </script>
@@ -564,6 +564,10 @@ window.Quarto = {
     <a class="dropdown-item" href="../../content/Cours_2/4-Dunder.html">
  <span class="dropdown-text">Méthodes Dunder en Python</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/5-call_a_dog.html">
+ <span class="dropdown-text">Python <strong>call</strong> Method: A Fun Exploration</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
@@ -594,15 +598,19 @@ window.Quarto = {
  <span class="dropdown-text">Polymorphism in Python: Function Overloading and Type Checking</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/3-Type_Hinting.html">
+    <a class="dropdown-item" href="../../content/Cours_3/3-type_to_create.html">
+ <span class="dropdown-text">Class Creation: Standard vs type()</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_3/4-Type_Hinting.html">
  <span class="dropdown-text">Type Hinting, Typing Module, and Linters in Python</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/4-Abstract_class.html">
+    <a class="dropdown-item" href="../../content/Cours_3/5-Abstract_class.html">
  <span class="dropdown-text">Abstract Classes</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/5-Protocol.html">
+    <a class="dropdown-item" href="../../content/Cours_3/6-Protocol.html">
  <span class="dropdown-text">Protocol Classes</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
@@ -634,11 +642,19 @@ window.Quarto = {
     <a class="dropdown-item" href="../../content/Cours_4/4-builtin_decorator.html">
  <span class="dropdown-text">Built-in Decorators and Standard Library Decorators in Python</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_4/5-library_decorators.html">
+ <span class="dropdown-text">Practical Decorators in Python Libraries</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
-    <a class="dropdown-item" href="../../content/Cours_4/TP.html">
- <span class="dropdown-text">TP</span></a>
+    <a class="dropdown-item" href="../../content/Cours_4/TP_option.html">
+ <span class="dropdown-text">TP: Monte Carlo Option Pricing with Decorators</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_4/TP_library.html">
+ <span class="dropdown-text">TP: Optimizing Heston Model Monte Carlo Simulation</span></a>
   </li>  
     </ul>
   </li>
@@ -790,6 +806,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../../content/Cours_2/4-Dunder.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Méthodes Dunder en Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_2/5-call_a_dog.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python <strong>call</strong> Method: A Fun Exploration</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -1574,8 +1596,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../../content/Cours_2/4-Dunder.html" class="pagination-link" aria-label="Méthodes Dunder en Python">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Méthodes Dunder en Python</span>
+      <a href="../../content/Cours_2/5-call_a_dog.html" class="pagination-link" aria-label="Python __call__ Method: A Fun Exploration">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Python <strong>call</strong> Method: A Fun Exploration</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

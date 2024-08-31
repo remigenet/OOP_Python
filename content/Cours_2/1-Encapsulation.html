@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"class CompteBancaire:\n    def __init__(self, proprietaire, solde_initial):\n        self.proprietaire = proprietaire  # Public\n        self._solde = solde_initial       # \"Privé\" par convention\n        self.__historique = []            # \"Private\" avec name mangling\n\n    def deposer(self, montant):\n        if montant > 0:\n            self._solde += montant\n            self.__ajouter_transaction(f\"Dépôt de {montant}\")\n            return True\n        return False\n\n    def retirer(self, montant):\n        if 0 < montant <= self._solde:\n            self._solde -= montant\n            self.__ajouter_transaction(f\"Retrait de {montant}\")\n            return True\n        return False\n\n    def obtenir_solde(self):\n        return self._solde\n\n    def __ajouter_transaction(self, transaction):\n        self.__historique.append(transaction)\n\n# Utilisation\ncompte = CompteBancaire(\"Alice\", 1000)\nprint(compte.proprietaire)  # Accès à un attribut public\ncompte.deposer(500)\nprint(compte.obtenir_solde())  # Utilisation d'une méthode publique pour accéder au solde\n\n# Les lignes suivantes sont possibles mais déconseillées :\nprint(compte._solde)  # Accès à un attribut \"privé\" par convention\n# print(compte.__historique)  # Ceci lèvera une AttributeError\nprint(compte._CompteBancaire__historique)  # Accès à l'attribut avec name mangling","id":1,"options":{"fig-cap":"","results":"markup","warning":"true","message":"true","classes":"","label":"","autorun":"","comment":"","fig-width":7,"out-height":"","context":"interactive","out-width":"700px","fig-height":5,"dpi":72,"read-only":"false","output":"true"}}];
+globalThis.qpyodideCellDetails = [{"options":{"warning":"true","label":"","read-only":"false","message":"true","out-height":"","comment":"","fig-cap":"","autorun":"","classes":"","out-width":"700px","output":"true","results":"markup","fig-width":7,"context":"interactive","dpi":72,"fig-height":5},"id":1,"code":"class CompteBancaire:\n    def __init__(self, proprietaire, solde_initial):\n        self.proprietaire = proprietaire  # Public\n        self._solde = solde_initial       # \"Privé\" par convention\n        self.__historique = []            # \"Private\" avec name mangling\n\n    def deposer(self, montant):\n        if montant > 0:\n            self._solde += montant\n            self.__ajouter_transaction(f\"Dépôt de {montant}\")\n            return True\n        return False\n\n    def retirer(self, montant):\n        if 0 < montant <= self._solde:\n            self._solde -= montant\n            self.__ajouter_transaction(f\"Retrait de {montant}\")\n            return True\n        return False\n\n    def obtenir_solde(self):\n        return self._solde\n\n    def __ajouter_transaction(self, transaction):\n        self.__historique.append(transaction)\n\n# Utilisation\ncompte = CompteBancaire(\"Alice\", 1000)\nprint(compte.proprietaire)  # Accès à un attribut public\ncompte.deposer(500)\nprint(compte.obtenir_solde())  # Utilisation d'une méthode publique pour accéder au solde\n\n# Les lignes suivantes sont possibles mais déconseillées :\nprint(compte._solde)  # Accès à un attribut \"privé\" par convention\n# print(compte.__historique)  # Ceci lèvera une AttributeError\nprint(compte._CompteBancaire__historique)  # Accès à l'attribut avec name mangling"}];
 
 
 </script>
@@ -538,6 +538,10 @@ globalThis._qpyodideGetInstance = function() {
     <a class="dropdown-item" href="../../content/Cours_2/4-Dunder.html">
  <span class="dropdown-text">Méthodes Dunder en Python</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/5-call_a_dog.html">
+ <span class="dropdown-text">Python <strong>call</strong> Method: A Fun Exploration</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
@@ -568,15 +572,19 @@ globalThis._qpyodideGetInstance = function() {
  <span class="dropdown-text">Polymorphism in Python: Function Overloading and Type Checking</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/3-Type_Hinting.html">
+    <a class="dropdown-item" href="../../content/Cours_3/3-type_to_create.html">
+ <span class="dropdown-text">Class Creation: Standard vs type()</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_3/4-Type_Hinting.html">
  <span class="dropdown-text">Type Hinting, Typing Module, and Linters in Python</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/4-Abstract_class.html">
+    <a class="dropdown-item" href="../../content/Cours_3/5-Abstract_class.html">
  <span class="dropdown-text">Abstract Classes</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/5-Protocol.html">
+    <a class="dropdown-item" href="../../content/Cours_3/6-Protocol.html">
  <span class="dropdown-text">Protocol Classes</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
@@ -608,11 +616,19 @@ globalThis._qpyodideGetInstance = function() {
     <a class="dropdown-item" href="../../content/Cours_4/4-builtin_decorator.html">
  <span class="dropdown-text">Built-in Decorators and Standard Library Decorators in Python</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_4/5-library_decorators.html">
+ <span class="dropdown-text">Practical Decorators in Python Libraries</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
-    <a class="dropdown-item" href="../../content/Cours_4/TP.html">
- <span class="dropdown-text">TP</span></a>
+    <a class="dropdown-item" href="../../content/Cours_4/TP_option.html">
+ <span class="dropdown-text">TP: Monte Carlo Option Pricing with Decorators</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_4/TP_library.html">
+ <span class="dropdown-text">TP: Optimizing Heston Model Monte Carlo Simulation</span></a>
   </li>  
     </ul>
   </li>
@@ -764,6 +780,12 @@ globalThis._qpyodideGetInstance = function() {
   <div class="sidebar-item-container"> 
   <a href="../../content/Cours_2/4-Dunder.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Méthodes Dunder en Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_2/5-call_a_dog.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python <strong>call</strong> Method: A Fun Exploration</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">

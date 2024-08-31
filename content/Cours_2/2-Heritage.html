@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"class MaClasse:\n    pass\n\n# Est équivalent à :\nclass MaClasse(object):\n    pass","id":1,"options":{"output":"true","comment":"","fig-width":7,"fig-cap":"","autorun":"","classes":"","warning":"true","results":"markup","out-width":"700px","out-height":"","label":"","message":"true","context":"interactive","fig-height":5,"read-only":"false","dpi":72}},{"code":"class Classe1:\n    pass\n\nclass Classe2:\n    pass\n\nclass ClasseDerivee(Classe1, Classe2):\n    pass","id":2,"options":{"output":"true","comment":"","fig-width":7,"fig-cap":"","autorun":"","classes":"","warning":"true","results":"markup","out-width":"700px","out-height":"","label":"","message":"true","context":"interactive","fig-height":5,"read-only":"false","dpi":72}},{"code":"class Nageur:\n    def nager(self):\n        print(\"Je nage\")\n\nclass Volant:\n    def voler(self):\n        print(\"Je vole\")\n\nclass Canard(Nageur, Volant):\n    pass\n\ndonald = Canard()\ndonald.nager()  # Affiche: Je nage\ndonald.voler()  # Affiche: Je vole","id":3,"options":{"output":"true","comment":"","fig-width":7,"fig-cap":"","autorun":"","classes":"","warning":"true","results":"markup","out-width":"700px","out-height":"","label":"","message":"true","context":"interactive","fig-height":5,"read-only":"false","dpi":72}},{"code":"class A:\n    pass\n\nclass B(A):\n    pass\n\nclass C(A):\n    pass\n\nclass D(B, C):\n    pass\n\nprint(D.mro())\n# Affiche: [<class '__main__.D'>, <class '__main__.B'>, <class '__main__.C'>, <class '__main__.A'>, <class 'object'>]","id":4,"options":{"output":"true","comment":"","fig-width":7,"fig-cap":"","autorun":"","classes":"","warning":"true","results":"markup","out-width":"700px","out-height":"","label":"","message":"true","context":"interactive","fig-height":5,"read-only":"false","dpi":72}},{"code":"class A:\n    def methode(self):\n        print(\"Méthode de A\")\n\nclass B(A):\n    def methode(self):\n        print(\"Méthode de B\")\n\nclass C(A):\n    def methode(self):\n        print(\"Méthode de C\")\n\nclass D(B, C):\n    pass\n\nd = D()\nd.methode()  # Affiche: Méthode de B","id":5,"options":{"output":"true","comment":"","fig-width":7,"fig-cap":"","autorun":"","classes":"","warning":"true","results":"markup","out-width":"700px","out-height":"","label":"","message":"true","context":"interactive","fig-height":5,"read-only":"false","dpi":72}}];
+globalThis.qpyodideCellDetails = [{"code":"class MaClasse:\n    pass\n\n# Est équivalent à :\nclass MaClasse(object):\n    pass","id":1,"options":{"out-width":"700px","label":"","warning":"true","fig-width":7,"read-only":"false","context":"interactive","comment":"","autorun":"","output":"true","results":"markup","out-height":"","classes":"","dpi":72,"fig-cap":"","fig-height":5,"message":"true"}},{"code":"class Classe1:\n    pass\n\nclass Classe2:\n    pass\n\nclass ClasseDerivee(Classe1, Classe2):\n    pass","id":2,"options":{"out-width":"700px","label":"","warning":"true","fig-width":7,"read-only":"false","context":"interactive","comment":"","autorun":"","output":"true","results":"markup","out-height":"","classes":"","dpi":72,"fig-cap":"","fig-height":5,"message":"true"}},{"code":"class Nageur:\n    def nager(self):\n        print(\"Je nage\")\n\nclass Volant:\n    def voler(self):\n        print(\"Je vole\")\n\nclass Canard(Nageur, Volant):\n    pass\n\ndonald = Canard()\ndonald.nager()  # Affiche: Je nage\ndonald.voler()  # Affiche: Je vole","id":3,"options":{"out-width":"700px","label":"","warning":"true","fig-width":7,"read-only":"false","context":"interactive","comment":"","autorun":"","output":"true","results":"markup","out-height":"","classes":"","dpi":72,"fig-cap":"","fig-height":5,"message":"true"}},{"code":"class A:\n    pass\n\nclass B(A):\n    pass\n\nclass C(A):\n    pass\n\nclass D(B, C):\n    pass\n\nprint(D.mro())\n# Affiche: [<class '__main__.D'>, <class '__main__.B'>, <class '__main__.C'>, <class '__main__.A'>, <class 'object'>]","id":4,"options":{"out-width":"700px","label":"","warning":"true","fig-width":7,"read-only":"false","context":"interactive","comment":"","autorun":"","output":"true","results":"markup","out-height":"","classes":"","dpi":72,"fig-cap":"","fig-height":5,"message":"true"}},{"code":"class A:\n    def methode(self):\n        print(\"Méthode de A\")\n\nclass B(A):\n    def methode(self):\n        print(\"Méthode de B\")\n\nclass C(A):\n    def methode(self):\n        print(\"Méthode de C\")\n\nclass D(B, C):\n    pass\n\nd = D()\nd.methode()  # Affiche: Méthode de B","id":5,"options":{"out-width":"700px","label":"","warning":"true","fig-width":7,"read-only":"false","context":"interactive","comment":"","autorun":"","output":"true","results":"markup","out-height":"","classes":"","dpi":72,"fig-cap":"","fig-height":5,"message":"true"}}];
 
 
 </script>
@@ -538,6 +538,10 @@ globalThis._qpyodideGetInstance = function() {
     <a class="dropdown-item" href="../../content/Cours_2/4-Dunder.html">
  <span class="dropdown-text">Méthodes Dunder en Python</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/5-call_a_dog.html">
+ <span class="dropdown-text">Python <strong>call</strong> Method: A Fun Exploration</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
@@ -568,15 +572,19 @@ globalThis._qpyodideGetInstance = function() {
  <span class="dropdown-text">Polymorphism in Python: Function Overloading and Type Checking</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/3-Type_Hinting.html">
+    <a class="dropdown-item" href="../../content/Cours_3/3-type_to_create.html">
+ <span class="dropdown-text">Class Creation: Standard vs type()</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_3/4-Type_Hinting.html">
  <span class="dropdown-text">Type Hinting, Typing Module, and Linters in Python</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/4-Abstract_class.html">
+    <a class="dropdown-item" href="../../content/Cours_3/5-Abstract_class.html">
  <span class="dropdown-text">Abstract Classes</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/5-Protocol.html">
+    <a class="dropdown-item" href="../../content/Cours_3/6-Protocol.html">
  <span class="dropdown-text">Protocol Classes</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
@@ -608,11 +616,19 @@ globalThis._qpyodideGetInstance = function() {
     <a class="dropdown-item" href="../../content/Cours_4/4-builtin_decorator.html">
  <span class="dropdown-text">Built-in Decorators and Standard Library Decorators in Python</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_4/5-library_decorators.html">
+ <span class="dropdown-text">Practical Decorators in Python Libraries</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
-    <a class="dropdown-item" href="../../content/Cours_4/TP.html">
- <span class="dropdown-text">TP</span></a>
+    <a class="dropdown-item" href="../../content/Cours_4/TP_option.html">
+ <span class="dropdown-text">TP: Monte Carlo Option Pricing with Decorators</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_4/TP_library.html">
+ <span class="dropdown-text">TP: Optimizing Heston Model Monte Carlo Simulation</span></a>
   </li>  
     </ul>
   </li>
@@ -764,6 +780,12 @@ globalThis._qpyodideGetInstance = function() {
   <div class="sidebar-item-container"> 
   <a href="../../content/Cours_2/4-Dunder.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Méthodes Dunder en Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_2/5-call_a_dog.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python <strong>call</strong> Method: A Fun Exploration</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">

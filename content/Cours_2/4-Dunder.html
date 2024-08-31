@@ -33,7 +33,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../content/Cours_2/TP_heritage.html" rel="next">
+<link href="../../content/Cours_2/5-call_a_dog.html" rel="next">
 <link href="../../content/Cours_2/3-Composition.html" rel="prev">
 <link href="../../content/.img/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"class Personne:\n    def __init__(self, nom, age):\n        self.nom = nom\n        self.age = age","id":1,"options":{"results":"markup","fig-width":7,"comment":"","fig-height":5,"out-width":"700px","autorun":"","message":"true","dpi":72,"context":"interactive","out-height":"","classes":"","label":"","read-only":"false","fig-cap":"","output":"true","warning":"true"}},{"code":"class FichierTemporaire:\n    def __del__(self):\n        print(\"Nettoyage des fichiers temporaires\")","id":2,"options":{"results":"markup","fig-width":7,"comment":"","fig-height":5,"out-width":"700px","autorun":"","message":"true","dpi":72,"context":"interactive","out-height":"","classes":"","label":"","read-only":"false","fig-cap":"","output":"true","warning":"true"}},{"code":"class Point:\n    def __init__(self, x, y):\n        self.x, self.y = x, y\n    \n    def __str__(self):\n        return f\"Point({self.x}, {self.y})\"\n    \n    def __repr__(self):\n        return f\"Point(x={self.x}, y={self.y})\"","id":3,"options":{"results":"markup","fig-width":7,"comment":"","fig-height":5,"out-width":"700px","autorun":"","message":"true","dpi":72,"context":"interactive","out-height":"","classes":"","label":"","read-only":"false","fig-cap":"","output":"true","warning":"true"}},{"code":"class Vecteur:\n    def __init__(self, x, y):\n        self.x, self.y = x, y\n    \n    def __add__(self, other):\n        return Vecteur(self.x + other.x, self.y + other.y)\n    \n    def __mul__(self, scalar):\n        return Vecteur(self.x * scalar, self.y * scalar)","id":4,"options":{"results":"markup","fig-width":7,"comment":"","fig-height":5,"out-width":"700px","autorun":"","message":"true","dpi":72,"context":"interactive","out-height":"","classes":"","label":"","read-only":"false","fig-cap":"","output":"true","warning":"true"}},{"code":"class Temperature:\n    def __init__(self, celsius):\n        self.celsius = celsius\n    \n    def __eq__(self, other):\n        return self.celsius == other.celsius\n    \n    def __lt__(self, other):\n        return self.celsius < other.celsius","id":5,"options":{"results":"markup","fig-width":7,"comment":"","fig-height":5,"out-width":"700px","autorun":"","message":"true","dpi":72,"context":"interactive","out-height":"","classes":"","label":"","read-only":"false","fig-cap":"","output":"true","warning":"true"}},{"code":"class MaListe:\n    def __init__(self):\n        self.data = []\n    \n    def __len__(self):\n        return len(self.data)\n    \n    def __getitem__(self, index):\n        return self.data[index]\n    \n    def __setitem__(self, index, value):\n        self.data[index] = value\n    \n    def __iter__(self):\n        return iter(self.data)","id":6,"options":{"results":"markup","fig-width":7,"comment":"","fig-height":5,"out-width":"700px","autorun":"","message":"true","dpi":72,"context":"interactive","out-height":"","classes":"","label":"","read-only":"false","fig-cap":"","output":"true","warning":"true"}},{"code":"class Personne:\n    def __init__(self, nom):\n        self.nom = nom\n    \n    def __getattr__(self, attr):\n        return f\"L'attribut {attr} n'existe pas\"\n    \n    def __setattr__(self, name, value):\n        print(f\"Attribution de {value} à {name}\")\n        super().__setattr__(name, value)","id":7,"options":{"results":"markup","fig-width":7,"comment":"","fig-height":5,"out-width":"700px","autorun":"","message":"true","dpi":72,"context":"interactive","out-height":"","classes":"","label":"","read-only":"false","fig-cap":"","output":"true","warning":"true"}},{"code":"class Multiplicateur:\n    def __init__(self, facteur):\n        self.facteur = facteur\n    \n    def __call__(self, x):\n        return x * self.facteur\n\ndoubler = Multiplicateur(2)\nprint(doubler(5))  # Affiche: 10","id":8,"options":{"results":"markup","fig-width":7,"comment":"","fig-height":5,"out-width":"700px","autorun":"","message":"true","dpi":72,"context":"interactive","out-height":"","classes":"","label":"","read-only":"false","fig-cap":"","output":"true","warning":"true"}},{"code":"class OpenFile:\n    def __init__(self, filename, mode):\n        self.filename = filename\n        self.mode = mode\n    \n    def __enter__(self):\n        self.file = open(self.filename, self.mode)\n        return self.file\n    \n    def __exit__(self, exc_type, exc_val, exc_tb):\n        self.file.close()\n\nwith OpenFile('fichier.txt', 'w') as f:\n    f.write('Hello, world!')","id":9,"options":{"results":"markup","fig-width":7,"comment":"","fig-height":5,"out-width":"700px","autorun":"","message":"true","dpi":72,"context":"interactive","out-height":"","classes":"","label":"","read-only":"false","fig-cap":"","output":"true","warning":"true"}}];
+globalThis.qpyodideCellDetails = [{"options":{"autorun":"","dpi":72,"context":"interactive","out-height":"","classes":"","results":"markup","read-only":"false","output":"true","message":"true","comment":"","fig-width":7,"label":"","out-width":"700px","fig-cap":"","fig-height":5,"warning":"true"},"id":1,"code":"class Personne:\n    def __init__(self, nom, age):\n        self.nom = nom\n        self.age = age"},{"options":{"autorun":"","dpi":72,"context":"interactive","out-height":"","classes":"","results":"markup","read-only":"false","output":"true","message":"true","comment":"","fig-width":7,"label":"","out-width":"700px","fig-cap":"","fig-height":5,"warning":"true"},"id":2,"code":"class FichierTemporaire:\n    def __del__(self):\n        print(\"Nettoyage des fichiers temporaires\")"},{"options":{"autorun":"","dpi":72,"context":"interactive","out-height":"","classes":"","results":"markup","read-only":"false","output":"true","message":"true","comment":"","fig-width":7,"label":"","out-width":"700px","fig-cap":"","fig-height":5,"warning":"true"},"id":3,"code":"class Point:\n    def __init__(self, x, y):\n        self.x, self.y = x, y\n    \n    def __str__(self):\n        return f\"Point({self.x}, {self.y})\"\n    \n    def __repr__(self):\n        return f\"Point(x={self.x}, y={self.y})\""},{"options":{"autorun":"","dpi":72,"context":"interactive","out-height":"","classes":"","results":"markup","read-only":"false","output":"true","message":"true","comment":"","fig-width":7,"label":"","out-width":"700px","fig-cap":"","fig-height":5,"warning":"true"},"id":4,"code":"class Vecteur:\n    def __init__(self, x, y):\n        self.x, self.y = x, y\n    \n    def __add__(self, other):\n        return Vecteur(self.x + other.x, self.y + other.y)\n    \n    def __mul__(self, scalar):\n        return Vecteur(self.x * scalar, self.y * scalar)"},{"options":{"autorun":"","dpi":72,"context":"interactive","out-height":"","classes":"","results":"markup","read-only":"false","output":"true","message":"true","comment":"","fig-width":7,"label":"","out-width":"700px","fig-cap":"","fig-height":5,"warning":"true"},"id":5,"code":"class Temperature:\n    def __init__(self, celsius):\n        self.celsius = celsius\n    \n    def __eq__(self, other):\n        return self.celsius == other.celsius\n    \n    def __lt__(self, other):\n        return self.celsius < other.celsius"},{"options":{"autorun":"","dpi":72,"context":"interactive","out-height":"","classes":"","results":"markup","read-only":"false","output":"true","message":"true","comment":"","fig-width":7,"label":"","out-width":"700px","fig-cap":"","fig-height":5,"warning":"true"},"id":6,"code":"class MaListe:\n    def __init__(self):\n        self.data = []\n    \n    def __len__(self):\n        return len(self.data)\n    \n    def __getitem__(self, index):\n        return self.data[index]\n    \n    def __setitem__(self, index, value):\n        self.data[index] = value\n    \n    def __iter__(self):\n        return iter(self.data)"},{"options":{"autorun":"","dpi":72,"context":"interactive","out-height":"","classes":"","results":"markup","read-only":"false","output":"true","message":"true","comment":"","fig-width":7,"label":"","out-width":"700px","fig-cap":"","fig-height":5,"warning":"true"},"id":7,"code":"class Personne:\n    def __init__(self, nom):\n        self.nom = nom\n    \n    def __getattr__(self, attr):\n        return f\"L'attribut {attr} n'existe pas\"\n    \n    def __setattr__(self, name, value):\n        print(f\"Attribution de {value} à {name}\")\n        super().__setattr__(name, value)"},{"options":{"autorun":"","dpi":72,"context":"interactive","out-height":"","classes":"","results":"markup","read-only":"false","output":"true","message":"true","comment":"","fig-width":7,"label":"","out-width":"700px","fig-cap":"","fig-height":5,"warning":"true"},"id":8,"code":"class Multiplicateur:\n    def __init__(self, facteur):\n        self.facteur = facteur\n    \n    def __call__(self, x):\n        return x * self.facteur\n\ndoubler = Multiplicateur(2)\nprint(doubler(5))  # Affiche: 10"},{"options":{"autorun":"","dpi":72,"context":"interactive","out-height":"","classes":"","results":"markup","read-only":"false","output":"true","message":"true","comment":"","fig-width":7,"label":"","out-width":"700px","fig-cap":"","fig-height":5,"warning":"true"},"id":9,"code":"class OpenFile:\n    def __init__(self, filename, mode):\n        self.filename = filename\n        self.mode = mode\n    \n    def __enter__(self):\n        self.file = open(self.filename, self.mode)\n        return self.file\n    \n    def __exit__(self, exc_type, exc_val, exc_tb):\n        self.file.close()\n\nwith OpenFile('fichier.txt', 'w') as f:\n    f.write('Hello, world!')"}];
 
 
 </script>
@@ -538,6 +538,10 @@ globalThis._qpyodideGetInstance = function() {
     <a class="dropdown-item" href="../../content/Cours_2/4-Dunder.html">
  <span class="dropdown-text">Méthodes Dunder en Python</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/5-call_a_dog.html">
+ <span class="dropdown-text">Python <strong>call</strong> Method: A Fun Exploration</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
@@ -568,15 +572,19 @@ globalThis._qpyodideGetInstance = function() {
  <span class="dropdown-text">Polymorphism in Python: Function Overloading and Type Checking</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/3-Type_Hinting.html">
+    <a class="dropdown-item" href="../../content/Cours_3/3-type_to_create.html">
+ <span class="dropdown-text">Class Creation: Standard vs type()</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_3/4-Type_Hinting.html">
  <span class="dropdown-text">Type Hinting, Typing Module, and Linters in Python</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/4-Abstract_class.html">
+    <a class="dropdown-item" href="../../content/Cours_3/5-Abstract_class.html">
  <span class="dropdown-text">Abstract Classes</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/5-Protocol.html">
+    <a class="dropdown-item" href="../../content/Cours_3/6-Protocol.html">
  <span class="dropdown-text">Protocol Classes</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
@@ -608,11 +616,19 @@ globalThis._qpyodideGetInstance = function() {
     <a class="dropdown-item" href="../../content/Cours_4/4-builtin_decorator.html">
  <span class="dropdown-text">Built-in Decorators and Standard Library Decorators in Python</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_4/5-library_decorators.html">
+ <span class="dropdown-text">Practical Decorators in Python Libraries</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
-    <a class="dropdown-item" href="../../content/Cours_4/TP.html">
- <span class="dropdown-text">TP</span></a>
+    <a class="dropdown-item" href="../../content/Cours_4/TP_option.html">
+ <span class="dropdown-text">TP: Monte Carlo Option Pricing with Decorators</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_4/TP_library.html">
+ <span class="dropdown-text">TP: Optimizing Heston Model Monte Carlo Simulation</span></a>
   </li>  
     </ul>
   </li>
@@ -764,6 +780,12 @@ globalThis._qpyodideGetInstance = function() {
   <div class="sidebar-item-container"> 
   <a href="../../content/Cours_2/4-Dunder.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Méthodes Dunder en Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_2/5-call_a_dog.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python <strong>call</strong> Method: A Fun Exploration</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -1606,8 +1628,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../content/Cours_2/TP_heritage.html" class="pagination-link" aria-label="TP: Heritage avec le pricing d'option">
-        <span class="nav-page-text">TP: Heritage avec le pricing d’option</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../content/Cours_2/5-call_a_dog.html" class="pagination-link" aria-label="Python __call__ Method: A Fun Exploration">
+        <span class="nav-page-text">Python <strong>call</strong> Method: A Fun Exploration</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
