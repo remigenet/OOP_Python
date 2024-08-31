@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.55">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Remi Genet">
-<meta name="dcterms.date" content="2024-08-12">
+<meta name="dcterms.date" content="2024-08-31">
 <meta name="description" content="Découvrez les méthodes dunder en Python, des méthodes spéciales encadrées par des doubles tirets bas (__), qui permettent de personnaliser le comportement des objets dans différents contextes. Apprenez comment utiliser les méthodes dunder pour l’initialisation, la représentation, les opérations mathématiques, les comparaisons, les conteneurs, la gestion des attributs, l’appel d’objet comme une fonction, la gestion du contexte, et d’autres cas d’utilisation.">
 
 <title>Méthodes Dunder en Python – Programmation Orientée Objet en Python</title>
@@ -33,7 +33,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../content/Cours_2/TP.html" rel="next">
+<link href="../../content/Cours_2/TP_heritage.html" rel="next">
 <link href="../../content/Cours_2/3-Composition.html" rel="prev">
 <link href="../../content/.img/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"options":{"read-only":"false","comment":"","results":"markup","out-width":"700px","autorun":"","dpi":72,"context":"interactive","output":"true","classes":"","label":"","warning":"true","out-height":"","fig-height":5,"fig-width":7,"fig-cap":"","message":"true"},"id":1,"code":"class Personne:\n    def __init__(self, nom, age):\n        self.nom = nom\n        self.age = age"},{"options":{"read-only":"false","comment":"","results":"markup","out-width":"700px","autorun":"","dpi":72,"context":"interactive","output":"true","classes":"","label":"","warning":"true","out-height":"","fig-height":5,"fig-width":7,"fig-cap":"","message":"true"},"id":2,"code":"class FichierTemporaire:\n    def __del__(self):\n        print(\"Nettoyage des fichiers temporaires\")"},{"options":{"read-only":"false","comment":"","results":"markup","out-width":"700px","autorun":"","dpi":72,"context":"interactive","output":"true","classes":"","label":"","warning":"true","out-height":"","fig-height":5,"fig-width":7,"fig-cap":"","message":"true"},"id":3,"code":"class Point:\n    def __init__(self, x, y):\n        self.x, self.y = x, y\n    \n    def __str__(self):\n        return f\"Point({self.x}, {self.y})\"\n    \n    def __repr__(self):\n        return f\"Point(x={self.x}, y={self.y})\""},{"options":{"read-only":"false","comment":"","results":"markup","out-width":"700px","autorun":"","dpi":72,"context":"interactive","output":"true","classes":"","label":"","warning":"true","out-height":"","fig-height":5,"fig-width":7,"fig-cap":"","message":"true"},"id":4,"code":"class Vecteur:\n    def __init__(self, x, y):\n        self.x, self.y = x, y\n    \n    def __add__(self, other):\n        return Vecteur(self.x + other.x, self.y + other.y)\n    \n    def __mul__(self, scalar):\n        return Vecteur(self.x * scalar, self.y * scalar)"},{"options":{"read-only":"false","comment":"","results":"markup","out-width":"700px","autorun":"","dpi":72,"context":"interactive","output":"true","classes":"","label":"","warning":"true","out-height":"","fig-height":5,"fig-width":7,"fig-cap":"","message":"true"},"id":5,"code":"class Temperature:\n    def __init__(self, celsius):\n        self.celsius = celsius\n    \n    def __eq__(self, other):\n        return self.celsius == other.celsius\n    \n    def __lt__(self, other):\n        return self.celsius < other.celsius"},{"options":{"read-only":"false","comment":"","results":"markup","out-width":"700px","autorun":"","dpi":72,"context":"interactive","output":"true","classes":"","label":"","warning":"true","out-height":"","fig-height":5,"fig-width":7,"fig-cap":"","message":"true"},"id":6,"code":"class MaListe:\n    def __init__(self):\n        self.data = []\n    \n    def __len__(self):\n        return len(self.data)\n    \n    def __getitem__(self, index):\n        return self.data[index]\n    \n    def __setitem__(self, index, value):\n        self.data[index] = value\n    \n    def __iter__(self):\n        return iter(self.data)"},{"options":{"read-only":"false","comment":"","results":"markup","out-width":"700px","autorun":"","dpi":72,"context":"interactive","output":"true","classes":"","label":"","warning":"true","out-height":"","fig-height":5,"fig-width":7,"fig-cap":"","message":"true"},"id":7,"code":"class Personne:\n    def __init__(self, nom):\n        self.nom = nom\n    \n    def __getattr__(self, attr):\n        return f\"L'attribut {attr} n'existe pas\"\n    \n    def __setattr__(self, name, value):\n        print(f\"Attribution de {value} à {name}\")\n        super().__setattr__(name, value)"},{"options":{"read-only":"false","comment":"","results":"markup","out-width":"700px","autorun":"","dpi":72,"context":"interactive","output":"true","classes":"","label":"","warning":"true","out-height":"","fig-height":5,"fig-width":7,"fig-cap":"","message":"true"},"id":8,"code":"class Multiplicateur:\n    def __init__(self, facteur):\n        self.facteur = facteur\n    \n    def __call__(self, x):\n        return x * self.facteur\n\ndoubler = Multiplicateur(2)\nprint(doubler(5))  # Affiche: 10"},{"options":{"read-only":"false","comment":"","results":"markup","out-width":"700px","autorun":"","dpi":72,"context":"interactive","output":"true","classes":"","label":"","warning":"true","out-height":"","fig-height":5,"fig-width":7,"fig-cap":"","message":"true"},"id":9,"code":"class OpenFile:\n    def __init__(self, filename, mode):\n        self.filename = filename\n        self.mode = mode\n    \n    def __enter__(self):\n        self.file = open(self.filename, self.mode)\n        return self.file\n    \n    def __exit__(self, exc_type, exc_val, exc_tb):\n        self.file.close()\n\nwith OpenFile('fichier.txt', 'w') as f:\n    f.write('Hello, world!')"}];
+globalThis.qpyodideCellDetails = [{"code":"class Personne:\n    def __init__(self, nom, age):\n        self.nom = nom\n        self.age = age","id":1,"options":{"results":"markup","fig-width":7,"comment":"","fig-height":5,"out-width":"700px","autorun":"","message":"true","dpi":72,"context":"interactive","out-height":"","classes":"","label":"","read-only":"false","fig-cap":"","output":"true","warning":"true"}},{"code":"class FichierTemporaire:\n    def __del__(self):\n        print(\"Nettoyage des fichiers temporaires\")","id":2,"options":{"results":"markup","fig-width":7,"comment":"","fig-height":5,"out-width":"700px","autorun":"","message":"true","dpi":72,"context":"interactive","out-height":"","classes":"","label":"","read-only":"false","fig-cap":"","output":"true","warning":"true"}},{"code":"class Point:\n    def __init__(self, x, y):\n        self.x, self.y = x, y\n    \n    def __str__(self):\n        return f\"Point({self.x}, {self.y})\"\n    \n    def __repr__(self):\n        return f\"Point(x={self.x}, y={self.y})\"","id":3,"options":{"results":"markup","fig-width":7,"comment":"","fig-height":5,"out-width":"700px","autorun":"","message":"true","dpi":72,"context":"interactive","out-height":"","classes":"","label":"","read-only":"false","fig-cap":"","output":"true","warning":"true"}},{"code":"class Vecteur:\n    def __init__(self, x, y):\n        self.x, self.y = x, y\n    \n    def __add__(self, other):\n        return Vecteur(self.x + other.x, self.y + other.y)\n    \n    def __mul__(self, scalar):\n        return Vecteur(self.x * scalar, self.y * scalar)","id":4,"options":{"results":"markup","fig-width":7,"comment":"","fig-height":5,"out-width":"700px","autorun":"","message":"true","dpi":72,"context":"interactive","out-height":"","classes":"","label":"","read-only":"false","fig-cap":"","output":"true","warning":"true"}},{"code":"class Temperature:\n    def __init__(self, celsius):\n        self.celsius = celsius\n    \n    def __eq__(self, other):\n        return self.celsius == other.celsius\n    \n    def __lt__(self, other):\n        return self.celsius < other.celsius","id":5,"options":{"results":"markup","fig-width":7,"comment":"","fig-height":5,"out-width":"700px","autorun":"","message":"true","dpi":72,"context":"interactive","out-height":"","classes":"","label":"","read-only":"false","fig-cap":"","output":"true","warning":"true"}},{"code":"class MaListe:\n    def __init__(self):\n        self.data = []\n    \n    def __len__(self):\n        return len(self.data)\n    \n    def __getitem__(self, index):\n        return self.data[index]\n    \n    def __setitem__(self, index, value):\n        self.data[index] = value\n    \n    def __iter__(self):\n        return iter(self.data)","id":6,"options":{"results":"markup","fig-width":7,"comment":"","fig-height":5,"out-width":"700px","autorun":"","message":"true","dpi":72,"context":"interactive","out-height":"","classes":"","label":"","read-only":"false","fig-cap":"","output":"true","warning":"true"}},{"code":"class Personne:\n    def __init__(self, nom):\n        self.nom = nom\n    \n    def __getattr__(self, attr):\n        return f\"L'attribut {attr} n'existe pas\"\n    \n    def __setattr__(self, name, value):\n        print(f\"Attribution de {value} à {name}\")\n        super().__setattr__(name, value)","id":7,"options":{"results":"markup","fig-width":7,"comment":"","fig-height":5,"out-width":"700px","autorun":"","message":"true","dpi":72,"context":"interactive","out-height":"","classes":"","label":"","read-only":"false","fig-cap":"","output":"true","warning":"true"}},{"code":"class Multiplicateur:\n    def __init__(self, facteur):\n        self.facteur = facteur\n    \n    def __call__(self, x):\n        return x * self.facteur\n\ndoubler = Multiplicateur(2)\nprint(doubler(5))  # Affiche: 10","id":8,"options":{"results":"markup","fig-width":7,"comment":"","fig-height":5,"out-width":"700px","autorun":"","message":"true","dpi":72,"context":"interactive","out-height":"","classes":"","label":"","read-only":"false","fig-cap":"","output":"true","warning":"true"}},{"code":"class OpenFile:\n    def __init__(self, filename, mode):\n        self.filename = filename\n        self.mode = mode\n    \n    def __enter__(self):\n        self.file = open(self.filename, self.mode)\n        return self.file\n    \n    def __exit__(self, exc_type, exc_val, exc_tb):\n        self.file.close()\n\nwith OpenFile('fichier.txt', 'w') as f:\n    f.write('Hello, world!')","id":9,"options":{"results":"markup","fig-width":7,"comment":"","fig-height":5,"out-width":"700px","autorun":"","message":"true","dpi":72,"context":"interactive","out-height":"","classes":"","label":"","read-only":"false","fig-cap":"","output":"true","warning":"true"}}];
 
 
 </script>
@@ -439,10 +439,10 @@ globalThis._qpyodideGetInstance = function() {
 <meta property="og:image:width" content="1024">
 <meta name="citation_title" content="Méthodes Dunder en Python">
 <meta name="citation_author" content="Remi Genet">
-<meta name="citation_publication_date" content="2024-08-12">
-<meta name="citation_cover_date" content="2024-08-12">
+<meta name="citation_publication_date" content="2024-08-31">
+<meta name="citation_cover_date" content="2024-08-31">
 <meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-08-12">
+<meta name="citation_online_date" content="2024-08-31">
 <meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_2/4-Dunder.html">
 <meta name="citation_language" content="en">
 </head>
@@ -541,8 +541,12 @@ globalThis._qpyodideGetInstance = function() {
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
-    <a class="dropdown-item" href="../../content/Cours_2/TP.html">
- <span class="dropdown-text">TP</span></a>
+    <a class="dropdown-item" href="../../content/Cours_2/TP_heritage.html">
+ <span class="dropdown-text">TP: Heritage avec le pricing d’option</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder.html">
+ <span class="dropdown-text">TP: Heritage avec le pricing d’option</span></a>
   </li>  
     </ul>
   </li>
@@ -773,8 +777,14 @@ globalThis._qpyodideGetInstance = function() {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_2/TP.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">TP</span></a>
+  <a href="../../content/Cours_2/TP_heritage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP: Heritage avec le pricing d’option</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_2/TP_dunder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP: Heritage avec le pricing d’option</span></a>
   </div>
 </li>
       </ul>
@@ -845,7 +855,7 @@ globalThis._qpyodideGetInstance = function() {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-08-12</p>
+      <p class="date">2024-08-31</p>
     </div>
   </div>
   
@@ -1596,8 +1606,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../content/Cours_2/TP.html" class="pagination-link" aria-label="TP">
-        <span class="nav-page-text">TP</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../content/Cours_2/TP_heritage.html" class="pagination-link" aria-label="TP: Heritage avec le pricing d'option">
+        <span class="nav-page-text">TP: Heritage avec le pricing d’option</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

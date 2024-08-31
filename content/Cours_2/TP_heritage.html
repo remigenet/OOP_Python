@@ -8,9 +8,8 @@
 
 <meta name="author" content="Remi Genet">
 <meta name="dcterms.date" content="2024-08-31">
-<meta name="description" content="Learn about decorators in Python with concrete examples, including basic function decorators, decorators with arguments, class decorators, decorators with parameters, and their practical applications.">
 
-<title>Decorator Practically – Programmation Orientée Objet en Python</title>
+<title>TP: Heritage avec le pricing d’option – Programmation Orientée Objet en Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,8 +32,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../content/Cours_4/4-builtin_decorator.html" rel="next">
-<link href="../../content/Cours_4/2-Decorator_theory.html" rel="prev">
+<link href="../../content/Cours_2/TP_dunder.html" rel="next">
+<link href="../../content/Cours_2/4-Dunder.html" rel="prev">
 <link href="../../content/.img/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -238,7 +237,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"def uppercase_decorator(func):\n    def wrapper():\n        result = func()\n        return result.upper()\n    return wrapper\n\n@uppercase_decorator\ndef greet():\n    return \"hello, world!\"\n\nprint(greet())  # Output: HELLO, WORLD!","id":1,"options":{"message":"true","fig-cap":"","label":"","output":"true","context":"interactive","results":"markup","fig-height":5,"classes":"","autorun":"","read-only":"false","fig-width":7,"warning":"true","dpi":72,"out-height":"","out-width":"700px","comment":""}},{"code":"def log_function_call(func):\n    def wrapper(*args, **kwargs):\n        print(f\"Calling function: {func.__name__}\")\n        return func(*args, **kwargs)\n    return wrapper\n\n@log_function_call\ndef add(a, b):\n    return a + b\n\nresult = add(3, 5)\nprint(result)\n# Output:\n# Calling function: add\n# 8","id":2,"options":{"message":"true","fig-cap":"","label":"","output":"true","context":"interactive","results":"markup","fig-height":5,"classes":"","autorun":"","read-only":"false","fig-width":7,"warning":"true","dpi":72,"out-height":"","out-width":"700px","comment":""}},{"code":"def add_greeting(cls):\n    def greet(self):\n        return f\"Hello! I'm {self.name}\"\n    \n    cls.greet = greet\n    return cls\n\n@add_greeting\nclass Person:\n    def __init__(self, name):\n        self.name = name\n\nperson = Person(\"Alice\")\nprint(person.greet())  # Output: Hello! I'm Alice","id":3,"options":{"message":"true","fig-cap":"","label":"","output":"true","context":"interactive","results":"markup","fig-height":5,"classes":"","autorun":"","read-only":"false","fig-width":7,"warning":"true","dpi":72,"out-height":"","out-width":"700px","comment":""}},{"code":"def repeat(times):\n    def decorator(func):\n        def wrapper(*args, **kwargs):\n            for _ in range(times):\n                result = func(*args, **kwargs)\n            return result\n        return wrapper\n    return decorator\n\n@repeat(3)\ndef say_hello(name):\n    print(f\"Hello, {name}!\")\n\nsay_hello(\"Bob\")\n# Output:\n# Hello, Bob!\n# Hello, Bob!\n# Hello, Bob!","id":4,"options":{"message":"true","fig-cap":"","label":"","output":"true","context":"interactive","results":"markup","fig-height":5,"classes":"","autorun":"","read-only":"false","fig-width":7,"warning":"true","dpi":72,"out-height":"","out-width":"700px","comment":""}}];
+globalThis.qpyodideCellDetails = [{"id":1,"options":{"warning":"true","results":"markup","fig-cap":"","message":"true","context":"interactive","label":"","out-width":"700px","comment":"","fig-width":7,"read-only":"false","fig-height":5,"dpi":72,"classes":"","out-height":"","autorun":"","output":"true"},"code":"import unittest\nimport math\nfrom scipy.stats import norm\nimport numpy as np\n\n# TODO: Importez vos classes ici\n# from black_scholes import Option, Call, Put\n\nclass TestBlackScholes(unittest.TestCase):\n    def setUp(self):\n        self.spot = 100\n        self.strike = 100\n        self.risk_free = 0.05\n        self.time_to_maturity = 1\n        self.volatility = 0.2\n\n        self.call = Call(self.spot, self.strike, self.risk_free, self.time_to_maturity, self.volatility)\n        self.put = Put(self.spot, self.strike, self.risk_free, self.time_to_maturity, self.volatility)\n\n    def test_call_price(self):\n        expected_price = 10.450583\n        self.assertAlmostEqual(self.call.compute_price(), expected_price, places=6)\n\n    def test_put_price(self):\n        expected_price = 5.57352\n        self.assertAlmostEqual(self.put.compute_price(), expected_price, places=6)\n\n    def test_call_delta(self):\n        expected_delta = 0.63683065\n        self.assertAlmostEqual(self.call.compute_delta(), expected_delta, places=4)\n\n    def test_put_delta(self):\n        expected_delta = -0.36316934\n        self.assertAlmostEqual(self.put.compute_delta(), expected_delta, places=4)\n\n    def test_gamma(self):\n        expected_gamma = 0.01876201\n        self.assertAlmostEqual(self.call.compute_gamma(), expected_gamma, places=4)\n        self.assertAlmostEqual(self.put.compute_gamma(), expected_gamma, places=4)\n\n    def test_vega(self):\n        expected_vega = 37.524034\n        self.assertAlmostEqual(self.call.compute_vega(), expected_vega, places=4)\n        self.assertAlmostEqual(self.put.compute_vega(), expected_vega, places=4)\n\ndef run_tests():\n    unittest.main(argv=[''], verbosity=2, exit=False)\n\nif __name__ == '__main__':\n    run_tests()"},{"id":2,"options":{"warning":"true","results":"markup","fig-cap":"","message":"true","context":"interactive","label":"","out-width":"700px","comment":"","fig-width":7,"read-only":"false","fig-height":5,"dpi":72,"classes":"","out-height":"","autorun":"","output":"true"},"code":"import unittest\nimport numpy as np\n\n# TODO: Importez vos classes ici\n# from monte_carlo import Derivative, EuropeanOption, Payoff, CallPayoff, PutPayoff\n\nclass TestMonteCarlo(unittest.TestCase):\n    def setUp(self):\n        self.spot = 100\n        self.strike = 100\n        self.risk_free = 0.05\n        self.time_to_maturity = 1\n        self.volatility = 0.2\n        self.num_simulations = 100000\n\n        self.call_payoff = CallPayoff(self.strike)\n        self.put_payoff = PutPayoff(self.strike)\n\n        self.call_option = EuropeanOption(self.spot, self.risk_free, self.time_to_maturity, self.volatility, self.call_payoff)\n        self.put_option = EuropeanOption(self.spot, self.risk_free, self.time_to_maturity, self.volatility, self.put_payoff)\n\n    def test_call_price(self):\n        expected_price = 10.450583\n        simulated_price = self.call_option.price(self.num_simulations)\n        self.assertAlmostEqual(simulated_price, expected_price, delta=0.1)\n\n    def test_put_price(self):\n        expected_price = 5.57352\n        simulated_price = self.put_option.price(self.num_simulations)\n        self.assertAlmostEqual(simulated_price, expected_price, delta=0.1)\n\n    def test_call_payoff(self):\n        stock_price = 110\n        expected_payoff = 10\n        self.assertEqual(self.call_payoff.calculate(stock_price), expected_payoff)\n\n    def test_put_payoff(self):\n        stock_price = 90\n        expected_payoff = 10\n        self.assertEqual(self.put_payoff.calculate(stock_price), expected_payoff)\n\ndef run_tests():\n    unittest.main(argv=[''], verbosity=2, exit=False)\n\nif __name__ == '__main__':\n    run_tests()"}];
 
 
 </script>
@@ -429,19 +428,48 @@ globalThis._qpyodideGetInstance = function() {
 
 </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Decorator Practically – Programmation Orientée Objet en Python">
-<meta property="og:description" content="Learn about decorators in Python with concrete examples, including basic function decorators, decorators with arguments, class decorators, decorators with parameters, and their practical applications.">
-<meta property="og:image" content="https://remigenet.github.io/OOP_Python/content/Cours_4/.img/reqandgraph.webp">
+<meta property="og:title" content="TP: Heritage avec le pricing d’option – Programmation Orientée Objet en Python">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://remigenet.github.io/OOP_Python/content/Cours_2/.img/tpfinance.png">
 <meta property="og:site_name" content="Programmation Orientée Objet en Python">
-<meta name="citation_title" content="Decorator Practically">
+<meta name="citation_title" content="TP: Heritage avec le pricing d&amp;amp;#039;option">
 <meta name="citation_author" content="Remi Genet">
 <meta name="citation_publication_date" content="2024-08-31">
 <meta name="citation_cover_date" content="2024-08-31">
 <meta name="citation_year" content="2024">
 <meta name="citation_online_date" content="2024-08-31">
-<meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_4/3-Decorator_practically.html">
+<meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_2/TP_heritage.html">
 <meta name="citation_language" content="en">
 </head>
 
@@ -722,7 +750,7 @@ globalThis._qpyodideGetInstance = function() {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_4/3-Decorator_practically.html">Decorator Practically</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_2/TP_heritage.html">Travaux Pratiques</a></li><li class="breadcrumb-item"><a href="../../content/Cours_2/TP_heritage.html">TP: Heritage avec le pricing d’option</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -736,26 +764,32 @@ globalThis._qpyodideGetInstance = function() {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_4/1-Design_Pattern.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Design Patterns</span></a>
+  <a href="../../content/Cours_2/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Encapsulation, Heritage, Composition et Dunder</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_4/2-Decorator_theory.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">The decorator pattern</span></a>
+  <a href="../../content/Cours_2/1-Encapsulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Encapsulation en Python</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_4/3-Decorator_practically.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Decorator Practically</span></a>
+  <a href="../../content/Cours_2/2-Heritage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Héritage en Python : Concept et intérêt</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_4/4-builtin_decorator.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Built-in Decorators and Standard Library Decorators in Python</span></a>
+  <a href="../../content/Cours_2/3-Composition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Héritage vs Composition</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_2/4-Dunder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Méthodes Dunder en Python</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -769,8 +803,14 @@ globalThis._qpyodideGetInstance = function() {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_4/TP.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">TP</span></a>
+  <a href="../../content/Cours_2/TP_heritage.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">TP: Heritage avec le pricing d’option</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_2/TP_dunder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP: Heritage avec le pricing d’option</span></a>
   </div>
 </li>
       </ul>
@@ -785,13 +825,18 @@ globalThis._qpyodideGetInstance = function() {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#decorators-in-python-concrete-examples" id="toc-decorators-in-python-concrete-examples" class="nav-link active" data-scroll-target="#decorators-in-python-concrete-examples">Decorators in Python: Concrete Examples</a>
+  <li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">Instructions</a>
   <ul class="collapse">
-  <li><a href="#basic-function-decorators" id="toc-basic-function-decorators" class="nav-link" data-scroll-target="#basic-function-decorators">Basic Function Decorators</a></li>
-  <li><a href="#function-decorators-with-arguments" id="toc-function-decorators-with-arguments" class="nav-link" data-scroll-target="#function-decorators-with-arguments">Function Decorators with Arguments</a></li>
-  <li><a href="#simple-class-decorator" id="toc-simple-class-decorator" class="nav-link" data-scroll-target="#simple-class-decorator">Simple Class Decorator</a></li>
-  <li><a href="#decorators-with-parameters" id="toc-decorators-with-parameters" class="nav-link" data-scroll-target="#decorators-with-parameters">Decorators with Parameters</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#rappels-théoriques" id="toc-rappels-théoriques" class="nav-link" data-scroll-target="#rappels-théoriques">Rappels théoriques</a>
+  <ul class="collapse">
+  <li><a href="#formule-de-black-scholes" id="toc-formule-de-black-scholes" class="nav-link" data-scroll-target="#formule-de-black-scholes">Formule de Black-Scholes</a></li>
+  <li><a href="#les-grecs" id="toc-les-grecs" class="nav-link" data-scroll-target="#les-grecs">Les Grecs</a></li>
+  <li><a href="#méthode-de-monte-carlo" id="toc-méthode-de-monte-carlo" class="nav-link" data-scroll-target="#méthode-de-monte-carlo">Méthode de Monte Carlo</a></li>
+  </ul></li>
+  <li><a href="#partie-1-implémentation-de-black-scholes" id="toc-partie-1-implémentation-de-black-scholes" class="nav-link" data-scroll-target="#partie-1-implémentation-de-black-scholes">Partie 1 : Implémentation de Black-Scholes</a></li>
+  <li><a href="#partie-2-implémentation-de-monte-carlo" id="toc-partie-2-implémentation-de-monte-carlo" class="nav-link" data-scroll-target="#partie-2-implémentation-de-monte-carlo">Partie 2 : Implémentation de Monte Carlo</a></li>
+  <li><a href="#tests-unitaires" id="toc-tests-unitaires" class="nav-link" data-scroll-target="#tests-unitaires">Tests Unitaires</a></li>
+  <li><a href="#conseils" id="toc-conseils" class="nav-link" data-scroll-target="#conseils">Conseils</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -809,20 +854,15 @@ globalThis._qpyodideGetInstance = function() {
   });
 </script>
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_2/TP_heritage.html">Travaux Pratiques</a></li><li class="breadcrumb-item"><a href="../../content/Cours_2/TP_heritage.html">TP: Heritage avec le pricing d’option</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Decorator Practically</h1>
+<h1 class="title">TP: Heritage avec le pricing d’option</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Cours</div>
-    <div class="quarto-category">Fondamentaux</div>
+    <div class="quarto-category">TP</div>
+    <div class="quarto-category">Avancé</div>
   </div>
   </div>
 
-<div>
-  <div class="description">
-    Learn about decorators in Python with concrete examples, including basic function decorators, decorators with arguments, class decorators, decorators with parameters, and their practical applications.
-  </div>
-</div>
 
 
 <div class="quarto-title-meta column-body">
@@ -849,41 +889,119 @@ globalThis._qpyodideGetInstance = function() {
 </header>
 
 
-<section id="decorators-in-python-concrete-examples" class="level1">
-<h1>Decorators in Python: Concrete Examples</h1>
-<hr>
-<section id="basic-function-decorators" class="level2">
-<h2 class="anchored" data-anchor-id="basic-function-decorators">Basic Function Decorators</h2>
-<p>In Python, decorators are implemented using the <code>@</code> symbol, followed by the decorator function name, placed above the function definition they’re decorating.</p>
-<p>Let’s start with a simple example:</p>
+<section id="instructions" class="level1">
+<h1>Instructions</h1>
+<p>Ce TP est divisé en deux parties pour explorer les concepts d’héritage, d’encapsulation et de composition en programmation orientée objet (POO). Vous allez implémenter des classes pour évaluer des options financières en utilisant deux méthodes différentes : la formule de Black-Scholes et la simulation de Monte Carlo.</p>
+<section id="rappels-théoriques" class="level2">
+<h2 class="anchored" data-anchor-id="rappels-théoriques">Rappels théoriques</h2>
+<section id="formule-de-black-scholes" class="level3">
+<h3 class="anchored" data-anchor-id="formule-de-black-scholes">Formule de Black-Scholes</h3>
+<p>La formule de Black-Scholes est utilisée pour calculer le prix théorique d’une option européenne. Voici les principales formules :</p>
+<ol type="1">
+<li><p><span class="math inline">\(d_1 = \frac{\ln(S/K) + (r + \sigma^2/2)T}{\sigma\sqrt{T}}\)</span></p></li>
+<li><p><span class="math inline">\(d_2 = d_1 - \sigma\sqrt{T}\)</span>J’a</p></li>
+<li><p>Prix d’un Call : <span class="math inline">\(C = SN(d_1) - Ke^{-rT}N(d_2)\)</span></p></li>
+<li><p>Prix d’un Put : <span class="math inline">\(P = Ke^{-rT}N(-d_2) - SN(-d_1)\)</span></p></li>
+</ol>
+<p>Où : - <span class="math inline">\(S\)</span> : prix spot de l’actif sous-jacent - <span class="math inline">\(K\)</span> : prix d’exercice de l’option - <span class="math inline">\(r\)</span> : taux d’intérêt sans risque - <span class="math inline">\(T\)</span> : temps jusqu’à l’expiration (en années) - <span class="math inline">\(\sigma\)</span> : volatilité de l’actif sous-jacent - <span class="math inline">\(N(x)\)</span> : fonction de répartition de la loi normale centrée réduite</p>
+</section>
+<section id="les-grecs" class="level3">
+<h3 class="anchored" data-anchor-id="les-grecs">Les Grecs</h3>
+<p>Les Grecs sont des mesures de sensibilité du prix de l’option par rapport à divers paramètres :</p>
+<ol type="1">
+<li><p>Delta (Δ) :</p>
+<ul>
+<li>Pour un Call : <span class="math inline">\(\Delta_C = N(d_1)\)</span></li>
+<li>Pour un Put : <span class="math inline">\(\Delta_P = N(d_1) - 1\)</span></li>
+</ul></li>
+<li><p>Gamma (Γ) : <span class="math inline">\(\Gamma = \frac{N'(d_1)}{S\sigma\sqrt{T}}\)</span></p></li>
+<li><p>Vega (ν) : <span class="math inline">\(\nu = S\sqrt{T}N'(d_1)\)</span></p></li>
+<li><p>Theta (Θ) :</p>
+<ul>
+<li>Pour un Call : <span class="math inline">\(\Theta_C = -\frac{SN'(d_1)\sigma}{2\sqrt{T}} - rKe^{-rT}N(d_2)\)</span></li>
+<li>Pour un Put : <span class="math inline">\(\Theta_P = -\frac{SN'(d_1)\sigma}{2\sqrt{T}} + rKe^{-rT}N(-d_2)\)</span></li>
+</ul></li>
+<li><p>Rho (ρ) :</p>
+<ul>
+<li>Pour un Call : <span class="math inline">\(\rho_C = KTe^{-rT}N(d_2)\)</span></li>
+<li>Pour un Put : <span class="math inline">\(\rho_P = -KTe^{-rT}N(-d_2)\)</span></li>
+</ul></li>
+</ol>
+</section>
+<section id="méthode-de-monte-carlo" class="level3">
+<h3 class="anchored" data-anchor-id="méthode-de-monte-carlo">Méthode de Monte Carlo</h3>
+<p>La méthode de Monte Carlo pour l’évaluation d’options implique les étapes suivantes :</p>
+<ol type="1">
+<li><p>Générer un grand nombre de trajectoires de prix pour l’actif sous-jacent en utilisant le mouvement brownien géométrique :</p>
+<p><span class="math inline">\(S_T = S_0 \exp((r - \frac{\sigma^2}{2})T + \sigma\sqrt{T}Z)\)</span></p>
+<p>où <span class="math inline">\(Z\)</span> est une variable aléatoire normale standard.</p></li>
+<li><p>Pour chaque trajectoire, calculer le payoff de l’option à l’échéance.</p></li>
+<li><p>Calculer la moyenne des payoffs actualisés :</p>
+<p><span class="math inline">\(\text{Prix de l'option} = e^{-rT} \frac{1}{N} \sum_{i=1}^N \text{Payoff}_i\)</span></p>
+<p>où <span class="math inline">\(N\)</span> est le nombre de simulations.</p></li>
+</ol>
+</section>
+</section>
+<section id="partie-1-implémentation-de-black-scholes" class="level2">
+<h2 class="anchored" data-anchor-id="partie-1-implémentation-de-black-scholes">Partie 1 : Implémentation de Black-Scholes</h2>
+<ol type="1">
+<li><p>Créez un fichier nommé <code>black_scholes.py</code>.</p></li>
+<li><p>Implémentez les classes suivantes :</p>
+<ol type="a">
+<li><code>Option</code> : Classe de base pour les options</li>
+<li><code>Call</code> : Classe dérivée de <code>Option</code> pour les options d’achat</li>
+<li><code>Put</code> : Classe dérivée de <code>Option</code> pour les options de vente</li>
+</ol></li>
+<li><p>Chaque classe doit avoir les méthodes suivantes :</p>
+<ul>
+<li><code>__init__</code> : Constructeur avec les paramètres nécessaires</li>
+<li><code>compute_price()</code> : Calcule le prix de l’option</li>
+<li><code>compute_delta()</code> : Calcule le delta de l’option</li>
+<li><code>compute_gamma()</code> : Calcule le gamma de l’option</li>
+<li><code>compute_vega()</code> : Calcule le vega de l’option</li>
+<li><code>compute_theta()</code> : Calcule le theta de l’option</li>
+<li><code>compute_rho()</code> : Calcule le rho de l’option</li>
+</ul></li>
+<li><p>Utilisez la formule de Black-Scholes pour les calculs.</p></li>
+</ol>
+</section>
+<section id="partie-2-implémentation-de-monte-carlo" class="level2">
+<h2 class="anchored" data-anchor-id="partie-2-implémentation-de-monte-carlo">Partie 2 : Implémentation de Monte Carlo</h2>
+<ol type="1">
+<li><p>Créez un fichier nommé <code>monte_carlo.py</code>.</p></li>
+<li><p>Implémentez les classes suivantes :</p>
+<ol type="a">
+<li><code>Derivative</code> : Classe de base pour les produits dérivés</li>
+<li><code>EuropeanOption</code> : Classe dérivée de <code>Derivative</code> pour les options européennes</li>
+<li><code>Payoff</code> : Classe de base pour les fonctions de payoff</li>
+<li><code>CallPayoff</code> : Classe dérivée de <code>Payoff</code> pour le payoff d’une option d’achat</li>
+<li><code>PutPayoff</code> : Classe dérivée de <code>Payoff</code> pour le payoff d’une option de vente</li>
+</ol></li>
+<li><p>La classe <code>Derivative</code> doit avoir une méthode <code>price()</code> qui utilise la simulation de Monte Carlo.</p></li>
+<li><p>Les classes <code>EuropeanOption</code> et <code>Payoff</code> doivent utiliser la composition pour lier les payoffs aux options.</p></li>
+</ol>
+</section>
+<section id="tests-unitaires" class="level2">
+<h2 class="anchored" data-anchor-id="tests-unitaires">Tests Unitaires</h2>
+<p>Voici un ensemble de tests unitaires pour vérifier votre implémentation de la Partie 1 (Black-Scholes) :</p>
 <div id="qpyodide-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>In this example, <code>uppercase_decorator</code> is a function that takes another function as an argument, modifies its behavior (by converting the result to uppercase), and returns the modified function.</p>
-</section>
-<section id="function-decorators-with-arguments" class="level2">
-<h2 class="anchored" data-anchor-id="function-decorators-with-arguments">Function Decorators with Arguments</h2>
-<p>Decorators can also work with functions that accept arguments:</p>
+<p>Et voici un ensemble de tests unitaires pour la Partie 2 (Monte Carlo) :</p>
 <div id="qpyodide-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>This decorator logs the name of the function being called before executing it.</p>
 </section>
-<section id="simple-class-decorator" class="level2">
-<h2 class="anchored" data-anchor-id="simple-class-decorator">Simple Class Decorator</h2>
-<p>Decorators can also be applied to classes. Here’s a simple example:</p>
-<div id="qpyodide-insertion-location-3"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>This decorator adds a <code>greet</code> method to the <code>Person</code> class.</p>
-</section>
-<section id="decorators-with-parameters" class="level2">
-<h2 class="anchored" data-anchor-id="decorators-with-parameters">Decorators with Parameters</h2>
-<p>We can create decorators that accept parameters:</p>
-<div id="qpyodide-insertion-location-4"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>This <code>repeat</code> decorator takes an argument specifying how many times the decorated function should be called.</p>
-</section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>These examples demonstrate the basic usage of decorators in Python. They allow for modifying or enhancing the behavior of functions and classes without changing their source code. Decorators provide a clean and reusable way to extend functionality, making code more modular and easier to maintain.</p>
+<section id="conseils" class="level2">
+<h2 class="anchored" data-anchor-id="conseils">Conseils</h2>
+<ul>
+<li>Commencez par implémenter la Partie 1 (Black-Scholes) avant de passer à la Partie 2 (Monte Carlo).</li>
+<li>Utilisez l’encapsulation pour protéger les attributs de vos classes.</li>
+<li>Profitez de l’héritage pour factoriser le code commun entre les classes <code>Call</code> et <code>Put</code>.</li>
+<li>Pour la Partie 2, utilisez la composition pour lier les payoffs aux options européennes.</li>
+<li>N’oubliez pas d’importer les bibliothèques nécessaires (math, numpy, scipy.stats).</li>
+<li>Testez votre code régulièrement en utilisant les tests unitaires fournis.</li>
+<li>Utilisez les formules fournies dans les rappels théoriques pour implémenter vos méthodes.</li>
+</ul>
+<p>Bonne chance !</p>
 
 
 </section>
@@ -1456,13 +1574,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../../content/Cours_4/2-Decorator_theory.html" class="pagination-link" aria-label="The decorator pattern">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">The decorator pattern</span>
+      <a href="../../content/Cours_2/4-Dunder.html" class="pagination-link" aria-label="Méthodes Dunder en Python">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Méthodes Dunder en Python</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../content/Cours_4/4-builtin_decorator.html" class="pagination-link" aria-label="Built-in Decorators and Standard Library Decorators in Python">
-        <span class="nav-page-text">Built-in Decorators and Standard Library Decorators in Python</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../content/Cours_2/TP_dunder.html" class="pagination-link" aria-label="TP: Heritage avec le pricing d'option">
+        <span class="nav-page-text">TP: Heritage avec le pricing d’option</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

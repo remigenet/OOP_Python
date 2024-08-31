@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.55">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Remi Genet">
-<meta name="dcterms.date" content="2024-08-12">
+<meta name="dcterms.date" content="2024-08-31">
 <meta name="description" content="L’adoption de la POO dans les langages modernes comme C++ et Python a révolutionné la programmation. Découvrez comment ces langages ont intégré les concepts de la POO et leurs implications.">
 
 <title>Naissance de la POO – Programmation Orientée Objet en Python</title>
@@ -272,7 +272,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"id":1,"options":{"autorun":"","read-only":"false","dpi":72,"classes":"","label":"","comment":"","results":"markup","output":"true","fig-height":5,"warning":"true","message":"true","context":"interactive","out-height":"","out-width":"700px","fig-width":7,"fig-cap":""},"code":"class Vehicule:\n    def __init__(self, marque, modele):\n        self.marque = marque\n        self.modele = modele\n    \n    def afficher(self):\n        print(f\"Vehicule: {self.marque} {self.modele}\")\n\nclass Voiture(Vehicule):\n    def __init__(self, marque, modele, nombre_portes):\n        super().__init__(marque, modele)\n        self.nombre_portes = nombre_portes\n    \n    def afficher(self):\n        print(f\"Voiture: {self.marque} {self.modele} ({self.nombre_portes} portes)\")\n\nv1 = Vehicule(\"Générique\", \"Modèle X\")\nv2 = Voiture(\"Renault\", \"Clio\", 5)\n\nv1.afficher()  # Affiche: Vehicule: Générique Modèle X\nv2.afficher()  # Affiche: Voiture: Renault Clio (5 portes)"}];
+globalThis.qpyodideCellDetails = [{"code":"class Vehicule:\n    def __init__(self, marque, modele):\n        self.marque = marque\n        self.modele = modele\n    \n    def afficher(self):\n        print(f\"Vehicule: {self.marque} {self.modele}\")\n\nclass Voiture(Vehicule):\n    def __init__(self, marque, modele, nombre_portes):\n        super().__init__(marque, modele)\n        self.nombre_portes = nombre_portes\n    \n    def afficher(self):\n        print(f\"Voiture: {self.marque} {self.modele} ({self.nombre_portes} portes)\")\n\nv1 = Vehicule(\"Générique\", \"Modèle X\")\nv2 = Voiture(\"Renault\", \"Clio\", 5)\n\nv1.afficher()  # Affiche: Vehicule: Générique Modèle X\nv2.afficher()  # Affiche: Voiture: Renault Clio (5 portes)","options":{"classes":"","warning":"true","dpi":72,"fig-width":7,"message":"true","fig-height":5,"context":"interactive","read-only":"false","label":"","results":"markup","fig-cap":"","out-width":"700px","autorun":"","out-height":"","output":"true","comment":""},"id":1}];
 
 
 </script>
@@ -473,10 +473,10 @@ globalThis._qpyodideGetInstance = function() {
 <meta property="og:image:width" content="1024">
 <meta name="citation_title" content="Naissance de la POO">
 <meta name="citation_author" content="Remi Genet">
-<meta name="citation_publication_date" content="2024-08-12">
-<meta name="citation_cover_date" content="2024-08-12">
+<meta name="citation_publication_date" content="2024-08-31">
+<meta name="citation_cover_date" content="2024-08-31">
 <meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-08-12">
+<meta name="citation_online_date" content="2024-08-31">
 <meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_1/3-NaissancePOO.html">
 <meta name="citation_language" content="en">
 </head>
@@ -575,8 +575,12 @@ globalThis._qpyodideGetInstance = function() {
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
-    <a class="dropdown-item" href="../../content/Cours_2/TP.html">
- <span class="dropdown-text">TP</span></a>
+    <a class="dropdown-item" href="../../content/Cours_2/TP_heritage.html">
+ <span class="dropdown-text">TP: Heritage avec le pricing d’option</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder.html">
+ <span class="dropdown-text">TP: Heritage avec le pricing d’option</span></a>
   </li>  
     </ul>
   </li>
@@ -904,7 +908,7 @@ globalThis._qpyodideGetInstance = function() {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-08-12</p>
+      <p class="date">2024-08-31</p>
     </div>
   </div>
   

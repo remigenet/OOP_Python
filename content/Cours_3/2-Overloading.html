@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.55">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Remi Genet">
-<meta name="dcterms.date" content="2024-08-12">
+<meta name="dcterms.date" content="2024-08-31">
 <meta name="description" content="Learn how to achieve polymorphism in Python through function overloading, type checking, and class-based polymorphism">
 
 <title>Polymorphism in Python: Function Overloading and Type Checking – Programmation Orientée Objet en Python</title>
@@ -272,7 +272,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"id":1,"code":"def add_integers(a: int, b: int) -> int:\n    return a + b\n\ndef add_floats(a: float, b: float) -> float:\n    return a + b","options":{"output":"true","autorun":"","fig-cap":"","warning":"true","comment":"","message":"true","label":"","classes":"","out-width":"700px","out-height":"","fig-height":5,"results":"markup","context":"interactive","dpi":72,"read-only":"false","fig-width":7}},{"id":2,"code":"def add(a, b):\n    if isinstance(a, int) and isinstance(b, int):\n        return a + b\n    elif isinstance(a, float) and isinstance(b, float):\n        return a + b\n    else:\n        raise TypeError(\"Unsupported types\")","options":{"output":"true","autorun":"","fig-cap":"","warning":"true","comment":"","message":"true","label":"","classes":"","out-width":"700px","out-height":"","fig-height":5,"results":"markup","context":"interactive","dpi":72,"read-only":"false","fig-width":7}},{"id":3,"code":"class Calculator:\n    def add(self, a, b):\n        if isinstance(a, int) and isinstance(b, int):\n            return self._add_integers(a, b)\n        elif isinstance(a, float) and isinstance(b, float):\n            return self._add_floats(a, b)\n        else:\n            raise TypeError(\"Unsupported types\")\n\n    def _add_integers(self, a: int, b: int) -> int:\n        return a + b\n\n    def _add_floats(self, a: float, b: float) -> float:\n        return a + b","options":{"output":"true","autorun":"","fig-cap":"","warning":"true","comment":"","message":"true","label":"","classes":"","out-width":"700px","out-height":"","fig-height":5,"results":"markup","context":"interactive","dpi":72,"read-only":"false","fig-width":7}},{"id":4,"code":"calc = Calculator()\nprint(calc.add(5, 3))        # Uses _add_integers\nprint(calc.add(5.5, 3.2))    # Uses _add_floats","options":{"output":"true","autorun":"","fig-cap":"","warning":"true","comment":"","message":"true","label":"","classes":"","out-width":"700px","out-height":"","fig-height":5,"results":"markup","context":"interactive","dpi":72,"read-only":"false","fig-width":7}},{"id":5,"code":"def calculate_area(shape):\n    return shape.area()\n\nclass Circle:\n    def __init__(self, radius):\n        self.radius = radius\n    \n    def area(self):\n        return 3.14 * self.radius ** 2\n\nclass Square:\n    def __init__(self, side):\n        self.side = side\n    \n    def area(self):\n        return self.side ** 2\n\n# Both work because both have an area() method\nprint(calculate_area(Circle(5)))\nprint(calculate_area(Square(4)))","options":{"output":"true","autorun":"","fig-cap":"","warning":"true","comment":"","message":"true","label":"","classes":"","out-width":"700px","out-height":"","fig-height":5,"results":"markup","context":"interactive","dpi":72,"read-only":"false","fig-width":7}}];
+globalThis.qpyodideCellDetails = [{"id":1,"code":"def add_integers(a: int, b: int) -> int:\n    return a + b\n\ndef add_floats(a: float, b: float) -> float:\n    return a + b","options":{"out-width":"700px","fig-cap":"","label":"","message":"true","autorun":"","warning":"true","classes":"","dpi":72,"context":"interactive","out-height":"","read-only":"false","output":"true","results":"markup","fig-width":7,"comment":"","fig-height":5}},{"id":2,"code":"def add(a, b):\n    if isinstance(a, int) and isinstance(b, int):\n        return a + b\n    elif isinstance(a, float) and isinstance(b, float):\n        return a + b\n    else:\n        raise TypeError(\"Unsupported types\")","options":{"out-width":"700px","fig-cap":"","label":"","message":"true","autorun":"","warning":"true","classes":"","dpi":72,"context":"interactive","out-height":"","read-only":"false","output":"true","results":"markup","fig-width":7,"comment":"","fig-height":5}},{"id":3,"code":"class Calculator:\n    def add(self, a, b):\n        if isinstance(a, int) and isinstance(b, int):\n            return self._add_integers(a, b)\n        elif isinstance(a, float) and isinstance(b, float):\n            return self._add_floats(a, b)\n        else:\n            raise TypeError(\"Unsupported types\")\n\n    def _add_integers(self, a: int, b: int) -> int:\n        return a + b\n\n    def _add_floats(self, a: float, b: float) -> float:\n        return a + b","options":{"out-width":"700px","fig-cap":"","label":"","message":"true","autorun":"","warning":"true","classes":"","dpi":72,"context":"interactive","out-height":"","read-only":"false","output":"true","results":"markup","fig-width":7,"comment":"","fig-height":5}},{"id":4,"code":"calc = Calculator()\nprint(calc.add(5, 3))        # Uses _add_integers\nprint(calc.add(5.5, 3.2))    # Uses _add_floats","options":{"out-width":"700px","fig-cap":"","label":"","message":"true","autorun":"","warning":"true","classes":"","dpi":72,"context":"interactive","out-height":"","read-only":"false","output":"true","results":"markup","fig-width":7,"comment":"","fig-height":5}},{"id":5,"code":"def calculate_area(shape):\n    return shape.area()\n\nclass Circle:\n    def __init__(self, radius):\n        self.radius = radius\n    \n    def area(self):\n        return 3.14 * self.radius ** 2\n\nclass Square:\n    def __init__(self, side):\n        self.side = side\n    \n    def area(self):\n        return self.side ** 2\n\n# Both work because both have an area() method\nprint(calculate_area(Circle(5)))\nprint(calculate_area(Square(4)))","options":{"out-width":"700px","fig-cap":"","label":"","message":"true","autorun":"","warning":"true","classes":"","dpi":72,"context":"interactive","out-height":"","read-only":"false","output":"true","results":"markup","fig-width":7,"comment":"","fig-height":5}}];
 
 
 </script>
@@ -473,10 +473,10 @@ globalThis._qpyodideGetInstance = function() {
 <meta property="og:image:width" content="303">
 <meta name="citation_title" content="Polymorphism in Python: Function Overloading and Type Checking">
 <meta name="citation_author" content="Remi Genet">
-<meta name="citation_publication_date" content="2024-08-12">
-<meta name="citation_cover_date" content="2024-08-12">
+<meta name="citation_publication_date" content="2024-08-31">
+<meta name="citation_cover_date" content="2024-08-31">
 <meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-08-12">
+<meta name="citation_online_date" content="2024-08-31">
 <meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_3/2-Overloading.html">
 <meta name="citation_language" content="en">
 </head>
@@ -575,8 +575,12 @@ globalThis._qpyodideGetInstance = function() {
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
-    <a class="dropdown-item" href="../../content/Cours_2/TP.html">
- <span class="dropdown-text">TP</span></a>
+    <a class="dropdown-item" href="../../content/Cours_2/TP_heritage.html">
+ <span class="dropdown-text">TP: Heritage avec le pricing d’option</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder.html">
+ <span class="dropdown-text">TP: Heritage avec le pricing d’option</span></a>
   </li>  
     </ul>
   </li>
@@ -888,7 +892,7 @@ globalThis._qpyodideGetInstance = function() {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-08-12</p>
+      <p class="date">2024-08-31</p>
     </div>
   </div>
   
