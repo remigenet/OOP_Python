@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"options":{"out-height":"","out-width":"700px","fig-height":5,"dpi":72,"comment":"","results":"markup","message":"true","output":"true","classes":"","read-only":"false","fig-width":7,"autorun":"","label":"","fig-cap":"","context":"interactive","warning":"true"},"id":1,"code":"class Animal:\n    def make_sound(self):\n        pass\n\nclass Dog(Animal):\n    def make_sound(self):\n        return \"Woof!\"\n\nclass Cat(Animal):\n    def make_sound(self):\n        return \"Meow!\"\n\nclass Cow(Animal):\n    def make_sound(self):\n        return \"Moo!\"\n\n# Using polymorphism\nanimals = [Dog(), Cat(), Cow()]\nfor animal in animals:\n    print(animal.make_sound())"},{"options":{"out-height":"","out-width":"700px","fig-height":5,"dpi":72,"comment":"","results":"markup","message":"true","output":"true","classes":"","read-only":"false","fig-width":7,"autorun":"","label":"","fig-cap":"","context":"interactive","warning":"true"},"id":2,"code":"class Shape:\n    def area(self):\n        return 0\n\nclass Rectangle(Shape):\n    def __init__(self, width, height):\n        self.width = width\n        self.height = height\n    \n    def area(self):\n        return self.width * self.height\n\nclass Circle(Shape):\n    def __init__(self, radius):\n        self.radius = radius\n    \n    def area(self):\n        return 3.14 * self.radius ** 2\n\n# Using method overriding\nshapes = [Rectangle(5, 3), Circle(4), Shape()]\nfor shape in shapes:\n    print(f\"Area: {shape.area()}\")"}];
+globalThis.qpyodideCellDetails = [{"options":{"output":"true","warning":"true","out-height":"","classes":"","autorun":"","message":"true","dpi":72,"context":"interactive","read-only":"false","results":"markup","label":"","fig-cap":"","comment":"","out-width":"700px","fig-height":5,"fig-width":7},"code":"class Animal:\n    def make_sound(self):\n        pass\n\nclass Dog(Animal):\n    def make_sound(self):\n        return \"Woof!\"\n\nclass Cat(Animal):\n    def make_sound(self):\n        return \"Meow!\"\n\nclass Cow(Animal):\n    def make_sound(self):\n        return \"Moo!\"\n\n# Using polymorphism\nanimals = [Dog(), Cat(), Cow()]\nfor animal in animals:\n    print(animal.make_sound())","id":1},{"options":{"output":"true","warning":"true","out-height":"","classes":"","autorun":"","message":"true","dpi":72,"context":"interactive","read-only":"false","results":"markup","label":"","fig-cap":"","comment":"","out-width":"700px","fig-height":5,"fig-width":7},"code":"class Shape:\n    def area(self):\n        return 0\n\nclass Rectangle(Shape):\n    def __init__(self, width, height):\n        self.width = width\n        self.height = height\n    \n    def area(self):\n        return self.width * self.height\n\nclass Circle(Shape):\n    def __init__(self, radius):\n        self.radius = radius\n    \n    def area(self):\n        return 3.14 * self.radius ** 2\n\n# Using method overriding\nshapes = [Rectangle(5, 3), Circle(4), Shape()]\nfor shape in shapes:\n    print(f\"Area: {shape.area()}\")","id":2}];
 
 
 </script>
@@ -659,7 +659,7 @@ globalThis._qpyodideGetInstance = function() {
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
     <a class="dropdown-item" href="../../content/Cours_5/TP.html">
- <span class="dropdown-text">TP</span></a>
+ <span class="dropdown-text">TP: Creating a Linear Regression Package</span></a>
   </li>  
     </ul>
   </li>
@@ -692,7 +692,7 @@ globalThis._qpyodideGetInstance = function() {
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
     <a class="dropdown-item" href="../../content/Cours_5/TP.html">
- <span class="dropdown-text">TP</span></a>
+ <span class="dropdown-text">TP: Creating a Linear Regression Package</span></a>
   </li>  
     </ul>
   </li>

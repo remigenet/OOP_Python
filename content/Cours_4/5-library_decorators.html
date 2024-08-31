@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"from fastapi import FastAPI, Path, Query, HTTPException\nfrom pydantic import BaseModel\n\napp = FastAPI()\n\nclass Item(BaseModel):\n    name: str\n    price: float\n\n@app.get(\"/\")\nasync def root():\n    return {\"message\": \"Hello World\"}\n\n@app.get(\"/items/{item_id}\")\nasync def read_item(\n    item_id: int = Path(..., title=\"The ID of the item to get\", ge=1),\n    q: str | None = Query(None, max_length=50)\n):\n    return {\"item_id\": item_id, \"q\": q}\n\n@app.post(\"/items/\")\nasync def create_item(item: Item):\n    if item.price < 0:\n        raise HTTPException(status_code=400, detail=\"Price must be positive\")\n    return {\"item_name\": item.name, \"item_price\": item.price}","id":1,"options":{"context":"interactive","label":"","out-height":"","message":"true","classes":"","fig-height":5,"dpi":72,"warning":"true","read-only":"false","output":"true","out-width":"700px","comment":"","autorun":"","fig-width":7,"fig-cap":"","results":"markup"}},{"code":"from numba import jit\nimport numpy as np\n\n@jit(nopython=True)\ndef sum_array(arr):\n    sum = 0\n    for i in range(arr.shape[0]):\n        sum += arr[i]\n    return sum\n\n# Usage\narr = np.arange(1000000)\nresult = sum_array(arr)","id":2,"options":{"context":"interactive","label":"","out-height":"","message":"true","classes":"","fig-height":5,"dpi":72,"warning":"true","read-only":"false","output":"true","out-width":"700px","comment":"","autorun":"","fig-width":7,"fig-cap":"","results":"markup"}},{"code":"import pytest\n\n@pytest.fixture\ndef example_fixture():\n    return \"example\"\n\n@pytest.mark.parametrize(\"test_input,expected\", [\n    (\"3+5\", 8),\n    (\"2+4\", 6),\n    (\"6*9\", 54),\n])\ndef test_eval(test_input, expected):\n    assert eval(test_input) == expected\n\n@pytest.mark.slow\ndef test_slow_operation():\n    # Some time-consuming test\n    pass","id":3,"options":{"context":"interactive","label":"","out-height":"","message":"true","classes":"","fig-height":5,"dpi":72,"warning":"true","read-only":"false","output":"true","out-width":"700px","comment":"","autorun":"","fig-width":7,"fig-cap":"","results":"markup"}}];
+globalThis.qpyodideCellDetails = [{"id":1,"options":{"fig-width":7,"warning":"true","out-width":"700px","output":"true","dpi":72,"context":"interactive","autorun":"","label":"","message":"true","out-height":"","read-only":"false","classes":"","fig-height":5,"results":"markup","fig-cap":"","comment":""},"code":"from fastapi import FastAPI, Path, Query, HTTPException\nfrom pydantic import BaseModel\n\napp = FastAPI()\n\nclass Item(BaseModel):\n    name: str\n    price: float\n\n@app.get(\"/\")\nasync def root():\n    return {\"message\": \"Hello World\"}\n\n@app.get(\"/items/{item_id}\")\nasync def read_item(\n    item_id: int = Path(..., title=\"The ID of the item to get\", ge=1),\n    q: str | None = Query(None, max_length=50)\n):\n    return {\"item_id\": item_id, \"q\": q}\n\n@app.post(\"/items/\")\nasync def create_item(item: Item):\n    if item.price < 0:\n        raise HTTPException(status_code=400, detail=\"Price must be positive\")\n    return {\"item_name\": item.name, \"item_price\": item.price}"},{"id":2,"options":{"fig-width":7,"warning":"true","out-width":"700px","output":"true","dpi":72,"context":"interactive","autorun":"","label":"","message":"true","out-height":"","read-only":"false","classes":"","fig-height":5,"results":"markup","fig-cap":"","comment":""},"code":"from numba import jit\nimport numpy as np\n\n@jit(nopython=True)\ndef sum_array(arr):\n    sum = 0\n    for i in range(arr.shape[0]):\n        sum += arr[i]\n    return sum\n\n# Usage\narr = np.arange(1000000)\nresult = sum_array(arr)"},{"id":3,"options":{"fig-width":7,"warning":"true","out-width":"700px","output":"true","dpi":72,"context":"interactive","autorun":"","label":"","message":"true","out-height":"","read-only":"false","classes":"","fig-height":5,"results":"markup","fig-cap":"","comment":""},"code":"import pytest\n\n@pytest.fixture\ndef example_fixture():\n    return \"example\"\n\n@pytest.mark.parametrize(\"test_input,expected\", [\n    (\"3+5\", 8),\n    (\"2+4\", 6),\n    (\"6*9\", 54),\n])\ndef test_eval(test_input, expected):\n    assert eval(test_input) == expected\n\n@pytest.mark.slow\ndef test_slow_operation():\n    # Some time-consuming test\n    pass"}];
 
 
 </script>
@@ -659,7 +659,7 @@ globalThis._qpyodideGetInstance = function() {
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
     <a class="dropdown-item" href="../../content/Cours_5/TP.html">
- <span class="dropdown-text">TP</span></a>
+ <span class="dropdown-text">TP: Creating a Linear Regression Package</span></a>
   </li>  
     </ul>
   </li>
@@ -692,7 +692,7 @@ globalThis._qpyodideGetInstance = function() {
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
     <a class="dropdown-item" href="../../content/Cours_5/TP.html">
- <span class="dropdown-text">TP</span></a>
+ <span class="dropdown-text">TP: Creating a Linear Regression Package</span></a>
   </li>  
     </ul>
   </li>

@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"options":{"warning":"true","label":"","read-only":"false","message":"true","out-height":"","comment":"","fig-cap":"","autorun":"","classes":"","out-width":"700px","output":"true","results":"markup","fig-width":7,"context":"interactive","dpi":72,"fig-height":5},"id":1,"code":"class CompteBancaire:\n    def __init__(self, proprietaire, solde_initial):\n        self.proprietaire = proprietaire  # Public\n        self._solde = solde_initial       # \"Privé\" par convention\n        self.__historique = []            # \"Private\" avec name mangling\n\n    def deposer(self, montant):\n        if montant > 0:\n            self._solde += montant\n            self.__ajouter_transaction(f\"Dépôt de {montant}\")\n            return True\n        return False\n\n    def retirer(self, montant):\n        if 0 < montant <= self._solde:\n            self._solde -= montant\n            self.__ajouter_transaction(f\"Retrait de {montant}\")\n            return True\n        return False\n\n    def obtenir_solde(self):\n        return self._solde\n\n    def __ajouter_transaction(self, transaction):\n        self.__historique.append(transaction)\n\n# Utilisation\ncompte = CompteBancaire(\"Alice\", 1000)\nprint(compte.proprietaire)  # Accès à un attribut public\ncompte.deposer(500)\nprint(compte.obtenir_solde())  # Utilisation d'une méthode publique pour accéder au solde\n\n# Les lignes suivantes sont possibles mais déconseillées :\nprint(compte._solde)  # Accès à un attribut \"privé\" par convention\n# print(compte.__historique)  # Ceci lèvera une AttributeError\nprint(compte._CompteBancaire__historique)  # Accès à l'attribut avec name mangling"}];
+globalThis.qpyodideCellDetails = [{"id":1,"code":"class CompteBancaire:\n    def __init__(self, proprietaire, solde_initial):\n        self.proprietaire = proprietaire  # Public\n        self._solde = solde_initial       # \"Privé\" par convention\n        self.__historique = []            # \"Private\" avec name mangling\n\n    def deposer(self, montant):\n        if montant > 0:\n            self._solde += montant\n            self.__ajouter_transaction(f\"Dépôt de {montant}\")\n            return True\n        return False\n\n    def retirer(self, montant):\n        if 0 < montant <= self._solde:\n            self._solde -= montant\n            self.__ajouter_transaction(f\"Retrait de {montant}\")\n            return True\n        return False\n\n    def obtenir_solde(self):\n        return self._solde\n\n    def __ajouter_transaction(self, transaction):\n        self.__historique.append(transaction)\n\n# Utilisation\ncompte = CompteBancaire(\"Alice\", 1000)\nprint(compte.proprietaire)  # Accès à un attribut public\ncompte.deposer(500)\nprint(compte.obtenir_solde())  # Utilisation d'une méthode publique pour accéder au solde\n\n# Les lignes suivantes sont possibles mais déconseillées :\nprint(compte._solde)  # Accès à un attribut \"privé\" par convention\n# print(compte.__historique)  # Ceci lèvera une AttributeError\nprint(compte._CompteBancaire__historique)  # Accès à l'attribut avec name mangling","options":{"label":"","message":"true","out-width":"700px","context":"interactive","comment":"","output":"true","warning":"true","read-only":"false","autorun":"","out-height":"","results":"markup","dpi":72,"fig-width":7,"classes":"","fig-cap":"","fig-height":5}}];
 
 
 </script>
@@ -661,7 +661,7 @@ globalThis._qpyodideGetInstance = function() {
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
     <a class="dropdown-item" href="../../content/Cours_5/TP.html">
- <span class="dropdown-text">TP</span></a>
+ <span class="dropdown-text">TP: Creating a Linear Regression Package</span></a>
   </li>  
     </ul>
   </li>
@@ -694,7 +694,7 @@ globalThis._qpyodideGetInstance = function() {
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
     <a class="dropdown-item" href="../../content/Cours_5/TP.html">
- <span class="dropdown-text">TP</span></a>
+ <span class="dropdown-text">TP: Creating a Linear Regression Package</span></a>
   </li>  
     </ul>
   </li>

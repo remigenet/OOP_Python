@@ -8,8 +8,9 @@
 
 <meta name="author" content="Remi Genet">
 <meta name="dcterms.date" content="2024-08-31">
+<meta name="description" content="A hands-on practical exercise on creating a simple machine learning package for linear regression, exploring package management, testing, manual publishing, and automating the publishing process.">
 
-<title>TP – Programmation Orientée Objet en Python</title>
+<title>TP: Creating a Linear Regression Package – Programmation Orientée Objet en Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -77,10 +112,10 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="TP – Programmation Orientée Objet en Python">
-<meta property="og:image" content="https://remigenet.github.io/OOP_Python/content/Cours_5/.img/exercice.webp">
+<meta property="og:title" content="TP: Creating a Linear Regression Package – Programmation Orientée Objet en Python">
+<meta property="og:description" content="A hands-on practical exercise on creating a simple machine learning package for linear regression, exploring package management, testing, manual publishing, and automating the publishing process.">
 <meta property="og:site_name" content="Programmation Orientée Objet en Python">
-<meta name="citation_title" content="TP">
+<meta name="citation_title" content="TP: Creating a Linear Regression Package">
 <meta name="citation_author" content="Remi Genet">
 <meta name="citation_publication_date" content="2024-08-31">
 <meta name="citation_cover_date" content="2024-08-31">
@@ -304,7 +339,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
     <a class="dropdown-item" href="../../content/Cours_5/TP.html">
- <span class="dropdown-text">TP</span></a>
+ <span class="dropdown-text">TP: Creating a Linear Regression Package</span></a>
   </li>  
     </ul>
   </li>
@@ -337,7 +372,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
     <a class="dropdown-item" href="../../content/Cours_5/TP.html">
- <span class="dropdown-text">TP</span></a>
+ <span class="dropdown-text">TP: Creating a Linear Regression Package</span></a>
   </li>  
     </ul>
   </li>
@@ -383,7 +418,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_5/TP.html">Travaux Pratiques</a></li><li class="breadcrumb-item"><a href="../../content/Cours_5/TP.html">TP</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_5/TP.html">Travaux Pratiques</a></li><li class="breadcrumb-item"><a href="../../content/Cours_5/TP.html">TP: Creating a Linear Regression Package</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -437,7 +472,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/Cours_5/TP.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">TP</span></a>
+ <span class="menu-text">TP: Creating a Linear Regression Package</span></a>
   </div>
 </li>
       </ul>
@@ -452,22 +487,35 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#todo" id="toc-todo" class="nav-link active" data-scroll-target="#todo">TODO</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">Prerequisites</a></li>
+  <li><a href="#step-1-setting-up-the-project" id="toc-step-1-setting-up-the-project" class="nav-link" data-scroll-target="#step-1-setting-up-the-project">Step 1: Setting Up the Project</a></li>
+  <li><a href="#step-2-implementing-linear-regression" id="toc-step-2-implementing-linear-regression" class="nav-link" data-scroll-target="#step-2-implementing-linear-regression">Step 2: Implementing Linear Regression</a></li>
+  <li><a href="#step-3-writing-tests" id="toc-step-3-writing-tests" class="nav-link" data-scroll-target="#step-3-writing-tests">Step 3: Writing Tests</a></li>
+  <li><a href="#step-4-setting-up-basic-github-actions" id="toc-step-4-setting-up-basic-github-actions" class="nav-link" data-scroll-target="#step-4-setting-up-basic-github-actions">Step 4: Setting Up Basic GitHub Actions</a></li>
+  <li><a href="#step-5-manual-package-publishing" id="toc-step-5-manual-package-publishing" class="nav-link" data-scroll-target="#step-5-manual-package-publishing">Step 5: Manual Package Publishing</a></li>
+  <li><a href="#step-6-automating-package-publishing" id="toc-step-6-automating-package-publishing" class="nav-link" data-scroll-target="#step-6-automating-package-publishing">Step 6: Automating Package Publishing</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_5/TP.html">Travaux Pratiques</a></li><li class="breadcrumb-item"><a href="../../content/Cours_5/TP.html">TP</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_5/TP.html">Travaux Pratiques</a></li><li class="breadcrumb-item"><a href="../../content/Cours_5/TP.html">TP: Creating a Linear Regression Package</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">TP</h1>
+<h1 class="title">TP: Creating a Linear Regression Package</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Cours</div>
-    <div class="quarto-category">Fondamentaux</div>
+    <div class="quarto-category">Course</div>
+    <div class="quarto-category">Financial Programming</div>
   </div>
   </div>
 
+<div>
+  <div class="description">
+    A hands-on practical exercise on creating a simple machine learning package for linear regression, exploring package management, testing, manual publishing, and automating the publishing process.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta column-body">
@@ -494,9 +542,100 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="todo" class="level1">
-<h1>TODO</h1>
-<hr>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>In this TP, you’ll create a simple machine learning package focused on linear regression. You’ll use modern Python tools like Poetry for package management, implement basic classes, write tests, set up continuous integration, manually publish your package, and finally automate the publishing process.</p>
+</section>
+<section id="objectives" class="level2">
+<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+<p>By the end of this TP, you will:</p>
+<ol type="1">
+<li>Set up a Python project using Poetry</li>
+<li>Implement a basic linear regression class</li>
+<li>Write unit tests for your implementation</li>
+<li>Use GitHub Actions for continuous integration</li>
+<li>Manually publish your package to PyPI</li>
+<li>Automate the publishing process using GitHub Actions</li>
+</ol>
+</section>
+<section id="prerequisites" class="level2">
+<h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
+<ul>
+<li>Basic understanding of Python and object-oriented programming</li>
+<li>Familiarity with linear regression concepts</li>
+<li>Git and GitHub account</li>
+<li>Python 3.8 or higher installed</li>
+</ul>
+</section>
+<section id="step-1-setting-up-the-project" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-setting-up-the-project">Step 1: Setting Up the Project</h2>
+<p>Set up your project using Poetry.</p>
+<ol type="1">
+<li>Install Poetry if you haven’t already.</li>
+<li>Create a new project named <code>finance-ml</code>.</li>
+<li>Edit the <code>pyproject.toml</code> file to add necessary dependencies (numpy for calculations, pytest for testing).</li>
+<li>Install the dependencies using Poetry.</li>
+</ol>
+<p><strong>Exercise 1:</strong> Set up the project structure as described above. Familiarize yourself with the <code>pyproject.toml</code> file and Poetry commands.</p>
+</section>
+<section id="step-2-implementing-linear-regression" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-implementing-linear-regression">Step 2: Implementing Linear Regression</h2>
+<p>Implement a basic linear regression class.</p>
+<p>Create a new file <code>src/finance_ml/linear_models.py</code> and implement a <code>LinearRegression</code> class with the following methods:</p>
+<ul>
+<li><code>__init__(self, use_intercept=True)</code>: Initialize the model parameters.</li>
+<li><code>fit(self, X, y)</code>: Fit the model to the training data.</li>
+<li><code>predict(self, X)</code>: Make predictions using the trained model.</li>
+</ul>
+<p>Your implementation should handle cases with and without an intercept term and use numpy for efficient calculations.</p>
+<p><strong>Exercise 2:</strong> Implement the <code>LinearRegression</code> class as described above.</p>
+</section>
+<section id="step-3-writing-tests" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-writing-tests">Step 3: Writing Tests</h2>
+<p>Write tests for your <code>LinearRegression</code> class to ensure it works correctly.</p>
+<p>Create a new file <code>tests/test_linear_models.py</code> and write test functions to cover various scenarios and edge cases.</p>
+<p><strong>Exercise 3:</strong> Implement the test functions for your <code>LinearRegression</code> class.</p>
+</section>
+<section id="step-4-setting-up-basic-github-actions" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-setting-up-basic-github-actions">Step 4: Setting Up Basic GitHub Actions</h2>
+<p>Set up a basic GitHub Actions workflow to run your tests automatically.</p>
+<p>Create a new file <code>.github/workflows/tests.yml</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Run Tests</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">push</span><span class="kw">,</span><span class="at"> pull_request</span><span class="kw">]</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">test</span><span class="kw">:</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v2</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Set up Python</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/setup-python@v2</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">python-version</span><span class="kw">:</span><span class="at"> </span><span class="st">'3.8'</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install dependencies</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        pip install poetry</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        poetry install</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Run tests</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">run</span><span class="kw">:</span><span class="at"> poetry run pytest</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Exercise 4:</strong> 1. Set up a GitHub repository for your project and add the GitHub Actions workflow as shown above. 2. Push your code and verify that the tests run automatically on push and pull requests.</p>
+</section>
+<section id="step-5-manual-package-publishing" class="level2">
+<h2 class="anchored" data-anchor-id="step-5-manual-package-publishing">Step 5: Manual Package Publishing</h2>
+<p>Now, let’s publish your package to PyPI manually using Poetry.</p>
+<ol type="1">
+<li>Register an account on PyPI (https://pypi.org/)</li>
+<li>Build your package using Poetry</li>
+<li>Publish your package to PyPI using Poetry</li>
+</ol>
+<p><strong>Exercise 5:</strong> Follow the steps above to manually publish your package to PyPI. Verify that you can install your package from PyPI using pip.</p>
+</section>
+<section id="step-6-automating-package-publishing" class="level2">
+<h2 class="anchored" data-anchor-id="step-6-automating-package-publishing">Step 6: Automating Package Publishing</h2>
+<p>Finally, let’s automate the publishing process using GitHub Actions.</p>
+<p><strong>Exercise 6:</strong> 1. Modify the GitHub Actions workflow you created in Step 4 to include a job for publishing the package to PyPI when pushing to the main branch. 2. Research how to securely add your PyPI credentials as secrets in GitHub Actions. 3. Update your workflow to use these secrets for authentication when publishing. 4. Test your automated publishing process by pushing a change to the main branch.</p>
+<p>Hint: You’ll need to add a new job to your workflow, use conditional execution based on the branch, and incorporate the PyPI credentials as secrets.</p>
 
 
 </section>

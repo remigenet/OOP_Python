@@ -134,7 +134,7 @@
     "href": "content/Cours_5/index.html",
     "title": "Project and Package",
     "section": "",
-    "text": "Les cours de cette partie sont:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOrganizing Python Projects\n\n\nLearn how to organize Python projects effectively and create packages for distribution.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPython Package Management and Virtual Environments\n\n\nLearn to create a package and manage virtual environment\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTP\n\n\n\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnderstanding imports\n\n\n\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnit Testing in Python\n\n\nLearn how to write and run unit tests in Python using the pytest framework.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\nNo matching items\n\n Back to top",
+    "text": "Les cours de cette partie sont:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOrganizing Python Projects\n\n\nLearn how to organize Python projects effectively and create packages for distribution.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPython Package Management and Virtual Environments\n\n\nLearn to create a package and manage virtual environment\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\nTP: Creating a Linear Regression Package\n\n\nA hands-on practical exercise on creating a simple machine learning package for linear regression, exploring package management, testing, manual publishing, and automating…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnderstanding imports\n\n\n\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnit Testing in Python\n\n\nLearn how to write and run unit tests in Python using the pytest framework.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\nNo matching items\n\n Back to top",
     "crumbs": [
       "Project and Package"
     ]
@@ -162,12 +162,111 @@
   {
     "objectID": "content/Cours_5/TP.html",
     "href": "content/Cours_5/TP.html",
-    "title": "TP",
+    "title": "TP: Creating a Linear Regression Package",
     "section": "",
-    "text": "TODO\n\n\n\n\n\n Back to top",
+    "text": "In this TP, you’ll create a simple machine learning package focused on linear regression. You’ll use modern Python tools like Poetry for package management, implement basic classes, write tests, set up continuous integration, manually publish your package, and finally automate the publishing process.",
     "crumbs": [
       "Travaux Pratiques",
-      "TP"
+      "TP: Creating a Linear Regression Package"
+    ]
+  },
+  {
+    "objectID": "content/Cours_5/TP.html#introduction",
+    "href": "content/Cours_5/TP.html#introduction",
+    "title": "TP: Creating a Linear Regression Package",
+    "section": "",
+    "text": "In this TP, you’ll create a simple machine learning package focused on linear regression. You’ll use modern Python tools like Poetry for package management, implement basic classes, write tests, set up continuous integration, manually publish your package, and finally automate the publishing process.",
+    "crumbs": [
+      "Travaux Pratiques",
+      "TP: Creating a Linear Regression Package"
+    ]
+  },
+  {
+    "objectID": "content/Cours_5/TP.html#objectives",
+    "href": "content/Cours_5/TP.html#objectives",
+    "title": "TP: Creating a Linear Regression Package",
+    "section": "Objectives",
+    "text": "Objectives\nBy the end of this TP, you will:\n\nSet up a Python project using Poetry\nImplement a basic linear regression class\nWrite unit tests for your implementation\nUse GitHub Actions for continuous integration\nManually publish your package to PyPI\nAutomate the publishing process using GitHub Actions",
+    "crumbs": [
+      "Travaux Pratiques",
+      "TP: Creating a Linear Regression Package"
+    ]
+  },
+  {
+    "objectID": "content/Cours_5/TP.html#prerequisites",
+    "href": "content/Cours_5/TP.html#prerequisites",
+    "title": "TP: Creating a Linear Regression Package",
+    "section": "Prerequisites",
+    "text": "Prerequisites\n\nBasic understanding of Python and object-oriented programming\nFamiliarity with linear regression concepts\nGit and GitHub account\nPython 3.8 or higher installed",
+    "crumbs": [
+      "Travaux Pratiques",
+      "TP: Creating a Linear Regression Package"
+    ]
+  },
+  {
+    "objectID": "content/Cours_5/TP.html#step-1-setting-up-the-project",
+    "href": "content/Cours_5/TP.html#step-1-setting-up-the-project",
+    "title": "TP: Creating a Linear Regression Package",
+    "section": "Step 1: Setting Up the Project",
+    "text": "Step 1: Setting Up the Project\nSet up your project using Poetry.\n\nInstall Poetry if you haven’t already.\nCreate a new project named finance-ml.\nEdit the pyproject.toml file to add necessary dependencies (numpy for calculations, pytest for testing).\nInstall the dependencies using Poetry.\n\nExercise 1: Set up the project structure as described above. Familiarize yourself with the pyproject.toml file and Poetry commands.",
+    "crumbs": [
+      "Travaux Pratiques",
+      "TP: Creating a Linear Regression Package"
+    ]
+  },
+  {
+    "objectID": "content/Cours_5/TP.html#step-2-implementing-linear-regression",
+    "href": "content/Cours_5/TP.html#step-2-implementing-linear-regression",
+    "title": "TP: Creating a Linear Regression Package",
+    "section": "Step 2: Implementing Linear Regression",
+    "text": "Step 2: Implementing Linear Regression\nImplement a basic linear regression class.\nCreate a new file src/finance_ml/linear_models.py and implement a LinearRegression class with the following methods:\n\n__init__(self, use_intercept=True): Initialize the model parameters.\nfit(self, X, y): Fit the model to the training data.\npredict(self, X): Make predictions using the trained model.\n\nYour implementation should handle cases with and without an intercept term and use numpy for efficient calculations.\nExercise 2: Implement the LinearRegression class as described above.",
+    "crumbs": [
+      "Travaux Pratiques",
+      "TP: Creating a Linear Regression Package"
+    ]
+  },
+  {
+    "objectID": "content/Cours_5/TP.html#step-3-writing-tests",
+    "href": "content/Cours_5/TP.html#step-3-writing-tests",
+    "title": "TP: Creating a Linear Regression Package",
+    "section": "Step 3: Writing Tests",
+    "text": "Step 3: Writing Tests\nWrite tests for your LinearRegression class to ensure it works correctly.\nCreate a new file tests/test_linear_models.py and write test functions to cover various scenarios and edge cases.\nExercise 3: Implement the test functions for your LinearRegression class.",
+    "crumbs": [
+      "Travaux Pratiques",
+      "TP: Creating a Linear Regression Package"
+    ]
+  },
+  {
+    "objectID": "content/Cours_5/TP.html#step-4-setting-up-basic-github-actions",
+    "href": "content/Cours_5/TP.html#step-4-setting-up-basic-github-actions",
+    "title": "TP: Creating a Linear Regression Package",
+    "section": "Step 4: Setting Up Basic GitHub Actions",
+    "text": "Step 4: Setting Up Basic GitHub Actions\nSet up a basic GitHub Actions workflow to run your tests automatically.\nCreate a new file .github/workflows/tests.yml:\nname: Run Tests\n\non: [push, pull_request]\n\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n    - uses: actions/checkout@v2\n    - name: Set up Python\n      uses: actions/setup-python@v2\n      with:\n        python-version: '3.8'\n    - name: Install dependencies\n      run: |\n        pip install poetry\n        poetry install\n    - name: Run tests\n      run: poetry run pytest\nExercise 4: 1. Set up a GitHub repository for your project and add the GitHub Actions workflow as shown above. 2. Push your code and verify that the tests run automatically on push and pull requests.",
+    "crumbs": [
+      "Travaux Pratiques",
+      "TP: Creating a Linear Regression Package"
+    ]
+  },
+  {
+    "objectID": "content/Cours_5/TP.html#step-5-manual-package-publishing",
+    "href": "content/Cours_5/TP.html#step-5-manual-package-publishing",
+    "title": "TP: Creating a Linear Regression Package",
+    "section": "Step 5: Manual Package Publishing",
+    "text": "Step 5: Manual Package Publishing\nNow, let’s publish your package to PyPI manually using Poetry.\n\nRegister an account on PyPI (https://pypi.org/)\nBuild your package using Poetry\nPublish your package to PyPI using Poetry\n\nExercise 5: Follow the steps above to manually publish your package to PyPI. Verify that you can install your package from PyPI using pip.",
+    "crumbs": [
+      "Travaux Pratiques",
+      "TP: Creating a Linear Regression Package"
+    ]
+  },
+  {
+    "objectID": "content/Cours_5/TP.html#step-6-automating-package-publishing",
+    "href": "content/Cours_5/TP.html#step-6-automating-package-publishing",
+    "title": "TP: Creating a Linear Regression Package",
+    "section": "Step 6: Automating Package Publishing",
+    "text": "Step 6: Automating Package Publishing\nFinally, let’s automate the publishing process using GitHub Actions.\nExercise 6: 1. Modify the GitHub Actions workflow you created in Step 4 to include a job for publishing the package to PyPI when pushing to the main branch. 2. Research how to securely add your PyPI credentials as secrets in GitHub Actions. 3. Update your workflow to use these secrets for authentication when publishing. 4. Test your automated publishing process by pushing a change to the main branch.\nHint: You’ll need to add a new job to your workflow, use conditional execution based on the branch, and incorporate the PyPI credentials as secrets.",
+    "crumbs": [
+      "Travaux Pratiques",
+      "TP: Creating a Linear Regression Package"
     ]
   },
   {
