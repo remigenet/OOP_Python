@@ -1,0 +1,235 @@
+---
+title: "TP: Heritage avec le pricing d'option"
+weight: 20
+tags:
+ - POO
+ - Héritage
+ - Composition
+ - Black-Scholes
+ - Monte Carlo
+categories:
+ - TP
+ - Avancé
+type: book
+image: .img/tpfinance.png
+filters:
+ - pyodide
+---
+
+# Instructions
+
+Ce TP est divisé en deux parties pour explorer les concepts d'héritage, d'encapsulation et de composition en programmation orientée objet (POO). Vous allez implémenter des classes pour évaluer des options financières en utilisant deux méthodes différentes : la formule de Black-Scholes et la simulation de Monte Carlo.
+
+## Rappels théoriques
+
+### Formule de Black-Scholes
+
+La formule de Black-Scholes est utilisée pour calculer le prix théorique d'une option européenne. Voici les principales formules :
+
+1. $d_1 = \frac{\ln(S/K) + (r + \sigma^2/2)T}{\sigma\sqrt{T}}$
+
+2. $d_2 = d_1 - \sigma\sqrt{T}$J'a
+
+3. Prix d'un Call : $C = SN(d_1) - Ke^{-rT}N(d_2)$
+
+4. Prix d'un Put : $P = Ke^{-rT}N(-d_2) - SN(-d_1)$
+
+Où :
+- $S$ : prix spot de l'actif sous-jacent
+- $K$ : prix d'exercice de l'option
+- $r$ : taux d'intérêt sans risque
+- $T$ : temps jusqu'à l'expiration (en années)
+- $\sigma$ : volatilité de l'actif sous-jacent
+- $N(x)$ : fonction de répartition de la loi normale centrée réduite
+
+### Les Grecs
+
+Les Grecs sont des mesures de sensibilité du prix de l'option par rapport à divers paramètres :
+
+1. Delta (Δ) : 
+   - Pour un Call : $\Delta_C = N(d_1)$
+   - Pour un Put : $\Delta_P = N(d_1) - 1$
+
+2. Gamma (Γ) : $\Gamma = \frac{N'(d_1)}{S\sigma\sqrt{T}}$
+
+3. Vega (ν) : $\nu = S\sqrt{T}N'(d_1)$
+
+4. Theta (Θ) :
+   - Pour un Call : $\Theta_C = -\frac{SN'(d_1)\sigma}{2\sqrt{T}} - rKe^{-rT}N(d_2)$
+   - Pour un Put : $\Theta_P = -\frac{SN'(d_1)\sigma}{2\sqrt{T}} + rKe^{-rT}N(-d_2)$
+
+5. Rho (ρ) :
+   - Pour un Call : $\rho_C = KTe^{-rT}N(d_2)$
+   - Pour un Put : $\rho_P = -KTe^{-rT}N(-d_2)$
+
+### Méthode de Monte Carlo
+
+La méthode de Monte Carlo pour l'évaluation d'options implique les étapes suivantes :
+
+1. Générer un grand nombre de trajectoires de prix pour l'actif sous-jacent en utilisant le mouvement brownien géométrique :
+
+   $S_T = S_0 \exp((r - \frac{\sigma^2}{2})T + \sigma\sqrt{T}Z)$
+
+   où $Z$ est une variable aléatoire normale standard.
+
+2. Pour chaque trajectoire, calculer le payoff de l'option à l'échéance.
+
+3. Calculer la moyenne des payoffs actualisés :
+
+   $\text{Prix de l'option} = e^{-rT} \frac{1}{N} \sum_{i=1}^N \text{Payoff}_i$
+
+   où $N$ est le nombre de simulations.
+
+## Partie 1 : Implémentation de Black-Scholes
+
+1. Créez un fichier nommé `black_scholes.py`.
+2. Implémentez les classes suivantes :
+
+   a. `Option` : Classe de base pour les options
+   b. `Call` : Classe dérivée de `Option` pour les options d'achat
+   c. `Put` : Classe dérivée de `Option` pour les options de vente
+
+3. Chaque classe doit avoir les méthodes suivantes :
+   - `__init__` : Constructeur avec les paramètres nécessaires
+   - `compute_price()` : Calcule le prix de l'option
+   - `compute_delta()` : Calcule le delta de l'option
+   - `compute_gamma()` : Calcule le gamma de l'option
+   - `compute_vega()` : Calcule le vega de l'option
+   - `compute_theta()` : Calcule le theta de l'option
+   - `compute_rho()` : Calcule le rho de l'option
+
+4. Utilisez la formule de Black-Scholes pour les calculs.
+
+## Partie 2 : Implémentation de Monte Carlo
+
+1. Créez un fichier nommé `monte_carlo.py`.
+2. Implémentez les classes suivantes :
+
+   a. `Derivative` : Classe de base pour les produits dérivés
+   b. `EuropeanOption` : Classe dérivée de `Derivative` pour les options européennes
+   c. `Payoff` : Classe de base pour les fonctions de payoff
+   d. `CallPayoff` : Classe dérivée de `Payoff` pour le payoff d'une option d'achat
+   e. `PutPayoff` : Classe dérivée de `Payoff` pour le payoff d'une option de vente
+
+3. La classe `Derivative` doit avoir une méthode `price()` qui utilise la simulation de Monte Carlo.
+4. Les classes `EuropeanOption` et `Payoff` doivent utiliser la composition pour lier les payoffs aux options.
+
+## Tests Unitaires
+
+Voici un ensemble de tests unitaires pour vérifier votre implémentation de la Partie 1 (Black-Scholes) :
+
+```{pyodide-python}
+import unittest
+import math
+from scipy.stats import norm
+import numpy as np
+
+# TODO: Importez vos classes ici
+# from black_scholes import Option, Call, Put
+
+class TestBlackScholes(unittest.TestCase):
+    def setUp(self):
+        self.spot = 100
+        self.strike = 100
+        self.risk_free = 0.05
+        self.time_to_maturity = 1
+        self.volatility = 0.2
+
+        self.call = Call(self.spot, self.strike, self.risk_free, self.time_to_maturity, self.volatility)
+        self.put = Put(self.spot, self.strike, self.risk_free, self.time_to_maturity, self.volatility)
+
+    def test_call_price(self):
+        expected_price = 10.450583
+        self.assertAlmostEqual(self.call.compute_price(), expected_price, places=6)
+
+    def test_put_price(self):
+        expected_price = 5.57352
+        self.assertAlmostEqual(self.put.compute_price(), expected_price, places=6)
+
+    def test_call_delta(self):
+        expected_delta = 0.63683065
+        self.assertAlmostEqual(self.call.compute_delta(), expected_delta, places=4)
+
+    def test_put_delta(self):
+        expected_delta = -0.36316934
+        self.assertAlmostEqual(self.put.compute_delta(), expected_delta, places=4)
+
+    def test_gamma(self):
+        expected_gamma = 0.01876201
+        self.assertAlmostEqual(self.call.compute_gamma(), expected_gamma, places=4)
+        self.assertAlmostEqual(self.put.compute_gamma(), expected_gamma, places=4)
+
+    def test_vega(self):
+        expected_vega = 37.524034
+        self.assertAlmostEqual(self.call.compute_vega(), expected_vega, places=4)
+        self.assertAlmostEqual(self.put.compute_vega(), expected_vega, places=4)
+
+def run_tests():
+    unittest.main(argv=[''], verbosity=2, exit=False)
+
+if __name__ == '__main__':
+    run_tests()
+```
+
+Et voici un ensemble de tests unitaires pour la Partie 2 (Monte Carlo) :
+
+```{pyodide-python}
+import unittest
+import numpy as np
+
+# TODO: Importez vos classes ici
+# from monte_carlo import Derivative, EuropeanOption, Payoff, CallPayoff, PutPayoff
+
+class TestMonteCarlo(unittest.TestCase):
+    def setUp(self):
+        self.spot = 100
+        self.strike = 100
+        self.risk_free = 0.05
+        self.time_to_maturity = 1
+        self.volatility = 0.2
+        self.num_simulations = 100000
+
+        self.call_payoff = CallPayoff(self.strike)
+        self.put_payoff = PutPayoff(self.strike)
+
+        self.call_option = EuropeanOption(self.spot, self.risk_free, self.time_to_maturity, self.volatility, self.call_payoff)
+        self.put_option = EuropeanOption(self.spot, self.risk_free, self.time_to_maturity, self.volatility, self.put_payoff)
+
+    def test_call_price(self):
+        expected_price = 10.450583
+        simulated_price = self.call_option.price(self.num_simulations)
+        self.assertAlmostEqual(simulated_price, expected_price, delta=0.1)
+
+    def test_put_price(self):
+        expected_price = 5.57352
+        simulated_price = self.put_option.price(self.num_simulations)
+        self.assertAlmostEqual(simulated_price, expected_price, delta=0.1)
+
+    def test_call_payoff(self):
+        stock_price = 110
+        expected_payoff = 10
+        self.assertEqual(self.call_payoff.calculate(stock_price), expected_payoff)
+
+    def test_put_payoff(self):
+        stock_price = 90
+        expected_payoff = 10
+        self.assertEqual(self.put_payoff.calculate(stock_price), expected_payoff)
+
+def run_tests():
+    unittest.main(argv=[''], verbosity=2, exit=False)
+
+if __name__ == '__main__':
+    run_tests()
+```
+
+## Conseils
+
+- Commencez par implémenter la Partie 1 (Black-Scholes) avant de passer à la Partie 2 (Monte Carlo).
+- Utilisez l'encapsulation pour protéger les attributs de vos classes.
+- Profitez de l'héritage pour factoriser le code commun entre les classes `Call` et `Put`.
+- Pour la Partie 2, utilisez la composition pour lier les payoffs aux options européennes.
+- N'oubliez pas d'importer les bibliothèques nécessaires (math, numpy, scipy.stats).
+- Testez votre code régulièrement en utilisant les tests unitaires fournis.
+- Utilisez les formules fournies dans les rappels théoriques pour implémenter vos méthodes.
+
+Bonne chance !

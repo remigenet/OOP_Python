@@ -62,7 +62,8 @@ website:
        - section: Travaux Pratiques
          expanded: false
          contents:
-         - content/Cours_2/TP.qmd
+         - content/Cours_2/TP_heritage.qmd
+         - content/Cours_2/TP_dunder.qmd
     - id: polymorphism 
       title: "Polymorphisme et Surcharge"
       contents: 

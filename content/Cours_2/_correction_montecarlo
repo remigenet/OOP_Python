@@ -1,0 +1,35 @@
+class Payoff:
+    def __init__(self, strike):
+        self.strike = strike
+
+    def calculate(self, spot):
+        pass
+
+class CallPayoff(Payoff):
+    def calculate(self, spot):
+        return max(spot - self.strike, 0)
+
+class PutPayoff(Payoff):
+    def calculate(self, spot):
+        return max(self.strike - spot, 0)
+
+class Derivative:
+    def __init__(self, spot, risk_free, time_to_maturity, volatility):
+        self.spot = spot
+        self.risk_free = risk_free
+        self.ttm = time_to_maturity
+        self.vol = volatility
+
+    def price(self, num_simulations):
+        pass
+
+class EuropeanOption(Derivative):
+    def __init__(self, spot, risk_free, time_to_maturity, volatility, payoff):
+        super().__init__(spot, risk_free, time_to_maturity, volatility)
+        self.payoff = payoff
+
+    def price(self, num_simulations):
+        z = np.random.standard_normal(num_simulations)
+        spot_t = self.spot * np.exp((self.risk_free - 0.5 * self.vol**2) * self.ttm + self.vol * np.sqrt(self.ttm) * z)
+        payoffs = np.array([self.payoff.calculate(s) for s in spot_t])
+        return np.exp(-self.risk_free * self.ttm) * np.mean(payoffs)
