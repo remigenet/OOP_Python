@@ -1,5 +1,5 @@
 ---
-title: "TP: Heritage avec le pricing d'option"
+title: "TP: Dunder Method with Tensor for Automatic Differentiation"
 weight: 20
 tags:
  - POO
