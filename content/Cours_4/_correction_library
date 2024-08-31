@@ -1,0 +1,183 @@
+import numpy as np
+import time
+from scipy.stats import norm
+
+#### NORMAL IMPLEMENTATION
+
+def generate_random_values(num_simulations, num_steps):
+    return np.random.normal(0, 1, (num_simulations, num_steps, 2))
+
+def heston_monte_carlo(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps):
+    random_values = generate_random_values(num_simulations, num_steps)
+    dt = T / num_steps
+    prices = np.zeros((num_simulations, num_steps + 1))
+    variances = np.zeros((num_simulations, num_steps + 1))
+    
+    prices[:, 0] = S0
+    variances[:, 0] = v0
+
+    for sim in range(num_simulations):
+        for i in range(1, num_steps + 1):
+            dW1 = random_values[sim, i-1, 0]
+            dW2 = rho * dW1 + np.sqrt(1 - rho**2) * random_values[sim, i-1, 1]
+            
+            variances[sim, i] = np.maximum(variances[sim, i-1] + kappa * (theta - variances[sim, i-1]) * dt + 
+                                         sigma * np.sqrt(variances[sim, i-1] * dt) * dW2, 0)
+            
+            prices[sim, i] = prices[sim, i-1] * np.exp((r - 0.5 * variances[sim, i-1]) * dt + 
+                                                   np.sqrt(variances[sim, i-1] * dt) * dW1)
+        
+    option_prices = np.mean(np.maximum(prices[:, -1] - K, 0))
+    return np.exp(-r * T) * option_prices
+
+
+num_options = 10
+kappa, theta, sigma, rho, v0 = 2, 0.04, 0.3, -0.7, 0.04
+S0s = np.random.randint(90, 110, num_options)
+Ks = np.random.randint(90, 110, num_options)
+T = 1
+r = 0.05
+num_simulations, num_steps = 1000, 252
+
+start_time = time.time()
+for option_row in range(num_options):
+    S0 = S0s[option_row]
+    K = Ks[option_row]
+    price = heston_monte_carlo(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps)
+    
+print(f"Basic implementation took {(time.time() - start_time)/num_options:.4f} seconds per option")
+
+
+
+#### Vectorized IMPLEMENTATION
+
+import numpy as np
+import time
+from scipy.stats import norm
+
+def generate_random_values(num_simulations, num_steps):
+    return np.random.normal(0, 1, (num_simulations, num_steps, 2))
+
+def heston_monte_carlo(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps):
+    random_values = generate_random_values(num_simulations, num_steps)
+    dt = T / num_steps
+    prices = np.zeros((num_simulations, num_steps + 1))
+    variances = np.zeros((num_simulations, num_steps + 1))
+    
+    prices[:, 0] = S0
+    variances[:, 0] = v0
+
+    for i in range(1, num_steps + 1):
+        dW1 = random_values[:, i-1, 0]
+        dW2 = rho * dW1 + np.sqrt(1 - rho**2) * random_values[:, i-1, 1]
+        
+        variances[:, i] = np.maximum(variances[:, i-1] + kappa * (theta - variances[:, i-1]) * dt + 
+                                     sigma * np.sqrt(variances[:, i-1] * dt) * dW2, 0)
+        
+        prices[:, i] = prices[:, i-1] * np.exp((r - 0.5 * variances[:, i-1]) * dt + 
+                                               np.sqrt(variances[:, i-1] * dt) * dW1)
+    
+    option_prices = np.mean(np.maximum(prices[:, -1] - K, 0))
+    return np.exp(-r * T) * option_prices
+
+
+
+#### NUMBA IMPLEMENTATION
+
+num_options = 1000
+kappa, theta, sigma, rho, v0 = 2, 0.04, 0.3, -0.7, 0.04
+S0s = np.random.randint(90, 110, num_options)
+Ks = np.random.randint(90, 110, num_options)
+T = 1
+r = 0.05
+num_simulations, num_steps = 1000, 252
+
+start_time = time.time()
+for option_row in range(num_options):
+    S0 = S0s[option_row]
+    K = Ks[option_row]
+    price = heston_monte_carlo(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps)
+    
+print(f"Basic implementation took {(time.time() - start_time)/num_options:.4f} seconds per option")
+
+from numba import jit, prange
+
+@jit(nopython=True, cache=True, parallel=True)
+def heston_monte_carlo_numba(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps):
+    random_values = np.random.normal(0, 1, (num_simulations, num_steps, 2))
+    dt = T / num_steps
+    prices = np.zeros((num_simulations, num_steps + 1))
+    variances = np.zeros((num_simulations, num_steps + 1))
+    
+    prices[:, 0] = S0
+    variances[:, 0] = v0
+
+    for sim in prange(num_simulations):
+        for i in range(1, num_steps + 1):
+            dW1 = random_values[sim, i-1, 0]
+            dW2 = rho * dW1 + np.sqrt(1 - rho**2) * random_values[sim, i-1, 1]
+            
+            variances[sim, i] = np.maximum(variances[sim, i-1] + kappa * (theta - variances[sim, i-1]) * dt + 
+                                         sigma * np.sqrt(variances[sim, i-1] * dt) * dW2, 0)
+            
+            prices[sim, i] = prices[sim, i-1] * np.exp((r - 0.5 * variances[sim, i-1]) * dt + 
+                                                   np.sqrt(variances[sim, i-1] * dt) * dW1)
+        
+    option_prices = np.mean(np.maximum(prices[:, -1] - K, 0))
+    return np.exp(-r * T) * option_prices
+
+
+num_options = 1000
+kappa, theta, sigma, rho, v0 = 2, 0.04, 0.3, -0.7, 0.04
+S0s = np.random.randint(90, 110, num_options)
+Ks = np.random.randint(90, 110, num_options)
+T = 1
+r = 0.05
+num_simulations, num_steps = 1000, 252
+# Test the Numba-optimized function
+start_time = time.time()
+for option_row in range(num_options):
+    S0 = S0s[option_row]
+    K = Ks[option_row]
+    price_numba = heston_monte_carlo_numba(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps)
+print(f"Numba implementation took {(time.time() - start_time)/num_options:.4f} seconds per option")
+
+##### CACHED IMPLEMENTATION
+
+from functools import cache
+
+@cache
+def generate_random_values(num_simulations, num_steps):
+    return np.random.normal(0, 1, (num_simulations, num_steps, 2))
+
+@cache
+def heston_monte_carlo(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps):
+    random_values = generate_random_values(num_simulations, num_steps)
+    dt = T / num_steps
+    prices = np.zeros((num_simulations, num_steps + 1))
+    variances = np.zeros((num_simulations, num_steps + 1))
+    
+    prices[:, 0] = S0
+    variances[:, 0] = v0
+    
+    for i in range(1, num_steps + 1):
+        dW1 = random_values[:, i-1, 0]
+        dW2 = rho * dW1 + np.sqrt(1 - rho**2) * random_values[:, i-1, 1]
+        
+        variances[:, i] = np.maximum(variances[:, i-1] + kappa * (theta - variances[:, i-1]) * dt + 
+                                     sigma * np.sqrt(variances[:, i-1] * dt) * dW2, 0)
+        
+        prices[:, i] = prices[:, i-1] * np.exp((r - 0.5 * variances[:, i-1]) * dt + 
+                                               np.sqrt(variances[:, i-1] * dt) * dW1)
+    
+    option_prices = np.mean(np.maximum(prices[:, -1] - K, 0))
+    return np.exp(-r * T) * option_prices
+
+# Test the Numba-optimized function
+start_time = time.time()
+for option_row in range(num_options):
+    S0 = S0s[option_row]
+    K = Ks[option_row]
+    price_cached = heston_monte_carlo(S0, K, T, r, kappa, theta, sigma, rho, v0, num_simulations, num_steps)
+    
+print(f"First run of cached implementation took {time.time() - start_time:.2f} seconds")
