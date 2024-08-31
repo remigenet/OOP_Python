@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"class Animal:\n    def __init__(self, nom):\n        self.nom = nom\n\n    def faire_du_bruit(self):\n        pass\n\nclass Chien(Animal):\n    def faire_du_bruit(self):\n        return \"Woof!\"","options":{"classes":"","label":"","out-height":"","dpi":72,"out-width":"700px","context":"interactive","read-only":"false","message":"true","comment":"","results":"markup","autorun":"","fig-width":7,"warning":"true","output":"true","fig-height":5,"fig-cap":""},"id":1},{"code":"class Moteur:\n    def demarrer(self):\n        return \"Moteur démarré\"\n\nclass Voiture:\n    def __init__(self):\n        self.moteur = Moteur()\n\n    def demarrer_voiture(self):\n        return self.moteur.demarrer()","options":{"classes":"","label":"","out-height":"","dpi":72,"out-width":"700px","context":"interactive","read-only":"false","message":"true","comment":"","results":"markup","autorun":"","fig-width":7,"warning":"true","output":"true","fig-height":5,"fig-cap":""},"id":2},{"code":"class Arme:\n    def attaquer(self):\n        pass\n\nclass Epee(Arme):\n    def attaquer(self):\n        return \"Coup d'épée!\"\n\nclass Personnage:\n    def __init__(self, nom):\n        self.nom = nom\n        self.arme = None\n\n    def equiper(self, arme):\n        self.arme = arme\n\n    def attaquer(self):\n        if self.arme:\n            return f\"{self.nom} attaque : {self.arme.attaquer()}\"\n        return f\"{self.nom} attaque à mains nues!\"\n\nclass Guerrier(Personnage):\n    def cri_de_guerre(self):\n        return \"Pour l'honneur!\"","options":{"classes":"","label":"","out-height":"","dpi":72,"out-width":"700px","context":"interactive","read-only":"false","message":"true","comment":"","results":"markup","autorun":"","fig-width":7,"warning":"true","output":"true","fig-height":5,"fig-cap":""},"id":3}];
+globalThis.qpyodideCellDetails = [{"options":{"autorun":"","fig-width":7,"out-width":"700px","fig-height":5,"comment":"","warning":"true","results":"markup","message":"true","classes":"","out-height":"","output":"true","label":"","fig-cap":"","dpi":72,"context":"interactive","read-only":"false"},"code":"class Animal:\n    def __init__(self, nom):\n        self.nom = nom\n\n    def faire_du_bruit(self):\n        pass\n\nclass Chien(Animal):\n    def faire_du_bruit(self):\n        return \"Woof!\"","id":1},{"options":{"autorun":"","fig-width":7,"out-width":"700px","fig-height":5,"comment":"","warning":"true","results":"markup","message":"true","classes":"","out-height":"","output":"true","label":"","fig-cap":"","dpi":72,"context":"interactive","read-only":"false"},"code":"class Moteur:\n    def demarrer(self):\n        return \"Moteur démarré\"\n\nclass Voiture:\n    def __init__(self):\n        self.moteur = Moteur()\n\n    def demarrer_voiture(self):\n        return self.moteur.demarrer()","id":2},{"options":{"autorun":"","fig-width":7,"out-width":"700px","fig-height":5,"comment":"","warning":"true","results":"markup","message":"true","classes":"","out-height":"","output":"true","label":"","fig-cap":"","dpi":72,"context":"interactive","read-only":"false"},"code":"class Arme:\n    def attaquer(self):\n        pass\n\nclass Epee(Arme):\n    def attaquer(self):\n        return \"Coup d'épée!\"\n\nclass Personnage:\n    def __init__(self, nom):\n        self.nom = nom\n        self.arme = None\n\n    def equiper(self, arme):\n        self.arme = arme\n\n    def attaquer(self):\n        if self.arme:\n            return f\"{self.nom} attaque : {self.arme.attaquer()}\"\n        return f\"{self.nom} attaque à mains nues!\"\n\nclass Guerrier(Personnage):\n    def cri_de_guerre(self):\n        return \"Pour l'honneur!\"","id":3}];
 
 
 </script>
@@ -550,7 +550,7 @@ globalThis._qpyodideGetInstance = function() {
   </li>  
         <li>
     <a class="dropdown-item" href="../../content/Cours_2/TP_dunder.html">
- <span class="dropdown-text">TP: Heritage avec le pricing d’option</span></a>
+ <span class="dropdown-text">TP: Dunder Method with Tensor for Automatic Differentiation</span></a>
   </li>  
     </ul>
   </li>
@@ -806,7 +806,7 @@ globalThis._qpyodideGetInstance = function() {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/Cours_2/TP_dunder.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">TP: Heritage avec le pricing d’option</span></a>
+ <span class="menu-text">TP: Dunder Method with Tensor for Automatic Differentiation</span></a>
   </div>
 </li>
       </ul>

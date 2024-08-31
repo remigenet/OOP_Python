@@ -578,56 +578,56 @@
   {
     "objectID": "content/Cours_2/TP_dunder.html",
     "href": "content/Cours_2/TP_dunder.html",
-    "title": "TP: Heritage avec le pricing d’option",
+    "title": "TP: Dunder Method with Tensor for Automatic Differentiation",
     "section": "",
     "text": "Imagine you have a complex mathematical function. It might look intimidating at first, but it’s actually just a composition of simple operations. For example, consider this function:\n\\(f(x, y) = (x^2 + 2y) * \\sin(x + y)\\)\nWe can break this down into simpler operations:\n\n\\(a = x^2\\)\n\\(b = 2y\\)\n\\(c = a + b\\) (which is \\(x^2 + 2y\\))\n\\(d = x + y\\)\n\\(e = \\sin(d)\\) (which is \\(\\sin(x + y)\\))\n\\(f = c * e\\) (our final result)\n\n\n\n\nNow, here’s the magic: if we know how to differentiate each of these simple operations, we can automatically compute the derivative of the entire complex function. This is the essence of automatic differentiation.\nLet’s say we want to find \\(\\frac{\\partial f}{\\partial x}\\). We can use the chain rule:\n\\(\\frac{\\partial f}{\\partial x} = \\frac{\\partial f}{\\partial c} \\cdot \\frac{\\partial c}{\\partial x} + \\frac{\\partial f}{\\partial e} \\cdot \\frac{\\partial e}{\\partial d} \\cdot \\frac{\\partial d}{\\partial x}\\)\nBreaking it down: - \\(\\frac{\\partial f}{\\partial c} = e\\) - \\(\\frac{\\partial c}{\\partial x} = 2x\\) - \\(\\frac{\\partial f}{\\partial e} = c\\) - \\(\\frac{\\partial e}{\\partial d} = \\cos(d)\\) - \\(\\frac{\\partial d}{\\partial x} = 1\\)\nPutting it all together:\n\\(\\frac{\\partial f}{\\partial x} = e \\cdot 2x + c \\cdot \\cos(d) \\cdot 1\\)\n\n\n\nThis is where tensors come in. In our implementation, a tensor will not only store its value but also remember: 1. The operation that created it 2. The tensors that were inputs to this operation 3. How to compute its derivative with respect to its inputs\nBy doing this for each operation, we create a computational graph. When we want to compute the derivative of our final result with respect to any input, we can simply walk backwards through this graph, applying the chain rule at each step.",
     "crumbs": [
       "Travaux Pratiques",
-      "TP: Heritage avec le pricing d'option"
+      "TP: Dunder Method with Tensor for Automatic Differentiation"
     ]
   },
   {
     "objectID": "content/Cours_2/TP_dunder.html#understanding-tensors-and-automatic-differentiation",
     "href": "content/Cours_2/TP_dunder.html#understanding-tensors-and-automatic-differentiation",
-    "title": "TP: Heritage avec le pricing d’option",
+    "title": "TP: Dunder Method with Tensor for Automatic Differentiation",
     "section": "",
     "text": "Imagine you have a complex mathematical function. It might look intimidating at first, but it’s actually just a composition of simple operations. For example, consider this function:\n\\(f(x, y) = (x^2 + 2y) * \\sin(x + y)\\)\nWe can break this down into simpler operations:\n\n\\(a = x^2\\)\n\\(b = 2y\\)\n\\(c = a + b\\) (which is \\(x^2 + 2y\\))\n\\(d = x + y\\)\n\\(e = \\sin(d)\\) (which is \\(\\sin(x + y)\\))\n\\(f = c * e\\) (our final result)\n\n\n\n\nNow, here’s the magic: if we know how to differentiate each of these simple operations, we can automatically compute the derivative of the entire complex function. This is the essence of automatic differentiation.\nLet’s say we want to find \\(\\frac{\\partial f}{\\partial x}\\). We can use the chain rule:\n\\(\\frac{\\partial f}{\\partial x} = \\frac{\\partial f}{\\partial c} \\cdot \\frac{\\partial c}{\\partial x} + \\frac{\\partial f}{\\partial e} \\cdot \\frac{\\partial e}{\\partial d} \\cdot \\frac{\\partial d}{\\partial x}\\)\nBreaking it down: - \\(\\frac{\\partial f}{\\partial c} = e\\) - \\(\\frac{\\partial c}{\\partial x} = 2x\\) - \\(\\frac{\\partial f}{\\partial e} = c\\) - \\(\\frac{\\partial e}{\\partial d} = \\cos(d)\\) - \\(\\frac{\\partial d}{\\partial x} = 1\\)\nPutting it all together:\n\\(\\frac{\\partial f}{\\partial x} = e \\cdot 2x + c \\cdot \\cos(d) \\cdot 1\\)\n\n\n\nThis is where tensors come in. In our implementation, a tensor will not only store its value but also remember: 1. The operation that created it 2. The tensors that were inputs to this operation 3. How to compute its derivative with respect to its inputs\nBy doing this for each operation, we create a computational graph. When we want to compute the derivative of our final result with respect to any input, we can simply walk backwards through this graph, applying the chain rule at each step.",
     "crumbs": [
       "Travaux Pratiques",
-      "TP: Heritage avec le pricing d'option"
+      "TP: Dunder Method with Tensor for Automatic Differentiation"
     ]
   },
   {
     "objectID": "content/Cours_2/TP_dunder.html#tp-instructions-implementing-a-basic-tensor-class-with-automatic-differentiation",
     "href": "content/Cours_2/TP_dunder.html#tp-instructions-implementing-a-basic-tensor-class-with-automatic-differentiation",
-    "title": "TP: Heritage avec le pricing d’option",
+    "title": "TP: Dunder Method with Tensor for Automatic Differentiation",
     "section": "TP Instructions: Implementing a Basic Tensor Class with Automatic Differentiation",
     "text": "TP Instructions: Implementing a Basic Tensor Class with Automatic Differentiation\nYour task is to implement a simplified Tensor class that supports basic mathematical operations and automatic differentiation. This class will allow us to build simple computational graphs and compute gradients automatically.\nHere’s a skeleton of the Tensor class to get you started:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nYour tasks:\n\nImplement the reversed methods for already existing one like __radd__ or __rmul__.\nImplement the __sub__ and __truediv__ methods for subtraction and division operations.\nAdd support for operations between Tensors and regular numbers (scalars) in all methods.\nImplement a sin() method that computes the sine of a Tensor.\nAdd proper string representation methods (__repr__ and __str__).",
     "crumbs": [
       "Travaux Pratiques",
-      "TP: Heritage avec le pricing d'option"
+      "TP: Dunder Method with Tensor for Automatic Differentiation"
     ]
   },
   {
     "objectID": "content/Cours_2/TP_dunder.html#example-usage-computing-gradients-of-a-complex-function",
     "href": "content/Cours_2/TP_dunder.html#example-usage-computing-gradients-of-a-complex-function",
-    "title": "TP: Heritage avec le pricing d’option",
+    "title": "TP: Dunder Method with Tensor for Automatic Differentiation",
     "section": "Example Usage: Computing Gradients of a Complex Function",
     "text": "Example Usage: Computing Gradients of a Complex Function\nAfter implementing the Tensor class, you can use it to compute gradients of complex functions. Here’s an example using the function we discussed earlier:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nThis example demonstrates how your Tensor class can be used to automatically compute gradients of a complex function. The backward() method computes the gradients with respect to all input tensors.",
     "crumbs": [
       "Travaux Pratiques",
-      "TP: Heritage avec le pricing d'option"
+      "TP: Dunder Method with Tensor for Automatic Differentiation"
     ]
   },
   {
     "objectID": "content/Cours_2/TP_dunder.html#unitary-tests",
     "href": "content/Cours_2/TP_dunder.html#unitary-tests",
-    "title": "TP: Heritage avec le pricing d’option",
+    "title": "TP: Dunder Method with Tensor for Automatic Differentiation",
     "section": "Unitary Tests",
     "text": "Unitary Tests\nHere are some unitary tests to verify your implementation. Implement your Tensor class in a file named tensor.py, and then use these tests to check your work:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "Travaux Pratiques",
-      "TP: Heritage avec le pricing d'option"
+      "TP: Dunder Method with Tensor for Automatic Differentiation"
     ]
   },
   {
@@ -1627,7 +1627,7 @@
     "href": "content/Cours_2/index.html",
     "title": "Encapsulation, Heritage, Composition et Dunder",
     "section": "",
-    "text": "Les cours de cette partie sont:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEncapsulation en Python\n\n\nComprendre l’encapsulation en Python et les conventions pour définir des attributs et méthodes publics et privés.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHéritage en Python : Concept et intérêt\n\n\nDécouvrez le concept d’héritage en Python, son intérêt et son application dans la création de hiérarchies de classes. Apprenez comment Python gère l’héritage implicite de la…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHéritage vs Composition\n\n\nDécouvrez les différences entre l’héritage et la composition en programmation orientée objet, leurs avantages et inconvénients, et comment choisir la meilleure approche pour…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMéthodes Dunder en Python\n\n\nDécouvrez les méthodes dunder en Python, des méthodes spéciales encadrées par des doubles tirets bas (__), qui permettent de personnaliser le comportement des objets dans…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPython call Method: A Fun Exploration\n\n\nExplore the quirky side of Python’s call method with fun examples and insights into memory allocation. A lighthearted break in our Python deep dive.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTP: Heritage avec le pricing d’option\n\n\n\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTP: Heritage avec le pricing d’option\n\n\n\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\nNo matching items\n\n Back to top",
+    "text": "Les cours de cette partie sont:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEncapsulation en Python\n\n\nComprendre l’encapsulation en Python et les conventions pour définir des attributs et méthodes publics et privés.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHéritage en Python : Concept et intérêt\n\n\nDécouvrez le concept d’héritage en Python, son intérêt et son application dans la création de hiérarchies de classes. Apprenez comment Python gère l’héritage implicite de la…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHéritage vs Composition\n\n\nDécouvrez les différences entre l’héritage et la composition en programmation orientée objet, leurs avantages et inconvénients, et comment choisir la meilleure approche pour…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMéthodes Dunder en Python\n\n\nDécouvrez les méthodes dunder en Python, des méthodes spéciales encadrées par des doubles tirets bas (__), qui permettent de personnaliser le comportement des objets dans…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPython call Method: A Fun Exploration\n\n\nExplore the quirky side of Python’s call method with fun examples and insights into memory allocation. A lighthearted break in our Python deep dive.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTP: Dunder Method with Tensor for Automatic Differentiation\n\n\n\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTP: Heritage avec le pricing d’option\n\n\n\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\nNo matching items\n\n Back to top",
     "crumbs": [
       "Encapsulation, Heritage, Composition et Dunder"
     ]
