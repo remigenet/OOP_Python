@@ -87,19 +87,20 @@ class Position:
 
 ```
 
-PART I: Creating the meta class strategy and one specific strategy
+### PART I: Creating the meta class strategy and one specific strategy:
 
-Create an abstract class Strategy that will serve as the base for all strategies. This class should:
-    - Include an abstract method generate_signals that will generate trading signals based on input data.
-    - Document the method generate_signals with a docstring explaining the parameters and return value:
-        - Parameters for the class : A dictionary with tickers as keys and positions as values. The dict should be named
-        data_for_signal_generation
-        - Return: A dictionary with tickers as keys and signals as values.
+**Create an abstract class Strategy that will serve as the base for all strategies. This class should:**
 
-Create a derived class EqualWeightStrategy from Strategy:
-    - This class should inherit from Strategy and implement the generate_signals method.
-     - It should calculate and return a dictionary with equal-weight signals for each ticker.
-    - To Implement the generate_signals method:
+  - Include an **abstract method generate_signals** that will generate trading signals based on input data.
+  - Document the method generate_signals with a docstring explaining the parameters and return value:
+    - Parameters for the class : A dictionary with tickers as keys and positions as values. The dict should be named data_for_signal_generation
+    - Return: A dictionary with tickers as keys and signals as values.
+
+**Create a derived class EqualWeightStrategy from Strategy:**
+
+  - This class should **inherit from Strategy** and implement the generate_signals method.
+  - It should calculate and return a dictionary with equal-weight signals for each ticker.
+  - To Implement the generate_signals method:
     - The method should calculate equal-weight signals for each ticker by dividing 1 by the total number of tickers.
     - It should return a dictionary where each ticker has an equal weight as its signal.
 
@@ -114,9 +115,9 @@ from abc import ABC, abstractmethod
 ```
 
 
-Part II : Creating the Portfolio class
-1. **Class Attributes**:
-   Based on the provided code framework, create a `Portfolio` class which should have the following attributes:
+## Part II : Creating the Portfolio class:
+
+1. **Class Attributes**: Based on the provided code framework, create a `Portfolio` class which should have the following attributes:
    - `name`: Name of the portfolio.
    - `currency`: The currency in which the portfolio is denominated.
    - `aum`: Assets Under Management.
