@@ -25,7 +25,7 @@ and providing a summary of the portfolio positions.
 - Remember to handle cases where certain attributes might be `None` or missing.
 - If you finish the exercise early, you can implement method to populate the attribute of the Portfolio class that
   are not handle yet.
-  
+
 ```{pyodide-python}
 from datetime import datetime
 import pandas as pd
