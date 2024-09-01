@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Remi Genet">
-<meta name="dcterms.date" content="2024-08-31">
+<meta name="dcterms.date" content="2024-09-01">
 <meta name="description" content="Explore the quirky side of Python’s call method with fun examples and insights into memory allocation. A lighthearted break in our Python deep dive.">
 
 <title>Python call Method: A Fun Exploration – Programmation Orientée Objet en Python</title>
@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"Dog()\nDog()()\nDog()()()()()\nDog()()()()()()()()()()  # and so on...","options":{"warning":"true","read-only":"false","label":"","out-width":"700px","message":"true","classes":"","results":"markup","output":"true","fig-height":5,"autorun":"","dpi":72,"out-height":"","context":"interactive","fig-width":7,"comment":"","fig-cap":""},"id":1},{"code":"class Dog:\n    def __call__(self):\n        return Dog\n\nprint(Dog())          # <__main__.Dog object at 0x...>\nprint(Dog()())        # <class '__main__.Dog'>\nprint(Dog()()())      # <__main__.Dog object at 0x...>\nprint(Dog()()()())    # <class '__main__.Dog'>\nprint(Dog()()()()())  # <__main__.Dog object at 0x...>","options":{"warning":"true","read-only":"false","label":"","out-width":"700px","message":"true","classes":"","results":"markup","output":"true","fig-height":5,"autorun":"","dpi":72,"out-height":"","context":"interactive","fig-width":7,"comment":"","fig-cap":""},"id":2},{"code":"dog = Dog()\nprint(dog)  # <__main__.Dog object at 0x7f5d2983e2a0>\ndog = Dog()\nprint(dog)  # <__main__.Dog object at 0x7f5d29859730>\ndog = dog()\nprint(dog)  # <class '__main__.Dog'>\ndog = dog()\nprint(dog)  # <__main__.Dog object at 0x7f5d2983e2a0>\ndog = dog()\nprint(dog)  # <class '__main__.Dog'>\ndog = dog()\nprint(dog)  # <__main__.Dog object at 0x7f5d2983e2a0>\ndog = Dog()\nprint(dog)  # <__main__.Dog object at 0x7f5d29859790>","options":{"warning":"true","read-only":"false","label":"","out-width":"700px","message":"true","classes":"","results":"markup","output":"true","fig-height":5,"autorun":"","dpi":72,"out-height":"","context":"interactive","fig-width":7,"comment":"","fig-cap":""},"id":3},{"code":"class Dog:\n    def __call__(self):\n        return self\n\nprint(Dog())      # <__main__.Dog object at 0x7f5d2983fc20>\nprint(Dog()())    # <__main__.Dog object at 0x7f5d2983fc20>\nprint(Dog()()())  # <__main__.Dog object at 0x7f5d2983fc20>","options":{"warning":"true","read-only":"false","label":"","out-width":"700px","message":"true","classes":"","results":"markup","output":"true","fig-height":5,"autorun":"","dpi":72,"out-height":"","context":"interactive","fig-width":7,"comment":"","fig-cap":""},"id":4},{"code":"class Dog:\n    def __call__(self):\n        return Dog()\n\nprint(Dog())      # <__main__.Dog object at 0x7f5d28762c60>\nprint(Dog()())    # <__main__.Dog object at 0x7f5d28763050>\nprint(Dog()()())  # <__main__.Dog object at 0x7f5d28763050>","options":{"warning":"true","read-only":"false","label":"","out-width":"700px","message":"true","classes":"","results":"markup","output":"true","fig-height":5,"autorun":"","dpi":72,"out-height":"","context":"interactive","fig-width":7,"comment":"","fig-cap":""},"id":5},{"code":"class Dog:\n    c = 0\n    _instances = {}\n    def __new__(cls):\n        cls.c += 1\n        cls._instances[cls.c] = super().__new__(cls)\n        return cls._instances[cls.c]\n    \n    def __call__(self):\n        return Dog\n\nprint(Dog())          # <__main__.Dog object at 0x7f5d28762930>\nprint(Dog()())        # <class '__main__.Dog'>\nprint(Dog()()())      # <__main__.Dog object at 0x7f5d287626c0>\nprint(Dog()()()())    # <class '__main__.Dog'>\nprint(Dog()()()()())  # <__main__.Dog object at 0x7f5d28762990>","options":{"warning":"true","read-only":"false","label":"","out-width":"700px","message":"true","classes":"","results":"markup","output":"true","fig-height":5,"autorun":"","dpi":72,"out-height":"","context":"interactive","fig-width":7,"comment":"","fig-cap":""},"id":6}];
+globalThis.qpyodideCellDetails = [{"id":1,"options":{"classes":"","context":"interactive","message":"true","autorun":"","fig-cap":"","out-width":"700px","warning":"true","results":"markup","fig-height":5,"read-only":"false","comment":"","out-height":"","label":"","output":"true","fig-width":7,"dpi":72},"code":"Dog()\nDog()()\nDog()()()()()\nDog()()()()()()()()()()  # and so on..."},{"id":2,"options":{"classes":"","context":"interactive","message":"true","autorun":"","fig-cap":"","out-width":"700px","warning":"true","results":"markup","fig-height":5,"read-only":"false","comment":"","out-height":"","label":"","output":"true","fig-width":7,"dpi":72},"code":"class Dog:\n    def __call__(self):\n        return Dog\n\nprint(Dog())          # <__main__.Dog object at 0x...>\nprint(Dog()())        # <class '__main__.Dog'>\nprint(Dog()()())      # <__main__.Dog object at 0x...>\nprint(Dog()()()())    # <class '__main__.Dog'>\nprint(Dog()()()()())  # <__main__.Dog object at 0x...>"},{"id":3,"options":{"classes":"","context":"interactive","message":"true","autorun":"","fig-cap":"","out-width":"700px","warning":"true","results":"markup","fig-height":5,"read-only":"false","comment":"","out-height":"","label":"","output":"true","fig-width":7,"dpi":72},"code":"dog = Dog()\nprint(dog)  # <__main__.Dog object at 0x7f5d2983e2a0>\ndog = Dog()\nprint(dog)  # <__main__.Dog object at 0x7f5d29859730>\ndog = dog()\nprint(dog)  # <class '__main__.Dog'>\ndog = dog()\nprint(dog)  # <__main__.Dog object at 0x7f5d2983e2a0>\ndog = dog()\nprint(dog)  # <class '__main__.Dog'>\ndog = dog()\nprint(dog)  # <__main__.Dog object at 0x7f5d2983e2a0>\ndog = Dog()\nprint(dog)  # <__main__.Dog object at 0x7f5d29859790>"},{"id":4,"options":{"classes":"","context":"interactive","message":"true","autorun":"","fig-cap":"","out-width":"700px","warning":"true","results":"markup","fig-height":5,"read-only":"false","comment":"","out-height":"","label":"","output":"true","fig-width":7,"dpi":72},"code":"class Dog:\n    def __call__(self):\n        return self\n\nprint(Dog())      # <__main__.Dog object at 0x7f5d2983fc20>\nprint(Dog()())    # <__main__.Dog object at 0x7f5d2983fc20>\nprint(Dog()()())  # <__main__.Dog object at 0x7f5d2983fc20>"},{"id":5,"options":{"classes":"","context":"interactive","message":"true","autorun":"","fig-cap":"","out-width":"700px","warning":"true","results":"markup","fig-height":5,"read-only":"false","comment":"","out-height":"","label":"","output":"true","fig-width":7,"dpi":72},"code":"class Dog:\n    def __call__(self):\n        return Dog()\n\nprint(Dog())      # <__main__.Dog object at 0x7f5d28762c60>\nprint(Dog()())    # <__main__.Dog object at 0x7f5d28763050>\nprint(Dog()()())  # <__main__.Dog object at 0x7f5d28763050>"},{"id":6,"options":{"classes":"","context":"interactive","message":"true","autorun":"","fig-cap":"","out-width":"700px","warning":"true","results":"markup","fig-height":5,"read-only":"false","comment":"","out-height":"","label":"","output":"true","fig-width":7,"dpi":72},"code":"class Dog:\n    c = 0\n    _instances = {}\n    def __new__(cls):\n        cls.c += 1\n        cls._instances[cls.c] = super().__new__(cls)\n        return cls._instances[cls.c]\n    \n    def __call__(self):\n        return Dog\n\nprint(Dog())          # <__main__.Dog object at 0x7f5d28762930>\nprint(Dog()())        # <class '__main__.Dog'>\nprint(Dog()()())      # <__main__.Dog object at 0x7f5d287626c0>\nprint(Dog()()()())    # <class '__main__.Dog'>\nprint(Dog()()()()())  # <__main__.Dog object at 0x7f5d28762990>"}];
 
 
 </script>
@@ -437,10 +437,10 @@ globalThis._qpyodideGetInstance = function() {
 <meta property="og:site_name" content="Programmation Orientée Objet en Python">
 <meta name="citation_title" content="Python __call__ Method: A Fun Exploration">
 <meta name="citation_author" content="Remi Genet">
-<meta name="citation_publication_date" content="2024-08-31">
-<meta name="citation_cover_date" content="2024-08-31">
+<meta name="citation_publication_date" content="2024-09-01">
+<meta name="citation_cover_date" content="2024-09-01">
 <meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-08-31">
+<meta name="citation_online_date" content="2024-09-01">
 <meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_2/5-call_a_dog.html">
 <meta name="citation_language" content="en">
 </head>
@@ -505,10 +505,6 @@ globalThis._qpyodideGetInstance = function() {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
-        <li>
-    <a class="dropdown-item" href="../../content/Cours_1/TP.html">
- <span class="dropdown-text">Construire son propre DataFrame</span></a>
-  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -588,7 +584,7 @@ globalThis._qpyodideGetInstance = function() {
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/TP.html">
+    <a class="dropdown-item" href="../../content/Cours_3/TP_equity_portfolio.html">
  <span class="dropdown-text">TP</span></a>
   </li>  
     </ul>
@@ -657,10 +653,6 @@ globalThis._qpyodideGetInstance = function() {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
-        <li>
-    <a class="dropdown-item" href="../../content/Cours_5/TP.html">
- <span class="dropdown-text">TP: Creating a Linear Regression Package</span></a>
-  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -690,10 +682,6 @@ globalThis._qpyodideGetInstance = function() {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
-        <li>
-    <a class="dropdown-item" href="../../content/Cours_5/TP.html">
- <span class="dropdown-text">TP: Creating a Linear Regression Package</span></a>
-  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -875,7 +863,7 @@ globalThis._qpyodideGetInstance = function() {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-08-31</p>
+      <p class="date">2024-09-01</p>
     </div>
   </div>
   

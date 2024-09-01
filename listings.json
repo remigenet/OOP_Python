@@ -26,18 +26,6 @@
     ]
   },
   {
-    "listing": "/content/Cours_1/index.html",
-    "items": [
-      "/content/Cours_1/6-Bases_of_classes_in_python.html",
-      "/content/Cours_1/TP.html",
-      "/content/Cours_1/1-Histoire.html",
-      "/content/Cours_1/3-NaissancePOO.html",
-      "/content/Cours_1/2-Structuration_des_donnees.html",
-      "/content/Cours_1/5-Simplicity_and_performance.html",
-      "/content/Cours_1/4-all_is_object.html"
-    ]
-  },
-  {
     "listing": "/index.html",
     "items": [
       "/content/Cours_1/1-Histoire.html",
@@ -61,6 +49,7 @@
       "/content/Cours_3/5-Abstract_class.html",
       "/content/Cours_3/6-Protocol.html",
       "/content/Cours_3/TP.html",
+      "/content/Cours_3/TP_equity_portfolio.html",
       "/content/Cours_4/1-Design_Pattern.html",
       "/content/Cours_4/2-Decorator_theory.html",
       "/content/Cours_4/3-Decorator_practically.html",
@@ -82,6 +71,18 @@
     ]
   },
   {
+    "listing": "/content/Cours_1/index.html",
+    "items": [
+      "/content/Cours_1/6-Bases_of_classes_in_python.html",
+      "/content/Cours_1/TP.html",
+      "/content/Cours_1/1-Histoire.html",
+      "/content/Cours_1/3-NaissancePOO.html",
+      "/content/Cours_1/2-Structuration_des_donnees.html",
+      "/content/Cours_1/5-Simplicity_and_performance.html",
+      "/content/Cours_1/4-all_is_object.html"
+    ]
+  },
+  {
     "listing": "/content/Cours_3/index.html",
     "items": [
       "/content/Cours_3/5-Abstract_class.html",
@@ -90,6 +91,7 @@
       "/content/Cours_3/2-Overloading.html",
       "/content/Cours_3/6-Protocol.html",
       "/content/Cours_3/TP.html",
+      "/content/Cours_3/TP_equity_portfolio.html",
       "/content/Cours_3/4-Type_Hinting.html"
     ]
   },

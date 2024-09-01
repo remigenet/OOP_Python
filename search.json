@@ -4,7 +4,7 @@
     "href": "content/Cours_6/index.html",
     "title": "OOP Design Patterns",
     "section": "",
-    "text": "Les cours de cette partie sont:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBehavioral Design Pattern\n\n\nDécouvrir les design paterns, et connaitre les plus standards\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCreation Design Patterns\n\n\nLearn creational design pattern\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPython-Specific Design Patterns\n\n\nLearn about Python-specific design patterns, including context managers and descriptors, to write more efficient and Pythonic code.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStructural Design Patterns\n\n\nDécouvrir les design paterns, et connaitre les plus standards\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTP\n\n\n\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\nNo matching items\n\n Back to top",
+    "text": "Les cours de cette partie sont:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBehavioral Design Pattern\n\n\nDécouvrir les design paterns, et connaitre les plus standards\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCreation Design Patterns\n\n\nLearn creational design pattern\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPython-Specific Design Patterns\n\n\nLearn about Python-specific design patterns, including context managers and descriptors, to write more efficient and Pythonic code.\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStructural Design Patterns\n\n\nDécouvrir les design paterns, et connaitre les plus standards\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTP\n\n\n\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\nNo matching items\n\n Back to top",
     "crumbs": [
       "OOP Design Patterns"
     ]
@@ -134,7 +134,7 @@
     "href": "content/Cours_5/index.html",
     "title": "Project and Package",
     "section": "",
-    "text": "Les cours de cette partie sont:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOrganizing Python Projects\n\n\nLearn how to organize Python projects effectively and create packages for distribution.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPython Package Management and Virtual Environments\n\n\nLearn to create a package and manage virtual environment\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\nTP: Creating a Linear Regression Package\n\n\nA hands-on practical exercise on creating a simple machine learning package for linear regression, exploring package management, testing, manual publishing, and automating…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnderstanding imports\n\n\n\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnit Testing in Python\n\n\nLearn how to write and run unit tests in Python using the pytest framework.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\nNo matching items\n\n Back to top",
+    "text": "Les cours de cette partie sont:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOrganizing Python Projects\n\n\nLearn how to organize Python projects effectively and create packages for distribution.\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPython Package Management and Virtual Environments\n\n\nLearn to create a package and manage virtual environment\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\nTP: Creating a Linear Regression Package\n\n\nA hands-on practical exercise on creating a simple machine learning package for linear regression, exploring package management, testing, manual publishing, and automating…\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnderstanding imports\n\n\n\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnit Testing in Python\n\n\nLearn how to write and run unit tests in Python using the pytest framework.\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\nNo matching items\n\n Back to top",
     "crumbs": [
       "Project and Package"
     ]
@@ -164,117 +164,77 @@
     "href": "content/Cours_5/TP.html",
     "title": "TP: Creating a Linear Regression Package",
     "section": "",
-    "text": "In this TP, you’ll create a simple machine learning package focused on linear regression. You’ll use modern Python tools like Poetry for package management, implement basic classes, write tests, set up continuous integration, manually publish your package, and finally automate the publishing process.",
-    "crumbs": [
-      "Travaux Pratiques",
-      "TP: Creating a Linear Regression Package"
-    ]
+    "text": "In this TP, you’ll create a simple machine learning package focused on linear regression. You’ll use modern Python tools like Poetry for package management, implement basic classes, write tests, set up continuous integration, manually publish your package, and finally automate the publishing process."
   },
   {
     "objectID": "content/Cours_5/TP.html#introduction",
     "href": "content/Cours_5/TP.html#introduction",
     "title": "TP: Creating a Linear Regression Package",
     "section": "",
-    "text": "In this TP, you’ll create a simple machine learning package focused on linear regression. You’ll use modern Python tools like Poetry for package management, implement basic classes, write tests, set up continuous integration, manually publish your package, and finally automate the publishing process.",
-    "crumbs": [
-      "Travaux Pratiques",
-      "TP: Creating a Linear Regression Package"
-    ]
+    "text": "In this TP, you’ll create a simple machine learning package focused on linear regression. You’ll use modern Python tools like Poetry for package management, implement basic classes, write tests, set up continuous integration, manually publish your package, and finally automate the publishing process."
   },
   {
     "objectID": "content/Cours_5/TP.html#objectives",
     "href": "content/Cours_5/TP.html#objectives",
     "title": "TP: Creating a Linear Regression Package",
     "section": "Objectives",
-    "text": "Objectives\nBy the end of this TP, you will:\n\nSet up a Python project using Poetry\nImplement a basic linear regression class\nWrite unit tests for your implementation\nUse GitHub Actions for continuous integration\nManually publish your package to PyPI\nAutomate the publishing process using GitHub Actions",
-    "crumbs": [
-      "Travaux Pratiques",
-      "TP: Creating a Linear Regression Package"
-    ]
+    "text": "Objectives\nBy the end of this TP, you will:\n\nSet up a Python project using Poetry\nImplement a basic linear regression class\nWrite unit tests for your implementation\nUse GitHub Actions for continuous integration\nManually publish your package to PyPI\nAutomate the publishing process using GitHub Actions"
   },
   {
     "objectID": "content/Cours_5/TP.html#prerequisites",
     "href": "content/Cours_5/TP.html#prerequisites",
     "title": "TP: Creating a Linear Regression Package",
     "section": "Prerequisites",
-    "text": "Prerequisites\n\nBasic understanding of Python and object-oriented programming\nFamiliarity with linear regression concepts\nGit and GitHub account\nPython 3.8 or higher installed",
-    "crumbs": [
-      "Travaux Pratiques",
-      "TP: Creating a Linear Regression Package"
-    ]
+    "text": "Prerequisites\n\nBasic understanding of Python and object-oriented programming\nFamiliarity with linear regression concepts\nGit and GitHub account\nPython 3.8 or higher installed"
   },
   {
     "objectID": "content/Cours_5/TP.html#step-1-setting-up-the-project",
     "href": "content/Cours_5/TP.html#step-1-setting-up-the-project",
     "title": "TP: Creating a Linear Regression Package",
     "section": "Step 1: Setting Up the Project",
-    "text": "Step 1: Setting Up the Project\nSet up your project using Poetry.\n\nInstall Poetry if you haven’t already.\nCreate a new project named finance-ml.\nEdit the pyproject.toml file to add necessary dependencies (numpy for calculations, pytest for testing).\nInstall the dependencies using Poetry.\n\nExercise 1: Set up the project structure as described above. Familiarize yourself with the pyproject.toml file and Poetry commands.",
-    "crumbs": [
-      "Travaux Pratiques",
-      "TP: Creating a Linear Regression Package"
-    ]
+    "text": "Step 1: Setting Up the Project\nSet up your project using Poetry.\n\nInstall Poetry if you haven’t already.\nCreate a new project named finance-ml.\nEdit the pyproject.toml file to add necessary dependencies (numpy for calculations, pytest for testing).\nInstall the dependencies using Poetry.\n\nExercise 1: Set up the project structure as described above. Familiarize yourself with the pyproject.toml file and Poetry commands."
   },
   {
     "objectID": "content/Cours_5/TP.html#step-2-implementing-linear-regression",
     "href": "content/Cours_5/TP.html#step-2-implementing-linear-regression",
     "title": "TP: Creating a Linear Regression Package",
     "section": "Step 2: Implementing Linear Regression",
-    "text": "Step 2: Implementing Linear Regression\nImplement a basic linear regression class.\nCreate a new file src/finance_ml/linear_models.py and implement a LinearRegression class with the following methods:\n\n__init__(self, use_intercept=True): Initialize the model parameters.\nfit(self, X, y): Fit the model to the training data.\npredict(self, X): Make predictions using the trained model.\n\nYour implementation should handle cases with and without an intercept term and use numpy for efficient calculations.\nExercise 2: Implement the LinearRegression class as described above.",
-    "crumbs": [
-      "Travaux Pratiques",
-      "TP: Creating a Linear Regression Package"
-    ]
+    "text": "Step 2: Implementing Linear Regression\nImplement a basic linear regression class.\nCreate a new file src/finance_ml/linear_models.py and implement a LinearRegression class with the following methods:\n\n__init__(self, use_intercept=True): Initialize the model parameters.\nfit(self, X, y): Fit the model to the training data.\npredict(self, X): Make predictions using the trained model.\n\nYour implementation should handle cases with and without an intercept term and use numpy for efficient calculations.\nExercise 2: Implement the LinearRegression class as described above."
   },
   {
     "objectID": "content/Cours_5/TP.html#step-3-writing-tests",
     "href": "content/Cours_5/TP.html#step-3-writing-tests",
     "title": "TP: Creating a Linear Regression Package",
     "section": "Step 3: Writing Tests",
-    "text": "Step 3: Writing Tests\nWrite tests for your LinearRegression class to ensure it works correctly.\nCreate a new file tests/test_linear_models.py and write test functions to cover various scenarios and edge cases.\nExercise 3: Implement the test functions for your LinearRegression class.",
-    "crumbs": [
-      "Travaux Pratiques",
-      "TP: Creating a Linear Regression Package"
-    ]
+    "text": "Step 3: Writing Tests\nWrite tests for your LinearRegression class to ensure it works correctly.\nCreate a new file tests/test_linear_models.py and write test functions to cover various scenarios and edge cases.\nExercise 3: Implement the test functions for your LinearRegression class."
   },
   {
     "objectID": "content/Cours_5/TP.html#step-4-setting-up-basic-github-actions",
     "href": "content/Cours_5/TP.html#step-4-setting-up-basic-github-actions",
     "title": "TP: Creating a Linear Regression Package",
     "section": "Step 4: Setting Up Basic GitHub Actions",
-    "text": "Step 4: Setting Up Basic GitHub Actions\nSet up a basic GitHub Actions workflow to run your tests automatically.\nCreate a new file .github/workflows/tests.yml:\nname: Run Tests\n\non: [push, pull_request]\n\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n    - uses: actions/checkout@v2\n    - name: Set up Python\n      uses: actions/setup-python@v2\n      with:\n        python-version: '3.8'\n    - name: Install dependencies\n      run: |\n        pip install poetry\n        poetry install\n    - name: Run tests\n      run: poetry run pytest\nExercise 4: 1. Set up a GitHub repository for your project and add the GitHub Actions workflow as shown above. 2. Push your code and verify that the tests run automatically on push and pull requests.",
-    "crumbs": [
-      "Travaux Pratiques",
-      "TP: Creating a Linear Regression Package"
-    ]
+    "text": "Step 4: Setting Up Basic GitHub Actions\nSet up a basic GitHub Actions workflow to run your tests automatically.\nCreate a new file .github/workflows/tests.yml:\nname: Run Tests\n\non: [push, pull_request]\n\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n    - uses: actions/checkout@v2\n    - name: Set up Python\n      uses: actions/setup-python@v2\n      with:\n        python-version: '3.8'\n    - name: Install dependencies\n      run: |\n        pip install poetry\n        poetry install\n    - name: Run tests\n      run: poetry run pytest\nExercise 4: 1. Set up a GitHub repository for your project and add the GitHub Actions workflow as shown above. 2. Push your code and verify that the tests run automatically on push and pull requests."
   },
   {
     "objectID": "content/Cours_5/TP.html#step-5-manual-package-publishing",
     "href": "content/Cours_5/TP.html#step-5-manual-package-publishing",
     "title": "TP: Creating a Linear Regression Package",
     "section": "Step 5: Manual Package Publishing",
-    "text": "Step 5: Manual Package Publishing\nNow, let’s publish your package to PyPI manually using Poetry.\n\nRegister an account on PyPI (https://pypi.org/)\nBuild your package using Poetry\nPublish your package to PyPI using Poetry\n\nExercise 5: Follow the steps above to manually publish your package to PyPI. Verify that you can install your package from PyPI using pip.",
-    "crumbs": [
-      "Travaux Pratiques",
-      "TP: Creating a Linear Regression Package"
-    ]
+    "text": "Step 5: Manual Package Publishing\nNow, let’s publish your package to PyPI manually using Poetry.\n\nRegister an account on PyPI (https://pypi.org/)\nBuild your package using Poetry\nPublish your package to PyPI using Poetry\n\nExercise 5: Follow the steps above to manually publish your package to PyPI. Verify that you can install your package from PyPI using pip."
   },
   {
     "objectID": "content/Cours_5/TP.html#step-6-automating-package-publishing",
     "href": "content/Cours_5/TP.html#step-6-automating-package-publishing",
     "title": "TP: Creating a Linear Regression Package",
     "section": "Step 6: Automating Package Publishing",
-    "text": "Step 6: Automating Package Publishing\nFinally, let’s automate the publishing process using GitHub Actions.\nExercise 6: 1. Modify the GitHub Actions workflow you created in Step 4 to include a job for publishing the package to PyPI when pushing to the main branch. 2. Research how to securely add your PyPI credentials as secrets in GitHub Actions. 3. Update your workflow to use these secrets for authentication when publishing. 4. Test your automated publishing process by pushing a change to the main branch.\nHint: You’ll need to add a new job to your workflow, use conditional execution based on the branch, and incorporate the PyPI credentials as secrets.",
-    "crumbs": [
-      "Travaux Pratiques",
-      "TP: Creating a Linear Regression Package"
-    ]
+    "text": "Step 6: Automating Package Publishing\nFinally, let’s automate the publishing process using GitHub Actions.\nExercise 6: 1. Modify the GitHub Actions workflow you created in Step 4 to include a job for publishing the package to PyPI when pushing to the main branch. 2. Research how to securely add your PyPI credentials as secrets in GitHub Actions. 3. Update your workflow to use these secrets for authentication when publishing. 4. Test your automated publishing process by pushing a change to the main branch.\nHint: You’ll need to add a new job to your workflow, use conditional execution based on the branch, and incorporate the PyPI credentials as secrets."
   },
   {
     "objectID": "content/Projets/index.html",
     "href": "content/Projets/index.html",
     "title": "Projets",
     "section": "",
-    "text": "Les cours de cette partie sont:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nProjets POO - Millésime 2024-2025\n\n\n\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\nNo matching items\n\n Back to top",
+    "text": "Les cours de cette partie sont:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nProjets POO - Millésime 2024-2025\n\n\n\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\nNo matching items\n\n Back to top",
     "crumbs": [
       "Projets"
     ]
@@ -987,298 +947,95 @@
     ]
   },
   {
-    "objectID": "content/Cours_1/index.html",
-    "href": "content/Cours_1/index.html",
-    "title": "Introduction: Histoire et Concepts",
+    "objectID": "content/Cours_3/TP_equity_portfolio.html",
+    "href": "content/Cours_3/TP_equity_portfolio.html",
+    "title": "TP",
     "section": "",
-    "text": "Les cours de cette partie sont:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nClasses en Python : Concepts fondamentaux\n\n\nDécouvrez les concepts fondamentaux des classes en Python, y compris les attributs de classe vs d’instance, le rôle de ‘self’, et les conventions de codage.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nConstruire son propre DataFrame\n\n\n\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHistoire de la programmation\n\n\nDu binaire à la POO\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNaissance de la POO\n\n\nL’adoption de la POO dans les langages modernes comme C++ et Python a révolutionné la programmation. Découvrez comment ces langages ont intégré les concepts de la POO et…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPremière Structuration des données\n\n\nDécouvrez comment les tableaux, les structures et les records ont permis de structurer les données dans les premiers langages de programmation.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPython : Simplicité des objets et performance sous-jacente\n\n\nDécouvrez comment Python peut combiner la simplicité des objets avec des performances élevées grâce à l’intégration de code C et Rust.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPython: tout n’est qu’objet\n\n\nExplorer la notion de PATH, un élément essentiel dans la configuration des environnements de développement.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\nNo matching items\n\n Back to top",
-    "crumbs": [
-      "Introduction: Histoire et Concepts"
-    ]
-  },
-  {
-    "objectID": "content/Cours_1/1-Histoire.html",
-    "href": "content/Cours_1/1-Histoire.html",
-    "title": "Histoire de la programmation",
-    "section": "",
-    "text": "Les premiers ordinateurs étaient programmés directement en langage machine, c’est-à-dire en code binaire. Cette méthode présentait plusieurs caractéristiques :\n\nComplexité extrême : Les programmeurs devaient écrire des séquences de 0 et de 1 pour chaque instruction.\nSpécificité au matériel : Chaque type de processeur avait son propre jeu d’instructions en langage machine.\nDifficulté de maintenance : Le code était pratiquement illisible pour les humains, rendant les corrections et les mises à jour très difficiles.\n\nExemple simplifié d’addition en langage machine (fictif) :\n10110000 01100011 00000001  // Charger la valeur du registre 1 dans l'accumulateur\n10110001 01100011 00000010  // Ajouter la valeur du registre 2 à l'accumulateur\n10110010 01100011 00000011  // Stocker le résultat dans le registre 3\n\n\n\nPour faciliter la programmation, le langage assembleur a été développé. Il présentait plusieurs avantages :\n\nLisibilité améliorée : Utilisation de mnémoniques (ADD, MOV, JMP) au lieu de codes binaires.\nCorrespondance directe : Chaque instruction assembleur correspondait généralement à une instruction en langage machine.\nIntroduction des étiquettes : Permettait de nommer des points dans le programme, facilitant les sauts et les boucles.\n\nExemple du même calcul en assembleur (syntaxe simplifiée) :\nLOAD R1    ; Charger la valeur du registre 1 dans l'accumulateur\nADD R2     ; Ajouter la valeur du registre 2 à l'accumulateur\nSTORE R3   ; Stocker le résultat dans le registre 3\n\n\n\n\n\n\nDéveloppé par IBM en 1957, FORTRAN a révolutionné la programmation :\n\nPremier langage de haut niveau largement adopté\nConçu pour les calculs scientifiques et l’ingénierie\nIntroduction de concepts comme les boucles et les fonctions\n\nExemple de calcul d’intérêt composé en FORTRAN :\nPROGRAM INTERET_COMPOSE\n    REAL PRINCIPAL, TAUX, MONTANT\n    INTEGER ANNEES, I\n\n    PRINT *, 'Entrez le principal, le taux (en decimal) et les annees:'\n    READ *, PRINCIPAL, TAUX, ANNEES\n\n    MONTANT = PRINCIPAL\n    DO I = 1, ANNEES\n        MONTANT = MONTANT * (1 + TAUX)\n    END DO\n\n    PRINT *, 'Montant final:', MONTANT\nEND PROGRAM INTERET_COMPOSE\n\n\n\nCréé en 1959, COBOL visait les applications commerciales :\n\nSyntaxe proche de l’anglais pour faciliter la compréhension\nGestion efficace des fichiers et des données structurées\nLargement utilisé dans les systèmes bancaires et financiers\n\nExemple simplifié de calcul de salaire en COBOL :\nIDENTIFICATION DIVISION.\nPROGRAM-ID. CALCUL-SALAIRE.\n\nENVIRONMENT DIVISION.\nINPUT-OUTPUT SECTION.\nFILE-CONTROL.\n    SELECT EMPLOYE-FICHIER ASSIGN TO \"employes.dat\"\n        ORGANIZATION IS LINE SEQUENTIAL.\n\nDATA DIVISION.\nFILE SECTION.\nFD EMPLOYE-FICHIER.\n01 EMPLOYE-ENREG.\n    05 EMP-NOM PIC X(20).\n    05 EMP-HEURES PIC 9(3).\n    05 EMP-TAUX PIC 9(3)V99.\n\nWORKING-STORAGE SECTION.\n01 WS-SALAIRE PIC 9(5)V99.\n01 WS-EOF PIC A(1).\n\nPROCEDURE DIVISION.\nMAIN-PROCEDURE.\n    OPEN INPUT EMPLOYE-FICHIER\n    PERFORM UNTIL WS-EOF = 'Y'\n        READ EMPLOYE-FICHIER\n            AT END\n                MOVE 'Y' TO WS-EOF\n            NOT AT END\n                PERFORM CALCUL-AFFICHAGE\n        END-READ\n    END-PERFORM\n    CLOSE EMPLOYE-FICHIER\n    STOP RUN.\n\nCALCUL-AFFICHAGE.\n    COMPUTE WS-SALAIRE = EMP-HEURES * EMP-TAUX\n    DISPLAY EMP-NOM \" Salaire: $\" WS-SALAIRE.\n\n\n\n\nLa programmation procédurale, illustrée par ces langages, se caractérise par :\n\nSéquence d’instructions : Le programme est une suite d’étapes à exécuter.\nProcédures et fonctions : Le code est organisé en blocs réutilisables.\nVariables globales et locales : Gestion de l’état du programme.\nFlux de contrôle linéaire : Utilisation de structures comme les boucles et les conditions.\n\n\n\n\nSimplicité relative par rapport au langage machine\nPossibilité de créer des programmes complexes\nFacilité d’apprentissage pour les débutants\n\n\n\n\n\nDifficulté à gérer des projets très larges\nRisque élevé d’effets de bord avec les variables globales\nManque de représentation naturelle pour certains problèmes du monde réel\n\nCette approche a dominé la programmation pendant plusieurs décennies, posant les bases pour l’évolution future vers des paradigmes plus avancés, notamment la programmation orientée objet.",
-    "crumbs": [
-      "Histoire de la programmation"
-    ]
-  },
-  {
-    "objectID": "content/Cours_1/1-Histoire.html#lère-du-langage-machine-et-de-lassembleur",
-    "href": "content/Cours_1/1-Histoire.html#lère-du-langage-machine-et-de-lassembleur",
-    "title": "Histoire de la programmation",
-    "section": "",
-    "text": "Les premiers ordinateurs étaient programmés directement en langage machine, c’est-à-dire en code binaire. Cette méthode présentait plusieurs caractéristiques :\n\nComplexité extrême : Les programmeurs devaient écrire des séquences de 0 et de 1 pour chaque instruction.\nSpécificité au matériel : Chaque type de processeur avait son propre jeu d’instructions en langage machine.\nDifficulté de maintenance : Le code était pratiquement illisible pour les humains, rendant les corrections et les mises à jour très difficiles.\n\nExemple simplifié d’addition en langage machine (fictif) :\n10110000 01100011 00000001  // Charger la valeur du registre 1 dans l'accumulateur\n10110001 01100011 00000010  // Ajouter la valeur du registre 2 à l'accumulateur\n10110010 01100011 00000011  // Stocker le résultat dans le registre 3\n\n\n\nPour faciliter la programmation, le langage assembleur a été développé. Il présentait plusieurs avantages :\n\nLisibilité améliorée : Utilisation de mnémoniques (ADD, MOV, JMP) au lieu de codes binaires.\nCorrespondance directe : Chaque instruction assembleur correspondait généralement à une instruction en langage machine.\nIntroduction des étiquettes : Permettait de nommer des points dans le programme, facilitant les sauts et les boucles.\n\nExemple du même calcul en assembleur (syntaxe simplifiée) :\nLOAD R1    ; Charger la valeur du registre 1 dans l'accumulateur\nADD R2     ; Ajouter la valeur du registre 2 à l'accumulateur\nSTORE R3   ; Stocker le résultat dans le registre 3",
-    "crumbs": [
-      "Histoire de la programmation"
-    ]
-  },
-  {
-    "objectID": "content/Cours_1/1-Histoire.html#lémergence-des-langages-de-haut-niveau",
-    "href": "content/Cours_1/1-Histoire.html#lémergence-des-langages-de-haut-niveau",
-    "title": "Histoire de la programmation",
-    "section": "",
-    "text": "Développé par IBM en 1957, FORTRAN a révolutionné la programmation :\n\nPremier langage de haut niveau largement adopté\nConçu pour les calculs scientifiques et l’ingénierie\nIntroduction de concepts comme les boucles et les fonctions\n\nExemple de calcul d’intérêt composé en FORTRAN :\nPROGRAM INTERET_COMPOSE\n    REAL PRINCIPAL, TAUX, MONTANT\n    INTEGER ANNEES, I\n\n    PRINT *, 'Entrez le principal, le taux (en decimal) et les annees:'\n    READ *, PRINCIPAL, TAUX, ANNEES\n\n    MONTANT = PRINCIPAL\n    DO I = 1, ANNEES\n        MONTANT = MONTANT * (1 + TAUX)\n    END DO\n\n    PRINT *, 'Montant final:', MONTANT\nEND PROGRAM INTERET_COMPOSE\n\n\n\nCréé en 1959, COBOL visait les applications commerciales :\n\nSyntaxe proche de l’anglais pour faciliter la compréhension\nGestion efficace des fichiers et des données structurées\nLargement utilisé dans les systèmes bancaires et financiers\n\nExemple simplifié de calcul de salaire en COBOL :\nIDENTIFICATION DIVISION.\nPROGRAM-ID. CALCUL-SALAIRE.\n\nENVIRONMENT DIVISION.\nINPUT-OUTPUT SECTION.\nFILE-CONTROL.\n    SELECT EMPLOYE-FICHIER ASSIGN TO \"employes.dat\"\n        ORGANIZATION IS LINE SEQUENTIAL.\n\nDATA DIVISION.\nFILE SECTION.\nFD EMPLOYE-FICHIER.\n01 EMPLOYE-ENREG.\n    05 EMP-NOM PIC X(20).\n    05 EMP-HEURES PIC 9(3).\n    05 EMP-TAUX PIC 9(3)V99.\n\nWORKING-STORAGE SECTION.\n01 WS-SALAIRE PIC 9(5)V99.\n01 WS-EOF PIC A(1).\n\nPROCEDURE DIVISION.\nMAIN-PROCEDURE.\n    OPEN INPUT EMPLOYE-FICHIER\n    PERFORM UNTIL WS-EOF = 'Y'\n        READ EMPLOYE-FICHIER\n            AT END\n                MOVE 'Y' TO WS-EOF\n            NOT AT END\n                PERFORM CALCUL-AFFICHAGE\n        END-READ\n    END-PERFORM\n    CLOSE EMPLOYE-FICHIER\n    STOP RUN.\n\nCALCUL-AFFICHAGE.\n    COMPUTE WS-SALAIRE = EMP-HEURES * EMP-TAUX\n    DISPLAY EMP-NOM \" Salaire: $\" WS-SALAIRE.",
-    "crumbs": [
-      "Histoire de la programmation"
-    ]
-  },
-  {
-    "objectID": "content/Cours_1/1-Histoire.html#caractéristiques-de-la-programmation-procédurale",
-    "href": "content/Cours_1/1-Histoire.html#caractéristiques-de-la-programmation-procédurale",
-    "title": "Histoire de la programmation",
-    "section": "",
-    "text": "La programmation procédurale, illustrée par ces langages, se caractérise par :\n\nSéquence d’instructions : Le programme est une suite d’étapes à exécuter.\nProcédures et fonctions : Le code est organisé en blocs réutilisables.\nVariables globales et locales : Gestion de l’état du programme.\nFlux de contrôle linéaire : Utilisation de structures comme les boucles et les conditions.\n\n\n\n\nSimplicité relative par rapport au langage machine\nPossibilité de créer des programmes complexes\nFacilité d’apprentissage pour les débutants\n\n\n\n\n\nDifficulté à gérer des projets très larges\nRisque élevé d’effets de bord avec les variables globales\nManque de représentation naturelle pour certains problèmes du monde réel\n\nCette approche a dominé la programmation pendant plusieurs décennies, posant les bases pour l’évolution future vers des paradigmes plus avancés, notamment la programmation orientée objet.",
-    "crumbs": [
-      "Histoire de la programmation"
-    ]
-  },
-  {
-    "objectID": "content/Cours_1/4-all_is_object.html",
-    "href": "content/Cours_1/4-all_is_object.html",
-    "title": "Python: tout n’est qu’objet",
-    "section": "",
-    "text": "En Python, absolument tout est un objet. Cette philosophie est fondamentale et distingue Python de nombreux autres langages de programmation.\n\n\n\nMême les types de base (int, float, str) sont des objets\nLes fonctions sont des objets\nLes classes sont des objets\nLes modules sont des objets\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n\nEn C++, un int ou un float a une taille fixe et prédéfinie\nEn Python, même un simple entier est un objet complet avec des métadonnées\n\n\n\n\n\nOpérations plus coûteuses en Python (plus d’indirections)\nPas de risque d’overflow/underflow pour les entiers en Python (entiers de taille arbitraire)\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n\nLes variables n’ont pas de type fixe\nLe type est lié à l’objet, pas à la variable\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nComme tout est objet, Python offre de puissantes capacités d’introspection.\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n\nSyntaxe cohérente pour manipuler différents types d’objets\nFacilite l’apprentissage et l’utilisation du langage\n\n\n\n\n\nPossibilité de créer des types personnalisés qui se comportent comme des types intégrés\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\nLa nature “tout objet” de Python simplifie de nombreux concepts\nCependant, cela a un coût en termes de performance et d’utilisation mémoire\nPython privilégie la lisibilité et la facilité de développement sur la performance brute\n\n\n\n\nL’approche “tout est objet” de Python offre une grande cohérence et flexibilité, mais avec un compromis sur les performances. Cette philosophie permet aux développeurs de se concentrer sur la logique de leur programme plutôt que sur les détails de bas niveau, rendant Python particulièrement adapté au prototypage rapide et au développement d’applications où la vitesse de développement prime sur l’efficacité d’exécution.",
-    "crumbs": [
-      "Python: tout n'est qu'objet"
-    ]
-  },
-  {
-    "objectID": "content/Cours_1/4-all_is_object.html#le-concept-tout-est-objet-en-python",
-    "href": "content/Cours_1/4-all_is_object.html#le-concept-tout-est-objet-en-python",
-    "title": "Python: tout n’est qu’objet",
-    "section": "",
-    "text": "En Python, absolument tout est un objet. Cette philosophie est fondamentale et distingue Python de nombreux autres langages de programmation.\n\n\n\nMême les types de base (int, float, str) sont des objets\nLes fonctions sont des objets\nLes classes sont des objets\nLes modules sont des objets\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
-    "crumbs": [
-      "Python: tout n'est qu'objet"
-    ]
-  },
-  {
-    "objectID": "content/Cours_1/4-all_is_object.html#objets-de-base-vs-objets-en-c",
-    "href": "content/Cours_1/4-all_is_object.html#objets-de-base-vs-objets-en-c",
-    "title": "Python: tout n’est qu’objet",
-    "section": "",
-    "text": "En C++, un int ou un float a une taille fixe et prédéfinie\nEn Python, même un simple entier est un objet complet avec des métadonnées\n\n\n\n\n\nOpérations plus coûteuses en Python (plus d’indirections)\nPas de risque d’overflow/underflow pour les entiers en Python (entiers de taille arbitraire)\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
-    "crumbs": [
-      "Python: tout n'est qu'objet"
-    ]
-  },
-  {
-    "objectID": "content/Cours_1/4-all_is_object.html#flexibilité-et-dynamisme",
-    "href": "content/Cours_1/4-all_is_object.html#flexibilité-et-dynamisme",
-    "title": "Python: tout n’est qu’objet",
-    "section": "",
-    "text": "Les variables n’ont pas de type fixe\nLe type est lié à l’objet, pas à la variable\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
-    "crumbs": [
-      "Python: tout n'est qu'objet"
-    ]
-  },
-  {
-    "objectID": "content/Cours_1/4-all_is_object.html#introspection-et-réflexion",
-    "href": "content/Cours_1/4-all_is_object.html#introspection-et-réflexion",
-    "title": "Python: tout n’est qu’objet",
-    "section": "",
-    "text": "Comme tout est objet, Python offre de puissantes capacités d’introspection.\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
-    "crumbs": [
-      "Python: tout n'est qu'objet"
-    ]
-  },
-  {
-    "objectID": "content/Cours_1/4-all_is_object.html#implications-sur-la-programmation",
-    "href": "content/Cours_1/4-all_is_object.html#implications-sur-la-programmation",
-    "title": "Python: tout n’est qu’objet",
-    "section": "",
-    "text": "Syntaxe cohérente pour manipuler différents types d’objets\nFacilite l’apprentissage et l’utilisation du langage\n\n\n\n\n\nPossibilité de créer des types personnalisés qui se comportent comme des types intégrés\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
-    "crumbs": [
-      "Python: tout n'est qu'objet"
-    ]
-  },
-  {
-    "objectID": "content/Cours_1/4-all_is_object.html#compromis-simplicité-vs-performance",
-    "href": "content/Cours_1/4-all_is_object.html#compromis-simplicité-vs-performance",
-    "title": "Python: tout n’est qu’objet",
-    "section": "",
-    "text": "La nature “tout objet” de Python simplifie de nombreux concepts\nCependant, cela a un coût en termes de performance et d’utilisation mémoire\nPython privilégie la lisibilité et la facilité de développement sur la performance brute",
-    "crumbs": [
-      "Python: tout n'est qu'objet"
-    ]
-  },
-  {
-    "objectID": "content/Cours_1/4-all_is_object.html#conclusion",
-    "href": "content/Cours_1/4-all_is_object.html#conclusion",
-    "title": "Python: tout n’est qu’objet",
-    "section": "",
-    "text": "L’approche “tout est objet” de Python offre une grande cohérence et flexibilité, mais avec un compromis sur les performances. Cette philosophie permet aux développeurs de se concentrer sur la logique de leur programme plutôt que sur les détails de bas niveau, rendant Python particulièrement adapté au prototypage rapide et au développement d’applications où la vitesse de développement prime sur l’efficacité d’exécution.",
-    "crumbs": [
-      "Python: tout n'est qu'objet"
-    ]
-  },
-  {
-    "objectID": "content/Cours_1/5-Simplicity_and_performance.html",
-    "href": "content/Cours_1/5-Simplicity_and_performance.html",
-    "title": "Python : Simplicité des objets et performance sous-jacente",
-    "section": "",
-    "text": "Python est réputé pour sa courbe d’apprentissage douce, en grande partie grâce à son approche orientée objet intuitive.\n\n\nImaginons que vous vouliez lire un fichier CSV et analyser ses données :\nimport pandas as pd\n\n# Lecture d'un fichier CSV\ndf = pd.read_csv(\"donnees.csv\")\n\n# Affichage des premières lignes\nprint(df.head())\n\n# Calcul de la moyenne d'une colonne\nmoyenne = df['colonne_numerique'].mean()\n\n# Filtrage des données\nresultats = df[df['categorie'] == 'A']\nDans cet exemple : - Vous n’avez pas besoin de comprendre comment Pandas lit le fichier ou stocke les données. - Les méthodes comme head(), mean(), et le filtrage sont intuitives et faciles à utiliser. - Vous manipulez des objets complexes (DataFrame) avec une syntaxe simple.\n\n\n\n\nLes objets en Python cachent la complexité sous-jacente.\nVous utilisez des méthodes sans vous soucier de leur implémentation interne.\nCette approche permet aux débutants de se concentrer sur la logique de leur programme plutôt que sur les détails techniques.\n\n\n\n\n\nBien que Python soit généralement considéré comme plus lent que les langages de bas niveau, il offre des solutions pour obtenir des performances élevées.\n\n\n\nPython lui-même est implémenté en C (CPython, l’implémentation de référence).\nDe nombreuses bibliothèques Python populaires sont écrites en C ou ont des composants en C.\n\n\n\n\nNumPy est un excellent exemple de cette approche :\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nNumPy utilise des tableaux optimisés en C.\nLes opérations sont effectuées en C, offrant des performances proches du matériel.\nL’interface Python reste simple et intuitive.\n\n\n\n\nRécemment, Python a étendu cette approche à d’autres langages performants comme Rust :\n\nDes bibliothèques comme PyO3 permettent d’écrire des extensions Python en Rust.\nCela combine la sécurité mémoire de Rust avec la facilité d’utilisation de Python.\n\n\n\n\n\nLes objets Python agissent comme une couche d’abstraction conviviale au-dessus de code performant :\n\nFacilité d’utilisation : L’interface orientée objet en Python est intuitive.\nAbstraction : Les détails complexes sont cachés à l’utilisateur.\nPerformance sous-jacente : Le code critique en termes de performance est écrit dans des langages compilés.\nFlexibilité : Les développeurs peuvent choisir entre la simplicité de Python pur ou l’optimisation avec C/Rust selon leurs besoins.\n\n\n\n\nPython réussit à offrir le meilleur des deux mondes : - Une interface orientée objet simple et intuitive, idéale pour l’apprentissage et le développement rapide. - La possibilité d’obtenir des performances élevées grâce à l’intégration de code C ou Rust.\nCette approche fait de Python un langage polyvalent, capable de s’adapter à une grande variété de besoins, du script simple à l’application haute performance, tout en maintenant une syntaxe accessible et une philosophie centrée sur la lisibilité du code.",
-    "crumbs": [
-      "Python : Simplicité des objets et performance sous-jacente"
-    ]
-  },
-  {
-    "objectID": "content/Cours_1/5-Simplicity_and_performance.html#la-simplicité-des-objets-en-python-pour-les-débutants",
-    "href": "content/Cours_1/5-Simplicity_and_performance.html#la-simplicité-des-objets-en-python-pour-les-débutants",
-    "title": "Python : Simplicité des objets et performance sous-jacente",
-    "section": "",
-    "text": "Python est réputé pour sa courbe d’apprentissage douce, en grande partie grâce à son approche orientée objet intuitive.\n\n\nImaginons que vous vouliez lire un fichier CSV et analyser ses données :\nimport pandas as pd\n\n# Lecture d'un fichier CSV\ndf = pd.read_csv(\"donnees.csv\")\n\n# Affichage des premières lignes\nprint(df.head())\n\n# Calcul de la moyenne d'une colonne\nmoyenne = df['colonne_numerique'].mean()\n\n# Filtrage des données\nresultats = df[df['categorie'] == 'A']\nDans cet exemple : - Vous n’avez pas besoin de comprendre comment Pandas lit le fichier ou stocke les données. - Les méthodes comme head(), mean(), et le filtrage sont intuitives et faciles à utiliser. - Vous manipulez des objets complexes (DataFrame) avec une syntaxe simple.\n\n\n\n\nLes objets en Python cachent la complexité sous-jacente.\nVous utilisez des méthodes sans vous soucier de leur implémentation interne.\nCette approche permet aux débutants de se concentrer sur la logique de leur programme plutôt que sur les détails techniques.",
-    "crumbs": [
-      "Python : Simplicité des objets et performance sous-jacente"
-    ]
-  },
-  {
-    "objectID": "content/Cours_1/5-Simplicity_and_performance.html#performance-le-meilleur-des-deux-mondes",
-    "href": "content/Cours_1/5-Simplicity_and_performance.html#performance-le-meilleur-des-deux-mondes",
-    "title": "Python : Simplicité des objets et performance sous-jacente",
-    "section": "",
-    "text": "Bien que Python soit généralement considéré comme plus lent que les langages de bas niveau, il offre des solutions pour obtenir des performances élevées.\n\n\n\nPython lui-même est implémenté en C (CPython, l’implémentation de référence).\nDe nombreuses bibliothèques Python populaires sont écrites en C ou ont des composants en C.\n\n\n\n\nNumPy est un excellent exemple de cette approche :\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nNumPy utilise des tableaux optimisés en C.\nLes opérations sont effectuées en C, offrant des performances proches du matériel.\nL’interface Python reste simple et intuitive.\n\n\n\n\nRécemment, Python a étendu cette approche à d’autres langages performants comme Rust :\n\nDes bibliothèques comme PyO3 permettent d’écrire des extensions Python en Rust.\nCela combine la sécurité mémoire de Rust avec la facilité d’utilisation de Python.",
-    "crumbs": [
-      "Python : Simplicité des objets et performance sous-jacente"
-    ]
-  },
-  {
-    "objectID": "content/Cours_1/5-Simplicity_and_performance.html#lobjet-python-comme-interface-conviviale",
-    "href": "content/Cours_1/5-Simplicity_and_performance.html#lobjet-python-comme-interface-conviviale",
-    "title": "Python : Simplicité des objets et performance sous-jacente",
-    "section": "",
-    "text": "Les objets Python agissent comme une couche d’abstraction conviviale au-dessus de code performant :\n\nFacilité d’utilisation : L’interface orientée objet en Python est intuitive.\nAbstraction : Les détails complexes sont cachés à l’utilisateur.\nPerformance sous-jacente : Le code critique en termes de performance est écrit dans des langages compilés.\nFlexibilité : Les développeurs peuvent choisir entre la simplicité de Python pur ou l’optimisation avec C/Rust selon leurs besoins.",
-    "crumbs": [
-      "Python : Simplicité des objets et performance sous-jacente"
-    ]
-  },
-  {
-    "objectID": "content/Cours_1/5-Simplicity_and_performance.html#conclusion",
-    "href": "content/Cours_1/5-Simplicity_and_performance.html#conclusion",
-    "title": "Python : Simplicité des objets et performance sous-jacente",
-    "section": "",
-    "text": "Python réussit à offrir le meilleur des deux mondes : - Une interface orientée objet simple et intuitive, idéale pour l’apprentissage et le développement rapide. - La possibilité d’obtenir des performances élevées grâce à l’intégration de code C ou Rust.\nCette approche fait de Python un langage polyvalent, capable de s’adapter à une grande variété de besoins, du script simple à l’application haute performance, tout en maintenant une syntaxe accessible et une philosophie centrée sur la lisibilité du code.",
-    "crumbs": [
-      "Python : Simplicité des objets et performance sous-jacente"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Programmation Orientée Objet en Python: ",
-    "section": "",
-    "text": "Star this website on Github"
-  },
-  {
-    "objectID": "index.html#rémi-genet",
-    "href": "index.html#rémi-genet",
-    "title": "Programmation Orientée Objet en Python: ",
-    "section": "",
-    "text": "Star this website on Github"
-  },
-  {
-    "objectID": "content/Cours_1/2-Structuration_des_donnees.html",
-    "href": "content/Cours_1/2-Structuration_des_donnees.html",
-    "title": "Première Structuration des données",
-    "section": "",
-    "text": "Au début de la programmation, les données étaient stockées de manière simple, souvent sous forme de variables individuelles. Avec la complexification des problèmes, le besoin de regrouper et d’organiser les données est devenu évident.\nExemple simple en C++ :\nstring nom = \"Dubois\";\nstring prenom = \"Marie\";\nint age = 20;\nfloat moyenne = 15.5;\nCette approche devient vite difficile à gérer pour de nombreux étudiants ou plus d’informations.\n\n\n\n\n\nUn tableau est une collection d’éléments de même type, accessibles par un index.\n\n\n\nint notes[5] = {12, 15, 18, 10, 14};\ncout &lt;&lt; \"La troisième note est : \" &lt;&lt; notes[2] &lt;&lt; endl;  // Affiche 18\n\n\n\n\nStockage efficace de multiples éléments de même type\nAccès rapide aux éléments par leur position\nTous les éléments doivent être du même type\nTaille souvent fixe à la compilation en C++\n\n\n\n\n\nLes structures permettent de regrouper des données de types différents qui sont logiquement liées.\n\n\nstruct Etudiant {\n    string nom;\n    string prenom;\n    int age;\n    float moyenne;\n};\n\nEtudiant marie = {\"Dubois\", \"Marie\", 20, 15.5};\ncout &lt;&lt; marie.prenom &lt;&lt; \" \" &lt;&lt; marie.nom &lt;&lt; \" a \" &lt;&lt; marie.age &lt;&lt; \" ans\" &lt;&lt; endl;\n\n\n\n\nReprésentation d’entités complexes de manière plus naturelle\nRegroupement logique des données liées\nAmélioration de la lisibilité et de l’organisation du code\n\n\n\n\n\nPascal a introduit le concept de “record”, similaire aux structures en C++, mais avec quelques différences syntaxiques et conceptuelles.\n\n\ntype\n  Etudiant = record\n    nom: string[50];\n    prenom: string[50];\n    age: integer;\n    moyenne: real;\n  end;\n\nvar\n  marie: Etudiant;\n\nbegin\n  marie.nom := 'Dubois';\n  marie.prenom := 'Marie';\n  marie.age := 20;\n  marie.moyenne := 15.5;\n  \n  writeln(marie.prenom, ' ', marie.nom, ' a ', marie.age, ' ans');\nend.\n\n\n\n\nTypage fort : Pascal est connu pour son système de typage strict\nDéclaration explicite des types : Améliore la clarté et la sécurité du code\nUtilisé dans un langage conçu pour l’enseignement : Syntax claire et lisible\n\n\n\n\n\nModula-2, successeur de Pascal, a introduit le concept de modules, une étape importante vers l’encapsulation.\n\n\nUn module en Modula-2 est une unité de programme qui regroupe des définitions de types, des variables et des procédures liées.\n\n\n\nMODULE GestionEtudiants;\n\nEXPORT Etudiant, CreerEtudiant, AfficherEtudiant;\n\nTYPE\n  Etudiant = RECORD\n    nom: ARRAY[0..49] OF CHAR;\n    prenom: ARRAY[0..49] OF CHAR;\n    age: INTEGER;\n    moyenne: REAL;\n  END;\n\nPROCEDURE CreerEtudiant(VAR e: Etudiant; n, p: ARRAY OF CHAR; a: INTEGER; m: REAL);\nBEGIN\n  (* Code pour initialiser un étudiant *)\nEND CreerEtudiant;\n\nPROCEDURE AfficherEtudiant(e: Etudiant);\nBEGIN\n  (* Code pour afficher les informations d'un étudiant *)\nEND AfficherEtudiant;\n\nEND GestionEtudiants.\n\n\n\n\nEncapsulation : Regroupement des données et des opérations liées\nSéparation interface/implémentation : Distinction entre ce qui est public et privé\nRéutilisabilité : Facilite la réutilisation du code dans différents programmes\n\n\n\n\n\nCes évolutions dans la structuration des données ont eu plusieurs effets positifs :\n\nModélisation plus fidèle du monde réel\nAmélioration de la lisibilité et de la maintenabilité du code\nIntroduction de l’abstraction des données\nPrémices de l’encapsulation (particulièrement avec les modules)\n\n\n\n\nMalgré ces avancées, certaines limitations persistaient : - Manque de mécanismes pour l’extension et la spécialisation des structures - Absence de polymorphisme\nCes limitations ont ouvert la voie à la programmation orientée objet, qui intégrera ces concepts de manière plus complète et flexible.\n\n\n\nLa structuration des données, à travers les tableaux, les structures, les records et les modules, a posé les bases conceptuelles nécessaires à l’émergence de la programmation orientée objet. Cette évolution a permis de mieux organiser et représenter l’information, préparant le terrain pour des paradigmes plus avancés.",
-    "crumbs": [
-      "Première Structuration des données"
-    ]
-  },
-  {
-    "objectID": "content/Cours_1/2-Structuration_des_donnees.html#le-besoin-de-structurer-les-données",
-    "href": "content/Cours_1/2-Structuration_des_donnees.html#le-besoin-de-structurer-les-données",
-    "title": "Première Structuration des données",
-    "section": "",
-    "text": "Au début de la programmation, les données étaient stockées de manière simple, souvent sous forme de variables individuelles. Avec la complexification des problèmes, le besoin de regrouper et d’organiser les données est devenu évident.\nExemple simple en C++ :\nstring nom = \"Dubois\";\nstring prenom = \"Marie\";\nint age = 20;\nfloat moyenne = 15.5;\nCette approche devient vite difficile à gérer pour de nombreux étudiants ou plus d’informations.",
-    "crumbs": [
-      "Première Structuration des données"
-    ]
-  },
-  {
-    "objectID": "content/Cours_1/2-Structuration_des_donnees.html#les-tableaux-première-forme-de-structuration",
-    "href": "content/Cours_1/2-Structuration_des_donnees.html#les-tableaux-première-forme-de-structuration",
-    "title": "Première Structuration des données",
-    "section": "",
-    "text": "Un tableau est une collection d’éléments de même type, accessibles par un index.\n\n\n\nint notes[5] = {12, 15, 18, 10, 14};\ncout &lt;&lt; \"La troisième note est : \" &lt;&lt; notes[2] &lt;&lt; endl;  // Affiche 18\n\n\n\n\nStockage efficace de multiples éléments de même type\nAccès rapide aux éléments par leur position\nTous les éléments doivent être du même type\nTaille souvent fixe à la compilation en C++",
-    "crumbs": [
-      "Première Structuration des données"
-    ]
-  },
-  {
-    "objectID": "content/Cours_1/2-Structuration_des_donnees.html#les-structures-en-c",
-    "href": "content/Cours_1/2-Structuration_des_donnees.html#les-structures-en-c",
-    "title": "Première Structuration des données",
-    "section": "",
-    "text": "Les structures permettent de regrouper des données de types différents qui sont logiquement liées.\n\n\nstruct Etudiant {\n    string nom;\n    string prenom;\n    int age;\n    float moyenne;\n};\n\nEtudiant marie = {\"Dubois\", \"Marie\", 20, 15.5};\ncout &lt;&lt; marie.prenom &lt;&lt; \" \" &lt;&lt; marie.nom &lt;&lt; \" a \" &lt;&lt; marie.age &lt;&lt; \" ans\" &lt;&lt; endl;\n\n\n\n\nReprésentation d’entités complexes de manière plus naturelle\nRegroupement logique des données liées\nAmélioration de la lisibilité et de l’organisation du code",
-    "crumbs": [
-      "Première Structuration des données"
-    ]
-  },
-  {
-    "objectID": "content/Cours_1/2-Structuration_des_donnees.html#les-records-en-pascal",
-    "href": "content/Cours_1/2-Structuration_des_donnees.html#les-records-en-pascal",
-    "title": "Première Structuration des données",
-    "section": "",
-    "text": "Pascal a introduit le concept de “record”, similaire aux structures en C++, mais avec quelques différences syntaxiques et conceptuelles.\n\n\ntype\n  Etudiant = record\n    nom: string[50];\n    prenom: string[50];\n    age: integer;\n    moyenne: real;\n  end;\n\nvar\n  marie: Etudiant;\n\nbegin\n  marie.nom := 'Dubois';\n  marie.prenom := 'Marie';\n  marie.age := 20;\n  marie.moyenne := 15.5;\n  \n  writeln(marie.prenom, ' ', marie.nom, ' a ', marie.age, ' ans');\nend.\n\n\n\n\nTypage fort : Pascal est connu pour son système de typage strict\nDéclaration explicite des types : Améliore la clarté et la sécurité du code\nUtilisé dans un langage conçu pour l’enseignement : Syntax claire et lisible",
-    "crumbs": [
-      "Première Structuration des données"
-    ]
-  },
-  {
-    "objectID": "content/Cours_1/2-Structuration_des_donnees.html#les-modules-en-modula-2",
-    "href": "content/Cours_1/2-Structuration_des_donnees.html#les-modules-en-modula-2",
-    "title": "Première Structuration des données",
-    "section": "",
-    "text": "Modula-2, successeur de Pascal, a introduit le concept de modules, une étape importante vers l’encapsulation.\n\n\nUn module en Modula-2 est une unité de programme qui regroupe des définitions de types, des variables et des procédures liées.\n\n\n\nMODULE GestionEtudiants;\n\nEXPORT Etudiant, CreerEtudiant, AfficherEtudiant;\n\nTYPE\n  Etudiant = RECORD\n    nom: ARRAY[0..49] OF CHAR;\n    prenom: ARRAY[0..49] OF CHAR;\n    age: INTEGER;\n    moyenne: REAL;\n  END;\n\nPROCEDURE CreerEtudiant(VAR e: Etudiant; n, p: ARRAY OF CHAR; a: INTEGER; m: REAL);\nBEGIN\n  (* Code pour initialiser un étudiant *)\nEND CreerEtudiant;\n\nPROCEDURE AfficherEtudiant(e: Etudiant);\nBEGIN\n  (* Code pour afficher les informations d'un étudiant *)\nEND AfficherEtudiant;\n\nEND GestionEtudiants.\n\n\n\n\nEncapsulation : Regroupement des données et des opérations liées\nSéparation interface/implémentation : Distinction entre ce qui est public et privé\nRéutilisabilité : Facilite la réutilisation du code dans différents programmes",
-    "crumbs": [
-      "Première Structuration des données"
-    ]
-  },
-  {
-    "objectID": "content/Cours_1/2-Structuration_des_donnees.html#impact-sur-la-programmation",
-    "href": "content/Cours_1/2-Structuration_des_donnees.html#impact-sur-la-programmation",
-    "title": "Première Structuration des données",
-    "section": "",
-    "text": "Ces évolutions dans la structuration des données ont eu plusieurs effets positifs :\n\nModélisation plus fidèle du monde réel\nAmélioration de la lisibilité et de la maintenabilité du code\nIntroduction de l’abstraction des données\nPrémices de l’encapsulation (particulièrement avec les modules)",
-    "crumbs": [
-      "Première Structuration des données"
-    ]
-  },
-  {
-    "objectID": "content/Cours_1/2-Structuration_des_donnees.html#vers-la-programmation-orientée-objet",
-    "href": "content/Cours_1/2-Structuration_des_donnees.html#vers-la-programmation-orientée-objet",
-    "title": "Première Structuration des données",
-    "section": "",
-    "text": "Malgré ces avancées, certaines limitations persistaient : - Manque de mécanismes pour l’extension et la spécialisation des structures - Absence de polymorphisme\nCes limitations ont ouvert la voie à la programmation orientée objet, qui intégrera ces concepts de manière plus complète et flexible.",
-    "crumbs": [
-      "Première Structuration des données"
-    ]
-  },
-  {
-    "objectID": "content/Cours_1/2-Structuration_des_donnees.html#conclusion",
-    "href": "content/Cours_1/2-Structuration_des_donnees.html#conclusion",
-    "title": "Première Structuration des données",
-    "section": "",
-    "text": "La structuration des données, à travers les tableaux, les structures, les records et les modules, a posé les bases conceptuelles nécessaires à l’émergence de la programmation orientée objet. Cette évolution a permis de mieux organiser et représenter l’information, préparant le terrain pour des paradigmes plus avancés.",
-    "crumbs": [
-      "Première Structuration des données"
-    ]
-  },
-  {
-    "objectID": "content/Cours_1/TP.html",
-    "href": "content/Cours_1/TP.html",
-    "title": "Construire son propre DataFrame",
-    "section": "",
-    "text": "Instructions\nVotre tâche est de créer une classe DataFrameSimple qui simule les fonctionnalités de base d’un dataframe. Suivez ces instructions :\n\nCréez un fichier nommé dataframe_simple.py.\nDans ce fichier, implémentez la classe DataFrameSimple avec les méthodes suivantes :\n\n__init__(self, data) : Le constructeur qui accepte un dictionnaire de données.\nafficher(self) : Retourne une chaîne représentant les premières lignes du dataframe.\nmoyenne(self, nom_colonne) : Calcule la moyenne d’une colonne.\nsomme(self, nom_colonne) : Calcule la somme d’une colonne.\nmin(self, nom_colonne) : Trouve le minimum d’une colonne.\nmax(self, nom_colonne) : Trouve le maximum d’une colonne.\nselect_colonne(self, nom_colonne) : Retourne les valeurs d’une colonne.\n\nVotre classe doit avoir les attributs suivants :\n\ndonnees : Un numpy array contenant les données.\ncolonnes : Une liste des noms de colonnes.\n\nUtilisez numpy pour les calculs statistiques (np.mean(), np.sum(), etc.).\nUne fois votre implémentation terminée, exécutez les tests unitaires en lançant python test_dataframe_simple.py.\nAssurez-vous que tous les tests passent. Si ce n’est pas le cas, revoyez votre implémentation.\n\nConseils : - Commencez par implémenter le constructeur et la méthode afficher(). - Utilisez les fonctions numpy pour les calculs statistiques. - N’oubliez pas d’importer numpy dans votre fichier dataframe_simple.py.\n\n\nTests Unitaires pour verifier votre implémentation\nVoici un ensemble de tests unitaires simplifiés pour votre classe DataFrameSimple. Copier votre classe avec ce code pour la tester :\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n Back to top",
+    "text": "Objective: You need to implement methods and functionalities for a Portfolio class. The class should handle the operations of initializing the portfolio with financial instrument, rebalancing its positions based on a given strategy, and providing a summary of the portfolio positions.\nTips: - Use the methods and attributes of other provided classes like Instrument, Quote, and Position. - Before starting the exercise be sure to fully understand how the object provided for it worked. - Remember to handle cases where certain attributes might be None or missing. - If you finish the exercise early, you can implement method to populate the attribute of the Portfolio class that are not handle yet.\nfrom datetime import datetime\nimport pandas as pd\nimport math\n\nclass Quote:\n    def __init__(self, date: datetime, price: float):\n        self.date = date\n        self.price = price\n\n    def __str__(self):\n        return f'(date: {self.date}, price: {self.price})'\n\n\nclass Instrument:\n    def __init__(self, ticker: str, exchange: str, quote: Quote, currency: str):\n        self.ticker: str = ticker\n        self.exchange: str = exchange\n        self.last_quote: Quote = quote\n        self.currency: str = currency\n        self.quote_history: [Quote] = []\n\n    def __str__(self):\n        print(f'Instrument with ticker {self.ticker}, currency {self.currency} and last quote {self.last_quote}')\n\n    def update_price(self, new_quote: Quote):\n        self.quote_history.append(self.last_quote)\n        self.last_quote = new_quote\n\n    def populate_quote_history_from_df(self, df_data: pd.DataFrame):\n        dates = df_data.index.to_pydatetime().tolist()\n        prices = df_data['Close'].tolist()\n        self.quote_history = [Quote(date, price) for date, price in zip(dates, prices)]\n\n    def quotes_to_dataframe(self) -&gt; pd.DataFrame:\n        data = {\n            \"Date\": [quote.date for quote in self.quote_history],\n            \"Price\": [quote.price for quote in self.quote_history]\n        }\n        df = pd.DataFrame(data)\n        df.set_index('Date', inplace=True)\n        return df\n\n\nclass Position:\n    def __init__(self, instrument: Instrument, date: datetime, weight: float = 0, quantity: float = 0):\n        self.instrument = instrument\n        self.date = date\n        self.weight = weight\n        self.quantity = quantity\n\n    def update(self, date: datetime, weight: float, quantity: float):\n        if date is not None:\n            self.date = date\n        if weight is not None:\n            self.weight = weight\n        if quantity is not None:\n            self.quantity = quantity\n\nPART I: Creating the meta class strategy and one specific strategy\nCreate an abstract class Strategy that will serve as the base for all strategies. This class should: - Include an abstract method generate_signals that will generate trading signals based on input data. - Document the method generate_signals with a docstring explaining the parameters and return value: - Parameters for the class : A dictionary with tickers as keys and positions as values. The dict should be named data_for_signal_generation - Return: A dictionary with tickers as keys and signals as values.\nCreate a derived class EqualWeightStrategy from Strategy: - This class should inherit from Strategy and implement the generate_signals method. - It should calculate and return a dictionary with equal-weight signals for each ticker. - To Implement the generate_signals method: - The method should calculate equal-weight signals for each ticker by dividing 1 by the total number of tickers. - It should return a dictionary where each ticker has an equal weight as its signal.\n    from datetime import datetime\n    import pandas as pd\n    import math\n    from abc import ABC, abstractmethod\n\n    # Implement here the Part I\n\nPart II : Creating the Portfolio class 1. Class Attributes: Based on the provided code framework, create a Portfolio class which should have the following attributes: - name: Name of the portfolio. - currency: The currency in which the portfolio is denominated. - aum: Assets Under Management. - ‘nav’ : The last net asset value computed for the portfolio - historical_nav: A list that keeps track of the historical Net Asset Values. - positions: A list of Position objects representing the portfolio’s assets. - strategy: A strategy object, an instance of a class derived from the Strategy class.\n\nInitialization: Implement the __init__ method to initialize the portfolio attributes.\nInitialize Portfolio Positions: Implement a initialize_position_from_instrument_list method to initialize the portfolio’s positions with a given list of FinancialAsset objects. Each financial asset should be wrapped in a Position object.\nPositions to Dictionary: Implement the _positions_to_dict method which returns a dictionary of positions with ticker symbols as keys and Position objects as values. This will help in rebalancing operations.\nRebalancing: Implement the rebalance_portfolio method which performs the following tasks:\n\nConvert the positions list into a dictionary.\nGenerate trading signals using the provided strategy.\nUpdate the weight and quantity of each position in the portfolio based on the generated signals.\n\nPortfolio Summary: Implement the portfolio_position_summary method. This method should return a dataframe summarizing the portfolio’s current positions, including the ticker symbols, weights, quantities, and last close for the assets\n\n    # Implement here the Part II\n\nAfter implementing the Part I and Part II, you can launch this unit test to validate your code.\n    class TestPortfolio(unittest.TestCase):\n\n    def setUp(self):\n        # Setup the instruments and quotes\n        self.last_date_asset_1 = datetime(2024, 8, 29)\n        self.last_close_asset_1 = 230.02\n        self.equity_last_quote_asset_1 = Quote(self.last_date_asset_1, self.last_close_asset_1)\n        self.equity_1 = Instrument('AAPL', 'NASDAQ', self.equity_last_quote_asset_1, 'USD')\n\n        self.last_date_asset_2 = datetime(2024, 8, 29)\n        self.last_close_asset_2 = 414.75\n        self.equity_last_quote_asset_2 = Quote(self.last_date_asset_2, self.last_close_asset_2)\n        self.equity_2 = Instrument('MSFT', 'NASDAQ', self.equity_last_quote_asset_2, 'USD')\n\n        # Update prices\n        self.last_date_asset_1 = datetime(2024, 8, 30)\n        self.last_close_asset_1 = 229.0\n        self.equity_1.update_price(Quote(self.last_date_asset_1, self.last_close_asset_1))\n\n        self.last_date_asset_2 = datetime(2024, 8, 30)\n        self.last_close_asset_2 = 417.14\n        self.equity_2.update_price(Quote(self.last_date_asset_2, self.last_close_asset_2))\n\n        # Setup the portfolio strategy and portfolio\n        self.pft_strategy = EqualWeightStrategy()\n        self.portfolio = Portfolio(\"Tech Portfolio\", \"USD\", 1000000, 10000, 100, self.pft_strategy)\n        self.portfolio.initialize_position_from_instrument_list([self.equity_1, self.equity_2])\n\n    def test_initial_portfolio_summary(self):\n        # Test the initial summary of the portfolio\n        summary = self.portfolio.portfolio_position_summary()\n        expected_data = {\n            \"Ticker\": ['AAPL', 'MSFT'],\n            \"Weight\": [0, 0],\n            \"Quantity\": [0, 0],\n            \"Last close\": [229.0, 417.14]\n        }\n        expected_df = pd.DataFrame(expected_data)\n        pd.testing.assert_frame_equal(summary, expected_df)\n\n    def test_rebalance_portfolio(self):\n        # Rebalance the portfolio and check the summary\n        self.portfolio.rebalance_portfolio()\n        summary = self.portfolio.portfolio_position_summary()\n\n        # Calculate expected values\n        total_aum = self.portfolio.aum\n        expected_weight = 0.5\n        expected_quantity_1 = math.floor((total_aum * expected_weight) / self.equity_1.last_quote.price)\n        expected_quantity_2 = math.floor((total_aum * expected_weight) / self.equity_2.last_quote.price)\n\n        expected_data = {\n            \"Ticker\": ['AAPL', 'MSFT'],\n            \"Weight\": [expected_weight, expected_weight],\n            \"Quantity\": [expected_quantity_1, expected_quantity_2],\n            \"Last close\": [229.0, 417.14]\n        }\n        expected_df = pd.DataFrame(expected_data)\n\n        pd.testing.assert_frame_equal(summary, expected_df)\n\n\nif __name__ == '__main__':\n    unittest.main()",
     "crumbs": [
       "Travaux Pratiques",
-      "Construire son propre DataFrame"
+      "TP"
+    ]
+  },
+  {
+    "objectID": "content/Cours_3/TP_equity_portfolio.html#tp-instructions-implementing-a-strategy-and-a-portfolio-for-a-backtesting-task",
+    "href": "content/Cours_3/TP_equity_portfolio.html#tp-instructions-implementing-a-strategy-and-a-portfolio-for-a-backtesting-task",
+    "title": "TP",
+    "section": "",
+    "text": "Objective: You need to implement methods and functionalities for a Portfolio class. The class should handle the operations of initializing the portfolio with financial instrument, rebalancing its positions based on a given strategy, and providing a summary of the portfolio positions.\nTips: - Use the methods and attributes of other provided classes like Instrument, Quote, and Position. - Before starting the exercise be sure to fully understand how the object provided for it worked. - Remember to handle cases where certain attributes might be None or missing. - If you finish the exercise early, you can implement method to populate the attribute of the Portfolio class that are not handle yet.\nfrom datetime import datetime\nimport pandas as pd\nimport math\n\nclass Quote:\n    def __init__(self, date: datetime, price: float):\n        self.date = date\n        self.price = price\n\n    def __str__(self):\n        return f'(date: {self.date}, price: {self.price})'\n\n\nclass Instrument:\n    def __init__(self, ticker: str, exchange: str, quote: Quote, currency: str):\n        self.ticker: str = ticker\n        self.exchange: str = exchange\n        self.last_quote: Quote = quote\n        self.currency: str = currency\n        self.quote_history: [Quote] = []\n\n    def __str__(self):\n        print(f'Instrument with ticker {self.ticker}, currency {self.currency} and last quote {self.last_quote}')\n\n    def update_price(self, new_quote: Quote):\n        self.quote_history.append(self.last_quote)\n        self.last_quote = new_quote\n\n    def populate_quote_history_from_df(self, df_data: pd.DataFrame):\n        dates = df_data.index.to_pydatetime().tolist()\n        prices = df_data['Close'].tolist()\n        self.quote_history = [Quote(date, price) for date, price in zip(dates, prices)]\n\n    def quotes_to_dataframe(self) -&gt; pd.DataFrame:\n        data = {\n            \"Date\": [quote.date for quote in self.quote_history],\n            \"Price\": [quote.price for quote in self.quote_history]\n        }\n        df = pd.DataFrame(data)\n        df.set_index('Date', inplace=True)\n        return df\n\n\nclass Position:\n    def __init__(self, instrument: Instrument, date: datetime, weight: float = 0, quantity: float = 0):\n        self.instrument = instrument\n        self.date = date\n        self.weight = weight\n        self.quantity = quantity\n\n    def update(self, date: datetime, weight: float, quantity: float):\n        if date is not None:\n            self.date = date\n        if weight is not None:\n            self.weight = weight\n        if quantity is not None:\n            self.quantity = quantity\n\nPART I: Creating the meta class strategy and one specific strategy\nCreate an abstract class Strategy that will serve as the base for all strategies. This class should: - Include an abstract method generate_signals that will generate trading signals based on input data. - Document the method generate_signals with a docstring explaining the parameters and return value: - Parameters for the class : A dictionary with tickers as keys and positions as values. The dict should be named data_for_signal_generation - Return: A dictionary with tickers as keys and signals as values.\nCreate a derived class EqualWeightStrategy from Strategy: - This class should inherit from Strategy and implement the generate_signals method. - It should calculate and return a dictionary with equal-weight signals for each ticker. - To Implement the generate_signals method: - The method should calculate equal-weight signals for each ticker by dividing 1 by the total number of tickers. - It should return a dictionary where each ticker has an equal weight as its signal.\n    from datetime import datetime\n    import pandas as pd\n    import math\n    from abc import ABC, abstractmethod\n\n    # Implement here the Part I\n\nPart II : Creating the Portfolio class 1. Class Attributes: Based on the provided code framework, create a Portfolio class which should have the following attributes: - name: Name of the portfolio. - currency: The currency in which the portfolio is denominated. - aum: Assets Under Management. - ‘nav’ : The last net asset value computed for the portfolio - historical_nav: A list that keeps track of the historical Net Asset Values. - positions: A list of Position objects representing the portfolio’s assets. - strategy: A strategy object, an instance of a class derived from the Strategy class.\n\nInitialization: Implement the __init__ method to initialize the portfolio attributes.\nInitialize Portfolio Positions: Implement a initialize_position_from_instrument_list method to initialize the portfolio’s positions with a given list of FinancialAsset objects. Each financial asset should be wrapped in a Position object.\nPositions to Dictionary: Implement the _positions_to_dict method which returns a dictionary of positions with ticker symbols as keys and Position objects as values. This will help in rebalancing operations.\nRebalancing: Implement the rebalance_portfolio method which performs the following tasks:\n\nConvert the positions list into a dictionary.\nGenerate trading signals using the provided strategy.\nUpdate the weight and quantity of each position in the portfolio based on the generated signals.\n\nPortfolio Summary: Implement the portfolio_position_summary method. This method should return a dataframe summarizing the portfolio’s current positions, including the ticker symbols, weights, quantities, and last close for the assets\n\n    # Implement here the Part II\n\nAfter implementing the Part I and Part II, you can launch this unit test to validate your code.\n    class TestPortfolio(unittest.TestCase):\n\n    def setUp(self):\n        # Setup the instruments and quotes\n        self.last_date_asset_1 = datetime(2024, 8, 29)\n        self.last_close_asset_1 = 230.02\n        self.equity_last_quote_asset_1 = Quote(self.last_date_asset_1, self.last_close_asset_1)\n        self.equity_1 = Instrument('AAPL', 'NASDAQ', self.equity_last_quote_asset_1, 'USD')\n\n        self.last_date_asset_2 = datetime(2024, 8, 29)\n        self.last_close_asset_2 = 414.75\n        self.equity_last_quote_asset_2 = Quote(self.last_date_asset_2, self.last_close_asset_2)\n        self.equity_2 = Instrument('MSFT', 'NASDAQ', self.equity_last_quote_asset_2, 'USD')\n\n        # Update prices\n        self.last_date_asset_1 = datetime(2024, 8, 30)\n        self.last_close_asset_1 = 229.0\n        self.equity_1.update_price(Quote(self.last_date_asset_1, self.last_close_asset_1))\n\n        self.last_date_asset_2 = datetime(2024, 8, 30)\n        self.last_close_asset_2 = 417.14\n        self.equity_2.update_price(Quote(self.last_date_asset_2, self.last_close_asset_2))\n\n        # Setup the portfolio strategy and portfolio\n        self.pft_strategy = EqualWeightStrategy()\n        self.portfolio = Portfolio(\"Tech Portfolio\", \"USD\", 1000000, 10000, 100, self.pft_strategy)\n        self.portfolio.initialize_position_from_instrument_list([self.equity_1, self.equity_2])\n\n    def test_initial_portfolio_summary(self):\n        # Test the initial summary of the portfolio\n        summary = self.portfolio.portfolio_position_summary()\n        expected_data = {\n            \"Ticker\": ['AAPL', 'MSFT'],\n            \"Weight\": [0, 0],\n            \"Quantity\": [0, 0],\n            \"Last close\": [229.0, 417.14]\n        }\n        expected_df = pd.DataFrame(expected_data)\n        pd.testing.assert_frame_equal(summary, expected_df)\n\n    def test_rebalance_portfolio(self):\n        # Rebalance the portfolio and check the summary\n        self.portfolio.rebalance_portfolio()\n        summary = self.portfolio.portfolio_position_summary()\n\n        # Calculate expected values\n        total_aum = self.portfolio.aum\n        expected_weight = 0.5\n        expected_quantity_1 = math.floor((total_aum * expected_weight) / self.equity_1.last_quote.price)\n        expected_quantity_2 = math.floor((total_aum * expected_weight) / self.equity_2.last_quote.price)\n\n        expected_data = {\n            \"Ticker\": ['AAPL', 'MSFT'],\n            \"Weight\": [expected_weight, expected_weight],\n            \"Quantity\": [expected_quantity_1, expected_quantity_2],\n            \"Last close\": [229.0, 417.14]\n        }\n        expected_df = pd.DataFrame(expected_data)\n\n        pd.testing.assert_frame_equal(summary, expected_df)\n\n\nif __name__ == '__main__':\n    unittest.main()",
+    "crumbs": [
+      "Travaux Pratiques",
+      "TP"
+    ]
+  },
+  {
+    "objectID": "content/Cours_1/3-NaissancePOO.html",
+    "href": "content/Cours_1/3-NaissancePOO.html",
+    "title": "Naissance de la POO",
+    "section": "",
+    "text": "Après l’émergence des concepts de la POO avec Simula et Smalltalk, de nombreux langages de programmation ont adopté et adapté ces principes. Nous allons nous concentrer sur deux langages majeurs : C++ et Python.\n\n\n\nC++, développé par Bjarne Stroustrup dans les années 1980, a été conçu comme une extension du langage C intégrant les concepts de la POO.\n\n\n\nCompatibilité avec C : Permet une transition en douceur pour les programmeurs C\nSupport de la POO : Classes, héritage, polymorphisme\nGénéricité : Templates pour une programmation générique\nGestion manuelle de la mémoire : Offre un contrôle précis mais exige plus de responsabilité du programmeur\n\n\n\n\n#include &lt;iostream&gt;\n#include &lt;string&gt;\n\nclass Vehicule {\nprotected:\n    std::string marque;\n    std::string modele;\n\npublic:\n    Vehicule(std::string m, std::string mod) : marque(m), modele(mod) {}\n    \n    virtual void afficher() const {\n        std::cout &lt;&lt; \"Vehicule: \" &lt;&lt; marque &lt;&lt; \" \" &lt;&lt; modele &lt;&lt; std::endl;\n    }\n};\n\nclass Voiture : public Vehicule {\nprivate:\n    int nombrePortes;\n\npublic:\n    Voiture(std::string m, std::string mod, int portes) \n        : Vehicule(m, mod), nombrePortes(portes) {}\n    \n    void afficher() const override {\n        std::cout &lt;&lt; \"Voiture: \" &lt;&lt; marque &lt;&lt; \" \" &lt;&lt; modele \n                  &lt;&lt; \" (\" &lt;&lt; nombrePortes &lt;&lt; \" portes)\" &lt;&lt; std::endl;\n    }\n};\n\nint main() {\n    Vehicule* v1 = new Vehicule(\"Générique\", \"Modèle X\");\n    Vehicule* v2 = new Voiture(\"Renault\", \"Clio\", 5);\n    \n    v1-&gt;afficher();  // Affiche: Vehicule: Générique Modèle X\n    v2-&gt;afficher();  // Affiche: Voiture: Renault Clio (5 portes)\n    \n    delete v1;\n    delete v2;\n    return 0;\n}\n\n\n\n\nHéritage multiple : Permet à une classe d’hériter de plusieurs classes\nPolymorphisme par pointeurs et références : Utilisation de pointeurs pour le polymorphisme\nSurcharge d’opérateurs : Permet de définir le comportement des opérateurs pour les classes personnalisées\n\n\n\n\n\nPython, créé par Guido van Rossum à la fin des années 1980, a adopté la POO d’une manière plus souple et accessible.\n\n\n\nSyntaxe simple et lisible : Facilite l’apprentissage et la lecture du code\nTypage dynamique : Les types sont déterminés à l’exécution\n“Tout est objet” : Même les fonctions sont des objets de première classe\nGestion automatique de la mémoire : Garbage collection intégré\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nDuck Typing : “Si ça marche comme un canard et ça caquète comme un canard, alors c’est un canard”\nMéthodes spéciales : Permettent de définir le comportement des objets (ex: __str__, __len__)\nPropriétés : Permettent de contrôler l’accès aux attributs de manière élégante\nHéritage multiple : Supporté, mais avec une résolution de méthode (MRO) spécifique\n\n\n\n\n\n\n\n\nC++ : Syntaxe plus verbeuse, types explicites\nPython : Syntaxe concise, types inférés\n\n\n\n\n\nC++ : Généralement plus rapide, contrôle précis de la mémoire\nPython : Plus lent, mais développement plus rapide\n\n\n\n\n\nC++ : Manuelle (new/delete), risque de fuites mémoire\nPython : Automatique (garbage collection)\n\n\n\n\n\nC++ : Statiquement typé, compilation nécessaire\nPython : Dynamiquement typé, interprété\n\n\n\n\n\nL’adoption de la POO dans ces langages modernes a eu plusieurs effets :\n\nStandardisation des pratiques : Concepts POO communs entre les langages\nAmélioration de la réutilisabilité : Bibliothèques et frameworks basés sur la POO\nFacilitation du développement à grande échelle : Meilleure organisation du code pour les grands projets\nAdaptation à différents domaines : Du développement système (C++) au scripting et à l’analyse de données (Python)\n\n\n\n\nL’intégration de la POO dans des langages comme C++ et Python a démocratisé son utilisation et a fourni aux développeurs des outils puissants pour créer des logiciels complexes et maintenables. Chaque langage a adapté les principes de la POO à sa philosophie, offrant ainsi une diversité d’approches pour résoudre les problèmes de programmation.",
+    "crumbs": [
+      "Naissance de la POO"
+    ]
+  },
+  {
+    "objectID": "content/Cours_1/3-NaissancePOO.html#introduction",
+    "href": "content/Cours_1/3-NaissancePOO.html#introduction",
+    "title": "Naissance de la POO",
+    "section": "",
+    "text": "Après l’émergence des concepts de la POO avec Simula et Smalltalk, de nombreux langages de programmation ont adopté et adapté ces principes. Nous allons nous concentrer sur deux langages majeurs : C++ et Python.",
+    "crumbs": [
+      "Naissance de la POO"
+    ]
+  },
+  {
+    "objectID": "content/Cours_1/3-NaissancePOO.html#c-lévolution-du-c-vers-la-poo",
+    "href": "content/Cours_1/3-NaissancePOO.html#c-lévolution-du-c-vers-la-poo",
+    "title": "Naissance de la POO",
+    "section": "",
+    "text": "C++, développé par Bjarne Stroustrup dans les années 1980, a été conçu comme une extension du langage C intégrant les concepts de la POO.\n\n\n\nCompatibilité avec C : Permet une transition en douceur pour les programmeurs C\nSupport de la POO : Classes, héritage, polymorphisme\nGénéricité : Templates pour une programmation générique\nGestion manuelle de la mémoire : Offre un contrôle précis mais exige plus de responsabilité du programmeur\n\n\n\n\n#include &lt;iostream&gt;\n#include &lt;string&gt;\n\nclass Vehicule {\nprotected:\n    std::string marque;\n    std::string modele;\n\npublic:\n    Vehicule(std::string m, std::string mod) : marque(m), modele(mod) {}\n    \n    virtual void afficher() const {\n        std::cout &lt;&lt; \"Vehicule: \" &lt;&lt; marque &lt;&lt; \" \" &lt;&lt; modele &lt;&lt; std::endl;\n    }\n};\n\nclass Voiture : public Vehicule {\nprivate:\n    int nombrePortes;\n\npublic:\n    Voiture(std::string m, std::string mod, int portes) \n        : Vehicule(m, mod), nombrePortes(portes) {}\n    \n    void afficher() const override {\n        std::cout &lt;&lt; \"Voiture: \" &lt;&lt; marque &lt;&lt; \" \" &lt;&lt; modele \n                  &lt;&lt; \" (\" &lt;&lt; nombrePortes &lt;&lt; \" portes)\" &lt;&lt; std::endl;\n    }\n};\n\nint main() {\n    Vehicule* v1 = new Vehicule(\"Générique\", \"Modèle X\");\n    Vehicule* v2 = new Voiture(\"Renault\", \"Clio\", 5);\n    \n    v1-&gt;afficher();  // Affiche: Vehicule: Générique Modèle X\n    v2-&gt;afficher();  // Affiche: Voiture: Renault Clio (5 portes)\n    \n    delete v1;\n    delete v2;\n    return 0;\n}\n\n\n\n\nHéritage multiple : Permet à une classe d’hériter de plusieurs classes\nPolymorphisme par pointeurs et références : Utilisation de pointeurs pour le polymorphisme\nSurcharge d’opérateurs : Permet de définir le comportement des opérateurs pour les classes personnalisées",
+    "crumbs": [
+      "Naissance de la POO"
+    ]
+  },
+  {
+    "objectID": "content/Cours_1/3-NaissancePOO.html#python-la-poo-simplifiée-et-dynamique",
+    "href": "content/Cours_1/3-NaissancePOO.html#python-la-poo-simplifiée-et-dynamique",
+    "title": "Naissance de la POO",
+    "section": "",
+    "text": "Python, créé par Guido van Rossum à la fin des années 1980, a adopté la POO d’une manière plus souple et accessible.\n\n\n\nSyntaxe simple et lisible : Facilite l’apprentissage et la lecture du code\nTypage dynamique : Les types sont déterminés à l’exécution\n“Tout est objet” : Même les fonctions sont des objets de première classe\nGestion automatique de la mémoire : Garbage collection intégré\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nDuck Typing : “Si ça marche comme un canard et ça caquète comme un canard, alors c’est un canard”\nMéthodes spéciales : Permettent de définir le comportement des objets (ex: __str__, __len__)\nPropriétés : Permettent de contrôler l’accès aux attributs de manière élégante\nHéritage multiple : Supporté, mais avec une résolution de méthode (MRO) spécifique",
+    "crumbs": [
+      "Naissance de la POO"
+    ]
+  },
+  {
+    "objectID": "content/Cours_1/3-NaissancePOO.html#comparaison-c-vs-python-en-poo",
+    "href": "content/Cours_1/3-NaissancePOO.html#comparaison-c-vs-python-en-poo",
+    "title": "Naissance de la POO",
+    "section": "",
+    "text": "C++ : Syntaxe plus verbeuse, types explicites\nPython : Syntaxe concise, types inférés\n\n\n\n\n\nC++ : Généralement plus rapide, contrôle précis de la mémoire\nPython : Plus lent, mais développement plus rapide\n\n\n\n\n\nC++ : Manuelle (new/delete), risque de fuites mémoire\nPython : Automatique (garbage collection)\n\n\n\n\n\nC++ : Statiquement typé, compilation nécessaire\nPython : Dynamiquement typé, interprété",
+    "crumbs": [
+      "Naissance de la POO"
+    ]
+  },
+  {
+    "objectID": "content/Cours_1/3-NaissancePOO.html#impact-sur-le-développement-logiciel",
+    "href": "content/Cours_1/3-NaissancePOO.html#impact-sur-le-développement-logiciel",
+    "title": "Naissance de la POO",
+    "section": "",
+    "text": "L’adoption de la POO dans ces langages modernes a eu plusieurs effets :\n\nStandardisation des pratiques : Concepts POO communs entre les langages\nAmélioration de la réutilisabilité : Bibliothèques et frameworks basés sur la POO\nFacilitation du développement à grande échelle : Meilleure organisation du code pour les grands projets\nAdaptation à différents domaines : Du développement système (C++) au scripting et à l’analyse de données (Python)",
+    "crumbs": [
+      "Naissance de la POO"
+    ]
+  },
+  {
+    "objectID": "content/Cours_1/3-NaissancePOO.html#conclusion",
+    "href": "content/Cours_1/3-NaissancePOO.html#conclusion",
+    "title": "Naissance de la POO",
+    "section": "",
+    "text": "L’intégration de la POO dans des langages comme C++ et Python a démocratisé son utilisation et a fourni aux développeurs des outils puissants pour créer des logiciels complexes et maintenables. Chaque langage a adapté les principes de la POO à sa philosophie, offrant ainsi une diversité d’approches pour résoudre les problèmes de programmation.",
+    "crumbs": [
+      "Naissance de la POO"
     ]
   },
   {
@@ -1382,73 +1139,294 @@
     ]
   },
   {
-    "objectID": "content/Cours_1/3-NaissancePOO.html",
-    "href": "content/Cours_1/3-NaissancePOO.html",
-    "title": "Naissance de la POO",
+    "objectID": "content/Cours_1/TP.html",
+    "href": "content/Cours_1/TP.html",
+    "title": "Construire son propre DataFrame",
     "section": "",
-    "text": "Après l’émergence des concepts de la POO avec Simula et Smalltalk, de nombreux langages de programmation ont adopté et adapté ces principes. Nous allons nous concentrer sur deux langages majeurs : C++ et Python.\n\n\n\nC++, développé par Bjarne Stroustrup dans les années 1980, a été conçu comme une extension du langage C intégrant les concepts de la POO.\n\n\n\nCompatibilité avec C : Permet une transition en douceur pour les programmeurs C\nSupport de la POO : Classes, héritage, polymorphisme\nGénéricité : Templates pour une programmation générique\nGestion manuelle de la mémoire : Offre un contrôle précis mais exige plus de responsabilité du programmeur\n\n\n\n\n#include &lt;iostream&gt;\n#include &lt;string&gt;\n\nclass Vehicule {\nprotected:\n    std::string marque;\n    std::string modele;\n\npublic:\n    Vehicule(std::string m, std::string mod) : marque(m), modele(mod) {}\n    \n    virtual void afficher() const {\n        std::cout &lt;&lt; \"Vehicule: \" &lt;&lt; marque &lt;&lt; \" \" &lt;&lt; modele &lt;&lt; std::endl;\n    }\n};\n\nclass Voiture : public Vehicule {\nprivate:\n    int nombrePortes;\n\npublic:\n    Voiture(std::string m, std::string mod, int portes) \n        : Vehicule(m, mod), nombrePortes(portes) {}\n    \n    void afficher() const override {\n        std::cout &lt;&lt; \"Voiture: \" &lt;&lt; marque &lt;&lt; \" \" &lt;&lt; modele \n                  &lt;&lt; \" (\" &lt;&lt; nombrePortes &lt;&lt; \" portes)\" &lt;&lt; std::endl;\n    }\n};\n\nint main() {\n    Vehicule* v1 = new Vehicule(\"Générique\", \"Modèle X\");\n    Vehicule* v2 = new Voiture(\"Renault\", \"Clio\", 5);\n    \n    v1-&gt;afficher();  // Affiche: Vehicule: Générique Modèle X\n    v2-&gt;afficher();  // Affiche: Voiture: Renault Clio (5 portes)\n    \n    delete v1;\n    delete v2;\n    return 0;\n}\n\n\n\n\nHéritage multiple : Permet à une classe d’hériter de plusieurs classes\nPolymorphisme par pointeurs et références : Utilisation de pointeurs pour le polymorphisme\nSurcharge d’opérateurs : Permet de définir le comportement des opérateurs pour les classes personnalisées\n\n\n\n\n\nPython, créé par Guido van Rossum à la fin des années 1980, a adopté la POO d’une manière plus souple et accessible.\n\n\n\nSyntaxe simple et lisible : Facilite l’apprentissage et la lecture du code\nTypage dynamique : Les types sont déterminés à l’exécution\n“Tout est objet” : Même les fonctions sont des objets de première classe\nGestion automatique de la mémoire : Garbage collection intégré\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nDuck Typing : “Si ça marche comme un canard et ça caquète comme un canard, alors c’est un canard”\nMéthodes spéciales : Permettent de définir le comportement des objets (ex: __str__, __len__)\nPropriétés : Permettent de contrôler l’accès aux attributs de manière élégante\nHéritage multiple : Supporté, mais avec une résolution de méthode (MRO) spécifique\n\n\n\n\n\n\n\n\nC++ : Syntaxe plus verbeuse, types explicites\nPython : Syntaxe concise, types inférés\n\n\n\n\n\nC++ : Généralement plus rapide, contrôle précis de la mémoire\nPython : Plus lent, mais développement plus rapide\n\n\n\n\n\nC++ : Manuelle (new/delete), risque de fuites mémoire\nPython : Automatique (garbage collection)\n\n\n\n\n\nC++ : Statiquement typé, compilation nécessaire\nPython : Dynamiquement typé, interprété\n\n\n\n\n\nL’adoption de la POO dans ces langages modernes a eu plusieurs effets :\n\nStandardisation des pratiques : Concepts POO communs entre les langages\nAmélioration de la réutilisabilité : Bibliothèques et frameworks basés sur la POO\nFacilitation du développement à grande échelle : Meilleure organisation du code pour les grands projets\nAdaptation à différents domaines : Du développement système (C++) au scripting et à l’analyse de données (Python)\n\n\n\n\nL’intégration de la POO dans des langages comme C++ et Python a démocratisé son utilisation et a fourni aux développeurs des outils puissants pour créer des logiciels complexes et maintenables. Chaque langage a adapté les principes de la POO à sa philosophie, offrant ainsi une diversité d’approches pour résoudre les problèmes de programmation.",
+    "text": "Instructions\nVotre tâche est de créer une classe DataFrameSimple qui simule les fonctionnalités de base d’un dataframe. Suivez ces instructions :\n\nCréez un fichier nommé dataframe_simple.py.\nDans ce fichier, implémentez la classe DataFrameSimple avec les méthodes suivantes :\n\n__init__(self, data) : Le constructeur qui accepte un dictionnaire de données.\nafficher(self) : Retourne une chaîne représentant les premières lignes du dataframe.\nmoyenne(self, nom_colonne) : Calcule la moyenne d’une colonne.\nsomme(self, nom_colonne) : Calcule la somme d’une colonne.\nmin(self, nom_colonne) : Trouve le minimum d’une colonne.\nmax(self, nom_colonne) : Trouve le maximum d’une colonne.\nselect_colonne(self, nom_colonne) : Retourne les valeurs d’une colonne.\n\nVotre classe doit avoir les attributs suivants :\n\ndonnees : Un numpy array contenant les données.\ncolonnes : Une liste des noms de colonnes.\n\nUtilisez numpy pour les calculs statistiques (np.mean(), np.sum(), etc.).\nUne fois votre implémentation terminée, exécutez les tests unitaires en lançant python test_dataframe_simple.py.\nAssurez-vous que tous les tests passent. Si ce n’est pas le cas, revoyez votre implémentation.\n\nConseils : - Commencez par implémenter le constructeur et la méthode afficher(). - Utilisez les fonctions numpy pour les calculs statistiques. - N’oubliez pas d’importer numpy dans votre fichier dataframe_simple.py.\n\n\nTests Unitaires pour verifier votre implémentation\nVoici un ensemble de tests unitaires simplifiés pour votre classe DataFrameSimple. Copier votre classe avec ce code pour la tester :\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "content/Cours_1/2-Structuration_des_donnees.html",
+    "href": "content/Cours_1/2-Structuration_des_donnees.html",
+    "title": "Première Structuration des données",
+    "section": "",
+    "text": "Au début de la programmation, les données étaient stockées de manière simple, souvent sous forme de variables individuelles. Avec la complexification des problèmes, le besoin de regrouper et d’organiser les données est devenu évident.\nExemple simple en C++ :\nstring nom = \"Dubois\";\nstring prenom = \"Marie\";\nint age = 20;\nfloat moyenne = 15.5;\nCette approche devient vite difficile à gérer pour de nombreux étudiants ou plus d’informations.\n\n\n\n\n\nUn tableau est une collection d’éléments de même type, accessibles par un index.\n\n\n\nint notes[5] = {12, 15, 18, 10, 14};\ncout &lt;&lt; \"La troisième note est : \" &lt;&lt; notes[2] &lt;&lt; endl;  // Affiche 18\n\n\n\n\nStockage efficace de multiples éléments de même type\nAccès rapide aux éléments par leur position\nTous les éléments doivent être du même type\nTaille souvent fixe à la compilation en C++\n\n\n\n\n\nLes structures permettent de regrouper des données de types différents qui sont logiquement liées.\n\n\nstruct Etudiant {\n    string nom;\n    string prenom;\n    int age;\n    float moyenne;\n};\n\nEtudiant marie = {\"Dubois\", \"Marie\", 20, 15.5};\ncout &lt;&lt; marie.prenom &lt;&lt; \" \" &lt;&lt; marie.nom &lt;&lt; \" a \" &lt;&lt; marie.age &lt;&lt; \" ans\" &lt;&lt; endl;\n\n\n\n\nReprésentation d’entités complexes de manière plus naturelle\nRegroupement logique des données liées\nAmélioration de la lisibilité et de l’organisation du code\n\n\n\n\n\nPascal a introduit le concept de “record”, similaire aux structures en C++, mais avec quelques différences syntaxiques et conceptuelles.\n\n\ntype\n  Etudiant = record\n    nom: string[50];\n    prenom: string[50];\n    age: integer;\n    moyenne: real;\n  end;\n\nvar\n  marie: Etudiant;\n\nbegin\n  marie.nom := 'Dubois';\n  marie.prenom := 'Marie';\n  marie.age := 20;\n  marie.moyenne := 15.5;\n  \n  writeln(marie.prenom, ' ', marie.nom, ' a ', marie.age, ' ans');\nend.\n\n\n\n\nTypage fort : Pascal est connu pour son système de typage strict\nDéclaration explicite des types : Améliore la clarté et la sécurité du code\nUtilisé dans un langage conçu pour l’enseignement : Syntax claire et lisible\n\n\n\n\n\nModula-2, successeur de Pascal, a introduit le concept de modules, une étape importante vers l’encapsulation.\n\n\nUn module en Modula-2 est une unité de programme qui regroupe des définitions de types, des variables et des procédures liées.\n\n\n\nMODULE GestionEtudiants;\n\nEXPORT Etudiant, CreerEtudiant, AfficherEtudiant;\n\nTYPE\n  Etudiant = RECORD\n    nom: ARRAY[0..49] OF CHAR;\n    prenom: ARRAY[0..49] OF CHAR;\n    age: INTEGER;\n    moyenne: REAL;\n  END;\n\nPROCEDURE CreerEtudiant(VAR e: Etudiant; n, p: ARRAY OF CHAR; a: INTEGER; m: REAL);\nBEGIN\n  (* Code pour initialiser un étudiant *)\nEND CreerEtudiant;\n\nPROCEDURE AfficherEtudiant(e: Etudiant);\nBEGIN\n  (* Code pour afficher les informations d'un étudiant *)\nEND AfficherEtudiant;\n\nEND GestionEtudiants.\n\n\n\n\nEncapsulation : Regroupement des données et des opérations liées\nSéparation interface/implémentation : Distinction entre ce qui est public et privé\nRéutilisabilité : Facilite la réutilisation du code dans différents programmes\n\n\n\n\n\nCes évolutions dans la structuration des données ont eu plusieurs effets positifs :\n\nModélisation plus fidèle du monde réel\nAmélioration de la lisibilité et de la maintenabilité du code\nIntroduction de l’abstraction des données\nPrémices de l’encapsulation (particulièrement avec les modules)\n\n\n\n\nMalgré ces avancées, certaines limitations persistaient : - Manque de mécanismes pour l’extension et la spécialisation des structures - Absence de polymorphisme\nCes limitations ont ouvert la voie à la programmation orientée objet, qui intégrera ces concepts de manière plus complète et flexible.\n\n\n\nLa structuration des données, à travers les tableaux, les structures, les records et les modules, a posé les bases conceptuelles nécessaires à l’émergence de la programmation orientée objet. Cette évolution a permis de mieux organiser et représenter l’information, préparant le terrain pour des paradigmes plus avancés.",
     "crumbs": [
-      "Naissance de la POO"
+      "Première Structuration des données"
     ]
   },
   {
-    "objectID": "content/Cours_1/3-NaissancePOO.html#introduction",
-    "href": "content/Cours_1/3-NaissancePOO.html#introduction",
-    "title": "Naissance de la POO",
+    "objectID": "content/Cours_1/2-Structuration_des_donnees.html#le-besoin-de-structurer-les-données",
+    "href": "content/Cours_1/2-Structuration_des_donnees.html#le-besoin-de-structurer-les-données",
+    "title": "Première Structuration des données",
     "section": "",
-    "text": "Après l’émergence des concepts de la POO avec Simula et Smalltalk, de nombreux langages de programmation ont adopté et adapté ces principes. Nous allons nous concentrer sur deux langages majeurs : C++ et Python.",
+    "text": "Au début de la programmation, les données étaient stockées de manière simple, souvent sous forme de variables individuelles. Avec la complexification des problèmes, le besoin de regrouper et d’organiser les données est devenu évident.\nExemple simple en C++ :\nstring nom = \"Dubois\";\nstring prenom = \"Marie\";\nint age = 20;\nfloat moyenne = 15.5;\nCette approche devient vite difficile à gérer pour de nombreux étudiants ou plus d’informations.",
     "crumbs": [
-      "Naissance de la POO"
+      "Première Structuration des données"
     ]
   },
   {
-    "objectID": "content/Cours_1/3-NaissancePOO.html#c-lévolution-du-c-vers-la-poo",
-    "href": "content/Cours_1/3-NaissancePOO.html#c-lévolution-du-c-vers-la-poo",
-    "title": "Naissance de la POO",
+    "objectID": "content/Cours_1/2-Structuration_des_donnees.html#les-tableaux-première-forme-de-structuration",
+    "href": "content/Cours_1/2-Structuration_des_donnees.html#les-tableaux-première-forme-de-structuration",
+    "title": "Première Structuration des données",
     "section": "",
-    "text": "C++, développé par Bjarne Stroustrup dans les années 1980, a été conçu comme une extension du langage C intégrant les concepts de la POO.\n\n\n\nCompatibilité avec C : Permet une transition en douceur pour les programmeurs C\nSupport de la POO : Classes, héritage, polymorphisme\nGénéricité : Templates pour une programmation générique\nGestion manuelle de la mémoire : Offre un contrôle précis mais exige plus de responsabilité du programmeur\n\n\n\n\n#include &lt;iostream&gt;\n#include &lt;string&gt;\n\nclass Vehicule {\nprotected:\n    std::string marque;\n    std::string modele;\n\npublic:\n    Vehicule(std::string m, std::string mod) : marque(m), modele(mod) {}\n    \n    virtual void afficher() const {\n        std::cout &lt;&lt; \"Vehicule: \" &lt;&lt; marque &lt;&lt; \" \" &lt;&lt; modele &lt;&lt; std::endl;\n    }\n};\n\nclass Voiture : public Vehicule {\nprivate:\n    int nombrePortes;\n\npublic:\n    Voiture(std::string m, std::string mod, int portes) \n        : Vehicule(m, mod), nombrePortes(portes) {}\n    \n    void afficher() const override {\n        std::cout &lt;&lt; \"Voiture: \" &lt;&lt; marque &lt;&lt; \" \" &lt;&lt; modele \n                  &lt;&lt; \" (\" &lt;&lt; nombrePortes &lt;&lt; \" portes)\" &lt;&lt; std::endl;\n    }\n};\n\nint main() {\n    Vehicule* v1 = new Vehicule(\"Générique\", \"Modèle X\");\n    Vehicule* v2 = new Voiture(\"Renault\", \"Clio\", 5);\n    \n    v1-&gt;afficher();  // Affiche: Vehicule: Générique Modèle X\n    v2-&gt;afficher();  // Affiche: Voiture: Renault Clio (5 portes)\n    \n    delete v1;\n    delete v2;\n    return 0;\n}\n\n\n\n\nHéritage multiple : Permet à une classe d’hériter de plusieurs classes\nPolymorphisme par pointeurs et références : Utilisation de pointeurs pour le polymorphisme\nSurcharge d’opérateurs : Permet de définir le comportement des opérateurs pour les classes personnalisées",
+    "text": "Un tableau est une collection d’éléments de même type, accessibles par un index.\n\n\n\nint notes[5] = {12, 15, 18, 10, 14};\ncout &lt;&lt; \"La troisième note est : \" &lt;&lt; notes[2] &lt;&lt; endl;  // Affiche 18\n\n\n\n\nStockage efficace de multiples éléments de même type\nAccès rapide aux éléments par leur position\nTous les éléments doivent être du même type\nTaille souvent fixe à la compilation en C++",
     "crumbs": [
-      "Naissance de la POO"
+      "Première Structuration des données"
     ]
   },
   {
-    "objectID": "content/Cours_1/3-NaissancePOO.html#python-la-poo-simplifiée-et-dynamique",
-    "href": "content/Cours_1/3-NaissancePOO.html#python-la-poo-simplifiée-et-dynamique",
-    "title": "Naissance de la POO",
+    "objectID": "content/Cours_1/2-Structuration_des_donnees.html#les-structures-en-c",
+    "href": "content/Cours_1/2-Structuration_des_donnees.html#les-structures-en-c",
+    "title": "Première Structuration des données",
     "section": "",
-    "text": "Python, créé par Guido van Rossum à la fin des années 1980, a adopté la POO d’une manière plus souple et accessible.\n\n\n\nSyntaxe simple et lisible : Facilite l’apprentissage et la lecture du code\nTypage dynamique : Les types sont déterminés à l’exécution\n“Tout est objet” : Même les fonctions sont des objets de première classe\nGestion automatique de la mémoire : Garbage collection intégré\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nDuck Typing : “Si ça marche comme un canard et ça caquète comme un canard, alors c’est un canard”\nMéthodes spéciales : Permettent de définir le comportement des objets (ex: __str__, __len__)\nPropriétés : Permettent de contrôler l’accès aux attributs de manière élégante\nHéritage multiple : Supporté, mais avec une résolution de méthode (MRO) spécifique",
+    "text": "Les structures permettent de regrouper des données de types différents qui sont logiquement liées.\n\n\nstruct Etudiant {\n    string nom;\n    string prenom;\n    int age;\n    float moyenne;\n};\n\nEtudiant marie = {\"Dubois\", \"Marie\", 20, 15.5};\ncout &lt;&lt; marie.prenom &lt;&lt; \" \" &lt;&lt; marie.nom &lt;&lt; \" a \" &lt;&lt; marie.age &lt;&lt; \" ans\" &lt;&lt; endl;\n\n\n\n\nReprésentation d’entités complexes de manière plus naturelle\nRegroupement logique des données liées\nAmélioration de la lisibilité et de l’organisation du code",
     "crumbs": [
-      "Naissance de la POO"
+      "Première Structuration des données"
     ]
   },
   {
-    "objectID": "content/Cours_1/3-NaissancePOO.html#comparaison-c-vs-python-en-poo",
-    "href": "content/Cours_1/3-NaissancePOO.html#comparaison-c-vs-python-en-poo",
-    "title": "Naissance de la POO",
+    "objectID": "content/Cours_1/2-Structuration_des_donnees.html#les-records-en-pascal",
+    "href": "content/Cours_1/2-Structuration_des_donnees.html#les-records-en-pascal",
+    "title": "Première Structuration des données",
     "section": "",
-    "text": "C++ : Syntaxe plus verbeuse, types explicites\nPython : Syntaxe concise, types inférés\n\n\n\n\n\nC++ : Généralement plus rapide, contrôle précis de la mémoire\nPython : Plus lent, mais développement plus rapide\n\n\n\n\n\nC++ : Manuelle (new/delete), risque de fuites mémoire\nPython : Automatique (garbage collection)\n\n\n\n\n\nC++ : Statiquement typé, compilation nécessaire\nPython : Dynamiquement typé, interprété",
+    "text": "Pascal a introduit le concept de “record”, similaire aux structures en C++, mais avec quelques différences syntaxiques et conceptuelles.\n\n\ntype\n  Etudiant = record\n    nom: string[50];\n    prenom: string[50];\n    age: integer;\n    moyenne: real;\n  end;\n\nvar\n  marie: Etudiant;\n\nbegin\n  marie.nom := 'Dubois';\n  marie.prenom := 'Marie';\n  marie.age := 20;\n  marie.moyenne := 15.5;\n  \n  writeln(marie.prenom, ' ', marie.nom, ' a ', marie.age, ' ans');\nend.\n\n\n\n\nTypage fort : Pascal est connu pour son système de typage strict\nDéclaration explicite des types : Améliore la clarté et la sécurité du code\nUtilisé dans un langage conçu pour l’enseignement : Syntax claire et lisible",
     "crumbs": [
-      "Naissance de la POO"
+      "Première Structuration des données"
     ]
   },
   {
-    "objectID": "content/Cours_1/3-NaissancePOO.html#impact-sur-le-développement-logiciel",
-    "href": "content/Cours_1/3-NaissancePOO.html#impact-sur-le-développement-logiciel",
-    "title": "Naissance de la POO",
+    "objectID": "content/Cours_1/2-Structuration_des_donnees.html#les-modules-en-modula-2",
+    "href": "content/Cours_1/2-Structuration_des_donnees.html#les-modules-en-modula-2",
+    "title": "Première Structuration des données",
     "section": "",
-    "text": "L’adoption de la POO dans ces langages modernes a eu plusieurs effets :\n\nStandardisation des pratiques : Concepts POO communs entre les langages\nAmélioration de la réutilisabilité : Bibliothèques et frameworks basés sur la POO\nFacilitation du développement à grande échelle : Meilleure organisation du code pour les grands projets\nAdaptation à différents domaines : Du développement système (C++) au scripting et à l’analyse de données (Python)",
+    "text": "Modula-2, successeur de Pascal, a introduit le concept de modules, une étape importante vers l’encapsulation.\n\n\nUn module en Modula-2 est une unité de programme qui regroupe des définitions de types, des variables et des procédures liées.\n\n\n\nMODULE GestionEtudiants;\n\nEXPORT Etudiant, CreerEtudiant, AfficherEtudiant;\n\nTYPE\n  Etudiant = RECORD\n    nom: ARRAY[0..49] OF CHAR;\n    prenom: ARRAY[0..49] OF CHAR;\n    age: INTEGER;\n    moyenne: REAL;\n  END;\n\nPROCEDURE CreerEtudiant(VAR e: Etudiant; n, p: ARRAY OF CHAR; a: INTEGER; m: REAL);\nBEGIN\n  (* Code pour initialiser un étudiant *)\nEND CreerEtudiant;\n\nPROCEDURE AfficherEtudiant(e: Etudiant);\nBEGIN\n  (* Code pour afficher les informations d'un étudiant *)\nEND AfficherEtudiant;\n\nEND GestionEtudiants.\n\n\n\n\nEncapsulation : Regroupement des données et des opérations liées\nSéparation interface/implémentation : Distinction entre ce qui est public et privé\nRéutilisabilité : Facilite la réutilisation du code dans différents programmes",
     "crumbs": [
-      "Naissance de la POO"
+      "Première Structuration des données"
     ]
   },
   {
-    "objectID": "content/Cours_1/3-NaissancePOO.html#conclusion",
-    "href": "content/Cours_1/3-NaissancePOO.html#conclusion",
-    "title": "Naissance de la POO",
+    "objectID": "content/Cours_1/2-Structuration_des_donnees.html#impact-sur-la-programmation",
+    "href": "content/Cours_1/2-Structuration_des_donnees.html#impact-sur-la-programmation",
+    "title": "Première Structuration des données",
     "section": "",
-    "text": "L’intégration de la POO dans des langages comme C++ et Python a démocratisé son utilisation et a fourni aux développeurs des outils puissants pour créer des logiciels complexes et maintenables. Chaque langage a adapté les principes de la POO à sa philosophie, offrant ainsi une diversité d’approches pour résoudre les problèmes de programmation.",
+    "text": "Ces évolutions dans la structuration des données ont eu plusieurs effets positifs :\n\nModélisation plus fidèle du monde réel\nAmélioration de la lisibilité et de la maintenabilité du code\nIntroduction de l’abstraction des données\nPrémices de l’encapsulation (particulièrement avec les modules)",
     "crumbs": [
-      "Naissance de la POO"
+      "Première Structuration des données"
+    ]
+  },
+  {
+    "objectID": "content/Cours_1/2-Structuration_des_donnees.html#vers-la-programmation-orientée-objet",
+    "href": "content/Cours_1/2-Structuration_des_donnees.html#vers-la-programmation-orientée-objet",
+    "title": "Première Structuration des données",
+    "section": "",
+    "text": "Malgré ces avancées, certaines limitations persistaient : - Manque de mécanismes pour l’extension et la spécialisation des structures - Absence de polymorphisme\nCes limitations ont ouvert la voie à la programmation orientée objet, qui intégrera ces concepts de manière plus complète et flexible.",
+    "crumbs": [
+      "Première Structuration des données"
+    ]
+  },
+  {
+    "objectID": "content/Cours_1/2-Structuration_des_donnees.html#conclusion",
+    "href": "content/Cours_1/2-Structuration_des_donnees.html#conclusion",
+    "title": "Première Structuration des données",
+    "section": "",
+    "text": "La structuration des données, à travers les tableaux, les structures, les records et les modules, a posé les bases conceptuelles nécessaires à l’émergence de la programmation orientée objet. Cette évolution a permis de mieux organiser et représenter l’information, préparant le terrain pour des paradigmes plus avancés.",
+    "crumbs": [
+      "Première Structuration des données"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Programmation Orientée Objet en Python: ",
+    "section": "",
+    "text": "Star this website on Github"
+  },
+  {
+    "objectID": "index.html#rémi-genet",
+    "href": "index.html#rémi-genet",
+    "title": "Programmation Orientée Objet en Python: ",
+    "section": "",
+    "text": "Star this website on Github"
+  },
+  {
+    "objectID": "content/Cours_1/5-Simplicity_and_performance.html",
+    "href": "content/Cours_1/5-Simplicity_and_performance.html",
+    "title": "Python : Simplicité des objets et performance sous-jacente",
+    "section": "",
+    "text": "Python est réputé pour sa courbe d’apprentissage douce, en grande partie grâce à son approche orientée objet intuitive.\n\n\nImaginons que vous vouliez lire un fichier CSV et analyser ses données :\nimport pandas as pd\n\n# Lecture d'un fichier CSV\ndf = pd.read_csv(\"donnees.csv\")\n\n# Affichage des premières lignes\nprint(df.head())\n\n# Calcul de la moyenne d'une colonne\nmoyenne = df['colonne_numerique'].mean()\n\n# Filtrage des données\nresultats = df[df['categorie'] == 'A']\nDans cet exemple : - Vous n’avez pas besoin de comprendre comment Pandas lit le fichier ou stocke les données. - Les méthodes comme head(), mean(), et le filtrage sont intuitives et faciles à utiliser. - Vous manipulez des objets complexes (DataFrame) avec une syntaxe simple.\n\n\n\n\nLes objets en Python cachent la complexité sous-jacente.\nVous utilisez des méthodes sans vous soucier de leur implémentation interne.\nCette approche permet aux débutants de se concentrer sur la logique de leur programme plutôt que sur les détails techniques.\n\n\n\n\n\nBien que Python soit généralement considéré comme plus lent que les langages de bas niveau, il offre des solutions pour obtenir des performances élevées.\n\n\n\nPython lui-même est implémenté en C (CPython, l’implémentation de référence).\nDe nombreuses bibliothèques Python populaires sont écrites en C ou ont des composants en C.\n\n\n\n\nNumPy est un excellent exemple de cette approche :\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nNumPy utilise des tableaux optimisés en C.\nLes opérations sont effectuées en C, offrant des performances proches du matériel.\nL’interface Python reste simple et intuitive.\n\n\n\n\nRécemment, Python a étendu cette approche à d’autres langages performants comme Rust :\n\nDes bibliothèques comme PyO3 permettent d’écrire des extensions Python en Rust.\nCela combine la sécurité mémoire de Rust avec la facilité d’utilisation de Python.\n\n\n\n\n\nLes objets Python agissent comme une couche d’abstraction conviviale au-dessus de code performant :\n\nFacilité d’utilisation : L’interface orientée objet en Python est intuitive.\nAbstraction : Les détails complexes sont cachés à l’utilisateur.\nPerformance sous-jacente : Le code critique en termes de performance est écrit dans des langages compilés.\nFlexibilité : Les développeurs peuvent choisir entre la simplicité de Python pur ou l’optimisation avec C/Rust selon leurs besoins.\n\n\n\n\nPython réussit à offrir le meilleur des deux mondes : - Une interface orientée objet simple et intuitive, idéale pour l’apprentissage et le développement rapide. - La possibilité d’obtenir des performances élevées grâce à l’intégration de code C ou Rust.\nCette approche fait de Python un langage polyvalent, capable de s’adapter à une grande variété de besoins, du script simple à l’application haute performance, tout en maintenant une syntaxe accessible et une philosophie centrée sur la lisibilité du code.",
+    "crumbs": [
+      "Python : Simplicité des objets et performance sous-jacente"
+    ]
+  },
+  {
+    "objectID": "content/Cours_1/5-Simplicity_and_performance.html#la-simplicité-des-objets-en-python-pour-les-débutants",
+    "href": "content/Cours_1/5-Simplicity_and_performance.html#la-simplicité-des-objets-en-python-pour-les-débutants",
+    "title": "Python : Simplicité des objets et performance sous-jacente",
+    "section": "",
+    "text": "Python est réputé pour sa courbe d’apprentissage douce, en grande partie grâce à son approche orientée objet intuitive.\n\n\nImaginons que vous vouliez lire un fichier CSV et analyser ses données :\nimport pandas as pd\n\n# Lecture d'un fichier CSV\ndf = pd.read_csv(\"donnees.csv\")\n\n# Affichage des premières lignes\nprint(df.head())\n\n# Calcul de la moyenne d'une colonne\nmoyenne = df['colonne_numerique'].mean()\n\n# Filtrage des données\nresultats = df[df['categorie'] == 'A']\nDans cet exemple : - Vous n’avez pas besoin de comprendre comment Pandas lit le fichier ou stocke les données. - Les méthodes comme head(), mean(), et le filtrage sont intuitives et faciles à utiliser. - Vous manipulez des objets complexes (DataFrame) avec une syntaxe simple.\n\n\n\n\nLes objets en Python cachent la complexité sous-jacente.\nVous utilisez des méthodes sans vous soucier de leur implémentation interne.\nCette approche permet aux débutants de se concentrer sur la logique de leur programme plutôt que sur les détails techniques.",
+    "crumbs": [
+      "Python : Simplicité des objets et performance sous-jacente"
+    ]
+  },
+  {
+    "objectID": "content/Cours_1/5-Simplicity_and_performance.html#performance-le-meilleur-des-deux-mondes",
+    "href": "content/Cours_1/5-Simplicity_and_performance.html#performance-le-meilleur-des-deux-mondes",
+    "title": "Python : Simplicité des objets et performance sous-jacente",
+    "section": "",
+    "text": "Bien que Python soit généralement considéré comme plus lent que les langages de bas niveau, il offre des solutions pour obtenir des performances élevées.\n\n\n\nPython lui-même est implémenté en C (CPython, l’implémentation de référence).\nDe nombreuses bibliothèques Python populaires sont écrites en C ou ont des composants en C.\n\n\n\n\nNumPy est un excellent exemple de cette approche :\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nNumPy utilise des tableaux optimisés en C.\nLes opérations sont effectuées en C, offrant des performances proches du matériel.\nL’interface Python reste simple et intuitive.\n\n\n\n\nRécemment, Python a étendu cette approche à d’autres langages performants comme Rust :\n\nDes bibliothèques comme PyO3 permettent d’écrire des extensions Python en Rust.\nCela combine la sécurité mémoire de Rust avec la facilité d’utilisation de Python.",
+    "crumbs": [
+      "Python : Simplicité des objets et performance sous-jacente"
+    ]
+  },
+  {
+    "objectID": "content/Cours_1/5-Simplicity_and_performance.html#lobjet-python-comme-interface-conviviale",
+    "href": "content/Cours_1/5-Simplicity_and_performance.html#lobjet-python-comme-interface-conviviale",
+    "title": "Python : Simplicité des objets et performance sous-jacente",
+    "section": "",
+    "text": "Les objets Python agissent comme une couche d’abstraction conviviale au-dessus de code performant :\n\nFacilité d’utilisation : L’interface orientée objet en Python est intuitive.\nAbstraction : Les détails complexes sont cachés à l’utilisateur.\nPerformance sous-jacente : Le code critique en termes de performance est écrit dans des langages compilés.\nFlexibilité : Les développeurs peuvent choisir entre la simplicité de Python pur ou l’optimisation avec C/Rust selon leurs besoins.",
+    "crumbs": [
+      "Python : Simplicité des objets et performance sous-jacente"
+    ]
+  },
+  {
+    "objectID": "content/Cours_1/5-Simplicity_and_performance.html#conclusion",
+    "href": "content/Cours_1/5-Simplicity_and_performance.html#conclusion",
+    "title": "Python : Simplicité des objets et performance sous-jacente",
+    "section": "",
+    "text": "Python réussit à offrir le meilleur des deux mondes : - Une interface orientée objet simple et intuitive, idéale pour l’apprentissage et le développement rapide. - La possibilité d’obtenir des performances élevées grâce à l’intégration de code C ou Rust.\nCette approche fait de Python un langage polyvalent, capable de s’adapter à une grande variété de besoins, du script simple à l’application haute performance, tout en maintenant une syntaxe accessible et une philosophie centrée sur la lisibilité du code.",
+    "crumbs": [
+      "Python : Simplicité des objets et performance sous-jacente"
+    ]
+  },
+  {
+    "objectID": "content/Cours_1/4-all_is_object.html",
+    "href": "content/Cours_1/4-all_is_object.html",
+    "title": "Python: tout n’est qu’objet",
+    "section": "",
+    "text": "En Python, absolument tout est un objet. Cette philosophie est fondamentale et distingue Python de nombreux autres langages de programmation.\n\n\n\nMême les types de base (int, float, str) sont des objets\nLes fonctions sont des objets\nLes classes sont des objets\nLes modules sont des objets\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n\nEn C++, un int ou un float a une taille fixe et prédéfinie\nEn Python, même un simple entier est un objet complet avec des métadonnées\n\n\n\n\n\nOpérations plus coûteuses en Python (plus d’indirections)\nPas de risque d’overflow/underflow pour les entiers en Python (entiers de taille arbitraire)\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n\nLes variables n’ont pas de type fixe\nLe type est lié à l’objet, pas à la variable\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\nComme tout est objet, Python offre de puissantes capacités d’introspection.\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\n\nSyntaxe cohérente pour manipuler différents types d’objets\nFacilite l’apprentissage et l’utilisation du langage\n\n\n\n\n\nPossibilité de créer des types personnalisés qui se comportent comme des types intégrés\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\nLa nature “tout objet” de Python simplifie de nombreux concepts\nCependant, cela a un coût en termes de performance et d’utilisation mémoire\nPython privilégie la lisibilité et la facilité de développement sur la performance brute\n\n\n\n\nL’approche “tout est objet” de Python offre une grande cohérence et flexibilité, mais avec un compromis sur les performances. Cette philosophie permet aux développeurs de se concentrer sur la logique de leur programme plutôt que sur les détails de bas niveau, rendant Python particulièrement adapté au prototypage rapide et au développement d’applications où la vitesse de développement prime sur l’efficacité d’exécution.",
+    "crumbs": [
+      "Python: tout n'est qu'objet"
+    ]
+  },
+  {
+    "objectID": "content/Cours_1/4-all_is_object.html#le-concept-tout-est-objet-en-python",
+    "href": "content/Cours_1/4-all_is_object.html#le-concept-tout-est-objet-en-python",
+    "title": "Python: tout n’est qu’objet",
+    "section": "",
+    "text": "En Python, absolument tout est un objet. Cette philosophie est fondamentale et distingue Python de nombreux autres langages de programmation.\n\n\n\nMême les types de base (int, float, str) sont des objets\nLes fonctions sont des objets\nLes classes sont des objets\nLes modules sont des objets\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Python: tout n'est qu'objet"
+    ]
+  },
+  {
+    "objectID": "content/Cours_1/4-all_is_object.html#objets-de-base-vs-objets-en-c",
+    "href": "content/Cours_1/4-all_is_object.html#objets-de-base-vs-objets-en-c",
+    "title": "Python: tout n’est qu’objet",
+    "section": "",
+    "text": "En C++, un int ou un float a une taille fixe et prédéfinie\nEn Python, même un simple entier est un objet complet avec des métadonnées\n\n\n\n\n\nOpérations plus coûteuses en Python (plus d’indirections)\nPas de risque d’overflow/underflow pour les entiers en Python (entiers de taille arbitraire)\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Python: tout n'est qu'objet"
+    ]
+  },
+  {
+    "objectID": "content/Cours_1/4-all_is_object.html#flexibilité-et-dynamisme",
+    "href": "content/Cours_1/4-all_is_object.html#flexibilité-et-dynamisme",
+    "title": "Python: tout n’est qu’objet",
+    "section": "",
+    "text": "Les variables n’ont pas de type fixe\nLe type est lié à l’objet, pas à la variable\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Python: tout n'est qu'objet"
+    ]
+  },
+  {
+    "objectID": "content/Cours_1/4-all_is_object.html#introspection-et-réflexion",
+    "href": "content/Cours_1/4-all_is_object.html#introspection-et-réflexion",
+    "title": "Python: tout n’est qu’objet",
+    "section": "",
+    "text": "Comme tout est objet, Python offre de puissantes capacités d’introspection.\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Python: tout n'est qu'objet"
+    ]
+  },
+  {
+    "objectID": "content/Cours_1/4-all_is_object.html#implications-sur-la-programmation",
+    "href": "content/Cours_1/4-all_is_object.html#implications-sur-la-programmation",
+    "title": "Python: tout n’est qu’objet",
+    "section": "",
+    "text": "Syntaxe cohérente pour manipuler différents types d’objets\nFacilite l’apprentissage et l’utilisation du langage\n\n\n\n\n\nPossibilité de créer des types personnalisés qui se comportent comme des types intégrés\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Python: tout n'est qu'objet"
+    ]
+  },
+  {
+    "objectID": "content/Cours_1/4-all_is_object.html#compromis-simplicité-vs-performance",
+    "href": "content/Cours_1/4-all_is_object.html#compromis-simplicité-vs-performance",
+    "title": "Python: tout n’est qu’objet",
+    "section": "",
+    "text": "La nature “tout objet” de Python simplifie de nombreux concepts\nCependant, cela a un coût en termes de performance et d’utilisation mémoire\nPython privilégie la lisibilité et la facilité de développement sur la performance brute",
+    "crumbs": [
+      "Python: tout n'est qu'objet"
+    ]
+  },
+  {
+    "objectID": "content/Cours_1/4-all_is_object.html#conclusion",
+    "href": "content/Cours_1/4-all_is_object.html#conclusion",
+    "title": "Python: tout n’est qu’objet",
+    "section": "",
+    "text": "L’approche “tout est objet” de Python offre une grande cohérence et flexibilité, mais avec un compromis sur les performances. Cette philosophie permet aux développeurs de se concentrer sur la logique de leur programme plutôt que sur les détails de bas niveau, rendant Python particulièrement adapté au prototypage rapide et au développement d’applications où la vitesse de développement prime sur l’efficacité d’exécution.",
+    "crumbs": [
+      "Python: tout n'est qu'objet"
+    ]
+  },
+  {
+    "objectID": "content/Cours_1/1-Histoire.html",
+    "href": "content/Cours_1/1-Histoire.html",
+    "title": "Histoire de la programmation",
+    "section": "",
+    "text": "Les premiers ordinateurs étaient programmés directement en langage machine, c’est-à-dire en code binaire. Cette méthode présentait plusieurs caractéristiques :\n\nComplexité extrême : Les programmeurs devaient écrire des séquences de 0 et de 1 pour chaque instruction.\nSpécificité au matériel : Chaque type de processeur avait son propre jeu d’instructions en langage machine.\nDifficulté de maintenance : Le code était pratiquement illisible pour les humains, rendant les corrections et les mises à jour très difficiles.\n\nExemple simplifié d’addition en langage machine (fictif) :\n10110000 01100011 00000001  // Charger la valeur du registre 1 dans l'accumulateur\n10110001 01100011 00000010  // Ajouter la valeur du registre 2 à l'accumulateur\n10110010 01100011 00000011  // Stocker le résultat dans le registre 3\n\n\n\nPour faciliter la programmation, le langage assembleur a été développé. Il présentait plusieurs avantages :\n\nLisibilité améliorée : Utilisation de mnémoniques (ADD, MOV, JMP) au lieu de codes binaires.\nCorrespondance directe : Chaque instruction assembleur correspondait généralement à une instruction en langage machine.\nIntroduction des étiquettes : Permettait de nommer des points dans le programme, facilitant les sauts et les boucles.\n\nExemple du même calcul en assembleur (syntaxe simplifiée) :\nLOAD R1    ; Charger la valeur du registre 1 dans l'accumulateur\nADD R2     ; Ajouter la valeur du registre 2 à l'accumulateur\nSTORE R3   ; Stocker le résultat dans le registre 3\n\n\n\n\n\n\nDéveloppé par IBM en 1957, FORTRAN a révolutionné la programmation :\n\nPremier langage de haut niveau largement adopté\nConçu pour les calculs scientifiques et l’ingénierie\nIntroduction de concepts comme les boucles et les fonctions\n\nExemple de calcul d’intérêt composé en FORTRAN :\nPROGRAM INTERET_COMPOSE\n    REAL PRINCIPAL, TAUX, MONTANT\n    INTEGER ANNEES, I\n\n    PRINT *, 'Entrez le principal, le taux (en decimal) et les annees:'\n    READ *, PRINCIPAL, TAUX, ANNEES\n\n    MONTANT = PRINCIPAL\n    DO I = 1, ANNEES\n        MONTANT = MONTANT * (1 + TAUX)\n    END DO\n\n    PRINT *, 'Montant final:', MONTANT\nEND PROGRAM INTERET_COMPOSE\n\n\n\nCréé en 1959, COBOL visait les applications commerciales :\n\nSyntaxe proche de l’anglais pour faciliter la compréhension\nGestion efficace des fichiers et des données structurées\nLargement utilisé dans les systèmes bancaires et financiers\n\nExemple simplifié de calcul de salaire en COBOL :\nIDENTIFICATION DIVISION.\nPROGRAM-ID. CALCUL-SALAIRE.\n\nENVIRONMENT DIVISION.\nINPUT-OUTPUT SECTION.\nFILE-CONTROL.\n    SELECT EMPLOYE-FICHIER ASSIGN TO \"employes.dat\"\n        ORGANIZATION IS LINE SEQUENTIAL.\n\nDATA DIVISION.\nFILE SECTION.\nFD EMPLOYE-FICHIER.\n01 EMPLOYE-ENREG.\n    05 EMP-NOM PIC X(20).\n    05 EMP-HEURES PIC 9(3).\n    05 EMP-TAUX PIC 9(3)V99.\n\nWORKING-STORAGE SECTION.\n01 WS-SALAIRE PIC 9(5)V99.\n01 WS-EOF PIC A(1).\n\nPROCEDURE DIVISION.\nMAIN-PROCEDURE.\n    OPEN INPUT EMPLOYE-FICHIER\n    PERFORM UNTIL WS-EOF = 'Y'\n        READ EMPLOYE-FICHIER\n            AT END\n                MOVE 'Y' TO WS-EOF\n            NOT AT END\n                PERFORM CALCUL-AFFICHAGE\n        END-READ\n    END-PERFORM\n    CLOSE EMPLOYE-FICHIER\n    STOP RUN.\n\nCALCUL-AFFICHAGE.\n    COMPUTE WS-SALAIRE = EMP-HEURES * EMP-TAUX\n    DISPLAY EMP-NOM \" Salaire: $\" WS-SALAIRE.\n\n\n\n\nLa programmation procédurale, illustrée par ces langages, se caractérise par :\n\nSéquence d’instructions : Le programme est une suite d’étapes à exécuter.\nProcédures et fonctions : Le code est organisé en blocs réutilisables.\nVariables globales et locales : Gestion de l’état du programme.\nFlux de contrôle linéaire : Utilisation de structures comme les boucles et les conditions.\n\n\n\n\nSimplicité relative par rapport au langage machine\nPossibilité de créer des programmes complexes\nFacilité d’apprentissage pour les débutants\n\n\n\n\n\nDifficulté à gérer des projets très larges\nRisque élevé d’effets de bord avec les variables globales\nManque de représentation naturelle pour certains problèmes du monde réel\n\nCette approche a dominé la programmation pendant plusieurs décennies, posant les bases pour l’évolution future vers des paradigmes plus avancés, notamment la programmation orientée objet.",
+    "crumbs": [
+      "Histoire de la programmation"
+    ]
+  },
+  {
+    "objectID": "content/Cours_1/1-Histoire.html#lère-du-langage-machine-et-de-lassembleur",
+    "href": "content/Cours_1/1-Histoire.html#lère-du-langage-machine-et-de-lassembleur",
+    "title": "Histoire de la programmation",
+    "section": "",
+    "text": "Les premiers ordinateurs étaient programmés directement en langage machine, c’est-à-dire en code binaire. Cette méthode présentait plusieurs caractéristiques :\n\nComplexité extrême : Les programmeurs devaient écrire des séquences de 0 et de 1 pour chaque instruction.\nSpécificité au matériel : Chaque type de processeur avait son propre jeu d’instructions en langage machine.\nDifficulté de maintenance : Le code était pratiquement illisible pour les humains, rendant les corrections et les mises à jour très difficiles.\n\nExemple simplifié d’addition en langage machine (fictif) :\n10110000 01100011 00000001  // Charger la valeur du registre 1 dans l'accumulateur\n10110001 01100011 00000010  // Ajouter la valeur du registre 2 à l'accumulateur\n10110010 01100011 00000011  // Stocker le résultat dans le registre 3\n\n\n\nPour faciliter la programmation, le langage assembleur a été développé. Il présentait plusieurs avantages :\n\nLisibilité améliorée : Utilisation de mnémoniques (ADD, MOV, JMP) au lieu de codes binaires.\nCorrespondance directe : Chaque instruction assembleur correspondait généralement à une instruction en langage machine.\nIntroduction des étiquettes : Permettait de nommer des points dans le programme, facilitant les sauts et les boucles.\n\nExemple du même calcul en assembleur (syntaxe simplifiée) :\nLOAD R1    ; Charger la valeur du registre 1 dans l'accumulateur\nADD R2     ; Ajouter la valeur du registre 2 à l'accumulateur\nSTORE R3   ; Stocker le résultat dans le registre 3",
+    "crumbs": [
+      "Histoire de la programmation"
+    ]
+  },
+  {
+    "objectID": "content/Cours_1/1-Histoire.html#lémergence-des-langages-de-haut-niveau",
+    "href": "content/Cours_1/1-Histoire.html#lémergence-des-langages-de-haut-niveau",
+    "title": "Histoire de la programmation",
+    "section": "",
+    "text": "Développé par IBM en 1957, FORTRAN a révolutionné la programmation :\n\nPremier langage de haut niveau largement adopté\nConçu pour les calculs scientifiques et l’ingénierie\nIntroduction de concepts comme les boucles et les fonctions\n\nExemple de calcul d’intérêt composé en FORTRAN :\nPROGRAM INTERET_COMPOSE\n    REAL PRINCIPAL, TAUX, MONTANT\n    INTEGER ANNEES, I\n\n    PRINT *, 'Entrez le principal, le taux (en decimal) et les annees:'\n    READ *, PRINCIPAL, TAUX, ANNEES\n\n    MONTANT = PRINCIPAL\n    DO I = 1, ANNEES\n        MONTANT = MONTANT * (1 + TAUX)\n    END DO\n\n    PRINT *, 'Montant final:', MONTANT\nEND PROGRAM INTERET_COMPOSE\n\n\n\nCréé en 1959, COBOL visait les applications commerciales :\n\nSyntaxe proche de l’anglais pour faciliter la compréhension\nGestion efficace des fichiers et des données structurées\nLargement utilisé dans les systèmes bancaires et financiers\n\nExemple simplifié de calcul de salaire en COBOL :\nIDENTIFICATION DIVISION.\nPROGRAM-ID. CALCUL-SALAIRE.\n\nENVIRONMENT DIVISION.\nINPUT-OUTPUT SECTION.\nFILE-CONTROL.\n    SELECT EMPLOYE-FICHIER ASSIGN TO \"employes.dat\"\n        ORGANIZATION IS LINE SEQUENTIAL.\n\nDATA DIVISION.\nFILE SECTION.\nFD EMPLOYE-FICHIER.\n01 EMPLOYE-ENREG.\n    05 EMP-NOM PIC X(20).\n    05 EMP-HEURES PIC 9(3).\n    05 EMP-TAUX PIC 9(3)V99.\n\nWORKING-STORAGE SECTION.\n01 WS-SALAIRE PIC 9(5)V99.\n01 WS-EOF PIC A(1).\n\nPROCEDURE DIVISION.\nMAIN-PROCEDURE.\n    OPEN INPUT EMPLOYE-FICHIER\n    PERFORM UNTIL WS-EOF = 'Y'\n        READ EMPLOYE-FICHIER\n            AT END\n                MOVE 'Y' TO WS-EOF\n            NOT AT END\n                PERFORM CALCUL-AFFICHAGE\n        END-READ\n    END-PERFORM\n    CLOSE EMPLOYE-FICHIER\n    STOP RUN.\n\nCALCUL-AFFICHAGE.\n    COMPUTE WS-SALAIRE = EMP-HEURES * EMP-TAUX\n    DISPLAY EMP-NOM \" Salaire: $\" WS-SALAIRE.",
+    "crumbs": [
+      "Histoire de la programmation"
+    ]
+  },
+  {
+    "objectID": "content/Cours_1/1-Histoire.html#caractéristiques-de-la-programmation-procédurale",
+    "href": "content/Cours_1/1-Histoire.html#caractéristiques-de-la-programmation-procédurale",
+    "title": "Histoire de la programmation",
+    "section": "",
+    "text": "La programmation procédurale, illustrée par ces langages, se caractérise par :\n\nSéquence d’instructions : Le programme est une suite d’étapes à exécuter.\nProcédures et fonctions : Le code est organisé en blocs réutilisables.\nVariables globales et locales : Gestion de l’état du programme.\nFlux de contrôle linéaire : Utilisation de structures comme les boucles et les conditions.\n\n\n\n\nSimplicité relative par rapport au langage machine\nPossibilité de créer des programmes complexes\nFacilité d’apprentissage pour les débutants\n\n\n\n\n\nDifficulté à gérer des projets très larges\nRisque élevé d’effets de bord avec les variables globales\nManque de représentation naturelle pour certains problèmes du monde réel\n\nCette approche a dominé la programmation pendant plusieurs décennies, posant les bases pour l’évolution future vers des paradigmes plus avancés, notamment la programmation orientée objet.",
+    "crumbs": [
+      "Histoire de la programmation"
+    ]
+  },
+  {
+    "objectID": "content/Cours_1/index.html",
+    "href": "content/Cours_1/index.html",
+    "title": "Introduction: Histoire et Concepts",
+    "section": "",
+    "text": "Les cours de cette partie sont:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nClasses en Python : Concepts fondamentaux\n\n\nDécouvrez les concepts fondamentaux des classes en Python, y compris les attributs de classe vs d’instance, le rôle de ‘self’, et les conventions de codage.\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nConstruire son propre DataFrame\n\n\n\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHistoire de la programmation\n\n\nDu binaire à la POO\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNaissance de la POO\n\n\nL’adoption de la POO dans les langages modernes comme C++ et Python a révolutionné la programmation. Découvrez comment ces langages ont intégré les concepts de la POO et…\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPremière Structuration des données\n\n\nDécouvrez comment les tableaux, les structures et les records ont permis de structurer les données dans les premiers langages de programmation.\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPython : Simplicité des objets et performance sous-jacente\n\n\nDécouvrez comment Python peut combiner la simplicité des objets avec des performances élevées grâce à l’intégration de code C et Rust.\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPython: tout n’est qu’objet\n\n\nExplorer la notion de PATH, un élément essentiel dans la configuration des environnements de développement.\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\nNo matching items\n\n Back to top",
+    "crumbs": [
+      "Introduction: Histoire et Concepts"
     ]
   },
   {
@@ -1456,11 +1434,7 @@
     "href": "content/Cours_3/TP.html",
     "title": "TP",
     "section": "",
-    "text": "TODO\n\n\n\n\n\n Back to top",
-    "crumbs": [
-      "Travaux Pratiques",
-      "TP"
-    ]
+    "text": "TODO\n\n\n\n\n\n Back to top"
   },
   {
     "objectID": "content/Cours_3/1-Polymorphism.html",
@@ -1547,7 +1521,7 @@
     "href": "content/Cours_3/index.html",
     "title": "Polymorphisme et Surcharge",
     "section": "",
-    "text": "Les cours de cette partie sont:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAbstract Classes\n\n\nLearn about abstract classes in Python, how to define and use them, and the benefits of using abstract classes for creating a common interface and enforcing method…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nClass Creation: Standard vs type()\n\n\nCompare standard class creation with dynamic creation using type() in Python, understanding their equivalence and potential issues.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPolymorphism in Object-Oriented Programming\n\n\nLearn about polymorphism in object-oriented programming (OOP), including method overriding, runtime polymorphism, and how it enables flexible and extensible code structures.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPolymorphism in Python: Function Overloading and Type Checking\n\n\nLearn how to achieve polymorphism in Python through function overloading, type checking, and class-based polymorphism\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nProtocol Classes\n\n\nLearn about Protocol classes in Python, how to define and use them, and the advantages of using Protocols for defining interfaces and structural subtyping.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTP\n\n\n\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nType Hinting, Typing Module, and Linters in Python\n\n\nLearn about type hinting in Python, the typing module, and how to use linters for static type checking to improve code quality and maintainability.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\nNo matching items\n\n Back to top",
+    "text": "Les cours de cette partie sont:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAbstract Classes\n\n\nLearn about abstract classes in Python, how to define and use them, and the benefits of using abstract classes for creating a common interface and enforcing method…\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nClass Creation: Standard vs type()\n\n\nCompare standard class creation with dynamic creation using type() in Python, understanding their equivalence and potential issues.\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPolymorphism in Object-Oriented Programming\n\n\nLearn about polymorphism in object-oriented programming (OOP), including method overriding, runtime polymorphism, and how it enables flexible and extensible code structures.\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPolymorphism in Python: Function Overloading and Type Checking\n\n\nLearn how to achieve polymorphism in Python through function overloading, type checking, and class-based polymorphism\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nProtocol Classes\n\n\nLearn about Protocol classes in Python, how to define and use them, and the advantages of using Protocols for defining interfaces and structural subtyping.\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTP\n\n\n\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTP\n\n\n\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nType Hinting, Typing Module, and Linters in Python\n\n\nLearn about type hinting in Python, the typing module, and how to use linters for static type checking to improve code quality and maintainability.\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\nNo matching items\n\n Back to top",
     "crumbs": [
       "Polymorphisme et Surcharge"
     ]
@@ -1627,7 +1601,7 @@
     "href": "content/Cours_2/index.html",
     "title": "Encapsulation, Heritage, Composition et Dunder",
     "section": "",
-    "text": "Les cours de cette partie sont:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEncapsulation en Python\n\n\nComprendre l’encapsulation en Python et les conventions pour définir des attributs et méthodes publics et privés.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHéritage en Python : Concept et intérêt\n\n\nDécouvrez le concept d’héritage en Python, son intérêt et son application dans la création de hiérarchies de classes. Apprenez comment Python gère l’héritage implicite de la…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHéritage vs Composition\n\n\nDécouvrez les différences entre l’héritage et la composition en programmation orientée objet, leurs avantages et inconvénients, et comment choisir la meilleure approche pour…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMéthodes Dunder en Python\n\n\nDécouvrez les méthodes dunder en Python, des méthodes spéciales encadrées par des doubles tirets bas (__), qui permettent de personnaliser le comportement des objets dans…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPython call Method: A Fun Exploration\n\n\nExplore the quirky side of Python’s call method with fun examples and insights into memory allocation. A lighthearted break in our Python deep dive.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTP: Dunder Method with Tensor for Automatic Differentiation\n\n\n\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTP: Heritage avec le pricing d’option\n\n\n\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\nNo matching items\n\n Back to top",
+    "text": "Les cours de cette partie sont:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEncapsulation en Python\n\n\nComprendre l’encapsulation en Python et les conventions pour définir des attributs et méthodes publics et privés.\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHéritage en Python : Concept et intérêt\n\n\nDécouvrez le concept d’héritage en Python, son intérêt et son application dans la création de hiérarchies de classes. Apprenez comment Python gère l’héritage implicite de la…\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHéritage vs Composition\n\n\nDécouvrez les différences entre l’héritage et la composition en programmation orientée objet, leurs avantages et inconvénients, et comment choisir la meilleure approche pour…\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMéthodes Dunder en Python\n\n\nDécouvrez les méthodes dunder en Python, des méthodes spéciales encadrées par des doubles tirets bas (__), qui permettent de personnaliser le comportement des objets dans…\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPython call Method: A Fun Exploration\n\n\nExplore the quirky side of Python’s call method with fun examples and insights into memory allocation. A lighthearted break in our Python deep dive.\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTP: Dunder Method with Tensor for Automatic Differentiation\n\n\n\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTP: Heritage avec le pricing d’option\n\n\n\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\nNo matching items\n\n Back to top",
     "crumbs": [
       "Encapsulation, Heritage, Composition et Dunder"
     ]
@@ -1865,7 +1839,7 @@
     "href": "content/Cours_4/index.html",
     "title": "Decorators",
     "section": "",
-    "text": "Les cours de cette partie sont:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBuilt-in Decorators and Standard Library Decorators in Python\n\n\nLearn about built-in decorators and standard library decorators in Python, including @property, @classmethod, @staticmethod, @dataclass, and decorators from the functools…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDecorator Practically\n\n\nLearn about decorators in Python with concrete examples, including basic function decorators, decorators with arguments, class decorators, decorators with parameters, and…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDesign Patterns\n\n\nLearn about design patterns in software development, their purpose, benefits, and common categories, and understand how they provide reusable solutions to common problems in…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPractical Decorators in Python Libraries\n\n\nExplore practical usage of decorators in popular Python libraries including FastAPI, Numba, and Pytest. Learn how to leverage these powerful tools in your Python projects.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTP: Monte Carlo Option Pricing with Decorators\n\n\nA hands-on practical exercise on creating a decorator that injects payoff functions into a Monte Carlo option pricing simulator, exploring advanced concepts in Python and…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTP: Optimizing Heston Model Monte Carlo Simulation\n\n\nA hands-on practical exercise on optimizing Heston model Monte Carlo simulations using Numba and caching in Python.\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe decorator pattern\n\n\nLearn about the origins and evolution of the decorator pattern in programming, its key concepts, advantages over traditional inheritance, and its impact on modern…\n\n\n\nRemi Genet\n\n\n2024-08-31\n\n\n\n\n\n\n\n\nNo matching items\n\n Back to top"
+    "text": "Les cours de cette partie sont:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBuilt-in Decorators and Standard Library Decorators in Python\n\n\nLearn about built-in decorators and standard library decorators in Python, including @property, @classmethod, @staticmethod, @dataclass, and decorators from the functools…\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDecorator Practically\n\n\nLearn about decorators in Python with concrete examples, including basic function decorators, decorators with arguments, class decorators, decorators with parameters, and…\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDesign Patterns\n\n\nLearn about design patterns in software development, their purpose, benefits, and common categories, and understand how they provide reusable solutions to common problems in…\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPractical Decorators in Python Libraries\n\n\nExplore practical usage of decorators in popular Python libraries including FastAPI, Numba, and Pytest. Learn how to leverage these powerful tools in your Python projects.\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTP: Monte Carlo Option Pricing with Decorators\n\n\nA hands-on practical exercise on creating a decorator that injects payoff functions into a Monte Carlo option pricing simulator, exploring advanced concepts in Python and…\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTP: Optimizing Heston Model Monte Carlo Simulation\n\n\nA hands-on practical exercise on optimizing Heston model Monte Carlo simulations using Numba and caching in Python.\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe decorator pattern\n\n\nLearn about the origins and evolution of the decorator pattern in programming, its key concepts, advantages over traditional inheritance, and its impact on modern…\n\n\n\nRemi Genet\n\n\n2024-09-01\n\n\n\n\n\n\n\n\nNo matching items\n\n Back to top"
   },
   {
     "objectID": "content/Projets/m2_EIF_2024.html",

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Remi Genet">
-<meta name="dcterms.date" content="2024-08-31">
+<meta name="dcterms.date" content="2024-09-01">
 <meta name="description" content="Découvrez les méthodes dunder en Python, des méthodes spéciales encadrées par des doubles tirets bas (__), qui permettent de personnaliser le comportement des objets dans différents contextes. Apprenez comment utiliser les méthodes dunder pour l’initialisation, la représentation, les opérations mathématiques, les comparaisons, les conteneurs, la gestion des attributs, l’appel d’objet comme une fonction, la gestion du contexte, et d’autres cas d’utilisation.">
 
 <title>Méthodes Dunder en Python – Programmation Orientée Objet en Python</title>
@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"id":1,"options":{"dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","label":"","fig-height":5,"autorun":"","output":"true","read-only":"false","out-height":"","classes":"","out-width":"700px","fig-cap":"","fig-width":7,"message":"true"},"code":"class Personne:\n    def __init__(self, nom, age):\n        self.nom = nom\n        self.age = age"},{"id":2,"options":{"dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","label":"","fig-height":5,"autorun":"","output":"true","read-only":"false","out-height":"","classes":"","out-width":"700px","fig-cap":"","fig-width":7,"message":"true"},"code":"class FichierTemporaire:\n    def __del__(self):\n        print(\"Nettoyage des fichiers temporaires\")"},{"id":3,"options":{"dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","label":"","fig-height":5,"autorun":"","output":"true","read-only":"false","out-height":"","classes":"","out-width":"700px","fig-cap":"","fig-width":7,"message":"true"},"code":"class Point:\n    def __init__(self, x, y):\n        self.x, self.y = x, y\n    \n    def __str__(self):\n        return f\"Point({self.x}, {self.y})\"\n    \n    def __repr__(self):\n        return f\"Point(x={self.x}, y={self.y})\""},{"id":4,"options":{"dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","label":"","fig-height":5,"autorun":"","output":"true","read-only":"false","out-height":"","classes":"","out-width":"700px","fig-cap":"","fig-width":7,"message":"true"},"code":"class Vecteur:\n    def __init__(self, x, y):\n        self.x, self.y = x, y\n    \n    def __add__(self, other):\n        return Vecteur(self.x + other.x, self.y + other.y)\n    \n    def __mul__(self, scalar):\n        return Vecteur(self.x * scalar, self.y * scalar)"},{"id":5,"options":{"dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","label":"","fig-height":5,"autorun":"","output":"true","read-only":"false","out-height":"","classes":"","out-width":"700px","fig-cap":"","fig-width":7,"message":"true"},"code":"class Temperature:\n    def __init__(self, celsius):\n        self.celsius = celsius\n    \n    def __eq__(self, other):\n        return self.celsius == other.celsius\n    \n    def __lt__(self, other):\n        return self.celsius < other.celsius"},{"id":6,"options":{"dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","label":"","fig-height":5,"autorun":"","output":"true","read-only":"false","out-height":"","classes":"","out-width":"700px","fig-cap":"","fig-width":7,"message":"true"},"code":"class MaListe:\n    def __init__(self):\n        self.data = []\n    \n    def __len__(self):\n        return len(self.data)\n    \n    def __getitem__(self, index):\n        return self.data[index]\n    \n    def __setitem__(self, index, value):\n        self.data[index] = value\n    \n    def __iter__(self):\n        return iter(self.data)"},{"id":7,"options":{"dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","label":"","fig-height":5,"autorun":"","output":"true","read-only":"false","out-height":"","classes":"","out-width":"700px","fig-cap":"","fig-width":7,"message":"true"},"code":"class Personne:\n    def __init__(self, nom):\n        self.nom = nom\n    \n    def __getattr__(self, attr):\n        return f\"L'attribut {attr} n'existe pas\"\n    \n    def __setattr__(self, name, value):\n        print(f\"Attribution de {value} à {name}\")\n        super().__setattr__(name, value)"},{"id":8,"options":{"dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","label":"","fig-height":5,"autorun":"","output":"true","read-only":"false","out-height":"","classes":"","out-width":"700px","fig-cap":"","fig-width":7,"message":"true"},"code":"class Multiplicateur:\n    def __init__(self, facteur):\n        self.facteur = facteur\n    \n    def __call__(self, x):\n        return x * self.facteur\n\ndoubler = Multiplicateur(2)\nprint(doubler(5))  # Affiche: 10"},{"id":9,"options":{"dpi":72,"context":"interactive","comment":"","warning":"true","results":"markup","label":"","fig-height":5,"autorun":"","output":"true","read-only":"false","out-height":"","classes":"","out-width":"700px","fig-cap":"","fig-width":7,"message":"true"},"code":"class OpenFile:\n    def __init__(self, filename, mode):\n        self.filename = filename\n        self.mode = mode\n    \n    def __enter__(self):\n        self.file = open(self.filename, self.mode)\n        return self.file\n    \n    def __exit__(self, exc_type, exc_val, exc_tb):\n        self.file.close()\n\nwith OpenFile('fichier.txt', 'w') as f:\n    f.write('Hello, world!')"}];
+globalThis.qpyodideCellDetails = [{"code":"class Personne:\n    def __init__(self, nom, age):\n        self.nom = nom\n        self.age = age","id":1,"options":{"results":"markup","label":"","out-height":"","out-width":"700px","fig-height":5,"comment":"","dpi":72,"context":"interactive","fig-width":7,"read-only":"false","output":"true","warning":"true","autorun":"","fig-cap":"","classes":"","message":"true"}},{"code":"class FichierTemporaire:\n    def __del__(self):\n        print(\"Nettoyage des fichiers temporaires\")","id":2,"options":{"results":"markup","label":"","out-height":"","out-width":"700px","fig-height":5,"comment":"","dpi":72,"context":"interactive","fig-width":7,"read-only":"false","output":"true","warning":"true","autorun":"","fig-cap":"","classes":"","message":"true"}},{"code":"class Point:\n    def __init__(self, x, y):\n        self.x, self.y = x, y\n    \n    def __str__(self):\n        return f\"Point({self.x}, {self.y})\"\n    \n    def __repr__(self):\n        return f\"Point(x={self.x}, y={self.y})\"","id":3,"options":{"results":"markup","label":"","out-height":"","out-width":"700px","fig-height":5,"comment":"","dpi":72,"context":"interactive","fig-width":7,"read-only":"false","output":"true","warning":"true","autorun":"","fig-cap":"","classes":"","message":"true"}},{"code":"class Vecteur:\n    def __init__(self, x, y):\n        self.x, self.y = x, y\n    \n    def __add__(self, other):\n        return Vecteur(self.x + other.x, self.y + other.y)\n    \n    def __mul__(self, scalar):\n        return Vecteur(self.x * scalar, self.y * scalar)","id":4,"options":{"results":"markup","label":"","out-height":"","out-width":"700px","fig-height":5,"comment":"","dpi":72,"context":"interactive","fig-width":7,"read-only":"false","output":"true","warning":"true","autorun":"","fig-cap":"","classes":"","message":"true"}},{"code":"class Temperature:\n    def __init__(self, celsius):\n        self.celsius = celsius\n    \n    def __eq__(self, other):\n        return self.celsius == other.celsius\n    \n    def __lt__(self, other):\n        return self.celsius < other.celsius","id":5,"options":{"results":"markup","label":"","out-height":"","out-width":"700px","fig-height":5,"comment":"","dpi":72,"context":"interactive","fig-width":7,"read-only":"false","output":"true","warning":"true","autorun":"","fig-cap":"","classes":"","message":"true"}},{"code":"class MaListe:\n    def __init__(self):\n        self.data = []\n    \n    def __len__(self):\n        return len(self.data)\n    \n    def __getitem__(self, index):\n        return self.data[index]\n    \n    def __setitem__(self, index, value):\n        self.data[index] = value\n    \n    def __iter__(self):\n        return iter(self.data)","id":6,"options":{"results":"markup","label":"","out-height":"","out-width":"700px","fig-height":5,"comment":"","dpi":72,"context":"interactive","fig-width":7,"read-only":"false","output":"true","warning":"true","autorun":"","fig-cap":"","classes":"","message":"true"}},{"code":"class Personne:\n    def __init__(self, nom):\n        self.nom = nom\n    \n    def __getattr__(self, attr):\n        return f\"L'attribut {attr} n'existe pas\"\n    \n    def __setattr__(self, name, value):\n        print(f\"Attribution de {value} à {name}\")\n        super().__setattr__(name, value)","id":7,"options":{"results":"markup","label":"","out-height":"","out-width":"700px","fig-height":5,"comment":"","dpi":72,"context":"interactive","fig-width":7,"read-only":"false","output":"true","warning":"true","autorun":"","fig-cap":"","classes":"","message":"true"}},{"code":"class Multiplicateur:\n    def __init__(self, facteur):\n        self.facteur = facteur\n    \n    def __call__(self, x):\n        return x * self.facteur\n\ndoubler = Multiplicateur(2)\nprint(doubler(5))  # Affiche: 10","id":8,"options":{"results":"markup","label":"","out-height":"","out-width":"700px","fig-height":5,"comment":"","dpi":72,"context":"interactive","fig-width":7,"read-only":"false","output":"true","warning":"true","autorun":"","fig-cap":"","classes":"","message":"true"}},{"code":"class OpenFile:\n    def __init__(self, filename, mode):\n        self.filename = filename\n        self.mode = mode\n    \n    def __enter__(self):\n        self.file = open(self.filename, self.mode)\n        return self.file\n    \n    def __exit__(self, exc_type, exc_val, exc_tb):\n        self.file.close()\n\nwith OpenFile('fichier.txt', 'w') as f:\n    f.write('Hello, world!')","id":9,"options":{"results":"markup","label":"","out-height":"","out-width":"700px","fig-height":5,"comment":"","dpi":72,"context":"interactive","fig-width":7,"read-only":"false","output":"true","warning":"true","autorun":"","fig-cap":"","classes":"","message":"true"}}];
 
 
 </script>
@@ -439,10 +439,10 @@ globalThis._qpyodideGetInstance = function() {
 <meta property="og:image:width" content="1024">
 <meta name="citation_title" content="Méthodes Dunder en Python">
 <meta name="citation_author" content="Remi Genet">
-<meta name="citation_publication_date" content="2024-08-31">
-<meta name="citation_cover_date" content="2024-08-31">
+<meta name="citation_publication_date" content="2024-09-01">
+<meta name="citation_cover_date" content="2024-09-01">
 <meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-08-31">
+<meta name="citation_online_date" content="2024-09-01">
 <meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_2/4-Dunder.html">
 <meta name="citation_language" content="en">
 </head>
@@ -507,10 +507,6 @@ globalThis._qpyodideGetInstance = function() {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
-        <li>
-    <a class="dropdown-item" href="../../content/Cours_1/TP.html">
- <span class="dropdown-text">Construire son propre DataFrame</span></a>
-  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -590,7 +586,7 @@ globalThis._qpyodideGetInstance = function() {
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/TP.html">
+    <a class="dropdown-item" href="../../content/Cours_3/TP_equity_portfolio.html">
  <span class="dropdown-text">TP</span></a>
   </li>  
     </ul>
@@ -659,10 +655,6 @@ globalThis._qpyodideGetInstance = function() {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
-        <li>
-    <a class="dropdown-item" href="../../content/Cours_5/TP.html">
- <span class="dropdown-text">TP: Creating a Linear Regression Package</span></a>
-  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -692,10 +684,6 @@ globalThis._qpyodideGetInstance = function() {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
-        <li>
-    <a class="dropdown-item" href="../../content/Cours_5/TP.html">
- <span class="dropdown-text">TP: Creating a Linear Regression Package</span></a>
-  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -877,7 +865,7 @@ globalThis._qpyodideGetInstance = function() {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-08-31</p>
+      <p class="date">2024-09-01</p>
     </div>
   </div>
   

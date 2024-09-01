@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Remi Genet">
-<meta name="dcterms.date" content="2024-08-31">
+<meta name="dcterms.date" content="2024-09-01">
 <meta name="description" content="Compare standard class creation with dynamic creation using type() in Python, understanding their equivalence and potential issues.">
 
 <title>Class Creation: Standard vs type() – Programmation Orientée Objet en Python</title>
@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"class Dog:\n    def __init__(self, name):\n        self.name = name\n\n    def bark(self):\n        return f\"{self.name} says Woof!\"\n\n# Using the class\nfido = Dog(\"Fido\")\nprint(fido.bark())  # Output: Fido says Woof!","options":{"read-only":"false","classes":"","fig-width":7,"label":"","message":"true","results":"markup","fig-cap":"","autorun":"","fig-height":5,"comment":"","out-width":"700px","dpi":72,"warning":"true","out-height":"","context":"interactive","output":"true"},"id":1},{"code":"def init(self, name):\n    self.name = name\n\ndef bark(self):\n    return f\"{self.name} says Woof!\"\n\nDog = type('Dog', (), {\n    '__init__': init,\n    'bark': bark\n})\n\n# Using the class\nfido = Dog(\"Fido\")\nprint(fido.bark())  # Output: Fido says Woof!","options":{"read-only":"false","classes":"","fig-width":7,"label":"","message":"true","results":"markup","fig-cap":"","autorun":"","fig-height":5,"comment":"","out-width":"700px","dpi":72,"warning":"true","out-height":"","context":"interactive","output":"true"},"id":2},{"code":"class Animal:\n    def __init__(self, name):\n        self.name = name\n\nclass Dog(Animal):\n    def bark(self):\n        return f\"{self.name} says Woof!\"\n\nfido = Dog(\"Fido\")\nprint(fido.bark())  # Output: Fido says Woof!","options":{"read-only":"false","classes":"","fig-width":7,"label":"","message":"true","results":"markup","fig-cap":"","autorun":"","fig-height":5,"comment":"","out-width":"700px","dpi":72,"warning":"true","out-height":"","context":"interactive","output":"true"},"id":3},{"code":"def animal_init(self, name):\n    self.name = name\n\nAnimal = type('Animal', (), {'__init__': animal_init})\n\ndef dog_bark(self):\n    return f\"{self.name} says Woof!\"\n\nDog = type('Dog', (Animal,), {'bark': dog_bark})\n\nfido = Dog(\"Fido\")\nprint(fido.bark())  # Output: Fido says Woof!","options":{"read-only":"false","classes":"","fig-width":7,"label":"","message":"true","results":"markup","fig-cap":"","autorun":"","fig-height":5,"comment":"","out-width":"700px","dpi":72,"warning":"true","out-height":"","context":"interactive","output":"true"},"id":4},{"code":"import multiprocessing\n\ndef create_class():\n    return type('DynamicClass', (), {'method': lambda self: 'Hello'})\n\ndef use_class(cls):\n    instance = cls()\n    return instance.method()\n\nif __name__ == '__main__':\n    DynClass = create_class()\n    pool = multiprocessing.Pool()\n    try:\n        result = pool.apply(use_class, (DynClass,))\n    except Exception as e:\n        print(f\"Error: {e}\")\n    pool.close()\n    pool.join()","options":{"read-only":"false","classes":"","fig-width":7,"label":"","message":"true","results":"markup","fig-cap":"","autorun":"","fig-height":5,"comment":"","out-width":"700px","dpi":72,"warning":"true","out-height":"","context":"interactive","output":"true"},"id":5}];
+globalThis.qpyodideCellDetails = [{"id":1,"options":{"autorun":"","message":"true","fig-width":7,"read-only":"false","output":"true","dpi":72,"context":"interactive","comment":"","label":"","out-width":"700px","classes":"","fig-height":5,"fig-cap":"","warning":"true","out-height":"","results":"markup"},"code":"class Dog:\n    def __init__(self, name):\n        self.name = name\n\n    def bark(self):\n        return f\"{self.name} says Woof!\"\n\n# Using the class\nfido = Dog(\"Fido\")\nprint(fido.bark())  # Output: Fido says Woof!"},{"id":2,"options":{"autorun":"","message":"true","fig-width":7,"read-only":"false","output":"true","dpi":72,"context":"interactive","comment":"","label":"","out-width":"700px","classes":"","fig-height":5,"fig-cap":"","warning":"true","out-height":"","results":"markup"},"code":"def init(self, name):\n    self.name = name\n\ndef bark(self):\n    return f\"{self.name} says Woof!\"\n\nDog = type('Dog', (), {\n    '__init__': init,\n    'bark': bark\n})\n\n# Using the class\nfido = Dog(\"Fido\")\nprint(fido.bark())  # Output: Fido says Woof!"},{"id":3,"options":{"autorun":"","message":"true","fig-width":7,"read-only":"false","output":"true","dpi":72,"context":"interactive","comment":"","label":"","out-width":"700px","classes":"","fig-height":5,"fig-cap":"","warning":"true","out-height":"","results":"markup"},"code":"class Animal:\n    def __init__(self, name):\n        self.name = name\n\nclass Dog(Animal):\n    def bark(self):\n        return f\"{self.name} says Woof!\"\n\nfido = Dog(\"Fido\")\nprint(fido.bark())  # Output: Fido says Woof!"},{"id":4,"options":{"autorun":"","message":"true","fig-width":7,"read-only":"false","output":"true","dpi":72,"context":"interactive","comment":"","label":"","out-width":"700px","classes":"","fig-height":5,"fig-cap":"","warning":"true","out-height":"","results":"markup"},"code":"def animal_init(self, name):\n    self.name = name\n\nAnimal = type('Animal', (), {'__init__': animal_init})\n\ndef dog_bark(self):\n    return f\"{self.name} says Woof!\"\n\nDog = type('Dog', (Animal,), {'bark': dog_bark})\n\nfido = Dog(\"Fido\")\nprint(fido.bark())  # Output: Fido says Woof!"},{"id":5,"options":{"autorun":"","message":"true","fig-width":7,"read-only":"false","output":"true","dpi":72,"context":"interactive","comment":"","label":"","out-width":"700px","classes":"","fig-height":5,"fig-cap":"","warning":"true","out-height":"","results":"markup"},"code":"import multiprocessing\n\ndef create_class():\n    return type('DynamicClass', (), {'method': lambda self: 'Hello'})\n\ndef use_class(cls):\n    instance = cls()\n    return instance.method()\n\nif __name__ == '__main__':\n    DynClass = create_class()\n    pool = multiprocessing.Pool()\n    try:\n        result = pool.apply(use_class, (DynClass,))\n    except Exception as e:\n        print(f\"Error: {e}\")\n    pool.close()\n    pool.join()"}];
 
 
 </script>
@@ -437,10 +437,10 @@ globalThis._qpyodideGetInstance = function() {
 <meta property="og:site_name" content="Programmation Orientée Objet en Python">
 <meta name="citation_title" content="Class Creation: Standard vs type()">
 <meta name="citation_author" content="Remi Genet">
-<meta name="citation_publication_date" content="2024-08-31">
-<meta name="citation_cover_date" content="2024-08-31">
+<meta name="citation_publication_date" content="2024-09-01">
+<meta name="citation_cover_date" content="2024-09-01">
 <meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-08-31">
+<meta name="citation_online_date" content="2024-09-01">
 <meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_3/3-type_to_create.html">
 <meta name="citation_language" content="en">
 </head>
@@ -505,10 +505,6 @@ globalThis._qpyodideGetInstance = function() {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
-        <li>
-    <a class="dropdown-item" href="../../content/Cours_1/TP.html">
- <span class="dropdown-text">Construire son propre DataFrame</span></a>
-  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -588,7 +584,7 @@ globalThis._qpyodideGetInstance = function() {
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/TP.html">
+    <a class="dropdown-item" href="../../content/Cours_3/TP_equity_portfolio.html">
  <span class="dropdown-text">TP</span></a>
   </li>  
     </ul>
@@ -657,10 +653,6 @@ globalThis._qpyodideGetInstance = function() {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
-        <li>
-    <a class="dropdown-item" href="../../content/Cours_5/TP.html">
- <span class="dropdown-text">TP: Creating a Linear Regression Package</span></a>
-  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -690,10 +682,6 @@ globalThis._qpyodideGetInstance = function() {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
-        <li>
-    <a class="dropdown-item" href="../../content/Cours_5/TP.html">
- <span class="dropdown-text">TP: Creating a Linear Regression Package</span></a>
-  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -803,7 +791,7 @@ globalThis._qpyodideGetInstance = function() {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_3/TP.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/Cours_3/TP_equity_portfolio.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">TP</span></a>
   </div>
 </li>
@@ -872,7 +860,7 @@ globalThis._qpyodideGetInstance = function() {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-08-31</p>
+      <p class="date">2024-09-01</p>
     </div>
   </div>
   

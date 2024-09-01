@@ -8,9 +8,8 @@
 
 <meta name="author" content="Remi Genet">
 <meta name="dcterms.date" content="2024-09-01">
-<meta name="description" content="Learn about the origins and evolution of the decorator pattern in programming, its key concepts, advantages over traditional inheritance, and its impact on modern programming practices.">
 
-<title>The decorator pattern – Programmation Orientée Objet en Python</title>
+<title>TP – Programmation Orientée Objet en Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,8 +32,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../content/Cours_4/3-Decorator_practically.html" rel="next">
-<link href="../../content/Cours_4/1-Design_Pattern.html" rel="prev">
+<link href="../../content/Cours_3/6-Protocol.html" rel="prev">
 <link href="../../content/.img/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -79,17 +77,17 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="The decorator pattern – Programmation Orientée Objet en Python">
-<meta property="og:description" content="Learn about the origins and evolution of the decorator pattern in programming, its key concepts, advantages over traditional inheritance, and its impact on modern programming practices.">
-<meta property="og:image" content="https://remigenet.github.io/OOP_Python/content/Cours_4/.img/typehinting.webp">
+<meta property="og:title" content="TP – Programmation Orientée Objet en Python">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://remigenet.github.io/OOP_Python/content/Cours_3/.img/exercice.webp">
 <meta property="og:site_name" content="Programmation Orientée Objet en Python">
-<meta name="citation_title" content="The decorator pattern">
+<meta name="citation_title" content="TP">
 <meta name="citation_author" content="Remi Genet">
 <meta name="citation_publication_date" content="2024-09-01">
 <meta name="citation_cover_date" content="2024-09-01">
 <meta name="citation_year" content="2024">
 <meta name="citation_online_date" content="2024-09-01">
-<meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_4/2-Decorator_theory.html">
+<meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_3/TP_equity_portfolio.html">
 <meta name="citation_language" content="en">
 </head>
 
@@ -374,7 +372,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_4/2-Decorator_theory.html">The decorator pattern</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_3/TP_equity_portfolio.html">Travaux Pratiques</a></li><li class="breadcrumb-item"><a href="../../content/Cours_3/TP_equity_portfolio.html">TP</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -388,32 +386,44 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_4/1-Design_Pattern.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Design Patterns</span></a>
+  <a href="../../content/Cours_3/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Polymorphisme et Surcharge</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_4/2-Decorator_theory.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">The decorator pattern</span></a>
+  <a href="../../content/Cours_3/1-Polymorphism.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Polymorphism in Object-Oriented Programming</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_4/3-Decorator_practically.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Decorator Practically</span></a>
+  <a href="../../content/Cours_3/2-Overloading.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Polymorphism in Python: Function Overloading and Type Checking</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_4/4-builtin_decorator.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Built-in Decorators and Standard Library Decorators in Python</span></a>
+  <a href="../../content/Cours_3/3-type_to_create.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class Creation: Standard vs type()</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_4/5-library_decorators.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Practical Decorators in Python Libraries</span></a>
+  <a href="../../content/Cours_3/4-Type_Hinting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Type Hinting, Typing Module, and Linters in Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_3/5-Abstract_class.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Abstract Classes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_3/6-Protocol.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Protocol Classes</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -427,14 +437,8 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_4/TP_option.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">TP: Monte Carlo Option Pricing with Decorators</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_4/TP_library.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">TP: Optimizing Heston Model Monte Carlo Simulation</span></a>
+  <a href="../../content/Cours_3/TP_equity_portfolio.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">TP</span></a>
   </div>
 </li>
       </ul>
@@ -449,40 +453,22 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-origins-and-evolution-of-the-decorator-pattern" id="toc-the-origins-and-evolution-of-the-decorator-pattern" class="nav-link active" data-scroll-target="#the-origins-and-evolution-of-the-decorator-pattern">The Origins and Evolution of the Decorator Pattern</a>
-  <ul class="collapse">
-  <li><a href="#introduction-to-decorators" id="toc-introduction-to-decorators" class="nav-link" data-scroll-target="#introduction-to-decorators">Introduction to Decorators</a></li>
-  <li><a href="#historical-context" id="toc-historical-context" class="nav-link" data-scroll-target="#historical-context">Historical Context</a></li>
-  <li><a href="#object-oriented-programming-and-the-need-for-flexibility" id="toc-object-oriented-programming-and-the-need-for-flexibility" class="nav-link" data-scroll-target="#object-oriented-programming-and-the-need-for-flexibility">Object-Oriented Programming and the Need for Flexibility</a></li>
-  <li><a href="#the-decorator-pattern-emerges" id="toc-the-decorator-pattern-emerges" class="nav-link" data-scroll-target="#the-decorator-pattern-emerges">The Decorator Pattern Emerges</a></li>
-  <li><a href="#key-concepts-of-the-decorator-pattern" id="toc-key-concepts-of-the-decorator-pattern" class="nav-link" data-scroll-target="#key-concepts-of-the-decorator-pattern">Key Concepts of the Decorator Pattern</a></li>
-  <li><a href="#advantages-over-traditional-inheritance" id="toc-advantages-over-traditional-inheritance" class="nav-link" data-scroll-target="#advantages-over-traditional-inheritance">Advantages Over Traditional Inheritance</a></li>
-  <li><a href="#early-implementations" id="toc-early-implementations" class="nav-link" data-scroll-target="#early-implementations">Early Implementations</a></li>
-  <li><a href="#evolution-in-different-programming-languages" id="toc-evolution-in-different-programming-languages" class="nav-link" data-scroll-target="#evolution-in-different-programming-languages">Evolution in Different Programming Languages</a></li>
-  <li><a href="#pythons-adoption-of-decorators" id="toc-pythons-adoption-of-decorators" class="nav-link" data-scroll-target="#pythons-adoption-of-decorators">Python’s Adoption of Decorators</a></li>
-  <li><a href="#impact-on-modern-programming" id="toc-impact-on-modern-programming" class="nav-link" data-scroll-target="#impact-on-modern-programming">Impact on Modern Programming</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
-  </ul></li>
+  <li><a href="#tp-instructions-implementing-a-strategy-and-a-portfolio-for-a-backtesting-task" id="toc-tp-instructions-implementing-a-strategy-and-a-portfolio-for-a-backtesting-task" class="nav-link active" data-scroll-target="#tp-instructions-implementing-a-strategy-and-a-portfolio-for-a-backtesting-task">TP Instructions: Implementing a Strategy and a Portfolio for a backtesting task</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_3/TP_equity_portfolio.html">Travaux Pratiques</a></li><li class="breadcrumb-item"><a href="../../content/Cours_3/TP_equity_portfolio.html">TP</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">The decorator pattern</h1>
+<h1 class="title">TP</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Cours</div>
-    <div class="quarto-category">Fondamentaux</div>
+    <div class="quarto-category">TP</div>
   </div>
   </div>
 
-<div>
-  <div class="description">
-    Learn about the origins and evolution of the decorator pattern in programming, its key concepts, advantages over traditional inheritance, and its impact on modern programming practices.
-  </div>
-</div>
 
 
 <div class="quarto-title-meta column-body">
@@ -509,74 +495,162 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="the-origins-and-evolution-of-the-decorator-pattern" class="level1">
-<h1>The Origins and Evolution of the Decorator Pattern</h1>
-<section id="introduction-to-decorators" class="level2">
-<h2 class="anchored" data-anchor-id="introduction-to-decorators">Introduction to Decorators</h2>
-<p>Decorators are a powerful and flexible design pattern in programming that allow for the dynamic modification or enhancement of object behavior without altering their structure. The concept of decorators has its roots in object-oriented programming and design patterns, evolving over time to become a fundamental feature in many modern programming languages.</p>
-</section>
-<section id="historical-context" class="level2">
-<h2 class="anchored" data-anchor-id="historical-context">Historical Context</h2>
-<p>The decorator pattern was first formally described in the seminal book “Design Patterns: Elements of Reusable Object-Oriented Software” by Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides (often referred to as the “Gang of Four” or GoF) in 1994. However, the underlying concepts had been in use for some time before that.</p>
-</section>
-<section id="object-oriented-programming-and-the-need-for-flexibility" class="level2">
-<h2 class="anchored" data-anchor-id="object-oriented-programming-and-the-need-for-flexibility">Object-Oriented Programming and the Need for Flexibility</h2>
-<p>As object-oriented programming (OOP) gained popularity in the 1980s and early 1990s, developers faced challenges in creating flexible and maintainable code. Inheritance, while powerful, sometimes led to complex class hierarchies and the need for numerous subclasses to accommodate various combinations of behaviors.</p>
-</section>
-<section id="the-decorator-pattern-emerges" class="level2">
-<h2 class="anchored" data-anchor-id="the-decorator-pattern-emerges">The Decorator Pattern Emerges</h2>
-<p>The decorator pattern was conceived as a solution to these challenges. It provided a way to add responsibilities to objects dynamically, offering an alternative to subclassing for extending functionality. This pattern adheres to the Open/Closed Principle, one of the SOLID principles of object-oriented design, which states that software entities should be open for extension but closed for modification.</p>
-</section>
-<section id="key-concepts-of-the-decorator-pattern" class="level2">
-<h2 class="anchored" data-anchor-id="key-concepts-of-the-decorator-pattern">Key Concepts of the Decorator Pattern</h2>
-<ul>
-<li><strong>Component Interface</strong>: Defines the interface for objects that can have responsibilities added to them dynamically.</li>
-<li><strong>Concrete Component</strong>: Defines an object to which additional responsibilities can be attached.</li>
-<li><strong>Decorator</strong>: Maintains a reference to a Component object and defines an interface that conforms to Component’s interface.</li>
-<li><strong>Concrete Decorator</strong>: Adds responsibilities to the component.</li>
-</ul>
-</section>
-<section id="advantages-over-traditional-inheritance" class="level2">
-<h2 class="anchored" data-anchor-id="advantages-over-traditional-inheritance">Advantages Over Traditional Inheritance</h2>
-<p>The decorator pattern offered several advantages over traditional inheritance:</p>
-<ul>
-<li><strong>Flexibility</strong>: Allowed for the dynamic addition of responsibilities at runtime.</li>
-<li><strong>Composition over inheritance</strong>: Promoted object composition, reducing the reliance on complex inheritance hierarchies.</li>
-<li><strong>Single Responsibility Principle</strong>: Each decorator could focus on a single concern, improving modularity.</li>
-</ul>
-</section>
-<section id="early-implementations" class="level2">
-<h2 class="anchored" data-anchor-id="early-implementations">Early Implementations</h2>
-<p>Early implementations of the decorator pattern were often verbose and required significant boilerplate code. Developers had to create multiple classes to achieve the desired functionality, which, while powerful, could lead to code that was hard to read and maintain.</p>
-</section>
-<section id="evolution-in-different-programming-languages" class="level2">
-<h2 class="anchored" data-anchor-id="evolution-in-different-programming-languages">Evolution in Different Programming Languages</h2>
-<p>As the pattern gained popularity, different programming languages began to incorporate decorator-like features:</p>
-<ul>
-<li><strong>Java</strong>: Introduced annotations in Java 5 (2004), which, while not identical to decorators, served similar purposes in many cases.</li>
-<li><strong>C#</strong>: Added attributes, which are similar to Java’s annotations and can be used for decorator-like functionality.</li>
-<li><strong>JavaScript</strong>: Proposed decorators as part of ECMAScript, though they are still in the proposal stage as of 2024.</li>
-</ul>
-</section>
-<section id="pythons-adoption-of-decorators" class="level2">
-<h2 class="anchored" data-anchor-id="pythons-adoption-of-decorators">Python’s Adoption of Decorators</h2>
-<p>Python introduced decorator syntax in version 2.4 (2004), significantly simplifying the implementation of the decorator pattern. Python’s approach made decorators a first-class language feature, allowing for more readable and maintainable code.</p>
-</section>
-<section id="impact-on-modern-programming" class="level2">
-<h2 class="anchored" data-anchor-id="impact-on-modern-programming">Impact on Modern Programming</h2>
-<p>The decorator pattern and its various implementations have had a profound impact on modern programming:</p>
-<ul>
-<li><strong>Aspect-Oriented Programming (AOP)</strong>: Decorators are often used to implement cross-cutting concerns in AOP.</li>
-<li><strong>Middleware in Web Frameworks</strong>: Many web frameworks use decorator-like patterns for middleware implementation.</li>
-<li><strong>Metaprogramming</strong>: Decorators have become a powerful tool for metaprogramming, allowing for code generation and modification at runtime.</li>
-</ul>
-</section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>The decorator pattern, from its formal description in 1994 to its various implementations in modern programming languages, has proven to be a versatile and powerful concept. It has evolved from a design pattern requiring significant implementation effort to a built-in feature in languages like Python, demonstrating its value in creating flexible, maintainable, and extensible code.</p>
+<section id="tp-instructions-implementing-a-strategy-and-a-portfolio-for-a-backtesting-task" class="level2">
+<h2 class="anchored" data-anchor-id="tp-instructions-implementing-a-strategy-and-a-portfolio-for-a-backtesting-task">TP Instructions: Implementing a Strategy and a Portfolio for a backtesting task</h2>
+<p><strong>Objective:</strong> You need to implement methods and functionalities for a <code>Portfolio</code> class. The class should handle the operations of initializing the portfolio with financial instrument, rebalancing its positions based on a given strategy, and providing a summary of the portfolio positions.</p>
+<p><strong>Tips</strong>: - Use the methods and attributes of other provided classes like <code>Instrument</code>, <code>Quote</code>, and <code>Position</code>. - Before starting the exercise be sure to fully understand how the object provided for it worked. - Remember to handle cases where certain attributes might be <code>None</code> or missing. - If you finish the exercise early, you can implement method to populate the attribute of the Portfolio class that are not handle yet.</p>
+<pre class="{pyodide-python}"><code>from datetime import datetime
+import pandas as pd
+import math
+
+class Quote:
+    def __init__(self, date: datetime, price: float):
+        self.date = date
+        self.price = price
+
+    def __str__(self):
+        return f'(date: {self.date}, price: {self.price})'
 
 
-</section>
+class Instrument:
+    def __init__(self, ticker: str, exchange: str, quote: Quote, currency: str):
+        self.ticker: str = ticker
+        self.exchange: str = exchange
+        self.last_quote: Quote = quote
+        self.currency: str = currency
+        self.quote_history: [Quote] = []
+
+    def __str__(self):
+        print(f'Instrument with ticker {self.ticker}, currency {self.currency} and last quote {self.last_quote}')
+
+    def update_price(self, new_quote: Quote):
+        self.quote_history.append(self.last_quote)
+        self.last_quote = new_quote
+
+    def populate_quote_history_from_df(self, df_data: pd.DataFrame):
+        dates = df_data.index.to_pydatetime().tolist()
+        prices = df_data['Close'].tolist()
+        self.quote_history = [Quote(date, price) for date, price in zip(dates, prices)]
+
+    def quotes_to_dataframe(self) -&gt; pd.DataFrame:
+        data = {
+            "Date": [quote.date for quote in self.quote_history],
+            "Price": [quote.price for quote in self.quote_history]
+        }
+        df = pd.DataFrame(data)
+        df.set_index('Date', inplace=True)
+        return df
+
+
+class Position:
+    def __init__(self, instrument: Instrument, date: datetime, weight: float = 0, quantity: float = 0):
+        self.instrument = instrument
+        self.date = date
+        self.weight = weight
+        self.quantity = quantity
+
+    def update(self, date: datetime, weight: float, quantity: float):
+        if date is not None:
+            self.date = date
+        if weight is not None:
+            self.weight = weight
+        if quantity is not None:
+            self.quantity = quantity
+</code></pre>
+<p>PART I: Creating the meta class strategy and one specific strategy</p>
+<p>Create an abstract class Strategy that will serve as the base for all strategies. This class should: - Include an abstract method generate_signals that will generate trading signals based on input data. - Document the method generate_signals with a docstring explaining the parameters and return value: - Parameters for the class : A dictionary with tickers as keys and positions as values. The dict should be named data_for_signal_generation - Return: A dictionary with tickers as keys and signals as values.</p>
+<p>Create a derived class EqualWeightStrategy from Strategy: - This class should inherit from Strategy and implement the generate_signals method. - It should calculate and return a dictionary with equal-weight signals for each ticker. - To Implement the generate_signals method: - The method should calculate equal-weight signals for each ticker by dividing 1 by the total number of tickers. - It should return a dictionary where each ticker has an equal weight as its signal.</p>
+<pre class="{pyodide-python}"><code>    from datetime import datetime
+    import pandas as pd
+    import math
+    from abc import ABC, abstractmethod
+
+    # Implement here the Part I
+</code></pre>
+<p>Part II : Creating the Portfolio class 1. <strong>Class Attributes</strong>: Based on the provided code framework, create a <code>Portfolio</code> class which should have the following attributes: - <code>name</code>: Name of the portfolio. - <code>currency</code>: The currency in which the portfolio is denominated. - <code>aum</code>: Assets Under Management. - ‘nav’ : The last net asset value computed for the portfolio - <code>historical_nav</code>: A list that keeps track of the historical Net Asset Values. - <code>positions</code>: A list of <code>Position</code> objects representing the portfolio’s assets. - <code>strategy</code>: A strategy object, an instance of a class derived from the <code>Strategy</code> class.</p>
+<ol start="2" type="1">
+<li><p><strong>Initialization</strong>: Implement the <code>__init__</code> method to initialize the portfolio attributes.</p></li>
+<li><p><strong>Initialize Portfolio Positions</strong>: Implement a <code>initialize_position_from_instrument_list</code> method to initialize the portfolio’s positions with a given list of <code>FinancialAsset</code> objects. Each financial asset should be wrapped in a <code>Position</code> object.</p></li>
+<li><p><strong>Positions to Dictionary</strong>: Implement the <code>_positions_to_dict</code> method which returns a dictionary of positions with ticker symbols as keys and <code>Position</code> objects as values. This will help in rebalancing operations.</p></li>
+<li><p><strong>Rebalancing</strong>: Implement the <code>rebalance_portfolio</code> method which performs the following tasks:</p>
+<ul>
+<li>Convert the positions list into a dictionary.</li>
+<li>Generate trading signals using the provided strategy.</li>
+<li>Update the weight and quantity of each position in the portfolio based on the generated signals.</li>
+</ul></li>
+<li><p><strong>Portfolio Summary</strong>: Implement the <code>portfolio_position_summary</code> method. This method should return a dataframe summarizing the portfolio’s current positions, including the ticker symbols, weights, quantities, and last close for the assets</p></li>
+</ol>
+<pre class="{pyodide-python}"><code>    # Implement here the Part II
+</code></pre>
+<p>After implementing the Part I and Part II, you can launch this unit test to validate your code.</p>
+<pre class="{pyodide-python}"><code>    class TestPortfolio(unittest.TestCase):
+
+    def setUp(self):
+        # Setup the instruments and quotes
+        self.last_date_asset_1 = datetime(2024, 8, 29)
+        self.last_close_asset_1 = 230.02
+        self.equity_last_quote_asset_1 = Quote(self.last_date_asset_1, self.last_close_asset_1)
+        self.equity_1 = Instrument('AAPL', 'NASDAQ', self.equity_last_quote_asset_1, 'USD')
+
+        self.last_date_asset_2 = datetime(2024, 8, 29)
+        self.last_close_asset_2 = 414.75
+        self.equity_last_quote_asset_2 = Quote(self.last_date_asset_2, self.last_close_asset_2)
+        self.equity_2 = Instrument('MSFT', 'NASDAQ', self.equity_last_quote_asset_2, 'USD')
+
+        # Update prices
+        self.last_date_asset_1 = datetime(2024, 8, 30)
+        self.last_close_asset_1 = 229.0
+        self.equity_1.update_price(Quote(self.last_date_asset_1, self.last_close_asset_1))
+
+        self.last_date_asset_2 = datetime(2024, 8, 30)
+        self.last_close_asset_2 = 417.14
+        self.equity_2.update_price(Quote(self.last_date_asset_2, self.last_close_asset_2))
+
+        # Setup the portfolio strategy and portfolio
+        self.pft_strategy = EqualWeightStrategy()
+        self.portfolio = Portfolio("Tech Portfolio", "USD", 1000000, 10000, 100, self.pft_strategy)
+        self.portfolio.initialize_position_from_instrument_list([self.equity_1, self.equity_2])
+
+    def test_initial_portfolio_summary(self):
+        # Test the initial summary of the portfolio
+        summary = self.portfolio.portfolio_position_summary()
+        expected_data = {
+            "Ticker": ['AAPL', 'MSFT'],
+            "Weight": [0, 0],
+            "Quantity": [0, 0],
+            "Last close": [229.0, 417.14]
+        }
+        expected_df = pd.DataFrame(expected_data)
+        pd.testing.assert_frame_equal(summary, expected_df)
+
+    def test_rebalance_portfolio(self):
+        # Rebalance the portfolio and check the summary
+        self.portfolio.rebalance_portfolio()
+        summary = self.portfolio.portfolio_position_summary()
+
+        # Calculate expected values
+        total_aum = self.portfolio.aum
+        expected_weight = 0.5
+        expected_quantity_1 = math.floor((total_aum * expected_weight) / self.equity_1.last_quote.price)
+        expected_quantity_2 = math.floor((total_aum * expected_weight) / self.equity_2.last_quote.price)
+
+        expected_data = {
+            "Ticker": ['AAPL', 'MSFT'],
+            "Weight": [expected_weight, expected_weight],
+            "Quantity": [expected_quantity_1, expected_quantity_2],
+            "Last close": [229.0, 417.14]
+        }
+        expected_df = pd.DataFrame(expected_data)
+
+        pd.testing.assert_frame_equal(summary, expected_df)
+
+
+if __name__ == '__main__':
+    unittest.main()
+</code></pre>
+<hr>
+
+
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -1146,14 +1220,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../../content/Cours_4/1-Design_Pattern.html" class="pagination-link" aria-label="Design Patterns">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Design Patterns</span>
+      <a href="../../content/Cours_3/6-Protocol.html" class="pagination-link" aria-label="Protocol Classes">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Protocol Classes</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../content/Cours_4/3-Decorator_practically.html" class="pagination-link" aria-label="Decorator Practically">
-        <span class="nav-page-text">Decorator Practically</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

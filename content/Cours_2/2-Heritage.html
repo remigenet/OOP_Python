@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Remi Genet">
-<meta name="dcterms.date" content="2024-08-31">
+<meta name="dcterms.date" content="2024-09-01">
 <meta name="description" content="Découvrez le concept d’héritage en Python, son intérêt et son application dans la création de hiérarchies de classes. Apprenez comment Python gère l’héritage implicite de la classe object, l’héritage multiple, et la résolution de l’ordre des méthodes (MRO).">
 
 <title>Héritage en Python : Concept et intérêt – Programmation Orientée Objet en Python</title>
@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"options":{"results":"markup","output":"true","message":"true","autorun":"","fig-cap":"","label":"","warning":"true","dpi":72,"out-width":"700px","comment":"","classes":"","out-height":"","read-only":"false","fig-width":7,"context":"interactive","fig-height":5},"id":1,"code":"class MaClasse:\n    pass\n\n# Est équivalent à :\nclass MaClasse(object):\n    pass"},{"options":{"results":"markup","output":"true","message":"true","autorun":"","fig-cap":"","label":"","warning":"true","dpi":72,"out-width":"700px","comment":"","classes":"","out-height":"","read-only":"false","fig-width":7,"context":"interactive","fig-height":5},"id":2,"code":"class Classe1:\n    pass\n\nclass Classe2:\n    pass\n\nclass ClasseDerivee(Classe1, Classe2):\n    pass"},{"options":{"results":"markup","output":"true","message":"true","autorun":"","fig-cap":"","label":"","warning":"true","dpi":72,"out-width":"700px","comment":"","classes":"","out-height":"","read-only":"false","fig-width":7,"context":"interactive","fig-height":5},"id":3,"code":"class Nageur:\n    def nager(self):\n        print(\"Je nage\")\n\nclass Volant:\n    def voler(self):\n        print(\"Je vole\")\n\nclass Canard(Nageur, Volant):\n    pass\n\ndonald = Canard()\ndonald.nager()  # Affiche: Je nage\ndonald.voler()  # Affiche: Je vole"},{"options":{"results":"markup","output":"true","message":"true","autorun":"","fig-cap":"","label":"","warning":"true","dpi":72,"out-width":"700px","comment":"","classes":"","out-height":"","read-only":"false","fig-width":7,"context":"interactive","fig-height":5},"id":4,"code":"class A:\n    pass\n\nclass B(A):\n    pass\n\nclass C(A):\n    pass\n\nclass D(B, C):\n    pass\n\nprint(D.mro())\n# Affiche: [<class '__main__.D'>, <class '__main__.B'>, <class '__main__.C'>, <class '__main__.A'>, <class 'object'>]"},{"options":{"results":"markup","output":"true","message":"true","autorun":"","fig-cap":"","label":"","warning":"true","dpi":72,"out-width":"700px","comment":"","classes":"","out-height":"","read-only":"false","fig-width":7,"context":"interactive","fig-height":5},"id":5,"code":"class A:\n    def methode(self):\n        print(\"Méthode de A\")\n\nclass B(A):\n    def methode(self):\n        print(\"Méthode de B\")\n\nclass C(A):\n    def methode(self):\n        print(\"Méthode de C\")\n\nclass D(B, C):\n    pass\n\nd = D()\nd.methode()  # Affiche: Méthode de B"}];
+globalThis.qpyodideCellDetails = [{"id":1,"code":"class MaClasse:\n    pass\n\n# Est équivalent à :\nclass MaClasse(object):\n    pass","options":{"context":"interactive","warning":"true","message":"true","label":"","dpi":72,"comment":"","fig-cap":"","autorun":"","read-only":"false","results":"markup","fig-width":7,"fig-height":5,"classes":"","output":"true","out-width":"700px","out-height":""}},{"id":2,"code":"class Classe1:\n    pass\n\nclass Classe2:\n    pass\n\nclass ClasseDerivee(Classe1, Classe2):\n    pass","options":{"context":"interactive","warning":"true","message":"true","label":"","dpi":72,"comment":"","fig-cap":"","autorun":"","read-only":"false","results":"markup","fig-width":7,"fig-height":5,"classes":"","output":"true","out-width":"700px","out-height":""}},{"id":3,"code":"class Nageur:\n    def nager(self):\n        print(\"Je nage\")\n\nclass Volant:\n    def voler(self):\n        print(\"Je vole\")\n\nclass Canard(Nageur, Volant):\n    pass\n\ndonald = Canard()\ndonald.nager()  # Affiche: Je nage\ndonald.voler()  # Affiche: Je vole","options":{"context":"interactive","warning":"true","message":"true","label":"","dpi":72,"comment":"","fig-cap":"","autorun":"","read-only":"false","results":"markup","fig-width":7,"fig-height":5,"classes":"","output":"true","out-width":"700px","out-height":""}},{"id":4,"code":"class A:\n    pass\n\nclass B(A):\n    pass\n\nclass C(A):\n    pass\n\nclass D(B, C):\n    pass\n\nprint(D.mro())\n# Affiche: [<class '__main__.D'>, <class '__main__.B'>, <class '__main__.C'>, <class '__main__.A'>, <class 'object'>]","options":{"context":"interactive","warning":"true","message":"true","label":"","dpi":72,"comment":"","fig-cap":"","autorun":"","read-only":"false","results":"markup","fig-width":7,"fig-height":5,"classes":"","output":"true","out-width":"700px","out-height":""}},{"id":5,"code":"class A:\n    def methode(self):\n        print(\"Méthode de A\")\n\nclass B(A):\n    def methode(self):\n        print(\"Méthode de B\")\n\nclass C(A):\n    def methode(self):\n        print(\"Méthode de C\")\n\nclass D(B, C):\n    pass\n\nd = D()\nd.methode()  # Affiche: Méthode de B","options":{"context":"interactive","warning":"true","message":"true","label":"","dpi":72,"comment":"","fig-cap":"","autorun":"","read-only":"false","results":"markup","fig-width":7,"fig-height":5,"classes":"","output":"true","out-width":"700px","out-height":""}}];
 
 
 </script>
@@ -439,10 +439,10 @@ globalThis._qpyodideGetInstance = function() {
 <meta property="og:image:width" content="1024">
 <meta name="citation_title" content="Héritage en Python : Concept et intérêt">
 <meta name="citation_author" content="Remi Genet">
-<meta name="citation_publication_date" content="2024-08-31">
-<meta name="citation_cover_date" content="2024-08-31">
+<meta name="citation_publication_date" content="2024-09-01">
+<meta name="citation_cover_date" content="2024-09-01">
 <meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-08-31">
+<meta name="citation_online_date" content="2024-09-01">
 <meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_2/2-Heritage.html">
 <meta name="citation_language" content="en">
 </head>
@@ -507,10 +507,6 @@ globalThis._qpyodideGetInstance = function() {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
-        <li>
-    <a class="dropdown-item" href="../../content/Cours_1/TP.html">
- <span class="dropdown-text">Construire son propre DataFrame</span></a>
-  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -590,7 +586,7 @@ globalThis._qpyodideGetInstance = function() {
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/TP.html">
+    <a class="dropdown-item" href="../../content/Cours_3/TP_equity_portfolio.html">
  <span class="dropdown-text">TP</span></a>
   </li>  
     </ul>
@@ -659,10 +655,6 @@ globalThis._qpyodideGetInstance = function() {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
-        <li>
-    <a class="dropdown-item" href="../../content/Cours_5/TP.html">
- <span class="dropdown-text">TP: Creating a Linear Regression Package</span></a>
-  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -692,10 +684,6 @@ globalThis._qpyodideGetInstance = function() {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
-        <li>
-    <a class="dropdown-item" href="../../content/Cours_5/TP.html">
- <span class="dropdown-text">TP: Creating a Linear Regression Package</span></a>
-  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -883,7 +871,7 @@ globalThis._qpyodideGetInstance = function() {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-08-31</p>
+      <p class="date">2024-09-01</p>
     </div>
   </div>
   

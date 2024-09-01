@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Remi Genet">
-<meta name="dcterms.date" content="2024-08-31">
+<meta name="dcterms.date" content="2024-09-01">
 
 <title>Construire son propre DataFrame – Programmation Orientée Objet en Python</title>
 <style>
@@ -32,7 +32,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../content/Cours_1/6-Bases_of_classes_in_python.html" rel="prev">
 <link href="../../content/.img/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -236,7 +235,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"id":1,"code":"import unittest\nimport numpy as np\n\nclass DataFrameSimple:\n   #TODO\n   pass\n\nclass TestDataFrameSimple(unittest.TestCase):\n\n    def setUp(self):\n        self.data_dict = {\n            'A': [1, 2, 3, 4, 5],\n            'B': [10, 20, 30, 40, 50],\n            'C': [100, 200, 300, 400, 500]\n        }\n        self.df = DataFrameSimple(self.data_dict)\n\n    def test_creation(self):\n        self.assertIsInstance(self.df, DataFrameSimple)\n        self.assertEqual(list(self.df.colonnes), ['A', 'B', 'C'])\n\n    def test_afficher(self):\n        result = self.df.afficher()\n        self.assertIsInstance(result, str)\n        self.assertIn('A', result)\n        self.assertIn('B', result)\n        self.assertIn('C', result)\n\n    def test_moyenne(self):\n        self.assertEqual(self.df.moyenne('A'), 3)\n        self.assertEqual(self.df.moyenne('B'), 30)\n\n    def test_somme(self):\n        self.assertEqual(self.df.somme('A'), 15)\n        self.assertEqual(self.df.somme('B'), 150)\n\n    def test_min(self):\n        self.assertEqual(self.df.min('A'), 1)\n        self.assertEqual(self.df.min('B'), 10)\n\n    def test_max(self):\n        self.assertEqual(self.df.max('A'), 5)\n        self.assertEqual(self.df.max('B'), 50)\n\n    def test_select_colonne(self):\n        np.testing.assert_array_equal(self.df.select_colonne('A'), np.array([1, 2, 3, 4, 5]))\n\ndef run_tests():\n    unittest.main(argv=[''], verbosity=2, exit=False)\n\nif __name__ == '__main__':\n    run_tests()","options":{"dpi":72,"warning":"true","out-height":"","out-width":"700px","classes":"","fig-cap":"","context":"interactive","label":"","fig-height":5,"read-only":"false","fig-width":7,"results":"markup","comment":"","output":"true","autorun":"","message":"true"}}];
+globalThis.qpyodideCellDetails = [{"code":"import unittest\nimport numpy as np\n\nclass DataFrameSimple:\n   #TODO\n   pass\n\nclass TestDataFrameSimple(unittest.TestCase):\n\n    def setUp(self):\n        self.data_dict = {\n            'A': [1, 2, 3, 4, 5],\n            'B': [10, 20, 30, 40, 50],\n            'C': [100, 200, 300, 400, 500]\n        }\n        self.df = DataFrameSimple(self.data_dict)\n\n    def test_creation(self):\n        self.assertIsInstance(self.df, DataFrameSimple)\n        self.assertEqual(list(self.df.colonnes), ['A', 'B', 'C'])\n\n    def test_afficher(self):\n        result = self.df.afficher()\n        self.assertIsInstance(result, str)\n        self.assertIn('A', result)\n        self.assertIn('B', result)\n        self.assertIn('C', result)\n\n    def test_moyenne(self):\n        self.assertEqual(self.df.moyenne('A'), 3)\n        self.assertEqual(self.df.moyenne('B'), 30)\n\n    def test_somme(self):\n        self.assertEqual(self.df.somme('A'), 15)\n        self.assertEqual(self.df.somme('B'), 150)\n\n    def test_min(self):\n        self.assertEqual(self.df.min('A'), 1)\n        self.assertEqual(self.df.min('B'), 10)\n\n    def test_max(self):\n        self.assertEqual(self.df.max('A'), 5)\n        self.assertEqual(self.df.max('B'), 50)\n\n    def test_select_colonne(self):\n        np.testing.assert_array_equal(self.df.select_colonne('A'), np.array([1, 2, 3, 4, 5]))\n\ndef run_tests():\n    unittest.main(argv=[''], verbosity=2, exit=False)\n\nif __name__ == '__main__':\n    run_tests()","id":1,"options":{"context":"interactive","label":"","results":"markup","fig-cap":"","dpi":72,"warning":"true","comment":"","output":"true","message":"true","out-height":"","autorun":"","out-width":"700px","classes":"","fig-height":5,"read-only":"false","fig-width":7}}];
 
 
 </script>
@@ -437,15 +436,15 @@ globalThis._qpyodideGetInstance = function() {
 <meta property="og:image:width" content="1024">
 <meta name="citation_title" content="Construire son propre DataFrame">
 <meta name="citation_author" content="Remi Genet">
-<meta name="citation_publication_date" content="2024-08-31">
-<meta name="citation_cover_date" content="2024-08-31">
+<meta name="citation_publication_date" content="2024-09-01">
+<meta name="citation_cover_date" content="2024-09-01">
 <meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-08-31">
+<meta name="citation_online_date" content="2024-09-01">
 <meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_1/TP.html">
 <meta name="citation_language" content="en">
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -505,10 +504,6 @@ globalThis._qpyodideGetInstance = function() {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
-        <li>
-    <a class="dropdown-item" href="../../content/Cours_1/TP.html">
- <span class="dropdown-text">Construire son propre DataFrame</span></a>
-  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -588,7 +583,7 @@ globalThis._qpyodideGetInstance = function() {
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/TP.html">
+    <a class="dropdown-item" href="../../content/Cours_3/TP_equity_portfolio.html">
  <span class="dropdown-text">TP</span></a>
   </li>  
     </ul>
@@ -657,10 +652,6 @@ globalThis._qpyodideGetInstance = function() {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
-        <li>
-    <a class="dropdown-item" href="../../content/Cours_5/TP.html">
- <span class="dropdown-text">TP: Creating a Linear Regression Package</span></a>
-  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -690,10 +681,6 @@ globalThis._qpyodideGetInstance = function() {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
-        <li>
-    <a class="dropdown-item" href="../../content/Cours_5/TP.html">
- <span class="dropdown-text">TP: Creating a Linear Regression Package</span></a>
-  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -733,86 +720,10 @@ globalThis._qpyodideGetInstance = function() {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_1/TP.html">Travaux Pratiques</a></li><li class="breadcrumb-item"><a href="../../content/Cours_1/TP.html">Construire son propre DataFrame</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-    </div>
-  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_1/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction: Histoire et Concepts</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_1/1-Histoire.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Histoire de la programmation</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_1/2-Structuration_des_donnees.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Première Structuration des données</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_1/3-NaissancePOO.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Naissance de la POO</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_1/4-all_is_object.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python: tout n’est qu’objet</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_1/5-Simplicity_and_performance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python : Simplicité des objets et performance sous-jacente</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_1/6-Bases_of_classes_in_python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Classes en Python : Concepts fondamentaux</span></a>
-  </div>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Travaux Pratiques</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_1/TP.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Construire son propre DataFrame</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -825,7 +736,7 @@ globalThis._qpyodideGetInstance = function() {
 </nav>
     </div>
 <!-- main -->
-<main class="content column-body" id="quarto-document-content">
+<main class="content column-page-left" id="quarto-document-content">
 <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.46.0/min/vs/loader.js"></script>
 <script type="module" id="qpyodide-monaco-editor-init">
 
@@ -837,7 +748,7 @@ globalThis._qpyodideGetInstance = function() {
   });
 </script>
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_1/TP.html">Travaux Pratiques</a></li><li class="breadcrumb-item"><a href="../../content/Cours_1/TP.html">Construire son propre DataFrame</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Construire son propre DataFrame</h1>
   <div class="quarto-categories">
@@ -848,7 +759,7 @@ globalThis._qpyodideGetInstance = function() {
 
 
 
-<div class="quarto-title-meta column-body">
+<div class="quarto-title-meta column-page-left">
 
     <div>
     <div class="quarto-title-meta-heading">Author</div>
@@ -860,7 +771,7 @@ globalThis._qpyodideGetInstance = function() {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-08-31</p>
+      <p class="date">2024-09-01</p>
     </div>
   </div>
   
@@ -1472,15 +1383,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation column-body">
-  <div class="nav-page nav-page-previous">
-      <a href="../../content/Cours_1/6-Bases_of_classes_in_python.html" class="pagination-link" aria-label="Classes en Python : Concepts fondamentaux">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Classes en Python : Concepts fondamentaux</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

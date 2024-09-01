@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Remi Genet">
-<meta name="dcterms.date" content="2024-08-31">
+<meta name="dcterms.date" content="2024-09-01">
 <meta name="description" content="Learn about type hinting in Python, the typing module, and how to use linters for static type checking to improve code quality and maintainability.">
 
 <title>Type Hinting, Typing Module, and Linters in Python – Programmation Orientée Objet en Python</title>
@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"def greet(name: str) -> str:\n    return f\"Hello, {name}!\"\n\nx: int = 5\ny: float = 3.14\nnames: list[str] = [\"Alice\", \"Bob\", \"Charlie\"]","options":{"fig-cap":"","autorun":"","output":"true","message":"true","comment":"","label":"","results":"markup","read-only":"false","classes":"","out-width":"700px","fig-width":7,"warning":"true","dpi":72,"out-height":"","context":"interactive","fig-height":5},"id":1},{"code":"from typing import List, Dict, Tuple, Optional, Union, Any\n\ndef process_data(items: List[int]) -> Dict[str, int]:\n    ...\n\ndef get_user_info() -> Tuple[str, int, Optional[str]]:\n    ...\n\ndef handle_input(value: Union[int, str]) -> Any:\n    ...","options":{"fig-cap":"","autorun":"","output":"true","message":"true","comment":"","label":"","results":"markup","read-only":"false","classes":"","out-width":"700px","fig-width":7,"warning":"true","dpi":72,"out-height":"","context":"interactive","fig-height":5},"id":2},{"code":"from typing import List, Dict\n\nVector = List[float]\nMatrix = List[Vector]\n\ndef scale_vector(v: Vector, factor: float) -> Vector:\n    return [x * factor for x in v]","options":{"fig-cap":"","autorun":"","output":"true","message":"true","comment":"","label":"","results":"markup","read-only":"false","classes":"","out-width":"700px","fig-width":7,"warning":"true","dpi":72,"out-height":"","context":"interactive","fig-height":5},"id":3},{"code":"from typing import TypeVar, List\n\nT = TypeVar('T')\n\ndef first_element(l: List[T]) -> T:\n    return l[0]","options":{"fig-cap":"","autorun":"","output":"true","message":"true","comment":"","label":"","results":"markup","read-only":"false","classes":"","out-width":"700px","fig-width":7,"warning":"true","dpi":72,"out-height":"","context":"interactive","fig-height":5},"id":4},{"code":"from typing import List, Dict, Optional\n\nclass User:\n    def __init__(self, name: str, age: int):\n        self.name = name\n        self.age = age\n\ndef get_user_data(users: List[User]) -> Dict[str, int]:\n    return {user.name: user.age for user in users}\n\ndef find_user(users: List[User], name: str) -> Optional[User]:\n    for user in users:\n        if user.name == name:\n            return user\n    return None\n\n# Usage\nusers: List[User] = [User(\"Alice\", 30), User(\"Bob\", 25)]\nuser_data: Dict[str, int] = get_user_data(users)\nfound_user: Optional[User] = find_user(users, \"Alice\")\n\nif found_user:\n    print(f\"Found user: {found_user.name}, Age: {found_user.age}\")\nelse:\n    print(\"User not found\")","options":{"fig-cap":"","autorun":"","output":"true","message":"true","comment":"","label":"","results":"markup","read-only":"false","classes":"","out-width":"700px","fig-width":7,"warning":"true","dpi":72,"out-height":"","context":"interactive","fig-height":5},"id":5}];
+globalThis.qpyodideCellDetails = [{"id":1,"options":{"out-width":"700px","classes":"","read-only":"false","message":"true","context":"interactive","autorun":"","fig-height":5,"results":"markup","fig-cap":"","comment":"","dpi":72,"label":"","out-height":"","output":"true","fig-width":7,"warning":"true"},"code":"def greet(name: str) -> str:\n    return f\"Hello, {name}!\"\n\nx: int = 5\ny: float = 3.14\nnames: list[str] = [\"Alice\", \"Bob\", \"Charlie\"]"},{"id":2,"options":{"out-width":"700px","classes":"","read-only":"false","message":"true","context":"interactive","autorun":"","fig-height":5,"results":"markup","fig-cap":"","comment":"","dpi":72,"label":"","out-height":"","output":"true","fig-width":7,"warning":"true"},"code":"from typing import List, Dict, Tuple, Optional, Union, Any\n\ndef process_data(items: List[int]) -> Dict[str, int]:\n    ...\n\ndef get_user_info() -> Tuple[str, int, Optional[str]]:\n    ...\n\ndef handle_input(value: Union[int, str]) -> Any:\n    ..."},{"id":3,"options":{"out-width":"700px","classes":"","read-only":"false","message":"true","context":"interactive","autorun":"","fig-height":5,"results":"markup","fig-cap":"","comment":"","dpi":72,"label":"","out-height":"","output":"true","fig-width":7,"warning":"true"},"code":"from typing import List, Dict\n\nVector = List[float]\nMatrix = List[Vector]\n\ndef scale_vector(v: Vector, factor: float) -> Vector:\n    return [x * factor for x in v]"},{"id":4,"options":{"out-width":"700px","classes":"","read-only":"false","message":"true","context":"interactive","autorun":"","fig-height":5,"results":"markup","fig-cap":"","comment":"","dpi":72,"label":"","out-height":"","output":"true","fig-width":7,"warning":"true"},"code":"from typing import TypeVar, List\n\nT = TypeVar('T')\n\ndef first_element(l: List[T]) -> T:\n    return l[0]"},{"id":5,"options":{"out-width":"700px","classes":"","read-only":"false","message":"true","context":"interactive","autorun":"","fig-height":5,"results":"markup","fig-cap":"","comment":"","dpi":72,"label":"","out-height":"","output":"true","fig-width":7,"warning":"true"},"code":"from typing import List, Dict, Optional\n\nclass User:\n    def __init__(self, name: str, age: int):\n        self.name = name\n        self.age = age\n\ndef get_user_data(users: List[User]) -> Dict[str, int]:\n    return {user.name: user.age for user in users}\n\ndef find_user(users: List[User], name: str) -> Optional[User]:\n    for user in users:\n        if user.name == name:\n            return user\n    return None\n\n# Usage\nusers: List[User] = [User(\"Alice\", 30), User(\"Bob\", 25)]\nuser_data: Dict[str, int] = get_user_data(users)\nfound_user: Optional[User] = find_user(users, \"Alice\")\n\nif found_user:\n    print(f\"Found user: {found_user.name}, Age: {found_user.age}\")\nelse:\n    print(\"User not found\")"}];
 
 
 </script>
@@ -439,10 +439,10 @@ globalThis._qpyodideGetInstance = function() {
 <meta property="og:image:width" content="303">
 <meta name="citation_title" content="Type Hinting, Typing Module, and Linters in Python">
 <meta name="citation_author" content="Remi Genet">
-<meta name="citation_publication_date" content="2024-08-31">
-<meta name="citation_cover_date" content="2024-08-31">
+<meta name="citation_publication_date" content="2024-09-01">
+<meta name="citation_cover_date" content="2024-09-01">
 <meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-08-31">
+<meta name="citation_online_date" content="2024-09-01">
 <meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_3/4-Type_Hinting.html">
 <meta name="citation_language" content="en">
 </head>
@@ -507,10 +507,6 @@ globalThis._qpyodideGetInstance = function() {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
-        <li>
-    <a class="dropdown-item" href="../../content/Cours_1/TP.html">
- <span class="dropdown-text">Construire son propre DataFrame</span></a>
-  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -590,7 +586,7 @@ globalThis._qpyodideGetInstance = function() {
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
-    <a class="dropdown-item" href="../../content/Cours_3/TP.html">
+    <a class="dropdown-item" href="../../content/Cours_3/TP_equity_portfolio.html">
  <span class="dropdown-text">TP</span></a>
   </li>  
     </ul>
@@ -659,10 +655,6 @@ globalThis._qpyodideGetInstance = function() {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
-        <li>
-    <a class="dropdown-item" href="../../content/Cours_5/TP.html">
- <span class="dropdown-text">TP: Creating a Linear Regression Package</span></a>
-  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -692,10 +684,6 @@ globalThis._qpyodideGetInstance = function() {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
-        <li>
-    <a class="dropdown-item" href="../../content/Cours_5/TP.html">
- <span class="dropdown-text">TP: Creating a Linear Regression Package</span></a>
-  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -805,7 +793,7 @@ globalThis._qpyodideGetInstance = function() {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_3/TP.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/Cours_3/TP_equity_portfolio.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">TP</span></a>
   </div>
 </li>
@@ -887,7 +875,7 @@ globalThis._qpyodideGetInstance = function() {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-08-31</p>
+      <p class="date">2024-09-01</p>
     </div>
   </div>
   
