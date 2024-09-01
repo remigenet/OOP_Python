@@ -8,6 +8,8 @@ categories:
   - TP
 type: book
 image: .img/exercice.webp
+filters:
+ - pyodide
 ---
 
 ## TP Instructions: Implementing a Strategy and a Portfolio for a backtesting task
@@ -102,12 +104,12 @@ Create a derived class EqualWeightStrategy from Strategy:
     - It should return a dictionary where each ticker has an equal weight as its signal.
 
 ```{pyodide-python}
-    from datetime import datetime
-    import pandas as pd
-    import math
-    from abc import ABC, abstractmethod
+from datetime import datetime
+import pandas as pd
+import math
+from abc import ABC, abstractmethod
 
-    # Implement here the Part I
+# Implement here the Part I
 
 ```
 
@@ -145,13 +147,15 @@ Part II : Creating the Portfolio class
    portfolio's current positions, including the ticker symbols, weights, quantities, and last close for the assets
 
 ```{pyodide-python}
-    # Implement here the Part II
+# Implement here the Part II
 
 ```
 
 After implementing the Part I and Part II, you can launch this unit test to validate your code.
 ```{pyodide-python}
-    class TestPortfolio(unittest.TestCase):
+import unittest
+
+class TestPortfolio(unittest.TestCase):
 
     def setUp(self):
         # Setup the instruments and quotes
@@ -213,9 +217,12 @@ After implementing the Part I and Part II, you can launch this unit test to vali
         pd.testing.assert_frame_equal(summary, expected_df)
 
 
-if __name__ == '__main__':
-    unittest.main()
 
+def run_tests():
+    unittest.main(argv=[''], verbosity=2, exit=False)
+
+if __name__ == '__main__':
+    run_tests()
 ```
 
 
