@@ -131,7 +131,31 @@ print(Voiture.nombre_de_roues)  # Affiche toujours : 4
 Dans cet exemple, `ma_voiture.accident()` modifie l'attribut `nombre_de_roues` pour cette instance spécifique, sans affecter la classe ou les autres instances.
 
 ### 6.2 Attributs d'instance
-[Cette section reste inchangée]
+
+Les attributs d'instance sont spécifiques à chaque objet créé à partir de la classe. 
+
+```{pyodide-python}
+class Voiture:
+    def __init__(self, marque, modele):
+        self.marque = marque  # Attribut d'instance
+        self.modele = modele  # Attribut d'instance
+        self.kilometrage = 0  # Attribut d'instance avec une valeur par défaut
+
+    def rouler(self, distance):
+        self.kilometrage += distance
+
+ma_voiture = Voiture("Renault", "Clio")
+voiture_de_mon_ami = Voiture("Peugeot", "208")
+
+print(ma_voiture.marque)  # Affiche : Renault
+print(voiture_de_mon_ami.marque)  # Affiche : Peugeot
+
+ma_voiture.rouler(100)
+print(ma_voiture.kilometrage)  # Affiche : 100
+print(voiture_de_mon_ami.kilometrage)  # Affiche : 0
+```
+
+Dans cet exemple, `marque`, `modele`, et `kilometrage` sont des attributs d'instance. Chaque instance de `Voiture` a ses propres valeurs pour ces attributs. Modifier un attribut d'instance pour un objet n'affecte pas les autres objets de la même classe.
 
 ## 7. Comprendre 'self' en profondeur
 
@@ -208,7 +232,3 @@ Suivre PEP 8 rend votre code :
 - Plus lisible pour les autres développeurs
 - Plus cohérent avec la majorité du code Python
 - Plus facile à maintenir sur le long terme
-
-## Conclusion
-
-Comprendre les concepts fondamentaux des classes en Python, comme les attributs de classe vs d'instance, le rôle de 'self', et les conventions de codage, est crucial pour écrire du code orienté objet efficace et lisible. Ces bases permettent de construire des programmes bien structurés et faciles à maintenir.
