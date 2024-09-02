@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Remi Genet">
-<meta name="dcterms.date" content="2024-09-01">
+<meta name="dcterms.date" content="2024-09-02">
 <meta name="description" content="Learn how to achieve polymorphism in Python through function overloading, type checking, and class-based polymorphism">
 
 <title>Polymorphism in Python: Function Overloading and Type Checking – Programmation Orientée Objet en Python</title>
@@ -272,7 +272,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"def add_integers(a: int, b: int) -> int:\n    return a + b\n\ndef add_floats(a: float, b: float) -> float:\n    return a + b","id":1,"options":{"output":"true","read-only":"false","comment":"","results":"markup","autorun":"","fig-cap":"","fig-height":5,"context":"interactive","warning":"true","out-width":"700px","dpi":72,"message":"true","fig-width":7,"out-height":"","classes":"","label":""}},{"code":"def add(a, b):\n    if isinstance(a, int) and isinstance(b, int):\n        return a + b\n    elif isinstance(a, float) and isinstance(b, float):\n        return a + b\n    else:\n        raise TypeError(\"Unsupported types\")","id":2,"options":{"output":"true","read-only":"false","comment":"","results":"markup","autorun":"","fig-cap":"","fig-height":5,"context":"interactive","warning":"true","out-width":"700px","dpi":72,"message":"true","fig-width":7,"out-height":"","classes":"","label":""}},{"code":"class Calculator:\n    def add(self, a, b):\n        if isinstance(a, int) and isinstance(b, int):\n            return self._add_integers(a, b)\n        elif isinstance(a, float) and isinstance(b, float):\n            return self._add_floats(a, b)\n        else:\n            raise TypeError(\"Unsupported types\")\n\n    def _add_integers(self, a: int, b: int) -> int:\n        return a + b\n\n    def _add_floats(self, a: float, b: float) -> float:\n        return a + b","id":3,"options":{"output":"true","read-only":"false","comment":"","results":"markup","autorun":"","fig-cap":"","fig-height":5,"context":"interactive","warning":"true","out-width":"700px","dpi":72,"message":"true","fig-width":7,"out-height":"","classes":"","label":""}},{"code":"calc = Calculator()\nprint(calc.add(5, 3))        # Uses _add_integers\nprint(calc.add(5.5, 3.2))    # Uses _add_floats","id":4,"options":{"output":"true","read-only":"false","comment":"","results":"markup","autorun":"","fig-cap":"","fig-height":5,"context":"interactive","warning":"true","out-width":"700px","dpi":72,"message":"true","fig-width":7,"out-height":"","classes":"","label":""}},{"code":"def calculate_area(shape):\n    return shape.area()\n\nclass Circle:\n    def __init__(self, radius):\n        self.radius = radius\n    \n    def area(self):\n        return 3.14 * self.radius ** 2\n\nclass Square:\n    def __init__(self, side):\n        self.side = side\n    \n    def area(self):\n        return self.side ** 2\n\n# Both work because both have an area() method\nprint(calculate_area(Circle(5)))\nprint(calculate_area(Square(4)))","id":5,"options":{"output":"true","read-only":"false","comment":"","results":"markup","autorun":"","fig-cap":"","fig-height":5,"context":"interactive","warning":"true","out-width":"700px","dpi":72,"message":"true","fig-width":7,"out-height":"","classes":"","label":""}}];
+globalThis.qpyodideCellDetails = [{"code":"def add_integers(a: int, b: int) -> int:\n    return a + b\n\ndef add_floats(a: float, b: float) -> float:\n    return a + b","id":1,"options":{"fig-cap":"","output":"true","out-height":"","warning":"true","dpi":72,"out-width":"700px","message":"true","fig-width":7,"classes":"","read-only":"false","label":"","results":"markup","fig-height":5,"autorun":"","context":"interactive","comment":""}},{"code":"def add(a, b):\n    if isinstance(a, int) and isinstance(b, int):\n        return a + b\n    elif isinstance(a, float) and isinstance(b, float):\n        return a + b\n    else:\n        raise TypeError(\"Unsupported types\")","id":2,"options":{"fig-cap":"","output":"true","out-height":"","warning":"true","dpi":72,"out-width":"700px","message":"true","fig-width":7,"classes":"","read-only":"false","label":"","results":"markup","fig-height":5,"autorun":"","context":"interactive","comment":""}},{"code":"class Calculator:\n    def add(self, a, b):\n        if isinstance(a, int) and isinstance(b, int):\n            return self._add_integers(a, b)\n        elif isinstance(a, float) and isinstance(b, float):\n            return self._add_floats(a, b)\n        else:\n            raise TypeError(\"Unsupported types\")\n\n    def _add_integers(self, a: int, b: int) -> int:\n        return a + b\n\n    def _add_floats(self, a: float, b: float) -> float:\n        return a + b","id":3,"options":{"fig-cap":"","output":"true","out-height":"","warning":"true","dpi":72,"out-width":"700px","message":"true","fig-width":7,"classes":"","read-only":"false","label":"","results":"markup","fig-height":5,"autorun":"","context":"interactive","comment":""}},{"code":"calc = Calculator()\nprint(calc.add(5, 3))        # Uses _add_integers\nprint(calc.add(5.5, 3.2))    # Uses _add_floats","id":4,"options":{"fig-cap":"","output":"true","out-height":"","warning":"true","dpi":72,"out-width":"700px","message":"true","fig-width":7,"classes":"","read-only":"false","label":"","results":"markup","fig-height":5,"autorun":"","context":"interactive","comment":""}},{"code":"def calculate_area(shape):\n    return shape.area()\n\nclass Circle:\n    def __init__(self, radius):\n        self.radius = radius\n    \n    def area(self):\n        return 3.14 * self.radius ** 2\n\nclass Square:\n    def __init__(self, side):\n        self.side = side\n    \n    def area(self):\n        return self.side ** 2\n\n# Both work because both have an area() method\nprint(calculate_area(Circle(5)))\nprint(calculate_area(Square(4)))","id":5,"options":{"fig-cap":"","output":"true","out-height":"","warning":"true","dpi":72,"out-width":"700px","message":"true","fig-width":7,"classes":"","read-only":"false","label":"","results":"markup","fig-height":5,"autorun":"","context":"interactive","comment":""}}];
 
 
 </script>
@@ -473,10 +473,10 @@ globalThis._qpyodideGetInstance = function() {
 <meta property="og:image:width" content="303">
 <meta name="citation_title" content="Polymorphism in Python: Function Overloading and Type Checking">
 <meta name="citation_author" content="Remi Genet">
-<meta name="citation_publication_date" content="2024-09-01">
-<meta name="citation_cover_date" content="2024-09-01">
+<meta name="citation_publication_date" content="2024-09-02">
+<meta name="citation_cover_date" content="2024-09-02">
 <meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-09-01">
+<meta name="citation_online_date" content="2024-09-02">
 <meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_3/2-Overloading.html">
 <meta name="citation_language" content="en">
 </head>
@@ -541,6 +541,10 @@ globalThis._qpyodideGetInstance = function() {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_1/TP.html">
+ <span class="dropdown-text">Construire son propre DataFrame</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -902,7 +906,7 @@ globalThis._qpyodideGetInstance = function() {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-09-01</p>
+      <p class="date">2024-09-02</p>
     </div>
   </div>
   
