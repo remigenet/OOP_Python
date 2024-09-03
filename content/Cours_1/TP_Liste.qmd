@@ -1,0 +1,119 @@
+---
+title: "Construire sa propre Liste"
+weight: 10
+tags:
+  - Basics
+  - Classes
+categories:
+  - TP
+  - Introduction
+type: book
+image: .img/tpliste.png
+filters:
+  - pyodide
+---
+
+# Instructions
+
+Votre tâche est de créer une classe `Liste` qui simule les fonctionnalités de base d'une liste en Python. Cette implémentation vous permettra de comprendre comment les listes en Python peuvent contenir des éléments de types différents.
+
+Suivez ces instructions :
+
+1. Implémentez la classe `Liste` avec les méthodes suivantes :
+   - `__init__(self)` : Le constructeur qui initialise un dictionnaire vide et un compteur à 0.
+   - `append(self, element)` : Ajoute un élément à la fin de la liste.
+   - `remove(self, valeur)` : Supprime la première occurrence de la valeur donnée.
+   - `pop(self, index)` : Supprime et retourne l'élément à l'index spécifié.
+   - `get_index(self, valeur)` : Retourne l'index de la première occurrence de la valeur donnée.
+
+2. Votre classe doit avoir les attributs suivants :
+   - `_elements` : Un dictionnaire contenant les éléments de la liste.
+   - `_count` : Un compteur pour garder la trace du nombre d'éléments.
+
+3. Une fois votre implémentation terminée, exécutez les tests unitaires fournis.
+
+4. Assurez-vous que tous les tests passent. Si ce n'est pas le cas, revoyez votre implémentation.
+
+Conseils :
+- Utilisez le dictionnaire `_elements` pour stocker les éléments, avec les clés étant les indices et les valeurs étant les éléments de la liste.
+- Mettez à jour le `_count` chaque fois que vous ajoutez ou supprimez un élément.
+- Pour `remove` et `get_index`, vous devrez parcourir le dictionnaire pour trouver la valeur.
+
+Note : Cette implémentation simple illustre comment les listes en Python peuvent contenir des éléments de types différents. En réalité, les listes Python sont plus optimisées, mais le principe de base est similaire.
+
+# Implémentation
+
+Complétez la classe `Liste` ci-dessous :
+
+```{pyodide-python}
+class Liste:
+    def __init__(self):
+        # TODO: Initialisez le dictionnaire _elements et le compteur _count
+
+    def append(self, element):
+        # TODO: Implémentez la méthode append
+
+    def remove(self, valeur):
+        # TODO: Implémentez la méthode remove
+
+    def pop(self, index):
+        # TODO: Implémentez la méthode pop
+
+    def get_index(self, valeur):
+        # TODO: Implémentez la méthode get_index
+
+```
+
+# Tests Unitaires pour vérifier votre implémentation
+
+Exécutez les tests unitaires ci-dessous pour vérifier votre implémentation :
+
+```{pyodide-python}
+import unittest
+
+class TestListe(unittest.TestCase):
+    def setUp(self):
+        self.liste = Liste()
+
+    def test_append(self):
+        self.liste.append(1)
+        self.liste.append("deux")
+        self.liste.append([3, 4])
+        self.assertEqual(self.liste._elements, {0: 1, 1: "deux", 2: [3, 4]})
+        self.assertEqual(self.liste._count, 3)
+
+    def test_remove(self):
+        self.liste.append(1)
+        self.liste.append(2)
+        self.liste.append(1)
+        self.liste.remove(1)
+        self.assertEqual(self.liste._elements, {0: 2, 1: 1})
+        self.assertEqual(self.liste._count, 2)
+
+    def test_pop(self):
+        self.liste.append(1)
+        self.liste.append(2)
+        self.liste.append(3)
+        element = self.liste.pop(1)
+        self.assertEqual(element, 2)
+        self.assertEqual(self.liste._elements, {0: 1, 1: 3})
+        self.assertEqual(self.liste._count, 2)
+
+    def test_get_index(self):
+        self.liste.append(1)
+        self.liste.append(2)
+        self.liste.append(3)
+        self.liste.append(2)
+        self.assertEqual(self.liste.get_index(2), 1)
+        self.assertEqual(self.liste.get_index(4), -1)
+
+def run_tests():
+    unittest.main(argv=[''], verbosity=2, exit=False)
+
+if __name__ == '__main__':
+    run_tests()
+```
+
+Exécutez les cellules de code ci-dessus pour implémenter votre classe `Liste` et vérifier si elle passe tous les tests unitaires. Si certains tests échouent, revoyez votre implémentation et essayez à nouveau.
+
+Cette implémentation vous aidera à comprendre comment les listes en Python peuvent contenir des éléments de types différents, en utilisant un dictionnaire comme structure sous-jacente. C'est une simplification du fonctionnement réel des listes en Python, mais cela illustre le concept de base.

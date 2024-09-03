@@ -162,3 +162,157 @@ La compréhension de la MRO est cruciale pour :
 - Éviter les conflits de noms dans l'héritage multiple.
 - Comprendre l'ordre d'exécution des méthodes.
 - Concevoir des hiérarchies de classes cohérentes et prévisibles.
+
+## 4. Utilisation de `super()`
+
+La fonction `super()` est un outil puissant en Python pour gérer l'héritage de manière élégante et flexible.
+
+### 4.1 Définition et utilité
+
+`super()` permet d'appeler des méthodes de la classe parente dans une classe dérivée. Elle est particulièrement utile pour :
+
+1. Étendre le comportement d'une méthode parente sans la réécrire entièrement.
+2. Assurer une gestion correcte de l'héritage multiple.
+
+### 4.2 Syntaxe de base
+
+```python
+class Parent:
+    def methode(self):
+        print("Méthode du parent")
+
+class Enfant(Parent):
+    def methode(self):
+        super().methode()  # Appelle la méthode de la classe parente
+        print("Méthode de l'enfant")
+
+enfant = Enfant()
+enfant.methode()
+# Affiche:
+# Méthode du parent
+# Méthode de l'enfant
+```
+
+### 4.3 `super()` avec des arguments
+
+Dans le constructeur, il est courant d'utiliser `super()` pour initialiser la classe parente :
+
+```python
+class Parent:
+    def __init__(self, nom):
+        self.nom = nom
+
+class Enfant(Parent):
+    def __init__(self, nom, age):
+        super().__init__(nom)  # Appelle le constructeur du parent
+        self.age = age
+
+enfant = Enfant("Alice", 10)
+print(enfant.nom, enfant.age)  # Affiche: Alice 10
+```
+
+### 4.4 Utilisation de `super()` avec `*args` et `**kwargs`
+
+L'utilisation de `*args` et `**kwargs` avec `super()` permet de créer des classes plus flexibles, capables de transmettre des arguments variables à leurs classes parentes.
+
+```python
+class Parent:
+    def __init__(self, *args, **kwargs):
+        print("Arguments positionnels:", args)
+        print("Arguments nommés:", kwargs)
+
+class Enfant(Parent):
+    def __init__(self, *args, **kwargs):
+        print("Initialisation de Enfant")
+        super().__init__(*args, **kwargs)
+
+# Utilisation
+enfant = Enfant(1, 2, 3, nom="Alice", age=10)
+```
+
+Cette approche est particulièrement utile lorsque :
+- Vous ne savez pas à l'avance combien d'arguments la classe parente pourrait avoir.
+- Vous voulez permettre l'ajout futur d'arguments sans casser l'héritage.
+- Vous travaillez avec des hiérarchies de classes complexes où différentes classes parentes peuvent avoir différents paramètres.
+
+Pour plus de détails sur l'utilisation de `*args` et `**kwargs`, vous pouvez consulter [cette ressource](https://remigenet.github.io/Introduction-Python/content/Cours_2/2-FonctionsEtModules.html).
+
+### 4.4 `super()` dans l'héritage multiple
+
+Dans le cas de l'héritage multiple, `super()` suit l'ordre défini par la MRO :
+
+```python
+class A:
+    def methode(self):
+        print("Méthode de A")
+
+class B(A):
+    def methode(self):
+        print("Méthode de B")
+        super().methode()
+
+class C(A):
+    def methode(self):
+        print("Méthode de C")
+        super().methode()
+
+class D(B, C):
+    def methode(self):
+        print("Méthode de D")
+        super().methode()
+
+d = D()
+d.methode()
+# Affiche:
+# Méthode de D
+# Méthode de B
+# Méthode de C
+# Méthode de A
+```
+
+## 5. Gestion des appels aux méthodes parentes en cas d'héritage multiple
+
+Dans certains cas, vous pourriez vouloir appeler spécifiquement la méthode d'une classe parente particulière, plutôt que de suivre la MRO.
+
+### 5.1 Appel direct à une méthode de classe parente
+
+Vous pouvez appeler directement une méthode d'une classe parente spécifique en utilisant le nom de la classe :
+
+```python
+class A:
+    def methode(self):
+        print("Méthode de A")
+
+class B:
+    def methode(self):
+        print("Méthode de B")
+
+class C(A, B):
+    def methode(self):
+        print("Méthode de C")
+        A.methode(self)  # Appel direct à la méthode de A
+        B.methode(self)  # Appel direct à la méthode de B
+
+c = C()
+c.methode()
+# Affiche:
+# Méthode de C
+# Méthode de A
+# Méthode de B
+```
+
+### 5.2 Avantages et inconvénients
+
+**Avantages :**
+- Contrôle précis sur quelle méthode parente est appelée.
+- Utile lorsque vous avez besoin d'un comportement spécifique d'une classe parente.
+
+**Inconvénients :**
+- Peut rendre le code moins flexible si la structure d'héritage change.
+- Risque de contourner la MRO, ce qui peut mener à des comportements inattendus.
+
+### 5.3 Bonnes pratiques
+
+1. Utilisez `super()` par défaut pour respecter la MRO et maintenir la flexibilité du code.
+2. N'utilisez l'appel direct que lorsque c'est absolument nécessaire et documentez clairement pourquoi.
+3. Soyez conscient des implications sur la maintenance du code à long terme.

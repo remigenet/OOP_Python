@@ -1,0 +1,173 @@
+---
+title: "TP : Ajouter des méthodes dunder à DataFrameSimple"
+weight: 30
+tags:
+  - Advanced
+  - Classes
+  - Dunder Methods
+  - NumPy
+categories:
+  - TP
+  - Programmation Orientée Objet
+type: book
+image: .img/tpdataframe_dunder.png
+filters:
+  - pyodide
+---
+
+# Instructions
+
+Dans ce TP, vous allez étendre la classe `DataFrameSimple` en y ajoutant des méthodes dunder (double underscore) pour implémenter des opérations avancées. Cela vous permettra de comprendre comment ces méthodes spéciales peuvent rendre vos objets plus puissants et flexibles.
+
+Voici la classe `DataFrameSimple` de base :
+
+```python
+import numpy as np
+
+class DataFrameSimple:
+    def __init__(self, data):
+        self.donnees = np.array(list(data.values())).T
+        self.colonnes = list(data.keys())
+
+    def afficher(self):
+        header = " ".join(f"{col:>10}" for col in self.colonnes)
+        rows = [" ".join(f"{val:10}" for val in row) for row in self.donnees[:5]]
+        return "\n".join([header] + rows)
+
+    def moyenne(self, nom_colonne):
+        return np.mean(self.select_colonne(nom_colonne))
+
+    def somme(self, nom_colonne):
+        return np.sum(self.select_colonne(nom_colonne))
+
+    def min(self, nom_colonne):
+        return np.min(self.select_colonne(nom_colonne))
+
+    def max(self, nom_colonne):
+        return np.max(self.select_colonne(nom_colonne))
+
+    def select_colonne(self, nom_colonne):
+        index = self.colonnes.index(nom_colonne)
+        return self.donnees[:, index]
+```
+
+Votre tâche est d'ajouter les méthodes dunder suivantes à cette classe :
+
+1. `__str__(self)` : Retourne une représentation en chaîne de caractères du DataFrame.
+2. `__len__(self)` : Retourne le nombre de lignes du DataFrame.
+3. `__getitem__(self, key)` : Permet l'accès aux colonnes par nom (ex: `df['colonne']`).
+4. `__setitem__(self, key, value)` : Permet de modifier une colonne par nom (ex: `df['colonne'] = [1, 2, 3]`).
+5. `__iter__(self)` : Permet d'itérer sur les noms de colonnes du DataFrame.
+6. `__add__(self, other)` : Permet d'additionner le DataFrame avec un scalaire (int, float, np.float_) ou un autre DataFrame.
+
+Pour la méthode `__add__`, suivez ces règles :
+- Si `other` est un scalaire (int, float, np.float_), ajoutez-le à toutes les valeurs numériques du DataFrame.
+- Si `other` est un autre DataFrame, additionnez les valeurs correspondantes si les dimensions et les noms de colonnes correspondent.
+- Si `other` est un numpy array de même dimension que les données, additionnez-le élément par élément.
+- Pour tout autre type, levez une exception TypeError.
+
+# Implémentation
+
+Complétez la classe `DataFrameSimple` ci-dessous en ajoutant les méthodes dunder demandées :
+
+```{pyodide-python}
+import numpy as np
+
+class DataFrameSimple:
+    def __init__(self, data):
+        self.donnees = np.array(list(data.values())).T
+        self.colonnes = list(data.keys())
+
+    def afficher(self):
+        header = " ".join(f"{col:>10}" for col in self.colonnes)
+        rows = [" ".join(f"{val:10}" for val in row) for row in self.donnees[:5]]
+        return "\n".join([header] + rows)
+
+    def moyenne(self, nom_colonne):
+        return np.mean(self.select_colonne(nom_colonne))
+
+    def somme(self, nom_colonne):
+        return np.sum(self.select_colonne(nom_colonne))
+
+    def min(self, nom_colonne):
+        return np.min(self.select_colonne(nom_colonne))
+
+    def max(self, nom_colonne):
+        return np.max(self.select_colonne(nom_colonne))
+
+    def select_colonne(self, nom_colonne):
+        index = self.colonnes.index(nom_colonne)
+        return self.donnees[:, index]
+
+    # TODO: Implémentez les méthodes dunder ici
+    def __str__(self):
+        pass
+
+    def __len__(self):
+        pass
+
+    def __getitem__(self, key):
+        pass
+
+    def __setitem__(self, key, value):
+        pass
+
+    def __iter__(self):
+        pass
+
+    def __add__(self, other):
+        pass
+
+# N'effacez pas cette ligne, elle est utilisée pour les tests
+df = DataFrameSimple({'A': [1, 2, 3], 'B': [4, 5, 6]})
+```
+
+# Tests Unitaires pour vérifier votre implémentation
+
+Exécutez les tests unitaires ci-dessous pour vérifier votre implémentation :
+
+```{pyodide-python}
+import unittest
+import numpy as np
+
+class TestDataFrameSimpleDunder(unittest.TestCase):
+    def setUp(self):
+        self.df = DataFrameSimple({'A': [1, 2, 3], 'B': [4, 5, 6]})
+
+    def test_len(self):
+        self.assertEqual(len(self.df), 3)
+
+    def test_getitem(self):
+        np.testing.assert_array_equal(self.df['A'], np.array([1, 2, 3]))
+
+    def test_setitem(self):
+        self.df['C'] = [7, 8, 9]
+        np.testing.assert_array_equal(self.df['C'], np.array([7, 8, 9]))
+
+    def test_iter(self):
+        self.assertEqual(list(self.df), ['A', 'B'])
+
+    def test_add_scalar(self):
+        result = self.df + 1
+        np.testing.assert_array_equal(result.donnees, np.array([[2, 5], [3, 6], [4, 7]]))
+
+    def test_add_dataframe(self):
+        other = DataFrameSimple({'A': [10, 20, 30], 'B': [40, 50, 60]})
+        result = self.df + other
+        np.testing.assert_array_equal(result.donnees, np.array([[11, 44], [22, 55], [33, 66]]))
+
+    def test_add_array(self):
+        arr = np.array([[10, 40], [20, 50], [30, 60]])
+        result = self.df + arr
+        np.testing.assert_array_equal(result.donnees, np.array([[11, 44], [22, 55], [33, 66]]))
+
+    def test_add_invalid(self):
+        with self.assertRaises(TypeError):
+            _ = self.df + "invalid"
+
+def run_tests():
+    unittest.main(argv=[''], verbosity=2, exit=False)
+
+if __name__ == '__main__':
+    run_tests()
+```

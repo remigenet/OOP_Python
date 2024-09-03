@@ -49,7 +49,8 @@ website:
       - section: Travaux Pratiques
         expanded: false
         contents:
-        - content/Cours_1/TP.qmd
+        - content/Cours_1/TP_Liste.qmd
+        - content/Cours_1/TP_dataframe.qmd
       icon: book
     - id: heritance 
       title: "Encapsulation, Héritage, Composition et Dunder"
@@ -64,7 +65,9 @@ website:
          expanded: false
          contents:
          - content/Cours_2/TP_heritage.qmd
-         - content/Cours_2/TP_dunder.qmd
+         - content/Cours_2/TP_dunder_dataframe.qmd
+         - content/Cours_2/TP_dunder_liste.qmd
+         - content/Cours_2/TP_dunder_tensor.qmd
     - id: polymorphism 
       title: "Polymorphisme et Surcharge"
       contents: 

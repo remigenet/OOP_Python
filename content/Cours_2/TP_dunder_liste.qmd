@@ -1,0 +1,171 @@
+---
+title: "TP : Étendre la classe Liste avec des méthodes dunder"
+weight: 20
+tags:
+  - Intermediate
+  - Classes
+  - Dunder Methods
+categories:
+  - TP
+  - Programmation Orientée Objet
+type: book
+image: .img/tpliste_dunder.png
+filters:
+  - pyodide
+---
+
+# Instructions
+
+Dans ce TP, vous allez étendre la classe `Liste` que nous avons créée précédemment en y ajoutant des méthodes dunder (double underscore) pour implémenter des opérations de base. Cela vous permettra de comprendre comment ces méthodes spéciales permettent aux objets de se comporter comme des types natifs de Python.
+
+Voici la classe `Liste` de base :
+
+```python
+class Liste:
+    def __init__(self):
+        self._elements = {}
+        self._count = 0
+
+    def append(self, element):
+        self._elements[self._count] = element
+        self._count += 1
+
+    def remove(self, valeur):
+        for index, element in self._elements.items():
+            if element == valeur:
+                del self._elements[index]
+                self._count -= 1
+                for i in range(index, self._count):
+                    self._elements[i] = self._elements.pop(i + 1)
+                break
+
+    def pop(self, index):
+        if index < 0 or index >= self._count:
+            raise IndexError("Index hors limites")
+        element = self._elements.pop(index)
+        self._count -= 1
+        for i in range(index, self._count):
+            self._elements[i] = self._elements.pop(i + 1)
+        return element
+
+    def get_index(self, valeur):
+        for index, element in self._elements.items():
+            if element == valeur:
+                return index
+        return -1
+```
+
+Votre tâche est d'ajouter les méthodes dunder suivantes à cette classe :
+
+1. `__str__(self)` : Retourne une représentation en chaîne de caractères de la liste.
+2. `__len__(self)` : Retourne la longueur de la liste.
+3. `__getitem__(self, index)` : Permet l'accès aux éléments par index (ex: `ma_liste[2]`).
+4. `__setitem__(self, index, valeur)` : Permet de modifier un élément par index (ex: `ma_liste[2] = 10`).
+5. `__iter__(self)` : Permet d'itérer sur la liste.
+6. `__add__(self, other)` : Permet d'additionner deux listes (concaténation).
+
+# Implémentation
+
+Complétez la classe `Liste` ci-dessous en ajoutant les méthodes dunder demandées :
+
+```{pyodide-python}
+class Liste:
+    def __init__(self):
+        self._elements = {}
+        self._count = 0
+
+    def append(self, element):
+        self._elements[self._count] = element
+        self._count += 1
+
+    def remove(self, valeur):
+        for index, element in self._elements.items():
+            if element == valeur:
+                del self._elements[index]
+                self._count -= 1
+                for i in range(index, self._count):
+                    self._elements[i] = self._elements.pop(i + 1)
+                break
+
+    def pop(self, index):
+        if index < 0 or index >= self._count:
+            raise IndexError("Index hors limites")
+        element = self._elements.pop(index)
+        self._count -= 1
+        for i in range(index, self._count):
+            self._elements[i] = self._elements.pop(i + 1)
+        return element
+
+    def get_index(self, valeur):
+        for index, element in self._elements.items():
+            if element == valeur:
+                return index
+        return -1
+
+    # TODO: Implémentez les méthodes dunder ici
+    def __str__(self):
+        pass
+
+    def __len__(self):
+        pass
+
+    def __getitem__(self, index):
+        pass
+
+    def __setitem__(self, index, valeur):
+        pass
+
+    def __iter__(self):
+        pass
+
+    def __add__(self, other):
+        pass
+```
+
+# Tests Unitaires pour vérifier votre implémentation
+
+Exécutez les tests unitaires ci-dessous pour vérifier votre implémentation :
+
+```{pyodide-python}
+import unittest
+
+class TestListeDunder(unittest.TestCase):
+    def setUp(self):
+        self.liste = Liste()
+        self.liste.append(1)
+        self.liste.append(2)
+        self.liste.append(3)
+
+    def test_str(self):
+        self.assertEqual(str(self.liste), "[1, 2, 3]")
+
+    def test_len(self):
+        self.assertEqual(len(self.liste), 3)
+
+    def test_getitem(self):
+        self.assertEqual(self.liste[1], 2)
+        with self.assertRaises(IndexError):
+            _ = self.liste[3]
+
+    def test_setitem(self):
+        self.liste[1] = 5
+        self.assertEqual(self.liste[1], 5)
+        with self.assertRaises(IndexError):
+            self.liste[3] = 4
+
+    def test_iter(self):
+        self.assertEqual(list(self.liste), [1, 2, 3])
+
+    def test_add(self):
+        other = Liste()
+        other.append(4)
+        other.append(5)
+        result = self.liste + other
+        self.assertEqual(str(result), "[1, 2, 3, 4, 5]")
+
+def run_tests():
+    unittest.main(argv=[''], verbosity=2, exit=False)
+
+if __name__ == '__main__':
+    run_tests()
+```

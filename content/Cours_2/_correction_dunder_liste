@@ -1,0 +1,61 @@
+class Liste:
+    def __init__(self):
+        self._elements = {}
+        self._count = 0
+
+    def append(self, element):
+        self._elements[self._count] = element
+        self._count += 1
+
+    def remove(self, valeur):
+        for index, element in self._elements.items():
+            if element == valeur:
+                del self._elements[index]
+                self._count -= 1
+                for i in range(index, self._count):
+                    self._elements[i] = self._elements.pop(i + 1)
+                break
+
+    def pop(self, index):
+        if index < 0 or index >= self._count:
+            raise IndexError("Index hors limites")
+        element = self._elements.pop(index)
+        self._count -= 1
+        for i in range(index, self._count):
+            self._elements[i] = self._elements.pop(i + 1)
+        return element
+
+    def get_index(self, valeur):
+        for index, element in self._elements.items():
+            if element == valeur:
+                return index
+        return -1
+
+    def __str__(self):
+        return "[" + ", ".join(str(self._elements[i]) for i in range(self._count)) + "]"
+
+    def __len__(self):
+        return self._count
+
+    def __getitem__(self, index):
+        if index < 0 or index >= self._count:
+            raise IndexError("Index hors limites")
+        return self._elements[index]
+
+    def __setitem__(self, index, valeur):
+        if index < 0 or index >= self._count:
+            raise IndexError("Index hors limites")
+        self._elements[index] = valeur
+
+    def __iter__(self):
+        return iter(self._elements[i] for i in range(self._count))
+
+    def __add__(self, other):
+        if not isinstance(other, Liste):
+            raise TypeError("Peut seulement additionner deux objets Liste")
+        new_liste = Liste()
+        for item in self:
+            new_liste.append(item)
+        for item in other:
+            new_liste.append(item)
+        return new_liste

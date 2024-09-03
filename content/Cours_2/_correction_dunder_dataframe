@@ -1,0 +1,62 @@
+import numpy as np
+
+class DataFrameSimple:
+    def __init__(self, data):
+        self.donnees = np.array(list(data.values())).T
+        self.colonnes = list(data.keys())
+
+    def afficher(self):
+        header = " ".join(f"{col:>10}" for col in self.colonnes)
+        rows = [" ".join(f"{val:>10}" for val in row) for row in self.donnees]
+        return "\n".join([header] + rows)
+
+    def moyenne(self, nom_colonne):
+        return np.mean(self.select_colonne(nom_colonne))
+
+    def somme(self, nom_colonne):
+        return np.sum(self.select_colonne(nom_colonne))
+
+    def min(self, nom_colonne):
+        return np.min(self.select_colonne(nom_colonne))
+
+    def max(self, nom_colonne):
+        return np.max(self.select_colonne(nom_colonne))
+
+    def select_colonne(self, nom_colonne):
+        index = self.colonnes.index(nom_colonne)
+        return self.donnees[:, index]
+
+    def __str__(self):
+        return self.afficher()
+
+    def __len__(self):
+        return len(self.donnees)
+
+    def __getitem__(self, key):
+        return self.select_colonne(key)
+
+    def __setitem__(self, key, value):
+        if key in self.colonnes:
+            index = self.colonnes.index(key)
+            self.donnees[:, index] = value
+        else:
+            self.colonnes.append(key)
+            self.donnees = np.column_stack((self.donnees, value))
+
+    def __iter__(self):
+        return iter(self.colonnes)
+
+    def __add__(self, other):
+        if isinstance(other, (int, float, np.float_)):
+            return DataFrameSimple({col: self.donnees[:, i] + other for i, col in enumerate(self.colonnes)})
+        elif isinstance(other, DataFrameSimple):
+            if self.colonnes != other.colonnes or self.donnees.shape != other.donnees.shape:
+                raise ValueError("Les DataFrames doivent avoir les mêmes dimensions et noms de colonnes")
+            return DataFrameSimple({col: self.donnees[:, i] + other.donnees[:, i] for i, col in enumerate(self.colonnes)})
+        elif isinstance(other, np.ndarray) and other.shape == self.donnees.shape:
+            return DataFrameSimple({col: self.donnees[:, i] + other[:, i] for i, col in enumerate(self.colonnes)})
+        else:
+            raise TypeError("Opération non supportée")
+
+# Cette ligne est utilisée pour les tests
+df = DataFrameSimple({'A': [1, 2, 3], 'B': [4, 5, 6]})
