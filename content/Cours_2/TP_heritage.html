@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Remi Genet">
-<meta name="dcterms.date" content="2024-09-02">
+<meta name="dcterms.date" content="2024-09-03">
 
 <title>TP: Heritage avec le pricing d’option – Programmation Orientée Objet en Python</title>
 <style>
@@ -32,7 +32,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../content/Cours_2/TP_dunder.html" rel="next">
+<link href="../../content/Cours_2/TP_dunder_dataframe.html" rel="next">
 <link href="../../content/Cours_2/5-call_a_dog.html" rel="prev">
 <link href="../../content/.img/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
@@ -237,7 +237,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"id":1,"options":{"out-height":"","message":"true","context":"interactive","warning":"true","output":"true","out-width":"700px","results":"markup","label":"","dpi":72,"read-only":"false","fig-cap":"","classes":"","fig-height":5,"autorun":"","comment":"","fig-width":7},"code":"import unittest\nimport math\nfrom scipy.stats import norm\nimport numpy as np\n\n# TODO: Option, Call, Put\n\nclass TestBlackScholes(unittest.TestCase):\n    def setUp(self):\n        self.spot = 100\n        self.strike = 100\n        self.risk_free = 0.05\n        self.time_to_maturity = 1\n        self.volatility = 0.2\n\n        self.call = Call(self.spot, self.strike, self.risk_free, self.time_to_maturity, self.volatility)\n        self.put = Put(self.spot, self.strike, self.risk_free, self.time_to_maturity, self.volatility)\n\n    def test_call_price(self):\n        expected_price = 10.450583\n        self.assertAlmostEqual(self.call.compute_price(), expected_price, places=6)\n\n    def test_put_price(self):\n        expected_price = 5.57352\n        self.assertAlmostEqual(self.put.compute_price(), expected_price, places=6)\n\n    def test_call_delta(self):\n        expected_delta = 0.63683065\n        self.assertAlmostEqual(self.call.compute_delta(), expected_delta, places=4)\n\n    def test_put_delta(self):\n        expected_delta = -0.36316934\n        self.assertAlmostEqual(self.put.compute_delta(), expected_delta, places=4)\n\n    def test_gamma(self):\n        expected_gamma = 0.01876201\n        self.assertAlmostEqual(self.call.compute_gamma(), expected_gamma, places=4)\n        self.assertAlmostEqual(self.put.compute_gamma(), expected_gamma, places=4)\n\n    def test_vega(self):\n        expected_vega = 37.524034\n        self.assertAlmostEqual(self.call.compute_vega(), expected_vega, places=4)\n        self.assertAlmostEqual(self.put.compute_vega(), expected_vega, places=4)\n\ndef run_tests():\n    unittest.main(argv=[''], verbosity=2, exit=False)\n\nif __name__ == '__main__':\n    run_tests()"},{"id":2,"options":{"out-height":"","message":"true","context":"interactive","warning":"true","output":"true","out-width":"700px","results":"markup","label":"","dpi":72,"read-only":"false","fig-cap":"","classes":"","fig-height":5,"autorun":"","comment":"","fig-width":7},"code":"import unittest\nimport numpy as np\n\n# TODO: Creer vos classes Derivative, EuropeanOption, Payoff, CallPayoff, PutPayoff\n\nclass TestMonteCarlo(unittest.TestCase):\n    def setUp(self):\n        self.spot = 100\n        self.strike = 100\n        self.risk_free = 0.05\n        self.time_to_maturity = 1\n        self.volatility = 0.2\n        self.num_simulations = 100000\n\n        self.call_payoff = CallPayoff(self.strike)\n        self.put_payoff = PutPayoff(self.strike)\n\n        self.call_option = EuropeanOption(self.spot, self.risk_free, self.time_to_maturity, self.volatility, self.call_payoff)\n        self.put_option = EuropeanOption(self.spot, self.risk_free, self.time_to_maturity, self.volatility, self.put_payoff)\n\n    def test_call_price(self):\n        expected_price = 10.450583\n        simulated_price = self.call_option.price(self.num_simulations)\n        self.assertAlmostEqual(simulated_price, expected_price, delta=0.1)\n\n    def test_put_price(self):\n        expected_price = 5.57352\n        simulated_price = self.put_option.price(self.num_simulations)\n        self.assertAlmostEqual(simulated_price, expected_price, delta=0.1)\n\n    def test_call_payoff(self):\n        stock_price = 110\n        expected_payoff = 10\n        self.assertEqual(self.call_payoff.calculate(stock_price), expected_payoff)\n\n    def test_put_payoff(self):\n        stock_price = 90\n        expected_payoff = 10\n        self.assertEqual(self.put_payoff.calculate(stock_price), expected_payoff)\n\ndef run_tests():\n    unittest.main(argv=[''], verbosity=2, exit=False)\n\nif __name__ == '__main__':\n    run_tests()"}];
+globalThis.qpyodideCellDetails = [{"options":{"warning":"true","results":"markup","autorun":"","out-width":"700px","classes":"","comment":"","message":"true","label":"","fig-width":7,"fig-cap":"","output":"true","fig-height":5,"read-only":"false","context":"interactive","dpi":72,"out-height":""},"code":"import unittest\nimport math\nfrom scipy.stats import norm\nimport numpy as np\n\n# TODO: Option, Call, Put\n\nclass TestBlackScholes(unittest.TestCase):\n    def setUp(self):\n        self.spot = 100\n        self.strike = 100\n        self.risk_free = 0.05\n        self.time_to_maturity = 1\n        self.volatility = 0.2\n\n        self.call = Call(self.spot, self.strike, self.risk_free, self.time_to_maturity, self.volatility)\n        self.put = Put(self.spot, self.strike, self.risk_free, self.time_to_maturity, self.volatility)\n\n    def test_call_price(self):\n        expected_price = 10.450583\n        self.assertAlmostEqual(self.call.compute_price(), expected_price, places=6)\n\n    def test_put_price(self):\n        expected_price = 5.57352\n        self.assertAlmostEqual(self.put.compute_price(), expected_price, places=6)\n\n    def test_call_delta(self):\n        expected_delta = 0.63683065\n        self.assertAlmostEqual(self.call.compute_delta(), expected_delta, places=4)\n\n    def test_put_delta(self):\n        expected_delta = -0.36316934\n        self.assertAlmostEqual(self.put.compute_delta(), expected_delta, places=4)\n\n    def test_gamma(self):\n        expected_gamma = 0.01876201\n        self.assertAlmostEqual(self.call.compute_gamma(), expected_gamma, places=4)\n        self.assertAlmostEqual(self.put.compute_gamma(), expected_gamma, places=4)\n\n    def test_vega(self):\n        expected_vega = 37.524034\n        self.assertAlmostEqual(self.call.compute_vega(), expected_vega, places=4)\n        self.assertAlmostEqual(self.put.compute_vega(), expected_vega, places=4)\n\ndef run_tests():\n    unittest.main(argv=[''], verbosity=2, exit=False)\n\nif __name__ == '__main__':\n    run_tests()","id":1},{"options":{"warning":"true","results":"markup","autorun":"","out-width":"700px","classes":"","comment":"","message":"true","label":"","fig-width":7,"fig-cap":"","output":"true","fig-height":5,"read-only":"false","context":"interactive","dpi":72,"out-height":""},"code":"import unittest\nimport numpy as np\n\n# TODO: Creer vos classes Derivative, EuropeanOption, Payoff, CallPayoff, PutPayoff\n\nclass TestMonteCarlo(unittest.TestCase):\n    def setUp(self):\n        self.spot = 100\n        self.strike = 100\n        self.risk_free = 0.05\n        self.time_to_maturity = 1\n        self.volatility = 0.2\n        self.num_simulations = 100000\n\n        self.call_payoff = CallPayoff(self.strike)\n        self.put_payoff = PutPayoff(self.strike)\n\n        self.call_option = EuropeanOption(self.spot, self.risk_free, self.time_to_maturity, self.volatility, self.call_payoff)\n        self.put_option = EuropeanOption(self.spot, self.risk_free, self.time_to_maturity, self.volatility, self.put_payoff)\n\n    def test_call_price(self):\n        expected_price = 10.450583\n        simulated_price = self.call_option.price(self.num_simulations)\n        self.assertAlmostEqual(simulated_price, expected_price, delta=0.1)\n\n    def test_put_price(self):\n        expected_price = 5.57352\n        simulated_price = self.put_option.price(self.num_simulations)\n        self.assertAlmostEqual(simulated_price, expected_price, delta=0.1)\n\n    def test_call_payoff(self):\n        stock_price = 110\n        expected_payoff = 10\n        self.assertEqual(self.call_payoff.calculate(stock_price), expected_payoff)\n\n    def test_put_payoff(self):\n        stock_price = 90\n        expected_payoff = 10\n        self.assertEqual(self.put_payoff.calculate(stock_price), expected_payoff)\n\ndef run_tests():\n    unittest.main(argv=[''], verbosity=2, exit=False)\n\nif __name__ == '__main__':\n    run_tests()","id":2}];
 
 
 </script>
@@ -465,10 +465,10 @@ window.Quarto = {
 <meta property="og:site_name" content="Programmation Orientée Objet en Python">
 <meta name="citation_title" content="TP: Heritage avec le pricing d&amp;amp;#039;option">
 <meta name="citation_author" content="Remi Genet">
-<meta name="citation_publication_date" content="2024-09-02">
-<meta name="citation_cover_date" content="2024-09-02">
+<meta name="citation_publication_date" content="2024-09-03">
+<meta name="citation_cover_date" content="2024-09-03">
 <meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-09-02">
+<meta name="citation_online_date" content="2024-09-03">
 <meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_2/TP_heritage.html">
 <meta name="citation_language" content="en">
 </head>
@@ -534,7 +534,11 @@ window.Quarto = {
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
-    <a class="dropdown-item" href="../../content/Cours_1/TP.html">
+    <a class="dropdown-item" href="../../content/Cours_1/TP_Liste.html">
+ <span class="dropdown-text">Construire sa propre Liste</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_1/TP_dataframe.html">
  <span class="dropdown-text">Construire son propre DataFrame</span></a>
   </li>  
     </ul>
@@ -575,7 +579,15 @@ window.Quarto = {
  <span class="dropdown-text">TP: Heritage avec le pricing d’option</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder.html">
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder_dataframe.html">
+ <span class="dropdown-text">TP : Ajouter des méthodes dunder à DataFrameSimple</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder_liste.html">
+ <span class="dropdown-text">TP : Étendre la classe Liste avec des méthodes dunder</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder_tensor.html">
  <span class="dropdown-text">TP: Dunder Method with Tensor for Automatic Differentiation</span></a>
   </li>  
     </ul>
@@ -823,7 +835,19 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_2/TP_dunder.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/Cours_2/TP_dunder_dataframe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP : Ajouter des méthodes dunder à DataFrameSimple</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_2/TP_dunder_liste.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP : Étendre la classe Liste avec des méthodes dunder</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_2/TP_dunder_tensor.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">TP: Dunder Method with Tensor for Automatic Differentiation</span></a>
   </div>
 </li>
@@ -891,7 +915,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-09-02</p>
+      <p class="date">2024-09-03</p>
     </div>
   </div>
   
@@ -1593,8 +1617,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../content/Cours_2/TP_dunder.html" class="pagination-link" aria-label="TP: Dunder Method with Tensor for Automatic Differentiation">
-        <span class="nav-page-text">TP: Dunder Method with Tensor for Automatic Differentiation</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../content/Cours_2/TP_dunder_dataframe.html" class="pagination-link" aria-label="TP : Ajouter des méthodes dunder à DataFrameSimple">
+        <span class="nav-page-text">TP : Ajouter des méthodes dunder à DataFrameSimple</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

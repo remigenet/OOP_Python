@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Remi Genet">
-<meta name="dcterms.date" content="2024-09-02">
+<meta name="dcterms.date" content="2024-09-03">
 <meta name="description" content="A hands-on practical exercise on creating a decorator that injects payoff functions into a Monte Carlo option pricing simulator, exploring advanced concepts in Python and financial modeling.">
 
 <title>TP: Monte Carlo Option Pricing with Decorators – Programmation Orientée Objet en Python</title>
@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"id":1,"options":{"comment":"","fig-height":5,"results":"markup","read-only":"false","autorun":"","warning":"true","label":"","context":"interactive","message":"true","classes":"","out-width":"700px","fig-cap":"","output":"true","fig-width":7,"out-height":"","dpi":72},"code":"import numpy as np\n\nclass MonteCarloSimulator:\n    def __init__(self, S0, r, sigma, T):\n        self.S0 = S0      # Initial stock price\n        self.r = r        # Risk-free rate\n        self.sigma = sigma  # Volatility\n        self.T = T        # Time to maturity\n\n    def simulate_paths(self, num_simulations, num_steps):\n        dt = self.T / num_steps\n        paths = np.zeros((num_simulations, num_steps + 1))\n        paths[:, 0] = self.S0\n        \n        for i in range(1, num_steps + 1):\n            z = np.random.standard_normal(num_simulations)\n            paths[:, i] = paths[:, i-1] * np.exp((self.r - 0.5 * self.sigma**2) * dt + \n                                                 self.sigma * np.sqrt(dt) * z)\n        return paths\n\n    def price_option(self, num_simulations, num_steps):\n        paths = self.simulate_paths(num_simulations, num_steps)\n        payoffs = self.payoff(paths[:, -1])\n        option_price = np.exp(-self.r * self.T) * np.mean(payoffs)\n        return option_price\n\n    def payoff(self, ST):\n        raise NotImplementedError(\"Subclasses must implement payoff method\")"},{"id":2,"options":{"comment":"","fig-height":5,"results":"markup","read-only":"false","autorun":"","warning":"true","label":"","context":"interactive","message":"true","classes":"","out-width":"700px","fig-cap":"","output":"true","fig-width":7,"out-height":"","dpi":72},"code":"def option_pricer(payoff_func):\n    # Your implementation here\n    pass"},{"id":3,"options":{"comment":"","fig-height":5,"results":"markup","read-only":"false","autorun":"","warning":"true","label":"","context":"interactive","message":"true","classes":"","out-width":"700px","fig-cap":"","output":"true","fig-width":7,"out-height":"","dpi":72},"code":"@option_pricer\ndef european_call_payoff(ST, K=100):\n    return np.maximum(ST - K, 0)\n\n@option_pricer\ndef european_put_payoff(ST, K=100):\n    return np.maximum(K - ST, 0)\n\n# Usage\nif __name__ == \"__main__\":\n    call_pricer = european_call_payoff(K=100)(S0=100, r=0.05, sigma=0.2, T=1)\n    call_price = call_pricer.price_option(num_simulations=100000, num_steps=252)\n    print(f\"European Call Option Price: {call_price:.4f}\")\n\n    put_pricer = european_put_payoff(K=100)(S0=100, r=0.05, sigma=0.2, T=1)\n    put_price = put_pricer.price_option(num_simulations=100000, num_steps=252)\n    print(f\"European Put Option Price: {put_price:.4f}\")"}];
+globalThis.qpyodideCellDetails = [{"id":1,"code":"import numpy as np\n\nclass MonteCarloSimulator:\n    def __init__(self, S0, r, sigma, T):\n        self.S0 = S0      # Initial stock price\n        self.r = r        # Risk-free rate\n        self.sigma = sigma  # Volatility\n        self.T = T        # Time to maturity\n\n    def simulate_paths(self, num_simulations, num_steps):\n        dt = self.T / num_steps\n        paths = np.zeros((num_simulations, num_steps + 1))\n        paths[:, 0] = self.S0\n        \n        for i in range(1, num_steps + 1):\n            z = np.random.standard_normal(num_simulations)\n            paths[:, i] = paths[:, i-1] * np.exp((self.r - 0.5 * self.sigma**2) * dt + \n                                                 self.sigma * np.sqrt(dt) * z)\n        return paths\n\n    def price_option(self, num_simulations, num_steps):\n        paths = self.simulate_paths(num_simulations, num_steps)\n        payoffs = self.payoff(paths[:, -1])\n        option_price = np.exp(-self.r * self.T) * np.mean(payoffs)\n        return option_price\n\n    def payoff(self, ST):\n        raise NotImplementedError(\"Subclasses must implement payoff method\")","options":{"warning":"true","dpi":72,"message":"true","label":"","classes":"","read-only":"false","out-width":"700px","autorun":"","context":"interactive","output":"true","out-height":"","results":"markup","comment":"","fig-width":7,"fig-cap":"","fig-height":5}},{"id":2,"code":"def option_pricer(payoff_func):\n    # Your implementation here\n    pass","options":{"warning":"true","dpi":72,"message":"true","label":"","classes":"","read-only":"false","out-width":"700px","autorun":"","context":"interactive","output":"true","out-height":"","results":"markup","comment":"","fig-width":7,"fig-cap":"","fig-height":5}},{"id":3,"code":"@option_pricer\ndef european_call_payoff(ST, K=100):\n    return np.maximum(ST - K, 0)\n\n@option_pricer\ndef european_put_payoff(ST, K=100):\n    return np.maximum(K - ST, 0)\n\n# Usage\nif __name__ == \"__main__\":\n    call_pricer = european_call_payoff(K=100)(S0=100, r=0.05, sigma=0.2, T=1)\n    call_price = call_pricer.price_option(num_simulations=100000, num_steps=252)\n    print(f\"European Call Option Price: {call_price:.4f}\")\n\n    put_pricer = european_put_payoff(K=100)(S0=100, r=0.05, sigma=0.2, T=1)\n    put_price = put_pricer.price_option(num_simulations=100000, num_steps=252)\n    print(f\"European Put Option Price: {put_price:.4f}\")","options":{"warning":"true","dpi":72,"message":"true","label":"","classes":"","read-only":"false","out-width":"700px","autorun":"","context":"interactive","output":"true","out-height":"","results":"markup","comment":"","fig-width":7,"fig-cap":"","fig-height":5}}];
 
 
 </script>
@@ -437,10 +437,10 @@ globalThis._qpyodideGetInstance = function() {
 <meta property="og:site_name" content="Programmation Orientée Objet en Python">
 <meta name="citation_title" content="TP: Monte Carlo Option Pricing with Decorators">
 <meta name="citation_author" content="Remi Genet">
-<meta name="citation_publication_date" content="2024-09-02">
-<meta name="citation_cover_date" content="2024-09-02">
+<meta name="citation_publication_date" content="2024-09-03">
+<meta name="citation_cover_date" content="2024-09-03">
 <meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-09-02">
+<meta name="citation_online_date" content="2024-09-03">
 <meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_4/TP_option.html">
 <meta name="citation_language" content="en">
 </head>
@@ -506,7 +506,11 @@ globalThis._qpyodideGetInstance = function() {
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
-    <a class="dropdown-item" href="../../content/Cours_1/TP.html">
+    <a class="dropdown-item" href="../../content/Cours_1/TP_Liste.html">
+ <span class="dropdown-text">Construire sa propre Liste</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_1/TP_dataframe.html">
  <span class="dropdown-text">Construire son propre DataFrame</span></a>
   </li>  
     </ul>
@@ -547,7 +551,15 @@ globalThis._qpyodideGetInstance = function() {
  <span class="dropdown-text">TP: Heritage avec le pricing d’option</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder.html">
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder_dataframe.html">
+ <span class="dropdown-text">TP : Ajouter des méthodes dunder à DataFrameSimple</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder_liste.html">
+ <span class="dropdown-text">TP : Étendre la classe Liste avec des méthodes dunder</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder_tensor.html">
  <span class="dropdown-text">TP: Dunder Method with Tensor for Automatic Differentiation</span></a>
   </li>  
     </ul>
@@ -859,7 +871,7 @@ globalThis._qpyodideGetInstance = function() {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-09-02</p>
+      <p class="date">2024-09-03</p>
     </div>
   </div>
   

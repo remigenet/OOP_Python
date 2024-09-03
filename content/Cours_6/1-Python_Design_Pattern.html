@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Remi Genet">
-<meta name="dcterms.date" content="2024-09-02">
+<meta name="dcterms.date" content="2024-09-03">
 <meta name="description" content="Learn about Python-specific design patterns, including context managers and descriptors, to write more efficient and Pythonic code.">
 
 <title>Python-Specific Design Patterns – Programmation Orientée Objet en Python</title>
@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"id":1,"code":"with open('file.txt', 'r') as file:\n    content = file.read()\n# File is automatically closed after this block","options":{"out-width":"700px","label":"","results":"markup","read-only":"false","message":"true","output":"true","autorun":"","fig-width":7,"warning":"true","classes":"","fig-height":5,"fig-cap":"","context":"interactive","dpi":72,"comment":"","out-height":""}},{"id":2,"code":"class DatabaseConnection:\n    def __init__(self, host, user, password):\n        self.host = host\n        self.user = user\n        self.password = password\n        self.connection = None\n\n    def __enter__(self):\n        print(f\"Connecting to database at {self.host}\")\n        self.connection = connect_to_db(self.host, self.user, self.password)\n        return self.connection\n\n    def __exit__(self, exc_type, exc_value, traceback):\n        if self.connection:\n            print(\"Closing database connection\")\n            self.connection.close()\n        if exc_type is not None:\n            print(f\"An exception occurred: {exc_value}\")\n        return False  # Propagate exceptions\n\n# Usage\nwith DatabaseConnection('localhost', 'user', 'password') as conn:\n    conn.execute(\"SELECT * FROM users\")","options":{"out-width":"700px","label":"","results":"markup","read-only":"false","message":"true","output":"true","autorun":"","fig-width":7,"warning":"true","classes":"","fig-height":5,"fig-cap":"","context":"interactive","dpi":72,"comment":"","out-height":""}},{"id":3,"code":"from contextlib import contextmanager\n\n@contextmanager\ndef temp_file(filename, mode='w'):\n    try:\n        f = open(filename, mode)\n        yield f\n    finally:\n        f.close()\n        import os\n        os.remove(filename)\n\n# Usage\nwith temp_file('temp.txt') as f:\n    f.write('Temporary data')\n# File is automatically closed and deleted after this block","options":{"out-width":"700px","label":"","results":"markup","read-only":"false","message":"true","output":"true","autorun":"","fig-width":7,"warning":"true","classes":"","fig-height":5,"fig-cap":"","context":"interactive","dpi":72,"comment":"","out-height":""}},{"id":4,"code":"import aiohttp\nimport asyncio\n\nclass AsyncWebSession:\n    async def __aenter__(self):\n        self.session = aiohttp.ClientSession()\n        return self.session\n\n    async def __aexit__(self, exc_type, exc_value, traceback):\n        await self.session.close()\n        if exc_type is not None:\n            print(f\"An error occurred: {exc_value}\")\n\nasync def fetch_data(url):\n    async with AsyncWebSession() as session:\n        async with session.get(url) as response:\n            return await response.text()\n\n# Usage\nasyncio.run(fetch_data('https://api.example.com/data'))","options":{"out-width":"700px","label":"","results":"markup","read-only":"false","message":"true","output":"true","autorun":"","fig-width":7,"warning":"true","classes":"","fig-height":5,"fig-cap":"","context":"interactive","dpi":72,"comment":"","out-height":""}},{"id":5,"code":"class TemperatureDescriptor:\n    def __init__(self, name):\n        self.name = f\"_{name}\"\n\n    def __get__(self, obj, objtype=None):\n        if obj is None:\n            return self\n        return getattr(obj, self.name)\n\n    def __set__(self, obj, value):\n        if not isinstance(value, (int, float)):\n            raise TypeError(\"Temperature must be a number\")\n        if value < -273.15:\n            raise ValueError(\"Temperature below absolute zero is not possible\")\n        setattr(obj, self.name, value)\n\nclass WeatherStation:\n    temperature = TemperatureDescriptor(\"temperature\")\n\n    def __init__(self, temp):\n        self.temperature = temp\n\n# Usage\nstation = WeatherStation(25)\nprint(station.temperature)  # 25\nstation.temperature = -300  # Raises ValueError","options":{"out-width":"700px","label":"","results":"markup","read-only":"false","message":"true","output":"true","autorun":"","fig-width":7,"warning":"true","classes":"","fig-height":5,"fig-cap":"","context":"interactive","dpi":72,"comment":"","out-height":""}},{"id":6,"code":"class LazyProperty:\n    def __init__(self, function):\n        self.function = function\n        self.name = function.__name__\n\n    def __get__(self, obj, type=None):\n        if obj is None:\n            return self\n        value = self.function(obj)\n        setattr(obj, self.name, value)\n        return value\n\nclass DataProcessor:\n    def __init__(self, filename):\n        self.filename = filename\n\n    @LazyProperty\n    def data(self):\n        print(\"Loading data...\")\n        with open(self.filename, 'r') as f:\n            return f.read()\n\n# Usage\nprocessor = DataProcessor('large_file.txt')\n# Data is not loaded yet\nprint(processor.data)  # Prints \"Loading data...\" and then the content\nprint(processor.data)  # Prints the content without \"Loading data...\"","options":{"out-width":"700px","label":"","results":"markup","read-only":"false","message":"true","output":"true","autorun":"","fig-width":7,"warning":"true","classes":"","fig-height":5,"fig-cap":"","context":"interactive","dpi":72,"comment":"","out-height":""}}];
+globalThis.qpyodideCellDetails = [{"id":1,"options":{"fig-height":5,"read-only":"false","autorun":"","out-width":"700px","results":"markup","context":"interactive","fig-cap":"","output":"true","out-height":"","dpi":72,"comment":"","classes":"","warning":"true","label":"","fig-width":7,"message":"true"},"code":"with open('file.txt', 'r') as file:\n    content = file.read()\n# File is automatically closed after this block"},{"id":2,"options":{"fig-height":5,"read-only":"false","autorun":"","out-width":"700px","results":"markup","context":"interactive","fig-cap":"","output":"true","out-height":"","dpi":72,"comment":"","classes":"","warning":"true","label":"","fig-width":7,"message":"true"},"code":"class DatabaseConnection:\n    def __init__(self, host, user, password):\n        self.host = host\n        self.user = user\n        self.password = password\n        self.connection = None\n\n    def __enter__(self):\n        print(f\"Connecting to database at {self.host}\")\n        self.connection = connect_to_db(self.host, self.user, self.password)\n        return self.connection\n\n    def __exit__(self, exc_type, exc_value, traceback):\n        if self.connection:\n            print(\"Closing database connection\")\n            self.connection.close()\n        if exc_type is not None:\n            print(f\"An exception occurred: {exc_value}\")\n        return False  # Propagate exceptions\n\n# Usage\nwith DatabaseConnection('localhost', 'user', 'password') as conn:\n    conn.execute(\"SELECT * FROM users\")"},{"id":3,"options":{"fig-height":5,"read-only":"false","autorun":"","out-width":"700px","results":"markup","context":"interactive","fig-cap":"","output":"true","out-height":"","dpi":72,"comment":"","classes":"","warning":"true","label":"","fig-width":7,"message":"true"},"code":"from contextlib import contextmanager\n\n@contextmanager\ndef temp_file(filename, mode='w'):\n    try:\n        f = open(filename, mode)\n        yield f\n    finally:\n        f.close()\n        import os\n        os.remove(filename)\n\n# Usage\nwith temp_file('temp.txt') as f:\n    f.write('Temporary data')\n# File is automatically closed and deleted after this block"},{"id":4,"options":{"fig-height":5,"read-only":"false","autorun":"","out-width":"700px","results":"markup","context":"interactive","fig-cap":"","output":"true","out-height":"","dpi":72,"comment":"","classes":"","warning":"true","label":"","fig-width":7,"message":"true"},"code":"import aiohttp\nimport asyncio\n\nclass AsyncWebSession:\n    async def __aenter__(self):\n        self.session = aiohttp.ClientSession()\n        return self.session\n\n    async def __aexit__(self, exc_type, exc_value, traceback):\n        await self.session.close()\n        if exc_type is not None:\n            print(f\"An error occurred: {exc_value}\")\n\nasync def fetch_data(url):\n    async with AsyncWebSession() as session:\n        async with session.get(url) as response:\n            return await response.text()\n\n# Usage\nasyncio.run(fetch_data('https://api.example.com/data'))"},{"id":5,"options":{"fig-height":5,"read-only":"false","autorun":"","out-width":"700px","results":"markup","context":"interactive","fig-cap":"","output":"true","out-height":"","dpi":72,"comment":"","classes":"","warning":"true","label":"","fig-width":7,"message":"true"},"code":"class TemperatureDescriptor:\n    def __init__(self, name):\n        self.name = f\"_{name}\"\n\n    def __get__(self, obj, objtype=None):\n        if obj is None:\n            return self\n        return getattr(obj, self.name)\n\n    def __set__(self, obj, value):\n        if not isinstance(value, (int, float)):\n            raise TypeError(\"Temperature must be a number\")\n        if value < -273.15:\n            raise ValueError(\"Temperature below absolute zero is not possible\")\n        setattr(obj, self.name, value)\n\nclass WeatherStation:\n    temperature = TemperatureDescriptor(\"temperature\")\n\n    def __init__(self, temp):\n        self.temperature = temp\n\n# Usage\nstation = WeatherStation(25)\nprint(station.temperature)  # 25\nstation.temperature = -300  # Raises ValueError"},{"id":6,"options":{"fig-height":5,"read-only":"false","autorun":"","out-width":"700px","results":"markup","context":"interactive","fig-cap":"","output":"true","out-height":"","dpi":72,"comment":"","classes":"","warning":"true","label":"","fig-width":7,"message":"true"},"code":"class LazyProperty:\n    def __init__(self, function):\n        self.function = function\n        self.name = function.__name__\n\n    def __get__(self, obj, type=None):\n        if obj is None:\n            return self\n        value = self.function(obj)\n        setattr(obj, self.name, value)\n        return value\n\nclass DataProcessor:\n    def __init__(self, filename):\n        self.filename = filename\n\n    @LazyProperty\n    def data(self):\n        print(\"Loading data...\")\n        with open(self.filename, 'r') as f:\n            return f.read()\n\n# Usage\nprocessor = DataProcessor('large_file.txt')\n# Data is not loaded yet\nprint(processor.data)  # Prints \"Loading data...\" and then the content\nprint(processor.data)  # Prints the content without \"Loading data...\""}];
 
 
 </script>
@@ -437,10 +437,10 @@ globalThis._qpyodideGetInstance = function() {
 <meta property="og:site_name" content="Programmation Orientée Objet en Python">
 <meta name="citation_title" content="Python-Specific Design Patterns">
 <meta name="citation_author" content="Remi Genet">
-<meta name="citation_publication_date" content="2024-09-02">
-<meta name="citation_cover_date" content="2024-09-02">
+<meta name="citation_publication_date" content="2024-09-03">
+<meta name="citation_cover_date" content="2024-09-03">
 <meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-09-02">
+<meta name="citation_online_date" content="2024-09-03">
 <meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_6/1-Python_Design_Pattern.html">
 <meta name="citation_language" content="en">
 </head>
@@ -506,7 +506,11 @@ globalThis._qpyodideGetInstance = function() {
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
-    <a class="dropdown-item" href="../../content/Cours_1/TP.html">
+    <a class="dropdown-item" href="../../content/Cours_1/TP_Liste.html">
+ <span class="dropdown-text">Construire sa propre Liste</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_1/TP_dataframe.html">
  <span class="dropdown-text">Construire son propre DataFrame</span></a>
   </li>  
     </ul>
@@ -547,7 +551,15 @@ globalThis._qpyodideGetInstance = function() {
  <span class="dropdown-text">TP: Heritage avec le pricing d’option</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder.html">
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder_dataframe.html">
+ <span class="dropdown-text">TP : Ajouter des méthodes dunder à DataFrameSimple</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder_liste.html">
+ <span class="dropdown-text">TP : Étendre la classe Liste avec des méthodes dunder</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder_tensor.html">
  <span class="dropdown-text">TP: Dunder Method with Tensor for Automatic Differentiation</span></a>
   </li>  
     </ul>
@@ -855,7 +867,7 @@ globalThis._qpyodideGetInstance = function() {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-09-02</p>
+      <p class="date">2024-09-03</p>
     </div>
   </div>
   

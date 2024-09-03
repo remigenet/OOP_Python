@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Remi Genet">
-<meta name="dcterms.date" content="2024-09-02">
+<meta name="dcterms.date" content="2024-09-03">
 
 <title>Polymorphisme et Surcharge – Programmation Orientée Objet en Python</title>
 <style>
@@ -143,10 +143,10 @@ window.Quarto = {
 <meta property="og:site_name" content="Programmation Orientée Objet en Python">
 <meta name="citation_title" content="Polymorphisme et Surcharge">
 <meta name="citation_author" content="Remi Genet">
-<meta name="citation_publication_date" content="2024-09-02">
-<meta name="citation_cover_date" content="2024-09-02">
+<meta name="citation_publication_date" content="2024-09-03">
+<meta name="citation_cover_date" content="2024-09-03">
 <meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-09-02">
+<meta name="citation_online_date" content="2024-09-03">
 <meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_3/">
 <meta name="citation_language" content="en">
 </head>
@@ -212,7 +212,11 @@ window.Quarto = {
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
-    <a class="dropdown-item" href="../../content/Cours_1/TP.html">
+    <a class="dropdown-item" href="../../content/Cours_1/TP_Liste.html">
+ <span class="dropdown-text">Construire sa propre Liste</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_1/TP_dataframe.html">
  <span class="dropdown-text">Construire son propre DataFrame</span></a>
   </li>  
     </ul>
@@ -253,7 +257,15 @@ window.Quarto = {
  <span class="dropdown-text">TP: Heritage avec le pricing d’option</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder.html">
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder_dataframe.html">
+ <span class="dropdown-text">TP : Ajouter des méthodes dunder à DataFrameSimple</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder_liste.html">
+ <span class="dropdown-text">TP : Étendre la classe Liste avec des méthodes dunder</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder_tensor.html">
  <span class="dropdown-text">TP: Dunder Method with Tensor for Automatic Differentiation</span></a>
   </li>  
     </ul>
@@ -444,7 +456,7 @@ window.Quarto = {
 <h1 class="title display-7">Polymorphisme et Surcharge</h1>
 <p class="author">Remi Genet</p>
 
-<p class="date">2024-09-02</p>
+<p class="date">2024-09-03</p>
 </header>
 
 
@@ -457,7 +469,7 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-grid" id="listing-sample-listings">
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="Cours,Fondamentaux" data-listing-date-sort="1725235200000" data-listing-file-modified-sort="1725316012007" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="611">
+<div class="g-col-1" data-index="0" data-categories="Cours,Fondamentaux" data-listing-date-sort="1725321600000" data-listing-file-modified-sort="1725380137070" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="611">
 <a href="../../content/Cours_3/5-Abstract_class.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -475,14 +487,14 @@ Learn about abstract classes in Python, how to define and use them, and the bene
 Remi Genet
 </div>
 <div class="listing-date">
-2024-09-02
+2024-09-03
 </div>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="1" data-categories="Course,Python Intermediate" data-listing-date-sort="1725235200000" data-listing-file-modified-sort="1725316012007" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="553">
+<div class="g-col-1" data-index="1" data-categories="Course,Python Intermediate" data-listing-date-sort="1725321600000" data-listing-file-modified-sort="1725380137070" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="553">
 <a href="../../content/Cours_3/3-type_to_create.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -500,14 +512,14 @@ Compare standard class creation with dynamic creation using type() in Python, un
 Remi Genet
 </div>
 <div class="listing-date">
-2024-09-02
+2024-09-03
 </div>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="2" data-categories="Cours,Fondamentaux" data-listing-date-sort="1725235200000" data-listing-file-modified-sort="1725316012007" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="618">
+<div class="g-col-1" data-index="2" data-categories="Cours,Fondamentaux" data-listing-date-sort="1725321600000" data-listing-file-modified-sort="1725380137070" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="618">
 <a href="../../content/Cours_3/1-Polymorphism.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -525,14 +537,14 @@ Learn about polymorphism in object-oriented programming (OOP), including method 
 Remi Genet
 </div>
 <div class="listing-date">
-2024-09-02
+2024-09-03
 </div>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="3" data-categories="Cours,Fondamentaux" data-listing-date-sort="1725235200000" data-listing-file-modified-sort="1725316012007" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="795">
+<div class="g-col-1" data-index="3" data-categories="Cours,Fondamentaux" data-listing-date-sort="1725321600000" data-listing-file-modified-sort="1725380137070" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="795">
 <a href="../../content/Cours_3/2-Overloading.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -550,14 +562,14 @@ Learn how to achieve polymorphism in Python through function overloading, type c
 Remi Genet
 </div>
 <div class="listing-date">
-2024-09-02
+2024-09-03
 </div>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="4" data-categories="Cours,Fondamentaux" data-listing-date-sort="1725235200000" data-listing-file-modified-sort="1725316012007" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="602">
+<div class="g-col-1" data-index="4" data-categories="Cours,Fondamentaux" data-listing-date-sort="1725321600000" data-listing-file-modified-sort="1725380137070" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="602">
 <a href="../../content/Cours_3/6-Protocol.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -575,14 +587,14 @@ Learn about Protocol classes in Python, how to define and use them, and the adva
 Remi Genet
 </div>
 <div class="listing-date">
-2024-09-02
+2024-09-03
 </div>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="5" data-categories="Cours,Fondamentaux" data-listing-date-sort="1725235200000" data-listing-file-modified-sort="1725316012007" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
+<div class="g-col-1" data-index="5" data-categories="Cours,Fondamentaux" data-listing-date-sort="1725321600000" data-listing-file-modified-sort="1725380137070" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
 <a href="../../content/Cours_3/TP.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -605,14 +617,14 @@ TP
 Remi Genet
 </div>
 <div class="listing-date">
-2024-09-02
+2024-09-03
 </div>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="6" data-categories="Cours,TP" data-listing-date-sort="1725235200000" data-listing-file-modified-sort="1725316012011" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1607">
+<div class="g-col-1" data-index="6" data-categories="Cours,TP" data-listing-date-sort="1725321600000" data-listing-file-modified-sort="1725380137070" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1607">
 <a href="../../content/Cours_3/TP_equity_portfolio.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -630,14 +642,14 @@ TP
 Remi Genet
 </div>
 <div class="listing-date">
-2024-09-02
+2024-09-03
 </div>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="7" data-categories="Cours,Fondamentaux" data-listing-date-sort="1725235200000" data-listing-file-modified-sort="1725316012007" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="515">
+<div class="g-col-1" data-index="7" data-categories="Cours,Fondamentaux" data-listing-date-sort="1725321600000" data-listing-file-modified-sort="1725380137070" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="515">
 <a href="../../content/Cours_3/4-Type_Hinting.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -655,7 +667,7 @@ Learn about type hinting in Python, the typing module, and how to use linters fo
 Remi Genet
 </div>
 <div class="listing-date">
-2024-09-02
+2024-09-03
 </div>
 </div>
 </div>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Remi Genet">
-<meta name="dcterms.date" content="2024-09-02">
+<meta name="dcterms.date" content="2024-09-03">
 
 <title>Encapsulation, Heritage, Composition et Dunder – Programmation Orientée Objet en Python</title>
 <style>
@@ -143,10 +143,10 @@ window.Quarto = {
 <meta property="og:site_name" content="Programmation Orientée Objet en Python">
 <meta name="citation_title" content="Encapsulation, Heritage, Composition et Dunder">
 <meta name="citation_author" content="Remi Genet">
-<meta name="citation_publication_date" content="2024-09-02">
-<meta name="citation_cover_date" content="2024-09-02">
+<meta name="citation_publication_date" content="2024-09-03">
+<meta name="citation_cover_date" content="2024-09-03">
 <meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-09-02">
+<meta name="citation_online_date" content="2024-09-03">
 <meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_2/">
 <meta name="citation_language" content="en">
 </head>
@@ -212,7 +212,11 @@ window.Quarto = {
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
-    <a class="dropdown-item" href="../../content/Cours_1/TP.html">
+    <a class="dropdown-item" href="../../content/Cours_1/TP_Liste.html">
+ <span class="dropdown-text">Construire sa propre Liste</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_1/TP_dataframe.html">
  <span class="dropdown-text">Construire son propre DataFrame</span></a>
   </li>  
     </ul>
@@ -253,7 +257,15 @@ window.Quarto = {
  <span class="dropdown-text">TP: Heritage avec le pricing d’option</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder.html">
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder_dataframe.html">
+ <span class="dropdown-text">TP : Ajouter des méthodes dunder à DataFrameSimple</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder_liste.html">
+ <span class="dropdown-text">TP : Étendre la classe Liste avec des méthodes dunder</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder_tensor.html">
  <span class="dropdown-text">TP: Dunder Method with Tensor for Automatic Differentiation</span></a>
   </li>  
     </ul>
@@ -444,7 +456,7 @@ window.Quarto = {
 <h1 class="title display-7">Encapsulation, Heritage, Composition et Dunder</h1>
 <p class="author">Remi Genet</p>
 
-<p class="date">2024-09-02</p>
+<p class="date">2024-09-03</p>
 </header>
 
 
@@ -457,7 +469,7 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-grid" id="listing-sample-listings">
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="Cours,Fondamentaux" data-listing-date-sort="1725235200000" data-listing-file-modified-sort="1725316011999" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="657">
+<div class="g-col-1" data-index="0" data-categories="Cours,Fondamentaux" data-listing-date-sort="1725321600000" data-listing-file-modified-sort="1725380137054" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="657">
 <a href="../../content/Cours_2/1-Encapsulation.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -475,14 +487,14 @@ Comprendre l’encapsulation en Python et les conventions pour définir des attr
 Remi Genet
 </div>
 <div class="listing-date">
-2024-09-02
+2024-09-03
 </div>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="1" data-categories="Cours,Fondamentaux" data-listing-date-sort="1725235200000" data-listing-file-modified-sort="1725316011999" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="642">
+<div class="g-col-1" data-index="1" data-categories="Cours,Fondamentaux" data-listing-date-sort="1725321600000" data-listing-file-modified-sort="1725380137054" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1354">
 <a href="../../content/Cours_2/2-Heritage.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -500,14 +512,14 @@ Découvrez le concept d’héritage en Python, son intérêt et son application 
 Remi Genet
 </div>
 <div class="listing-date">
-2024-09-02
+2024-09-03
 </div>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="2" data-categories="Cours,Fondamentaux" data-listing-date-sort="1725235200000" data-listing-file-modified-sort="1725316011999" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="535">
+<div class="g-col-1" data-index="2" data-categories="Cours,Fondamentaux" data-listing-date-sort="1725321600000" data-listing-file-modified-sort="1725380137054" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="535">
 <a href="../../content/Cours_2/3-Composition.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -525,14 +537,14 @@ Découvrez les différences entre l’héritage et la composition en programmati
 Remi Genet
 </div>
 <div class="listing-date">
-2024-09-02
+2024-09-03
 </div>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="3" data-categories="Cours,Fondamentaux" data-listing-date-sort="1725235200000" data-listing-file-modified-sort="1725316011999" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="833">
+<div class="g-col-1" data-index="3" data-categories="Cours,Fondamentaux" data-listing-date-sort="1725321600000" data-listing-file-modified-sort="1725380137054" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="833">
 <a href="../../content/Cours_2/4-Dunder.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -550,14 +562,14 @@ Découvrez les méthodes dunder en Python, des méthodes spéciales encadrées p
 Remi Genet
 </div>
 <div class="listing-date">
-2024-09-02
+2024-09-03
 </div>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="4" data-categories="Course,Python Quirks" data-listing-date-sort="1725235200000" data-listing-file-modified-sort="1725316011999" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="672">
+<div class="g-col-1" data-index="4" data-categories="Course,Python Quirks" data-listing-date-sort="1725321600000" data-listing-file-modified-sort="1725380137054" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="672">
 <a href="../../content/Cours_2/5-call_a_dog.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -575,15 +587,65 @@ Explore the quirky side of Python’s <strong>call</strong> method with fun exam
 Remi Genet
 </div>
 <div class="listing-date">
-2024-09-02
+2024-09-03
 </div>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="5" data-categories="TP,Avancé" data-listing-date-sort="1725235200000" data-listing-file-modified-sort="1725316011999" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1536">
-<a href="../../content/Cours_2/TP_dunder.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="5" data-categories="TP,Programmation Orientée Objet" data-listing-date-sort="1725321600000" data-listing-file-modified-sort="1725380137054" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="937">
+<a href="../../content/Cours_2/TP_dunder_dataframe.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../../content/Cours_2/.img/tpdataframe_dunder.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+TP : Ajouter des méthodes dunder à DataFrameSimple
+</h5>
+<div class="card-text listing-description">
+Dans ce TP, vous allez étendre la classe <code>DataFrameSimple</code> en y ajoutant des méthodes dunder (double underscore) pour implémenter des opérations avancées. Cela vous permettra…
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Remi Genet
+</div>
+<div class="listing-date">
+2024-09-03
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="6" data-categories="TP,Programmation Orientée Objet" data-listing-date-sort="1725321600000" data-listing-file-modified-sort="1725380137054" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1151">
+<a href="../../content/Cours_2/TP_dunder_liste.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../../content/Cours_2/.img/tpliste_dunder.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+TP : Étendre la classe Liste avec des méthodes dunder
+</h5>
+<div class="card-text listing-description">
+Dans ce TP, vous allez étendre la classe <code>Liste</code> que nous avons créée précédemment en y ajoutant des méthodes dunder (double underscore) pour implémenter des opérations de…
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Remi Genet
+</div>
+<div class="listing-date">
+2024-09-03
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="7" data-categories="TP,Avancé" data-listing-date-sort="1725321600000" data-listing-file-modified-sort="1725380137054" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1536">
+<a href="../../content/Cours_2/TP_dunder_tensor.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
 <img loading="lazy" src="../../content/Cours_2/.img/tpfinance.png" class="thumbnail-image card-img" style="height: 150px;">
@@ -600,14 +662,14 @@ Imagine you have a complex mathematical function. It might look intimidating at 
 Remi Genet
 </div>
 <div class="listing-date">
-2024-09-02
+2024-09-03
 </div>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="6" data-categories="TP,Avancé" data-listing-date-sort="1725235200000" data-listing-file-modified-sort="1725316011999" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1272">
+<div class="g-col-1" data-index="8" data-categories="TP,Avancé" data-listing-date-sort="1725321600000" data-listing-file-modified-sort="1725380137054" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1272">
 <a href="../../content/Cours_2/TP_heritage.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -625,7 +687,7 @@ Ce TP est divisé en deux parties pour explorer les concepts d’héritage, d’
 Remi Genet
 </div>
 <div class="listing-date">
-2024-09-02
+2024-09-03
 </div>
 </div>
 </div>

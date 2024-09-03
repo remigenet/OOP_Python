@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Remi Genet">
-<meta name="dcterms.date" content="2024-09-02">
+<meta name="dcterms.date" content="2024-09-03">
 <meta name="description" content="Explore practical usage of decorators in popular Python libraries including FastAPI, Numba, and Pytest. Learn how to leverage these powerful tools in your Python projects.">
 
 <title>Practical Decorators in Python Libraries – Programmation Orientée Objet en Python</title>
@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"id":1,"code":"from fastapi import FastAPI, Path, Query, HTTPException\nfrom pydantic import BaseModel\n\napp = FastAPI()\n\nclass Item(BaseModel):\n    name: str\n    price: float\n\n@app.get(\"/\")\nasync def root():\n    return {\"message\": \"Hello World\"}\n\n@app.get(\"/items/{item_id}\")\nasync def read_item(\n    item_id: int = Path(..., title=\"The ID of the item to get\", ge=1),\n    q: str | None = Query(None, max_length=50)\n):\n    return {\"item_id\": item_id, \"q\": q}\n\n@app.post(\"/items/\")\nasync def create_item(item: Item):\n    if item.price < 0:\n        raise HTTPException(status_code=400, detail=\"Price must be positive\")\n    return {\"item_name\": item.name, \"item_price\": item.price}","options":{"fig-width":7,"message":"true","warning":"true","out-height":"","output":"true","results":"markup","classes":"","comment":"","out-width":"700px","fig-height":5,"autorun":"","label":"","fig-cap":"","context":"interactive","dpi":72,"read-only":"false"}},{"id":2,"code":"from numba import jit\nimport numpy as np\n\n@jit(nopython=True)\ndef sum_array(arr):\n    sum = 0\n    for i in range(arr.shape[0]):\n        sum += arr[i]\n    return sum\n\n# Usage\narr = np.arange(1000000)\nresult = sum_array(arr)","options":{"fig-width":7,"message":"true","warning":"true","out-height":"","output":"true","results":"markup","classes":"","comment":"","out-width":"700px","fig-height":5,"autorun":"","label":"","fig-cap":"","context":"interactive","dpi":72,"read-only":"false"}},{"id":3,"code":"import pytest\n\n@pytest.fixture\ndef example_fixture():\n    return \"example\"\n\n@pytest.mark.parametrize(\"test_input,expected\", [\n    (\"3+5\", 8),\n    (\"2+4\", 6),\n    (\"6*9\", 54),\n])\ndef test_eval(test_input, expected):\n    assert eval(test_input) == expected\n\n@pytest.mark.slow\ndef test_slow_operation():\n    # Some time-consuming test\n    pass","options":{"fig-width":7,"message":"true","warning":"true","out-height":"","output":"true","results":"markup","classes":"","comment":"","out-width":"700px","fig-height":5,"autorun":"","label":"","fig-cap":"","context":"interactive","dpi":72,"read-only":"false"}}];
+globalThis.qpyodideCellDetails = [{"id":1,"code":"from fastapi import FastAPI, Path, Query, HTTPException\nfrom pydantic import BaseModel\n\napp = FastAPI()\n\nclass Item(BaseModel):\n    name: str\n    price: float\n\n@app.get(\"/\")\nasync def root():\n    return {\"message\": \"Hello World\"}\n\n@app.get(\"/items/{item_id}\")\nasync def read_item(\n    item_id: int = Path(..., title=\"The ID of the item to get\", ge=1),\n    q: str | None = Query(None, max_length=50)\n):\n    return {\"item_id\": item_id, \"q\": q}\n\n@app.post(\"/items/\")\nasync def create_item(item: Item):\n    if item.price < 0:\n        raise HTTPException(status_code=400, detail=\"Price must be positive\")\n    return {\"item_name\": item.name, \"item_price\": item.price}","options":{"message":"true","output":"true","context":"interactive","out-width":"700px","read-only":"false","comment":"","fig-cap":"","warning":"true","classes":"","out-height":"","results":"markup","fig-height":5,"autorun":"","dpi":72,"label":"","fig-width":7}},{"id":2,"code":"from numba import jit\nimport numpy as np\n\n@jit(nopython=True)\ndef sum_array(arr):\n    sum = 0\n    for i in range(arr.shape[0]):\n        sum += arr[i]\n    return sum\n\n# Usage\narr = np.arange(1000000)\nresult = sum_array(arr)","options":{"message":"true","output":"true","context":"interactive","out-width":"700px","read-only":"false","comment":"","fig-cap":"","warning":"true","classes":"","out-height":"","results":"markup","fig-height":5,"autorun":"","dpi":72,"label":"","fig-width":7}},{"id":3,"code":"import pytest\n\n@pytest.fixture\ndef example_fixture():\n    return \"example\"\n\n@pytest.mark.parametrize(\"test_input,expected\", [\n    (\"3+5\", 8),\n    (\"2+4\", 6),\n    (\"6*9\", 54),\n])\ndef test_eval(test_input, expected):\n    assert eval(test_input) == expected\n\n@pytest.mark.slow\ndef test_slow_operation():\n    # Some time-consuming test\n    pass","options":{"message":"true","output":"true","context":"interactive","out-width":"700px","read-only":"false","comment":"","fig-cap":"","warning":"true","classes":"","out-height":"","results":"markup","fig-height":5,"autorun":"","dpi":72,"label":"","fig-width":7}}];
 
 
 </script>
@@ -437,10 +437,10 @@ globalThis._qpyodideGetInstance = function() {
 <meta property="og:site_name" content="Programmation Orientée Objet en Python">
 <meta name="citation_title" content="Practical Decorators in Python Libraries">
 <meta name="citation_author" content="Remi Genet">
-<meta name="citation_publication_date" content="2024-09-02">
-<meta name="citation_cover_date" content="2024-09-02">
+<meta name="citation_publication_date" content="2024-09-03">
+<meta name="citation_cover_date" content="2024-09-03">
 <meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-09-02">
+<meta name="citation_online_date" content="2024-09-03">
 <meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_4/5-library_decorators.html">
 <meta name="citation_language" content="en">
 </head>
@@ -506,7 +506,11 @@ globalThis._qpyodideGetInstance = function() {
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
-    <a class="dropdown-item" href="../../content/Cours_1/TP.html">
+    <a class="dropdown-item" href="../../content/Cours_1/TP_Liste.html">
+ <span class="dropdown-text">Construire sa propre Liste</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_1/TP_dataframe.html">
  <span class="dropdown-text">Construire son propre DataFrame</span></a>
   </li>  
     </ul>
@@ -547,7 +551,15 @@ globalThis._qpyodideGetInstance = function() {
  <span class="dropdown-text">TP: Heritage avec le pricing d’option</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder.html">
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder_dataframe.html">
+ <span class="dropdown-text">TP : Ajouter des méthodes dunder à DataFrameSimple</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder_liste.html">
+ <span class="dropdown-text">TP : Étendre la classe Liste avec des méthodes dunder</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder_tensor.html">
  <span class="dropdown-text">TP: Dunder Method with Tensor for Automatic Differentiation</span></a>
   </li>  
     </ul>
@@ -865,7 +877,7 @@ globalThis._qpyodideGetInstance = function() {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-09-02</p>
+      <p class="date">2024-09-03</p>
     </div>
   </div>
   

@@ -26,6 +26,19 @@
     ]
   },
   {
+    "listing": "/content/Cours_1/index.html",
+    "items": [
+      "/content/Cours_1/6-Bases_of_classes_in_python.html",
+      "/content/Cours_1/TP_Liste.html",
+      "/content/Cours_1/TP_dataframe.html",
+      "/content/Cours_1/1-Histoire.html",
+      "/content/Cours_1/3-NaissancePOO.html",
+      "/content/Cours_1/2-Structuration_des_donnees.html",
+      "/content/Cours_1/5-Simplicity_and_performance.html",
+      "/content/Cours_1/4-all_is_object.html"
+    ]
+  },
+  {
     "listing": "/index.html",
     "items": [
       "/content/Cours_1/1-Histoire.html",
@@ -34,13 +47,16 @@
       "/content/Cours_1/4-all_is_object.html",
       "/content/Cours_1/5-Simplicity_and_performance.html",
       "/content/Cours_1/6-Bases_of_classes_in_python.html",
-      "/content/Cours_1/TP.html",
+      "/content/Cours_1/TP_Liste.html",
+      "/content/Cours_1/TP_dataframe.html",
       "/content/Cours_2/1-Encapsulation.html",
       "/content/Cours_2/2-Heritage.html",
       "/content/Cours_2/3-Composition.html",
       "/content/Cours_2/4-Dunder.html",
       "/content/Cours_2/5-call_a_dog.html",
-      "/content/Cours_2/TP_dunder.html",
+      "/content/Cours_2/TP_dunder_dataframe.html",
+      "/content/Cours_2/TP_dunder_liste.html",
+      "/content/Cours_2/TP_dunder_tensor.html",
       "/content/Cours_2/TP_heritage.html",
       "/content/Cours_3/1-Polymorphism.html",
       "/content/Cours_3/2-Overloading.html",
@@ -71,18 +87,6 @@
     ]
   },
   {
-    "listing": "/content/Cours_1/index.html",
-    "items": [
-      "/content/Cours_1/6-Bases_of_classes_in_python.html",
-      "/content/Cours_1/TP.html",
-      "/content/Cours_1/1-Histoire.html",
-      "/content/Cours_1/3-NaissancePOO.html",
-      "/content/Cours_1/2-Structuration_des_donnees.html",
-      "/content/Cours_1/5-Simplicity_and_performance.html",
-      "/content/Cours_1/4-all_is_object.html"
-    ]
-  },
-  {
     "listing": "/content/Cours_3/index.html",
     "items": [
       "/content/Cours_3/5-Abstract_class.html",
@@ -103,7 +107,9 @@
       "/content/Cours_2/3-Composition.html",
       "/content/Cours_2/4-Dunder.html",
       "/content/Cours_2/5-call_a_dog.html",
-      "/content/Cours_2/TP_dunder.html",
+      "/content/Cours_2/TP_dunder_dataframe.html",
+      "/content/Cours_2/TP_dunder_liste.html",
+      "/content/Cours_2/TP_dunder_tensor.html",
       "/content/Cours_2/TP_heritage.html"
     ]
   },

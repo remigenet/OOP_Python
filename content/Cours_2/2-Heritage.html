@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Remi Genet">
-<meta name="dcterms.date" content="2024-09-02">
+<meta name="dcterms.date" content="2024-09-03">
 <meta name="description" content="Découvrez le concept d’héritage en Python, son intérêt et son application dans la création de hiérarchies de classes. Apprenez comment Python gère l’héritage implicite de la classe object, l’héritage multiple, et la résolution de l’ordre des méthodes (MRO).">
 
 <title>Héritage en Python : Concept et intérêt – Programmation Orientée Objet en Python</title>
@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -238,7 +272,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"options":{"warning":"true","read-only":"false","message":"true","autorun":"","context":"interactive","classes":"","label":"","results":"markup","fig-height":5,"comment":"","output":"true","fig-cap":"","dpi":72,"out-height":"","fig-width":7,"out-width":"700px"},"code":"class MaClasse:\n    pass\n\n# Est équivalent à :\nclass MaClasse(object):\n    pass","id":1},{"options":{"warning":"true","read-only":"false","message":"true","autorun":"","context":"interactive","classes":"","label":"","results":"markup","fig-height":5,"comment":"","output":"true","fig-cap":"","dpi":72,"out-height":"","fig-width":7,"out-width":"700px"},"code":"class Classe1:\n    pass\n\nclass Classe2:\n    pass\n\nclass ClasseDerivee(Classe1, Classe2):\n    pass","id":2},{"options":{"warning":"true","read-only":"false","message":"true","autorun":"","context":"interactive","classes":"","label":"","results":"markup","fig-height":5,"comment":"","output":"true","fig-cap":"","dpi":72,"out-height":"","fig-width":7,"out-width":"700px"},"code":"class Nageur:\n    def nager(self):\n        print(\"Je nage\")\n\nclass Volant:\n    def voler(self):\n        print(\"Je vole\")\n\nclass Canard(Nageur, Volant):\n    pass\n\ndonald = Canard()\ndonald.nager()  # Affiche: Je nage\ndonald.voler()  # Affiche: Je vole","id":3},{"options":{"warning":"true","read-only":"false","message":"true","autorun":"","context":"interactive","classes":"","label":"","results":"markup","fig-height":5,"comment":"","output":"true","fig-cap":"","dpi":72,"out-height":"","fig-width":7,"out-width":"700px"},"code":"class A:\n    pass\n\nclass B(A):\n    pass\n\nclass C(A):\n    pass\n\nclass D(B, C):\n    pass\n\nprint(D.mro())\n# Affiche: [<class '__main__.D'>, <class '__main__.B'>, <class '__main__.C'>, <class '__main__.A'>, <class 'object'>]","id":4},{"options":{"warning":"true","read-only":"false","message":"true","autorun":"","context":"interactive","classes":"","label":"","results":"markup","fig-height":5,"comment":"","output":"true","fig-cap":"","dpi":72,"out-height":"","fig-width":7,"out-width":"700px"},"code":"class A:\n    def methode(self):\n        print(\"Méthode de A\")\n\nclass B(A):\n    def methode(self):\n        print(\"Méthode de B\")\n\nclass C(A):\n    def methode(self):\n        print(\"Méthode de C\")\n\nclass D(B, C):\n    pass\n\nd = D()\nd.methode()  # Affiche: Méthode de B","id":5}];
+globalThis.qpyodideCellDetails = [{"id":1,"options":{"read-only":"false","comment":"","output":"true","fig-height":5,"message":"true","context":"interactive","fig-cap":"","results":"markup","out-height":"","warning":"true","fig-width":7,"label":"","classes":"","dpi":72,"out-width":"700px","autorun":""},"code":"class MaClasse:\n    pass\n\n# Est équivalent à :\nclass MaClasse(object):\n    pass"},{"id":2,"options":{"read-only":"false","comment":"","output":"true","fig-height":5,"message":"true","context":"interactive","fig-cap":"","results":"markup","out-height":"","warning":"true","fig-width":7,"label":"","classes":"","dpi":72,"out-width":"700px","autorun":""},"code":"class Classe1:\n    pass\n\nclass Classe2:\n    pass\n\nclass ClasseDerivee(Classe1, Classe2):\n    pass"},{"id":3,"options":{"read-only":"false","comment":"","output":"true","fig-height":5,"message":"true","context":"interactive","fig-cap":"","results":"markup","out-height":"","warning":"true","fig-width":7,"label":"","classes":"","dpi":72,"out-width":"700px","autorun":""},"code":"class Nageur:\n    def nager(self):\n        print(\"Je nage\")\n\nclass Volant:\n    def voler(self):\n        print(\"Je vole\")\n\nclass Canard(Nageur, Volant):\n    pass\n\ndonald = Canard()\ndonald.nager()  # Affiche: Je nage\ndonald.voler()  # Affiche: Je vole"},{"id":4,"options":{"read-only":"false","comment":"","output":"true","fig-height":5,"message":"true","context":"interactive","fig-cap":"","results":"markup","out-height":"","warning":"true","fig-width":7,"label":"","classes":"","dpi":72,"out-width":"700px","autorun":""},"code":"class A:\n    pass\n\nclass B(A):\n    pass\n\nclass C(A):\n    pass\n\nclass D(B, C):\n    pass\n\nprint(D.mro())\n# Affiche: [<class '__main__.D'>, <class '__main__.B'>, <class '__main__.C'>, <class '__main__.A'>, <class 'object'>]"},{"id":5,"options":{"read-only":"false","comment":"","output":"true","fig-height":5,"message":"true","context":"interactive","fig-cap":"","results":"markup","out-height":"","warning":"true","fig-width":7,"label":"","classes":"","dpi":72,"out-width":"700px","autorun":""},"code":"class A:\n    def methode(self):\n        print(\"Méthode de A\")\n\nclass B(A):\n    def methode(self):\n        print(\"Méthode de B\")\n\nclass C(A):\n    def methode(self):\n        print(\"Méthode de C\")\n\nclass D(B, C):\n    pass\n\nd = D()\nd.methode()  # Affiche: Méthode de B"}];
 
 
 </script>
@@ -439,10 +473,10 @@ globalThis._qpyodideGetInstance = function() {
 <meta property="og:image:width" content="1024">
 <meta name="citation_title" content="Héritage en Python : Concept et intérêt">
 <meta name="citation_author" content="Remi Genet">
-<meta name="citation_publication_date" content="2024-09-02">
-<meta name="citation_cover_date" content="2024-09-02">
+<meta name="citation_publication_date" content="2024-09-03">
+<meta name="citation_cover_date" content="2024-09-03">
 <meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-09-02">
+<meta name="citation_online_date" content="2024-09-03">
 <meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_2/2-Heritage.html">
 <meta name="citation_language" content="en">
 </head>
@@ -508,7 +542,11 @@ globalThis._qpyodideGetInstance = function() {
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
-    <a class="dropdown-item" href="../../content/Cours_1/TP.html">
+    <a class="dropdown-item" href="../../content/Cours_1/TP_Liste.html">
+ <span class="dropdown-text">Construire sa propre Liste</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_1/TP_dataframe.html">
  <span class="dropdown-text">Construire son propre DataFrame</span></a>
   </li>  
     </ul>
@@ -549,7 +587,15 @@ globalThis._qpyodideGetInstance = function() {
  <span class="dropdown-text">TP: Heritage avec le pricing d’option</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder.html">
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder_dataframe.html">
+ <span class="dropdown-text">TP : Ajouter des méthodes dunder à DataFrameSimple</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder_liste.html">
+ <span class="dropdown-text">TP : Étendre la classe Liste avec des méthodes dunder</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder_tensor.html">
  <span class="dropdown-text">TP: Dunder Method with Tensor for Automatic Differentiation</span></a>
   </li>  
     </ul>
@@ -797,7 +843,19 @@ globalThis._qpyodideGetInstance = function() {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_2/TP_dunder.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/Cours_2/TP_dunder_dataframe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP : Ajouter des méthodes dunder à DataFrameSimple</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_2/TP_dunder_liste.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP : Étendre la classe Liste avec des méthodes dunder</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_2/TP_dunder_tensor.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">TP: Dunder Method with Tensor for Automatic Differentiation</span></a>
   </div>
 </li>
@@ -829,6 +887,20 @@ globalThis._qpyodideGetInstance = function() {
   <li><a href="#visualisation-de-la-mro" id="toc-visualisation-de-la-mro" class="nav-link" data-scroll-target="#visualisation-de-la-mro">3.3 Visualisation de la MRO</a></li>
   <li><a href="#exemple-détaillé-de-résolution-de-méthode" id="toc-exemple-détaillé-de-résolution-de-méthode" class="nav-link" data-scroll-target="#exemple-détaillé-de-résolution-de-méthode">3.4 Exemple détaillé de résolution de méthode</a></li>
   <li><a href="#implications-pour-le-design" id="toc-implications-pour-le-design" class="nav-link" data-scroll-target="#implications-pour-le-design">3.5 Implications pour le design</a></li>
+  </ul></li>
+  <li><a href="#utilisation-de-super" id="toc-utilisation-de-super" class="nav-link" data-scroll-target="#utilisation-de-super">4. Utilisation de <code>super()</code></a>
+  <ul class="collapse">
+  <li><a href="#définition-et-utilité" id="toc-définition-et-utilité" class="nav-link" data-scroll-target="#définition-et-utilité">4.1 Définition et utilité</a></li>
+  <li><a href="#syntaxe-de-base" id="toc-syntaxe-de-base" class="nav-link" data-scroll-target="#syntaxe-de-base">4.2 Syntaxe de base</a></li>
+  <li><a href="#super-avec-des-arguments" id="toc-super-avec-des-arguments" class="nav-link" data-scroll-target="#super-avec-des-arguments">4.3 <code>super()</code> avec des arguments</a></li>
+  <li><a href="#utilisation-de-super-avec-args-et-kwargs" id="toc-utilisation-de-super-avec-args-et-kwargs" class="nav-link" data-scroll-target="#utilisation-de-super-avec-args-et-kwargs">4.4 Utilisation de <code>super()</code> avec <code>*args</code> et <code>**kwargs</code></a></li>
+  <li><a href="#super-dans-lhéritage-multiple" id="toc-super-dans-lhéritage-multiple" class="nav-link" data-scroll-target="#super-dans-lhéritage-multiple">4.4 <code>super()</code> dans l’héritage multiple</a></li>
+  </ul></li>
+  <li><a href="#gestion-des-appels-aux-méthodes-parentes-en-cas-dhéritage-multiple" id="toc-gestion-des-appels-aux-méthodes-parentes-en-cas-dhéritage-multiple" class="nav-link" data-scroll-target="#gestion-des-appels-aux-méthodes-parentes-en-cas-dhéritage-multiple">5. Gestion des appels aux méthodes parentes en cas d’héritage multiple</a>
+  <ul class="collapse">
+  <li><a href="#appel-direct-à-une-méthode-de-classe-parente" id="toc-appel-direct-à-une-méthode-de-classe-parente" class="nav-link" data-scroll-target="#appel-direct-à-une-méthode-de-classe-parente">5.1 Appel direct à une méthode de classe parente</a></li>
+  <li><a href="#avantages-et-inconvénients" id="toc-avantages-et-inconvénients" class="nav-link" data-scroll-target="#avantages-et-inconvénients">5.2 Avantages et inconvénients</a></li>
+  <li><a href="#bonnes-pratiques" id="toc-bonnes-pratiques" class="nav-link" data-scroll-target="#bonnes-pratiques">5.3 Bonnes pratiques</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -875,7 +947,7 @@ globalThis._qpyodideGetInstance = function() {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-09-02</p>
+      <p class="date">2024-09-03</p>
     </div>
   </div>
   
@@ -960,6 +1032,139 @@ globalThis._qpyodideGetInstance = function() {
 <section id="implications-pour-le-design" class="level3">
 <h3 class="anchored" data-anchor-id="implications-pour-le-design">3.5 Implications pour le design</h3>
 <p>La compréhension de la MRO est cruciale pour : - Éviter les conflits de noms dans l’héritage multiple. - Comprendre l’ordre d’exécution des méthodes. - Concevoir des hiérarchies de classes cohérentes et prévisibles.</p>
+</section>
+</section>
+<section id="utilisation-de-super" class="level2">
+<h2 class="anchored" data-anchor-id="utilisation-de-super">4. Utilisation de <code>super()</code></h2>
+<p>La fonction <code>super()</code> est un outil puissant en Python pour gérer l’héritage de manière élégante et flexible.</p>
+<section id="définition-et-utilité" class="level3">
+<h3 class="anchored" data-anchor-id="définition-et-utilité">4.1 Définition et utilité</h3>
+<p><code>super()</code> permet d’appeler des méthodes de la classe parente dans une classe dérivée. Elle est particulièrement utile pour :</p>
+<ol type="1">
+<li>Étendre le comportement d’une méthode parente sans la réécrire entièrement.</li>
+<li>Assurer une gestion correcte de l’héritage multiple.</li>
+</ol>
+</section>
+<section id="syntaxe-de-base" class="level3">
+<h3 class="anchored" data-anchor-id="syntaxe-de-base">4.2 Syntaxe de base</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Parent:</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> methode(<span class="va">self</span>):</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Méthode du parent"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Enfant(Parent):</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> methode(<span class="va">self</span>):</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().methode()  <span class="co"># Appelle la méthode de la classe parente</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Méthode de l'enfant"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>enfant <span class="op">=</span> Enfant()</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>enfant.methode()</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Affiche:</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Méthode du parent</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Méthode de l'enfant</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="super-avec-des-arguments" class="level3">
+<h3 class="anchored" data-anchor-id="super-avec-des-arguments">4.3 <code>super()</code> avec des arguments</h3>
+<p>Dans le constructeur, il est courant d’utiliser <code>super()</code> pour initialiser la classe parente :</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Parent:</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, nom):</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.nom <span class="op">=</span> nom</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Enfant(Parent):</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, nom, age):</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>(nom)  <span class="co"># Appelle le constructeur du parent</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.age <span class="op">=</span> age</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>enfant <span class="op">=</span> Enfant(<span class="st">"Alice"</span>, <span class="dv">10</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(enfant.nom, enfant.age)  <span class="co"># Affiche: Alice 10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="utilisation-de-super-avec-args-et-kwargs" class="level3">
+<h3 class="anchored" data-anchor-id="utilisation-de-super-avec-args-et-kwargs">4.4 Utilisation de <code>super()</code> avec <code>*args</code> et <code>**kwargs</code></h3>
+<p>L’utilisation de <code>*args</code> et <code>**kwargs</code> avec <code>super()</code> permet de créer des classes plus flexibles, capables de transmettre des arguments variables à leurs classes parentes.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Parent:</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, <span class="op">*</span>args, <span class="op">**</span>kwargs):</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Arguments positionnels:"</span>, args)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Arguments nommés:"</span>, kwargs)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Enfant(Parent):</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, <span class="op">*</span>args, <span class="op">**</span>kwargs):</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Initialisation de Enfant"</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>(<span class="op">*</span>args, <span class="op">**</span>kwargs)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Utilisation</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>enfant <span class="op">=</span> Enfant(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, nom<span class="op">=</span><span class="st">"Alice"</span>, age<span class="op">=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Cette approche est particulièrement utile lorsque : - Vous ne savez pas à l’avance combien d’arguments la classe parente pourrait avoir. - Vous voulez permettre l’ajout futur d’arguments sans casser l’héritage. - Vous travaillez avec des hiérarchies de classes complexes où différentes classes parentes peuvent avoir différents paramètres.</p>
+<p>Pour plus de détails sur l’utilisation de <code>*args</code> et <code>**kwargs</code>, vous pouvez consulter <a href="https://remigenet.github.io/Introduction-Python/content/Cours_2/2-FonctionsEtModules.html">cette ressource</a>.</p>
+</section>
+<section id="super-dans-lhéritage-multiple" class="level3">
+<h3 class="anchored" data-anchor-id="super-dans-lhéritage-multiple">4.4 <code>super()</code> dans l’héritage multiple</h3>
+<p>Dans le cas de l’héritage multiple, <code>super()</code> suit l’ordre défini par la MRO :</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> A:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> methode(<span class="va">self</span>):</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Méthode de A"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> B(A):</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> methode(<span class="va">self</span>):</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Méthode de B"</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().methode()</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> C(A):</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> methode(<span class="va">self</span>):</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Méthode de C"</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().methode()</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> D(B, C):</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> methode(<span class="va">self</span>):</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Méthode de D"</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().methode()</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> D()</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>d.methode()</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Affiche:</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Méthode de D</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Méthode de B</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Méthode de C</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Méthode de A</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="gestion-des-appels-aux-méthodes-parentes-en-cas-dhéritage-multiple" class="level2">
+<h2 class="anchored" data-anchor-id="gestion-des-appels-aux-méthodes-parentes-en-cas-dhéritage-multiple">5. Gestion des appels aux méthodes parentes en cas d’héritage multiple</h2>
+<p>Dans certains cas, vous pourriez vouloir appeler spécifiquement la méthode d’une classe parente particulière, plutôt que de suivre la MRO.</p>
+<section id="appel-direct-à-une-méthode-de-classe-parente" class="level3">
+<h3 class="anchored" data-anchor-id="appel-direct-à-une-méthode-de-classe-parente">5.1 Appel direct à une méthode de classe parente</h3>
+<p>Vous pouvez appeler directement une méthode d’une classe parente spécifique en utilisant le nom de la classe :</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> A:</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> methode(<span class="va">self</span>):</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Méthode de A"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> B:</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> methode(<span class="va">self</span>):</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Méthode de B"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> C(A, B):</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> methode(<span class="va">self</span>):</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Méthode de C"</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        A.methode(<span class="va">self</span>)  <span class="co"># Appel direct à la méthode de A</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        B.methode(<span class="va">self</span>)  <span class="co"># Appel direct à la méthode de B</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> C()</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>c.methode()</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Affiche:</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Méthode de C</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Méthode de A</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Méthode de B</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="avantages-et-inconvénients" class="level3">
+<h3 class="anchored" data-anchor-id="avantages-et-inconvénients">5.2 Avantages et inconvénients</h3>
+<p><strong>Avantages :</strong> - Contrôle précis sur quelle méthode parente est appelée. - Utile lorsque vous avez besoin d’un comportement spécifique d’une classe parente.</p>
+<p><strong>Inconvénients :</strong> - Peut rendre le code moins flexible si la structure d’héritage change. - Risque de contourner la MRO, ce qui peut mener à des comportements inattendus.</p>
+</section>
+<section id="bonnes-pratiques" class="level3">
+<h3 class="anchored" data-anchor-id="bonnes-pratiques">5.3 Bonnes pratiques</h3>
+<ol type="1">
+<li>Utilisez <code>super()</code> par défaut pour respecter la MRO et maintenir la flexibilité du code.</li>
+<li>N’utilisez l’appel direct que lorsque c’est absolument nécessaire et documentez clairement pourquoi.</li>
+<li>Soyez conscient des implications sur la maintenance du code à long terme.</li>
+</ol>
 
 
 </section>

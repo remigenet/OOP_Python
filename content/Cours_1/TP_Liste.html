@@ -8,9 +8,8 @@
 
 <meta name="author" content="Remi Genet">
 <meta name="dcterms.date" content="2024-09-03">
-<meta name="description" content="Learn creational design pattern">
 
-<title>Creation Design Patterns – Programmation Orientée Objet en Python</title>
+<title>Construire sa propre Liste – Programmation Orientée Objet en Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,8 +32,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../content/Cours_6/3-Structural_patterns.html" rel="next">
-<link href="../../content/Cours_6/1-Python_Design_Pattern.html" rel="prev">
+<link href="../../content/Cours_1/TP_dataframe.html" rel="next">
+<link href="../../content/Cours_1/6-Bases_of_classes_in_python.html" rel="prev">
 <link href="../../content/.img/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -238,7 +237,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"id":1,"options":{"autorun":"","results":"markup","context":"interactive","fig-cap":"","fig-height":5,"dpi":72,"label":"","out-width":"700px","classes":"","message":"true","output":"true","warning":"true","comment":"","fig-width":7,"read-only":"false","out-height":""},"code":"class Singleton:\n    _instance = None\n\n    def __new__(cls):\n        if cls._instance is None:\n            cls._instance = super().__new__(cls)\n        return cls._instance\n\n    def some_business_logic(self):\n        # ...\n\n# Usage\ns1 = Singleton()\ns2 = Singleton()\nprint(s1 is s2)  # Output: True"},{"id":2,"options":{"autorun":"","results":"markup","context":"interactive","fig-cap":"","fig-height":5,"dpi":72,"label":"","out-width":"700px","classes":"","message":"true","output":"true","warning":"true","comment":"","fig-width":7,"read-only":"false","out-height":""},"code":"def singleton(class_):\n    instances = {}\n    def get_instance(*args, **kwargs):\n        if class_ not in instances:\n            instances[class_] = class_(*args, **kwargs)\n        return instances[class_]\n    return get_instance\n\n@singleton\nclass DatabaseConnection:\n    def __init__(self):\n        # Initialize the database connection\n\n# Usage\ndb1 = DatabaseConnection()\ndb2 = DatabaseConnection()\nprint(db1 is db2)  # Output: True"},{"id":3,"options":{"autorun":"","results":"markup","context":"interactive","fig-cap":"","fig-height":5,"dpi":72,"label":"","out-width":"700px","classes":"","message":"true","output":"true","warning":"true","comment":"","fig-width":7,"read-only":"false","out-height":""},"code":"import os\nfrom abc import ABC, abstractmethod\nfrom typing import List, Union\n\nclass Matrix(ABC):\n    @abstractmethod\n    def __init__(self, data: Union[List[List[float]], List[float]]):\n        pass\n\n    @abstractmethod\n    def multiply(self, other: 'Matrix') -> 'Matrix':\n        pass\n\n    @abstractmethod\n    def add(self, other: 'Matrix') -> 'Matrix':\n        pass\n\nclass MatrixFactory(ABC):\n    @abstractmethod\n    def create_matrix(self, data: Union[List[List[float]], List[float]]) -> Matrix:\n        pass\n\nclass PythonMatrix(Matrix):\n    # Implementation for pure Python\n\nclass PythonMatrixFactory(MatrixFactory):\n    def create_matrix(self, data):\n        return PythonMatrix(data)\n\n# Similar classes for NumPy and JAX implementations\n\ndef get_matrix_factory() -> MatrixFactory:\n    backend = os.environ.get('MATRIX_BACKEND', 'PYTHON').upper()\n    if backend == 'NUMPY' and NumPyMatrixFactory is not None:\n        return NumPyMatrixFactory()\n    elif backend == 'JAX' and JAXMatrixFactory is not None:\n        return JAXMatrixFactory()\n    else:\n        return PythonMatrixFactory()\n\n# Usage\nfactory = get_matrix_factory()\nmat1 = factory.create_matrix([[1, 2], [3, 4]])\nmat2 = factory.create_matrix([[5, 6], [7, 8]])\nresult = mat1.multiply(mat2)"},{"id":4,"options":{"autorun":"","results":"markup","context":"interactive","fig-cap":"","fig-height":5,"dpi":72,"label":"","out-width":"700px","classes":"","message":"true","output":"true","warning":"true","comment":"","fig-width":7,"read-only":"false","out-height":""},"code":"from abc import ABC, abstractmethod\n\n# Abstract Product Classes\nclass Button(ABC):\n    @abstractmethod\n    def paint(self):\n        pass\n\nclass Checkbox(ABC):\n    @abstractmethod\n    def paint(self):\n        pass\n\n# Concrete Product Classes\nclass WindowsButton(Button):\n    def paint(self):\n        return \"Render a button in Windows style\"\n\nclass MacOSButton(Button):\n    def paint(self):\n        return \"Render a button in MacOS style\"\n\nclass WindowsCheckbox(Checkbox):\n    def paint(self):\n        return \"Render a checkbox in Windows style\"\n\nclass MacOSCheckbox(Checkbox):\n    def paint(self):\n        return \"Render a checkbox in MacOS style\"\n\n# Abstract Factory\nclass GUIFactory(ABC):\n    @abstractmethod\n    def create_button(self) -> Button:\n        pass\n\n    @abstractmethod\n    def create_checkbox(self) -> Checkbox:\n        pass\n\n# Concrete Factories\nclass WindowsFactory(GUIFactory):\n    def create_button(self) -> Button:\n        return WindowsButton()\n\n    def create_checkbox(self) -> Checkbox:\n        return WindowsCheckbox()\n\nclass MacOSFactory(GUIFactory):\n    def create_button(self) -> Button:\n        return MacOSButton()\n\n    def create_checkbox(self) -> Checkbox:\n        return MacOSCheckbox()\n\n# Client Code\ndef create_ui(factory: GUIFactory):\n    button = factory.create_button()\n    checkbox = factory.create_checkbox()\n    return button.paint() + \" and \" + checkbox.paint()\n\n# Usage\nwindows_ui = create_ui(WindowsFactory())\nmacos_ui = create_ui(MacOSFactory())\n\nprint(windows_ui)\nprint(macos_ui)"},{"id":5,"options":{"autorun":"","results":"markup","context":"interactive","fig-cap":"","fig-height":5,"dpi":72,"label":"","out-width":"700px","classes":"","message":"true","output":"true","warning":"true","comment":"","fig-width":7,"read-only":"false","out-height":""},"code":"class Computer:\n    def __init__(self):\n        self.parts = []\n\n    def add(self, part):\n        self.parts.append(part)\n\n    def list_parts(self):\n        return f\"Computer parts: {', '.join(self.parts)}\"\n\nclass ComputerBuilder(ABC):\n    @abstractmethod\n    def add_cpu(self):\n        pass\n\n    @abstractmethod\n    def add_memory(self):\n        pass\n\n    @abstractmethod\n    def add_storage(self):\n        pass\n\n    @abstractmethod\n    def get_result(self) -> Computer:\n        pass\n\nclass GamingComputerBuilder(ComputerBuilder):\n    def __init__(self):\n        self.computer = Computer()\n\n    def add_cpu(self):\n        self.computer.add(\"High-end CPU\")\n\n    def add_memory(self):\n        self.computer.add(\"32GB RAM\")\n\n    def add_storage(self):\n        self.computer.add(\"1TB SSD\")\n\n    def get_result(self) -> Computer:\n        return self.computer\n\nclass OfficeComputerBuilder(ComputerBuilder):\n    def __init__(self):\n        self.computer = Computer()\n\n    def add_cpu(self):\n        self.computer.add(\"Mid-range CPU\")\n\n    def add_memory(self):\n        self.computer.add(\"16GB RAM\")\n\n    def add_storage(self):\n        self.computer.add(\"512GB SSD\")\n\n    def get_result(self) -> Computer:\n        return self.computer\n\nclass Director:\n    def __init__(self, builder: ComputerBuilder):\n        self.builder = builder\n\n    def construct_computer(self):\n        self.builder.add_cpu()\n        self.builder.add_memory()\n        self.builder.add_storage()\n\n# Usage\ngaming_builder = GamingComputerBuilder()\ndirector = Director(gaming_builder)\ndirector.construct_computer()\ngaming_pc = gaming_builder.get_result()\nprint(gaming_pc.list_parts())\n\noffice_builder = OfficeComputerBuilder()\ndirector = Director(office_builder)\ndirector.construct_computer()\noffice_pc = office_builder.get_result()\nprint(office_pc.list_parts())"}];
+globalThis.qpyodideCellDetails = [{"options":{"comment":"","read-only":"false","results":"markup","dpi":72,"context":"interactive","fig-height":5,"label":"","classes":"","out-width":"700px","message":"true","output":"true","fig-cap":"","out-height":"","fig-width":7,"warning":"true","autorun":""},"code":"class Liste:\n    def __init__(self):\n        # TODO: Initialisez le dictionnaire _elements et le compteur _count\n\n    def append(self, element):\n        # TODO: Implémentez la méthode append\n\n    def remove(self, valeur):\n        # TODO: Implémentez la méthode remove\n\n    def pop(self, index):\n        # TODO: Implémentez la méthode pop\n\n    def get_index(self, valeur):\n        # TODO: Implémentez la méthode get_index","id":1},{"options":{"comment":"","read-only":"false","results":"markup","dpi":72,"context":"interactive","fig-height":5,"label":"","classes":"","out-width":"700px","message":"true","output":"true","fig-cap":"","out-height":"","fig-width":7,"warning":"true","autorun":""},"code":"import unittest\n\nclass TestListe(unittest.TestCase):\n    def setUp(self):\n        self.liste = Liste()\n\n    def test_append(self):\n        self.liste.append(1)\n        self.liste.append(\"deux\")\n        self.liste.append([3, 4])\n        self.assertEqual(self.liste._elements, {0: 1, 1: \"deux\", 2: [3, 4]})\n        self.assertEqual(self.liste._count, 3)\n\n    def test_remove(self):\n        self.liste.append(1)\n        self.liste.append(2)\n        self.liste.append(1)\n        self.liste.remove(1)\n        self.assertEqual(self.liste._elements, {0: 2, 1: 1})\n        self.assertEqual(self.liste._count, 2)\n\n    def test_pop(self):\n        self.liste.append(1)\n        self.liste.append(2)\n        self.liste.append(3)\n        element = self.liste.pop(1)\n        self.assertEqual(element, 2)\n        self.assertEqual(self.liste._elements, {0: 1, 1: 3})\n        self.assertEqual(self.liste._count, 2)\n\n    def test_get_index(self):\n        self.liste.append(1)\n        self.liste.append(2)\n        self.liste.append(3)\n        self.liste.append(2)\n        self.assertEqual(self.liste.get_index(2), 1)\n        self.assertEqual(self.liste.get_index(4), -1)\n\ndef run_tests():\n    unittest.main(argv=[''], verbosity=2, exit=False)\n\nif __name__ == '__main__':\n    run_tests()","id":2}];
 
 
 </script>
@@ -431,17 +430,17 @@ globalThis._qpyodideGetInstance = function() {
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Creation Design Patterns – Programmation Orientée Objet en Python">
-<meta property="og:description" content="Learn creational design pattern">
-<meta property="og:image" content="https://remigenet.github.io/OOP_Python/content/Cours_6/.img/dunder_poo.webp">
+<meta property="og:title" content="Construire sa propre Liste – Programmation Orientée Objet en Python">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://remigenet.github.io/OOP_Python/content/Cours_1/.img/tpliste.png">
 <meta property="og:site_name" content="Programmation Orientée Objet en Python">
-<meta name="citation_title" content="Creation Design Patterns">
+<meta name="citation_title" content="Construire sa propre Liste">
 <meta name="citation_author" content="Remi Genet">
 <meta name="citation_publication_date" content="2024-09-03">
 <meta name="citation_cover_date" content="2024-09-03">
 <meta name="citation_year" content="2024">
 <meta name="citation_online_date" content="2024-09-03">
-<meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_6/2-Creational_patterns.html">
+<meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_1/TP_Liste.html">
 <meta name="citation_language" content="en">
 </head>
 
@@ -742,7 +741,7 @@ globalThis._qpyodideGetInstance = function() {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_6/2-Creational_patterns.html">Creation Design Patterns</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_1/TP_Liste.html">Travaux Pratiques</a></li><li class="breadcrumb-item"><a href="../../content/Cours_1/TP_Liste.html">Construire sa propre Liste</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -756,32 +755,44 @@ globalThis._qpyodideGetInstance = function() {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_6/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">OOP Design Patterns</span></a>
+  <a href="../../content/Cours_1/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction: Histoire et Concepts</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_6/1-Python_Design_Pattern.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python-Specific Design Patterns</span></a>
+  <a href="../../content/Cours_1/1-Histoire.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Histoire de la programmation</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_6/2-Creational_patterns.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Creation Design Patterns</span></a>
+  <a href="../../content/Cours_1/2-Structuration_des_donnees.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Première Structuration des données</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_6/3-Structural_patterns.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Structural Design Patterns</span></a>
+  <a href="../../content/Cours_1/3-NaissancePOO.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Naissance de la POO</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_6/4-behavioral_patterns.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Behavioral Design Pattern</span></a>
+  <a href="../../content/Cours_1/4-all_is_object.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python: tout n’est qu’objet</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_1/5-Simplicity_and_performance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python : Simplicité des objets et performance sous-jacente</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_1/6-Bases_of_classes_in_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Classes en Python : Concepts fondamentaux</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -794,8 +805,17 @@ globalThis._qpyodideGetInstance = function() {
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
- <span class="menu-text">content/Cours_5/TP_equity_portfolio.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_1/TP_Liste.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Construire sa propre Liste</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_1/TP_dataframe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Construire son propre DataFrame</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -808,31 +828,9 @@ globalThis._qpyodideGetInstance = function() {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#creational-design-patterns-in-python" id="toc-creational-design-patterns-in-python" class="nav-link active" data-scroll-target="#creational-design-patterns-in-python">Creational Design Patterns in Python</a>
-  <ul class="collapse">
-  <li><a href="#singleton-pattern" id="toc-singleton-pattern" class="nav-link" data-scroll-target="#singleton-pattern">1. Singleton Pattern</a>
-  <ul class="collapse">
-  <li><a href="#implementation-using-__new__" id="toc-implementation-using-__new__" class="nav-link" data-scroll-target="#implementation-using-__new__">1.1 Implementation using <code>__new__</code></a></li>
-  <li><a href="#implementation-using-a-decorator" id="toc-implementation-using-a-decorator" class="nav-link" data-scroll-target="#implementation-using-a-decorator">1.2 Implementation using a Decorator</a></li>
-  <li><a href="#pros-and-cons" id="toc-pros-and-cons" class="nav-link" data-scroll-target="#pros-and-cons">1.3 Pros and Cons</a></li>
-  </ul></li>
-  <li><a href="#factory-method-pattern" id="toc-factory-method-pattern" class="nav-link" data-scroll-target="#factory-method-pattern">2. Factory Method Pattern</a>
-  <ul class="collapse">
-  <li><a href="#example-matrix-computation-with-different-backends" id="toc-example-matrix-computation-with-different-backends" class="nav-link" data-scroll-target="#example-matrix-computation-with-different-backends">2.1 Example: Matrix Computation with Different Backends</a></li>
-  <li><a href="#benefits-of-factory-method" id="toc-benefits-of-factory-method" class="nav-link" data-scroll-target="#benefits-of-factory-method">2.2 Benefits of Factory Method</a></li>
-  </ul></li>
-  <li><a href="#abstract-factory-pattern" id="toc-abstract-factory-pattern" class="nav-link" data-scroll-target="#abstract-factory-pattern">3. Abstract Factory Pattern</a>
-  <ul class="collapse">
-  <li><a href="#example-cross-platform-ui-components" id="toc-example-cross-platform-ui-components" class="nav-link" data-scroll-target="#example-cross-platform-ui-components">3.1 Example: Cross-platform UI Components</a></li>
-  <li><a href="#benefits-of-abstract-factory" id="toc-benefits-of-abstract-factory" class="nav-link" data-scroll-target="#benefits-of-abstract-factory">3.2 Benefits of Abstract Factory</a></li>
-  </ul></li>
-  <li><a href="#builder-pattern" id="toc-builder-pattern" class="nav-link" data-scroll-target="#builder-pattern">4. Builder Pattern</a>
-  <ul class="collapse">
-  <li><a href="#example-custom-computer-builder" id="toc-example-custom-computer-builder" class="nav-link" data-scroll-target="#example-custom-computer-builder">4.1 Example: Custom Computer Builder</a></li>
-  <li><a href="#benefits-of-builder" id="toc-benefits-of-builder" class="nav-link" data-scroll-target="#benefits-of-builder">4.2 Benefits of Builder</a></li>
-  </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
-  </ul></li>
+  <li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">Instructions</a></li>
+  <li><a href="#implémentation" id="toc-implémentation" class="nav-link" data-scroll-target="#implémentation">Implémentation</a></li>
+  <li><a href="#tests-unitaires-pour-vérifier-votre-implémentation" id="toc-tests-unitaires-pour-vérifier-votre-implémentation" class="nav-link" data-scroll-target="#tests-unitaires-pour-vérifier-votre-implémentation">Tests Unitaires pour vérifier votre implémentation</a></li>
   </ul>
 </nav>
     </div>
@@ -849,20 +847,15 @@ globalThis._qpyodideGetInstance = function() {
   });
 </script>
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_1/TP_Liste.html">Travaux Pratiques</a></li><li class="breadcrumb-item"><a href="../../content/Cours_1/TP_Liste.html">Construire sa propre Liste</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Creation Design Patterns</h1>
+<h1 class="title">Construire sa propre Liste</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Cours</div>
-    <div class="quarto-category">Fondamentaux</div>
+    <div class="quarto-category">TP</div>
+    <div class="quarto-category">Introduction</div>
   </div>
   </div>
 
-<div>
-  <div class="description">
-    Learn creational design pattern
-  </div>
-</div>
 
 
 <div class="quarto-title-meta column-body">
@@ -889,100 +882,45 @@ globalThis._qpyodideGetInstance = function() {
 </header>
 
 
-<section id="creational-design-patterns-in-python" class="level1">
-<h1>Creational Design Patterns in Python</h1>
-<hr>
-<p>Creational design patterns provide various object creation mechanisms, which increase flexibility and reuse of existing code.</p>
-<section id="singleton-pattern" class="level2">
-<h2 class="anchored" data-anchor-id="singleton-pattern">1. Singleton Pattern</h2>
-<p>The Singleton pattern ensures a class has only one instance and provides a global point of access to it.</p>
-<section id="implementation-using-__new__" class="level3">
-<h3 class="anchored" data-anchor-id="implementation-using-__new__">1.1 Implementation using <code>__new__</code></h3>
+<section id="instructions" class="level1">
+<h1>Instructions</h1>
+<p>Votre tâche est de créer une classe <code>Liste</code> qui simule les fonctionnalités de base d’une liste en Python. Cette implémentation vous permettra de comprendre comment les listes en Python peuvent contenir des éléments de types différents.</p>
+<p>Suivez ces instructions :</p>
+<ol type="1">
+<li><p>Implémentez la classe <code>Liste</code> avec les méthodes suivantes :</p>
+<ul>
+<li><code>__init__(self)</code> : Le constructeur qui initialise un dictionnaire vide et un compteur à 0.</li>
+<li><code>append(self, element)</code> : Ajoute un élément à la fin de la liste.</li>
+<li><code>remove(self, valeur)</code> : Supprime la première occurrence de la valeur donnée.</li>
+<li><code>pop(self, index)</code> : Supprime et retourne l’élément à l’index spécifié.</li>
+<li><code>get_index(self, valeur)</code> : Retourne l’index de la première occurrence de la valeur donnée.</li>
+</ul></li>
+<li><p>Votre classe doit avoir les attributs suivants :</p>
+<ul>
+<li><code>_elements</code> : Un dictionnaire contenant les éléments de la liste.</li>
+<li><code>_count</code> : Un compteur pour garder la trace du nombre d’éléments.</li>
+</ul></li>
+<li><p>Une fois votre implémentation terminée, exécutez les tests unitaires fournis.</p></li>
+<li><p>Assurez-vous que tous les tests passent. Si ce n’est pas le cas, revoyez votre implémentation.</p></li>
+</ol>
+<p>Conseils : - Utilisez le dictionnaire <code>_elements</code> pour stocker les éléments, avec les clés étant les indices et les valeurs étant les éléments de la liste. - Mettez à jour le <code>_count</code> chaque fois que vous ajoutez ou supprimez un élément. - Pour <code>remove</code> et <code>get_index</code>, vous devrez parcourir le dictionnaire pour trouver la valeur.</p>
+<p>Note : Cette implémentation simple illustre comment les listes en Python peuvent contenir des éléments de types différents. En réalité, les listes Python sont plus optimisées, mais le principe de base est similaire.</p>
+</section>
+<section id="implémentation" class="level1">
+<h1>Implémentation</h1>
+<p>Complétez la classe <code>Liste</code> ci-dessous :</p>
 <div id="qpyodide-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
-<section id="implementation-using-a-decorator" class="level3">
-<h3 class="anchored" data-anchor-id="implementation-using-a-decorator">1.2 Implementation using a Decorator</h3>
+<section id="tests-unitaires-pour-vérifier-votre-implémentation" class="level1">
+<h1>Tests Unitaires pour vérifier votre implémentation</h1>
+<p>Exécutez les tests unitaires ci-dessous pour vérifier votre implémentation :</p>
 <div id="qpyodide-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
-<section id="pros-and-cons" class="level3">
-<h3 class="anchored" data-anchor-id="pros-and-cons">1.3 Pros and Cons</h3>
-<ul>
-<li>Pros:
-<ul>
-<li>Ensures a single instance</li>
-<li>Global access point</li>
-<li>Lazy initialization</li>
-</ul></li>
-<li>Cons:
-<ul>
-<li>Violates Single Responsibility Principle</li>
-<li>Can make unit testing difficult</li>
-<li>Can hide bad design</li>
-</ul></li>
-</ul>
-</section>
-</section>
-<section id="factory-method-pattern" class="level2">
-<h2 class="anchored" data-anchor-id="factory-method-pattern">2. Factory Method Pattern</h2>
-<p>The Factory Method pattern provides an interface for creating objects in a superclass, but allows subclasses to alter the type of objects that will be created.</p>
-<section id="example-matrix-computation-with-different-backends" class="level3">
-<h3 class="anchored" data-anchor-id="example-matrix-computation-with-different-backends">2.1 Example: Matrix Computation with Different Backends</h3>
-<div id="qpyodide-insertion-location-3"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
-<section id="benefits-of-factory-method" class="level3">
-<h3 class="anchored" data-anchor-id="benefits-of-factory-method">2.2 Benefits of Factory Method</h3>
-<ul>
-<li>Provides flexibility in object creation</li>
-<li>Promotes loose coupling</li>
-<li>Adheres to the Open/Closed Principle</li>
-<li>Simplifies adding new types of objects</li>
-</ul>
-</section>
-</section>
-<section id="abstract-factory-pattern" class="level2">
-<h2 class="anchored" data-anchor-id="abstract-factory-pattern">3. Abstract Factory Pattern</h2>
-<p>The Abstract Factory pattern provides an interface for creating families of related or dependent objects without specifying their concrete classes.</p>
-<section id="example-cross-platform-ui-components" class="level3">
-<h3 class="anchored" data-anchor-id="example-cross-platform-ui-components">3.1 Example: Cross-platform UI Components</h3>
-<div id="qpyodide-insertion-location-4"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
-<section id="benefits-of-abstract-factory" class="level3">
-<h3 class="anchored" data-anchor-id="benefits-of-abstract-factory">3.2 Benefits of Abstract Factory</h3>
-<ul>
-<li>Ensures compatibility between created objects</li>
-<li>Isolates concrete classes</li>
-<li>Simplifies exchanging product families</li>
-<li>Promotes consistency among products</li>
-</ul>
-</section>
-</section>
-<section id="builder-pattern" class="level2">
-<h2 class="anchored" data-anchor-id="builder-pattern">4. Builder Pattern</h2>
-<p>The Builder pattern separates the construction of a complex object from its representation, allowing the same construction process to create different representations.</p>
-<section id="example-custom-computer-builder" class="level3">
-<h3 class="anchored" data-anchor-id="example-custom-computer-builder">4.1 Example: Custom Computer Builder</h3>
-<div id="qpyodide-insertion-location-5"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
-<section id="benefits-of-builder" class="level3">
-<h3 class="anchored" data-anchor-id="benefits-of-builder">4.2 Benefits of Builder</h3>
-<ul>
-<li>Allows step-by-step creation of complex objects</li>
-<li>Can use the same construction code for different representations</li>
-<li>Isolates complex construction code from business logic</li>
-</ul>
-</section>
-</section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>Creational design patterns solve problems related to object creation in software design. They provide flexibility, improve code reusability, and help manage complexity in object-oriented systems. Each pattern has its specific use cases, and understanding them allows developers to choose the right tool for the job when designing software systems.</p>
+<p>Exécutez les cellules de code ci-dessus pour implémenter votre classe <code>Liste</code> et vérifier si elle passe tous les tests unitaires. Si certains tests échouent, revoyez votre implémentation et essayez à nouveau.</p>
+<p>Cette implémentation vous aidera à comprendre comment les listes en Python peuvent contenir des éléments de types différents, en utilisant un dictionnaire comme structure sous-jacente. C’est une simplification du fonctionnement réel des listes en Python, mais cela illustre le concept de base.</p>
 
 
-</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -1552,13 +1490,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../../content/Cours_6/1-Python_Design_Pattern.html" class="pagination-link" aria-label="Python-Specific Design Patterns">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Python-Specific Design Patterns</span>
+      <a href="../../content/Cours_1/6-Bases_of_classes_in_python.html" class="pagination-link" aria-label="Classes en Python : Concepts fondamentaux">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Classes en Python : Concepts fondamentaux</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../content/Cours_6/3-Structural_patterns.html" class="pagination-link" aria-label="Structural Design Patterns">
-        <span class="nav-page-text">Structural Design Patterns</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../content/Cours_1/TP_dataframe.html" class="pagination-link" aria-label="Construire son propre DataFrame">
+        <span class="nav-page-text">Construire son propre DataFrame</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

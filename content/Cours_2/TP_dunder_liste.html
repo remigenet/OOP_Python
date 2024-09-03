@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Remi Genet">
-<meta name="dcterms.date" content="2024-09-02">
+<meta name="dcterms.date" content="2024-09-03">
 
-<title>Construire son propre DataFrame – Programmation Orientée Objet en Python</title>
+<title>TP : Étendre la classe Liste avec des méthodes dunder – Programmation Orientée Objet en Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -32,7 +66,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../content/Cours_1/6-Bases_of_classes_in_python.html" rel="prev">
+<link href="../../content/Cours_2/TP_dunder_tensor.html" rel="next">
+<link href="../../content/Cours_2/TP_dunder_dataframe.html" rel="prev">
 <link href="../../content/.img/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -236,7 +271,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"import unittest\nimport numpy as np\n\nclass DataFrameSimple:\n   #TODO\n   pass\n\nclass TestDataFrameSimple(unittest.TestCase):\n\n    def setUp(self):\n        self.data_dict = {\n            'A': [1, 2, 3, 4, 5],\n            'B': [10, 20, 30, 40, 50],\n            'C': [100, 200, 300, 400, 500]\n        }\n        self.df = DataFrameSimple(self.data_dict)\n\n    def test_creation(self):\n        self.assertIsInstance(self.df, DataFrameSimple)\n        self.assertEqual(list(self.df.colonnes), ['A', 'B', 'C'])\n\n    def test_afficher(self):\n        result = self.df.afficher()\n        self.assertIsInstance(result, str)\n        self.assertIn('A', result)\n        self.assertIn('B', result)\n        self.assertIn('C', result)\n\n    def test_moyenne(self):\n        self.assertEqual(self.df.moyenne('A'), 3)\n        self.assertEqual(self.df.moyenne('B'), 30)\n\n    def test_somme(self):\n        self.assertEqual(self.df.somme('A'), 15)\n        self.assertEqual(self.df.somme('B'), 150)\n\n    def test_min(self):\n        self.assertEqual(self.df.min('A'), 1)\n        self.assertEqual(self.df.min('B'), 10)\n\n    def test_max(self):\n        self.assertEqual(self.df.max('A'), 5)\n        self.assertEqual(self.df.max('B'), 50)\n\n    def test_select_colonne(self):\n        np.testing.assert_array_equal(self.df.select_colonne('A'), np.array([1, 2, 3, 4, 5]))\n\ndef run_tests():\n    unittest.main(argv=[''], verbosity=2, exit=False)\n\nif __name__ == '__main__':\n    run_tests()","id":1,"options":{"message":"true","warning":"true","classes":"","context":"interactive","fig-cap":"","output":"true","results":"markup","read-only":"false","fig-height":5,"dpi":72,"label":"","out-width":"700px","comment":"","autorun":"","out-height":"","fig-width":7}}];
+globalThis.qpyodideCellDetails = [{"code":"class Liste:\n    def __init__(self):\n        self._elements = {}\n        self._count = 0\n\n    def append(self, element):\n        self._elements[self._count] = element\n        self._count += 1\n\n    def remove(self, valeur):\n        for index, element in self._elements.items():\n            if element == valeur:\n                del self._elements[index]\n                self._count -= 1\n                for i in range(index, self._count):\n                    self._elements[i] = self._elements.pop(i + 1)\n                break\n\n    def pop(self, index):\n        if index < 0 or index >= self._count:\n            raise IndexError(\"Index hors limites\")\n        element = self._elements.pop(index)\n        self._count -= 1\n        for i in range(index, self._count):\n            self._elements[i] = self._elements.pop(i + 1)\n        return element\n\n    def get_index(self, valeur):\n        for index, element in self._elements.items():\n            if element == valeur:\n                return index\n        return -1\n\n    # TODO: Implémentez les méthodes dunder ici\n    def __str__(self):\n        pass\n\n    def __len__(self):\n        pass\n\n    def __getitem__(self, index):\n        pass\n\n    def __setitem__(self, index, valeur):\n        pass\n\n    def __iter__(self):\n        pass\n\n    def __add__(self, other):\n        pass","id":1,"options":{"label":"","read-only":"false","results":"markup","out-height":"","autorun":"","classes":"","output":"true","comment":"","message":"true","fig-cap":"","fig-width":7,"context":"interactive","warning":"true","fig-height":5,"out-width":"700px","dpi":72}},{"code":"import unittest\n\nclass TestListeDunder(unittest.TestCase):\n    def setUp(self):\n        self.liste = Liste()\n        self.liste.append(1)\n        self.liste.append(2)\n        self.liste.append(3)\n\n    def test_str(self):\n        self.assertEqual(str(self.liste), \"[1, 2, 3]\")\n\n    def test_len(self):\n        self.assertEqual(len(self.liste), 3)\n\n    def test_getitem(self):\n        self.assertEqual(self.liste[1], 2)\n        with self.assertRaises(IndexError):\n            _ = self.liste[3]\n\n    def test_setitem(self):\n        self.liste[1] = 5\n        self.assertEqual(self.liste[1], 5)\n        with self.assertRaises(IndexError):\n            self.liste[3] = 4\n\n    def test_iter(self):\n        self.assertEqual(list(self.liste), [1, 2, 3])\n\n    def test_add(self):\n        other = Liste()\n        other.append(4)\n        other.append(5)\n        result = self.liste + other\n        self.assertEqual(str(result), \"[1, 2, 3, 4, 5]\")\n\ndef run_tests():\n    unittest.main(argv=[''], verbosity=2, exit=False)\n\nif __name__ == '__main__':\n    run_tests()","id":2,"options":{"label":"","read-only":"false","results":"markup","out-height":"","autorun":"","classes":"","output":"true","comment":"","message":"true","fig-cap":"","fig-width":7,"context":"interactive","warning":"true","fig-height":5,"out-width":"700px","dpi":72}}];
 
 
 </script>
@@ -429,19 +464,17 @@ globalThis._qpyodideGetInstance = function() {
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Construire son propre DataFrame – Programmation Orientée Objet en Python">
+<meta property="og:title" content="TP : Étendre la classe Liste avec des méthodes dunder – Programmation Orientée Objet en Python">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://remigenet.github.io/OOP_Python/content/Cours_1/.img/tpcompile.png">
+<meta property="og:image" content="https://remigenet.github.io/OOP_Python/content/Cours_2/.img/tpliste_dunder.png">
 <meta property="og:site_name" content="Programmation Orientée Objet en Python">
-<meta property="og:image:height" content="1024">
-<meta property="og:image:width" content="1024">
-<meta name="citation_title" content="Construire son propre DataFrame">
+<meta name="citation_title" content="TP : Étendre la classe Liste avec des méthodes dunder">
 <meta name="citation_author" content="Remi Genet">
-<meta name="citation_publication_date" content="2024-09-02">
-<meta name="citation_cover_date" content="2024-09-02">
+<meta name="citation_publication_date" content="2024-09-03">
+<meta name="citation_cover_date" content="2024-09-03">
 <meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-09-02">
-<meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_1/TP.html">
+<meta name="citation_online_date" content="2024-09-03">
+<meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_2/TP_dunder_liste.html">
 <meta name="citation_language" content="en">
 </head>
 
@@ -506,7 +539,11 @@ globalThis._qpyodideGetInstance = function() {
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
-    <a class="dropdown-item" href="../../content/Cours_1/TP.html">
+    <a class="dropdown-item" href="../../content/Cours_1/TP_Liste.html">
+ <span class="dropdown-text">Construire sa propre Liste</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_1/TP_dataframe.html">
  <span class="dropdown-text">Construire son propre DataFrame</span></a>
   </li>  
     </ul>
@@ -547,7 +584,15 @@ globalThis._qpyodideGetInstance = function() {
  <span class="dropdown-text">TP: Heritage avec le pricing d’option</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder.html">
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder_dataframe.html">
+ <span class="dropdown-text">TP : Ajouter des méthodes dunder à DataFrameSimple</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder_liste.html">
+ <span class="dropdown-text">TP : Étendre la classe Liste avec des méthodes dunder</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder_tensor.html">
  <span class="dropdown-text">TP: Dunder Method with Tensor for Automatic Differentiation</span></a>
   </li>  
     </ul>
@@ -730,7 +775,7 @@ globalThis._qpyodideGetInstance = function() {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_1/TP.html">Travaux Pratiques</a></li><li class="breadcrumb-item"><a href="../../content/Cours_1/TP.html">Construire son propre DataFrame</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_2/TP_heritage.html">Travaux Pratiques</a></li><li class="breadcrumb-item"><a href="../../content/Cours_2/TP_dunder_liste.html">TP : Étendre la classe Liste avec des méthodes dunder</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -744,44 +789,38 @@ globalThis._qpyodideGetInstance = function() {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_1/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction: Histoire et Concepts</span></a>
+  <a href="../../content/Cours_2/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Encapsulation, Heritage, Composition et Dunder</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_1/1-Histoire.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Histoire de la programmation</span></a>
+  <a href="../../content/Cours_2/1-Encapsulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Encapsulation en Python</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_1/2-Structuration_des_donnees.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Première Structuration des données</span></a>
+  <a href="../../content/Cours_2/2-Heritage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Héritage en Python : Concept et intérêt</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_1/3-NaissancePOO.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Naissance de la POO</span></a>
+  <a href="../../content/Cours_2/3-Composition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Héritage vs Composition</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_1/4-all_is_object.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python: tout n’est qu’objet</span></a>
+  <a href="../../content/Cours_2/4-Dunder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Méthodes Dunder en Python</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_1/5-Simplicity_and_performance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python : Simplicité des objets et performance sous-jacente</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_1/6-Bases_of_classes_in_python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Classes en Python : Concepts fondamentaux</span></a>
+  <a href="../../content/Cours_2/5-call_a_dog.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python <strong>call</strong> Method: A Fun Exploration</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -795,8 +834,26 @@ globalThis._qpyodideGetInstance = function() {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_1/TP.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Construire son propre DataFrame</span></a>
+  <a href="../../content/Cours_2/TP_heritage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP: Heritage avec le pricing d’option</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_2/TP_dunder_dataframe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP : Ajouter des méthodes dunder à DataFrameSimple</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_2/TP_dunder_liste.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">TP : Étendre la classe Liste avec des méthodes dunder</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_2/TP_dunder_tensor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP: Dunder Method with Tensor for Automatic Differentiation</span></a>
   </div>
 </li>
       </ul>
@@ -812,7 +869,8 @@ globalThis._qpyodideGetInstance = function() {
    
   <ul>
   <li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">Instructions</a></li>
-  <li><a href="#tests-unitaires-pour-verifier-votre-implémentation" id="toc-tests-unitaires-pour-verifier-votre-implémentation" class="nav-link" data-scroll-target="#tests-unitaires-pour-verifier-votre-implémentation">Tests Unitaires pour verifier votre implémentation</a></li>
+  <li><a href="#implémentation" id="toc-implémentation" class="nav-link" data-scroll-target="#implémentation">Implémentation</a></li>
+  <li><a href="#tests-unitaires-pour-vérifier-votre-implémentation" id="toc-tests-unitaires-pour-vérifier-votre-implémentation" class="nav-link" data-scroll-target="#tests-unitaires-pour-vérifier-votre-implémentation">Tests Unitaires pour vérifier votre implémentation</a></li>
   </ul>
 </nav>
     </div>
@@ -829,12 +887,12 @@ globalThis._qpyodideGetInstance = function() {
   });
 </script>
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_1/TP.html">Travaux Pratiques</a></li><li class="breadcrumb-item"><a href="../../content/Cours_1/TP.html">Construire son propre DataFrame</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_2/TP_heritage.html">Travaux Pratiques</a></li><li class="breadcrumb-item"><a href="../../content/Cours_2/TP_dunder_liste.html">TP : Étendre la classe Liste avec des méthodes dunder</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Construire son propre DataFrame</h1>
+<h1 class="title">TP : Étendre la classe Liste avec des méthodes dunder</h1>
   <div class="quarto-categories">
     <div class="quarto-category">TP</div>
-    <div class="quarto-category">Introduction</div>
+    <div class="quarto-category">Programmation Orientée Objet</div>
   </div>
   </div>
 
@@ -852,7 +910,7 @@ globalThis._qpyodideGetInstance = function() {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-09-02</p>
+      <p class="date">2024-09-03</p>
     </div>
   </div>
   
@@ -866,34 +924,60 @@ globalThis._qpyodideGetInstance = function() {
 
 <section id="instructions" class="level1">
 <h1>Instructions</h1>
-<p>Votre tâche est de créer une classe <code>DataFrameSimple</code> qui simule les fonctionnalités de base d’un dataframe. Suivez ces instructions :</p>
+<p>Dans ce TP, vous allez étendre la classe <code>Liste</code> que nous avons créée précédemment en y ajoutant des méthodes dunder (double underscore) pour implémenter des opérations de base. Cela vous permettra de comprendre comment ces méthodes spéciales permettent aux objets de se comporter comme des types natifs de Python.</p>
+<p>Voici la classe <code>Liste</code> de base :</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Liste:</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._elements <span class="op">=</span> {}</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> append(<span class="va">self</span>, element):</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._elements[<span class="va">self</span>._count] <span class="op">=</span> element</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> remove(<span class="va">self</span>, valeur):</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> index, element <span class="kw">in</span> <span class="va">self</span>._elements.items():</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> element <span class="op">==</span> valeur:</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                <span class="kw">del</span> <span class="va">self</span>._elements[index]</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>._count <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(index, <span class="va">self</span>._count):</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                    <span class="va">self</span>._elements[i] <span class="op">=</span> <span class="va">self</span>._elements.pop(i <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> pop(<span class="va">self</span>, index):</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> index <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">or</span> index <span class="op">&gt;=</span> <span class="va">self</span>._count:</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">IndexError</span>(<span class="st">"Index hors limites"</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        element <span class="op">=</span> <span class="va">self</span>._elements.pop(index)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._count <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(index, <span class="va">self</span>._count):</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>._elements[i] <span class="op">=</span> <span class="va">self</span>._elements.pop(i <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> element</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_index(<span class="va">self</span>, valeur):</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> index, element <span class="kw">in</span> <span class="va">self</span>._elements.items():</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> element <span class="op">==</span> valeur:</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> index</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="op">-</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Votre tâche est d’ajouter les méthodes dunder suivantes à cette classe :</p>
 <ol type="1">
-<li><p>Créez un fichier nommé <code>dataframe_simple.py</code>.</p></li>
-<li><p>Dans ce fichier, implémentez la classe <code>DataFrameSimple</code> avec les méthodes suivantes :</p>
-<ul>
-<li><code>__init__(self, data)</code> : Le constructeur qui accepte un dictionnaire de données.</li>
-<li><code>afficher(self)</code> : Retourne une chaîne représentant les premières lignes du dataframe.</li>
-<li><code>moyenne(self, nom_colonne)</code> : Calcule la moyenne d’une colonne.</li>
-<li><code>somme(self, nom_colonne)</code> : Calcule la somme d’une colonne.</li>
-<li><code>min(self, nom_colonne)</code> : Trouve le minimum d’une colonne.</li>
-<li><code>max(self, nom_colonne)</code> : Trouve le maximum d’une colonne.</li>
-<li><code>select_colonne(self, nom_colonne)</code> : Retourne les valeurs d’une colonne.</li>
-</ul></li>
-<li><p>Votre classe doit avoir les attributs suivants :</p>
-<ul>
-<li><code>donnees</code> : Un numpy array contenant les données.</li>
-<li><code>colonnes</code> : Une liste des noms de colonnes.</li>
-</ul></li>
-<li><p>Utilisez numpy pour les calculs statistiques (np.mean(), np.sum(), etc.).</p></li>
-<li><p>Une fois votre implémentation terminée, exécutez les tests unitaires en lançant <code>python test_dataframe_simple.py</code>.</p></li>
-<li><p>Assurez-vous que tous les tests passent. Si ce n’est pas le cas, revoyez votre implémentation.</p></li>
+<li><code>__str__(self)</code> : Retourne une représentation en chaîne de caractères de la liste.</li>
+<li><code>__len__(self)</code> : Retourne la longueur de la liste.</li>
+<li><code>__getitem__(self, index)</code> : Permet l’accès aux éléments par index (ex: <code>ma_liste[2]</code>).</li>
+<li><code>__setitem__(self, index, valeur)</code> : Permet de modifier un élément par index (ex: <code>ma_liste[2] = 10</code>).</li>
+<li><code>__iter__(self)</code> : Permet d’itérer sur la liste.</li>
+<li><code>__add__(self, other)</code> : Permet d’additionner deux listes (concaténation).</li>
 </ol>
-<p>Conseils : - Commencez par implémenter le constructeur et la méthode <code>afficher()</code>. - Utilisez les fonctions numpy pour les calculs statistiques. - N’oubliez pas d’importer numpy dans votre fichier <code>dataframe_simple.py</code>.</p>
 </section>
-<section id="tests-unitaires-pour-verifier-votre-implémentation" class="level1">
-<h1>Tests Unitaires pour verifier votre implémentation</h1>
-<p>Voici un ensemble de tests unitaires simplifiés pour votre classe <code>DataFrameSimple</code>. Copier votre classe avec ce code pour la tester :</p>
+<section id="implémentation" class="level1">
+<h1>Implémentation</h1>
+<p>Complétez la classe <code>Liste</code> ci-dessous en ajoutant les méthodes dunder demandées :</p>
 <div id="qpyodide-insertion-location-1"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="tests-unitaires-pour-vérifier-votre-implémentation" class="level1">
+<h1>Tests Unitaires pour vérifier votre implémentation</h1>
+<p>Exécutez les tests unitaires ci-dessous pour vérifier votre implémentation :</p>
+<div id="qpyodide-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 
 
@@ -1466,11 +1550,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../../content/Cours_1/6-Bases_of_classes_in_python.html" class="pagination-link" aria-label="Classes en Python : Concepts fondamentaux">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Classes en Python : Concepts fondamentaux</span>
+      <a href="../../content/Cours_2/TP_dunder_dataframe.html" class="pagination-link" aria-label="TP : Ajouter des méthodes dunder à DataFrameSimple">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">TP : Ajouter des méthodes dunder à DataFrameSimple</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../content/Cours_2/TP_dunder_tensor.html" class="pagination-link" aria-label="TP: Dunder Method with Tensor for Automatic Differentiation">
+        <span class="nav-page-text">TP: Dunder Method with Tensor for Automatic Differentiation</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

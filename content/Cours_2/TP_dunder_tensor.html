@@ -8,9 +8,8 @@
 
 <meta name="author" content="Remi Genet">
 <meta name="dcterms.date" content="2024-09-03">
-<meta name="description" content="Learn creational design pattern">
 
-<title>Creation Design Patterns – Programmation Orientée Objet en Python</title>
+<title>TP: Dunder Method with Tensor for Automatic Differentiation – Programmation Orientée Objet en Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,8 +32,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../content/Cours_6/3-Structural_patterns.html" rel="next">
-<link href="../../content/Cours_6/1-Python_Design_Pattern.html" rel="prev">
+<link href="../../content/Cours_2/TP_dunder_liste.html" rel="prev">
 <link href="../../content/.img/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -238,7 +236,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"id":1,"options":{"autorun":"","results":"markup","context":"interactive","fig-cap":"","fig-height":5,"dpi":72,"label":"","out-width":"700px","classes":"","message":"true","output":"true","warning":"true","comment":"","fig-width":7,"read-only":"false","out-height":""},"code":"class Singleton:\n    _instance = None\n\n    def __new__(cls):\n        if cls._instance is None:\n            cls._instance = super().__new__(cls)\n        return cls._instance\n\n    def some_business_logic(self):\n        # ...\n\n# Usage\ns1 = Singleton()\ns2 = Singleton()\nprint(s1 is s2)  # Output: True"},{"id":2,"options":{"autorun":"","results":"markup","context":"interactive","fig-cap":"","fig-height":5,"dpi":72,"label":"","out-width":"700px","classes":"","message":"true","output":"true","warning":"true","comment":"","fig-width":7,"read-only":"false","out-height":""},"code":"def singleton(class_):\n    instances = {}\n    def get_instance(*args, **kwargs):\n        if class_ not in instances:\n            instances[class_] = class_(*args, **kwargs)\n        return instances[class_]\n    return get_instance\n\n@singleton\nclass DatabaseConnection:\n    def __init__(self):\n        # Initialize the database connection\n\n# Usage\ndb1 = DatabaseConnection()\ndb2 = DatabaseConnection()\nprint(db1 is db2)  # Output: True"},{"id":3,"options":{"autorun":"","results":"markup","context":"interactive","fig-cap":"","fig-height":5,"dpi":72,"label":"","out-width":"700px","classes":"","message":"true","output":"true","warning":"true","comment":"","fig-width":7,"read-only":"false","out-height":""},"code":"import os\nfrom abc import ABC, abstractmethod\nfrom typing import List, Union\n\nclass Matrix(ABC):\n    @abstractmethod\n    def __init__(self, data: Union[List[List[float]], List[float]]):\n        pass\n\n    @abstractmethod\n    def multiply(self, other: 'Matrix') -> 'Matrix':\n        pass\n\n    @abstractmethod\n    def add(self, other: 'Matrix') -> 'Matrix':\n        pass\n\nclass MatrixFactory(ABC):\n    @abstractmethod\n    def create_matrix(self, data: Union[List[List[float]], List[float]]) -> Matrix:\n        pass\n\nclass PythonMatrix(Matrix):\n    # Implementation for pure Python\n\nclass PythonMatrixFactory(MatrixFactory):\n    def create_matrix(self, data):\n        return PythonMatrix(data)\n\n# Similar classes for NumPy and JAX implementations\n\ndef get_matrix_factory() -> MatrixFactory:\n    backend = os.environ.get('MATRIX_BACKEND', 'PYTHON').upper()\n    if backend == 'NUMPY' and NumPyMatrixFactory is not None:\n        return NumPyMatrixFactory()\n    elif backend == 'JAX' and JAXMatrixFactory is not None:\n        return JAXMatrixFactory()\n    else:\n        return PythonMatrixFactory()\n\n# Usage\nfactory = get_matrix_factory()\nmat1 = factory.create_matrix([[1, 2], [3, 4]])\nmat2 = factory.create_matrix([[5, 6], [7, 8]])\nresult = mat1.multiply(mat2)"},{"id":4,"options":{"autorun":"","results":"markup","context":"interactive","fig-cap":"","fig-height":5,"dpi":72,"label":"","out-width":"700px","classes":"","message":"true","output":"true","warning":"true","comment":"","fig-width":7,"read-only":"false","out-height":""},"code":"from abc import ABC, abstractmethod\n\n# Abstract Product Classes\nclass Button(ABC):\n    @abstractmethod\n    def paint(self):\n        pass\n\nclass Checkbox(ABC):\n    @abstractmethod\n    def paint(self):\n        pass\n\n# Concrete Product Classes\nclass WindowsButton(Button):\n    def paint(self):\n        return \"Render a button in Windows style\"\n\nclass MacOSButton(Button):\n    def paint(self):\n        return \"Render a button in MacOS style\"\n\nclass WindowsCheckbox(Checkbox):\n    def paint(self):\n        return \"Render a checkbox in Windows style\"\n\nclass MacOSCheckbox(Checkbox):\n    def paint(self):\n        return \"Render a checkbox in MacOS style\"\n\n# Abstract Factory\nclass GUIFactory(ABC):\n    @abstractmethod\n    def create_button(self) -> Button:\n        pass\n\n    @abstractmethod\n    def create_checkbox(self) -> Checkbox:\n        pass\n\n# Concrete Factories\nclass WindowsFactory(GUIFactory):\n    def create_button(self) -> Button:\n        return WindowsButton()\n\n    def create_checkbox(self) -> Checkbox:\n        return WindowsCheckbox()\n\nclass MacOSFactory(GUIFactory):\n    def create_button(self) -> Button:\n        return MacOSButton()\n\n    def create_checkbox(self) -> Checkbox:\n        return MacOSCheckbox()\n\n# Client Code\ndef create_ui(factory: GUIFactory):\n    button = factory.create_button()\n    checkbox = factory.create_checkbox()\n    return button.paint() + \" and \" + checkbox.paint()\n\n# Usage\nwindows_ui = create_ui(WindowsFactory())\nmacos_ui = create_ui(MacOSFactory())\n\nprint(windows_ui)\nprint(macos_ui)"},{"id":5,"options":{"autorun":"","results":"markup","context":"interactive","fig-cap":"","fig-height":5,"dpi":72,"label":"","out-width":"700px","classes":"","message":"true","output":"true","warning":"true","comment":"","fig-width":7,"read-only":"false","out-height":""},"code":"class Computer:\n    def __init__(self):\n        self.parts = []\n\n    def add(self, part):\n        self.parts.append(part)\n\n    def list_parts(self):\n        return f\"Computer parts: {', '.join(self.parts)}\"\n\nclass ComputerBuilder(ABC):\n    @abstractmethod\n    def add_cpu(self):\n        pass\n\n    @abstractmethod\n    def add_memory(self):\n        pass\n\n    @abstractmethod\n    def add_storage(self):\n        pass\n\n    @abstractmethod\n    def get_result(self) -> Computer:\n        pass\n\nclass GamingComputerBuilder(ComputerBuilder):\n    def __init__(self):\n        self.computer = Computer()\n\n    def add_cpu(self):\n        self.computer.add(\"High-end CPU\")\n\n    def add_memory(self):\n        self.computer.add(\"32GB RAM\")\n\n    def add_storage(self):\n        self.computer.add(\"1TB SSD\")\n\n    def get_result(self) -> Computer:\n        return self.computer\n\nclass OfficeComputerBuilder(ComputerBuilder):\n    def __init__(self):\n        self.computer = Computer()\n\n    def add_cpu(self):\n        self.computer.add(\"Mid-range CPU\")\n\n    def add_memory(self):\n        self.computer.add(\"16GB RAM\")\n\n    def add_storage(self):\n        self.computer.add(\"512GB SSD\")\n\n    def get_result(self) -> Computer:\n        return self.computer\n\nclass Director:\n    def __init__(self, builder: ComputerBuilder):\n        self.builder = builder\n\n    def construct_computer(self):\n        self.builder.add_cpu()\n        self.builder.add_memory()\n        self.builder.add_storage()\n\n# Usage\ngaming_builder = GamingComputerBuilder()\ndirector = Director(gaming_builder)\ndirector.construct_computer()\ngaming_pc = gaming_builder.get_result()\nprint(gaming_pc.list_parts())\n\noffice_builder = OfficeComputerBuilder()\ndirector = Director(office_builder)\ndirector.construct_computer()\noffice_pc = office_builder.get_result()\nprint(office_pc.list_parts())"}];
+globalThis.qpyodideCellDetails = [{"id":1,"code":"import numpy as np\n\nclass Tensor:\n    def __init__(self, data, _children=(), _op=''):\n        self.data = np.array(data).astype(np.float64)\n        self.grad = np.zeros_like(self.data)\n        self._backward = lambda: None\n        self._prev = set(_children)\n        self._op = _op\n\n    def __add__(self, other):\n        other = other if isinstance(other, Tensor) else Tensor(other)\n        out = Tensor(self.data + other.data, (self, other), '+')\n\n        def _backward():\n            self.grad += out.grad\n            other.grad += out.grad\n        out._backward = _backward\n\n        return out\n\n    def __mul__(self, other):\n        other = other if isinstance(other, Tensor) else Tensor(other)\n        out = Tensor(self.data * other.data, (self, other), '*')\n\n        def _backward():\n            self.grad += other.data * out.grad\n            other.grad += self.data * out.grad\n        out._backward = _backward\n\n        return out\n\n    def __pow__(self, other):\n        assert isinstance(other, (int, float)), \"only supporting int/float powers for now\"\n        out = Tensor(self.data**other, (self,), f'**{other}')\n\n        def _backward():\n            self.grad += (other * self.data**(other-1)) * out.grad\n        out._backward = _backward\n\n        return out\n\n    def backward(self):\n        topo = []\n        visited = set()\n        def build_topo(v):\n            if v not in visited:\n                visited.add(v)\n                for child in v._prev:\n                    build_topo(child)\n                topo.append(v)\n        build_topo(self)\n\n        self.grad = np.ones_like(self.data)\n        for v in reversed(topo):\n            v._backward()\n\ndef tensor(data):\n    return Tensor(data)","options":{"out-height":"","label":"","message":"true","read-only":"false","dpi":72,"context":"interactive","comment":"","classes":"","out-width":"700px","warning":"true","autorun":"","fig-cap":"","fig-width":7,"results":"markup","output":"true","fig-height":5}},{"id":2,"code":"def f(x, y):\n    return (x**2 + 2*y) * Tensor.sin(x + y)\n\n# Create input tensors\nx = tensor(1.0)\ny = tensor(2.0)\n\n# Compute the function\nresult = f(x, y)\n\n# Compute gradients\nresult.backward()\n\nprint(f\"f({x.data}, {y.data}) = {result.data}\")\nprint(f\"df/dx = {x.grad}\")\nprint(f\"df/dy = {y.grad}\")","options":{"out-height":"","label":"","message":"true","read-only":"false","dpi":72,"context":"interactive","comment":"","classes":"","out-width":"700px","warning":"true","autorun":"","fig-cap":"","fig-width":7,"results":"markup","output":"true","fig-height":5}},{"id":3,"code":"import unittest\nimport numpy as np\n\nclass TestTensor(unittest.TestCase):\n    def setUp(self):\n        self.x = tensor(2.0)\n        self.y = tensor(3.0)\n\n    def test_add(self):\n        z = self.x + self.y\n        z.backward()\n        self.assertEqual(z.data, 5.0)\n        self.assertEqual(self.x.grad, 1.0)\n        self.assertEqual(self.y.grad, 1.0)\n\n    def test_mul(self):\n        z = self.x * self.y\n        z.backward()\n        self.assertEqual(z.data, 6.0)\n        self.assertEqual(self.x.grad, 3.0)\n        self.assertEqual(self.y.grad, 2.0)\n\n    def test_pow(self):\n        z = self.x ** 2\n        z.backward()\n        self.assertEqual(z.data, 4.0)\n        self.assertEqual(self.x.grad, 4.0)\n\n    def test_sub(self):\n        z = self.x - self.y\n        z.backward()\n        self.assertEqual(z.data, -1.0)\n        self.assertEqual(self.x.grad, 1.0)\n        self.assertEqual(self.y.grad, -1.0)\n\n    def test_div(self):\n        z = self.x / self.y\n        z.backward()\n        self.assertAlmostEqual(z.data, 2/3, places=5)\n        self.assertAlmostEqual(self.x.grad, 1/3, places=5)\n        self.assertAlmostEqual(self.y.grad, -2/9, places=5)\n\n    def test_sin(self):\n        z = Tensor.sin(self.x)\n        z.backward()\n        self.assertAlmostEqual(z.data, np.sin(2.0), places=5)\n        self.assertAlmostEqual(self.x.grad, np.cos(2.0), places=5)\n\n    def test_complex_function(self):\n        def f(x, y):\n            return (x**2 + 2*y) * Tensor.sin(x + y)\n        \n        x = tensor(1.0)\n        y = tensor(2.0)\n        z = f(x, y)\n        z.backward()\n        \n        expected_z = (1**2 + 2*2) * np.sin(1 + 2)\n        expected_dx = 2 * np.sin(3) + 5 * np.cos(3)\n        expected_dy = 2 * np.sin(3) + 5 * np.cos(3)\n        \n        self.assertAlmostEqual(z.data, expected_z, places=5)\n        self.assertAlmostEqual(x.grad, expected_dx, places=5)\n        self.assertAlmostEqual(y.grad, expected_dy, places=5)\n\ndef run_tests():\n    unittest.main(argv=[''], verbosity=2, exit=False)\n\nif __name__ == '__main__':\n    run_tests()","options":{"out-height":"","label":"","message":"true","read-only":"false","dpi":72,"context":"interactive","comment":"","classes":"","out-width":"700px","warning":"true","autorun":"","fig-cap":"","fig-width":7,"results":"markup","output":"true","fig-height":5}}];
 
 
 </script>
@@ -429,19 +427,48 @@ globalThis._qpyodideGetInstance = function() {
 
 </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Creation Design Patterns – Programmation Orientée Objet en Python">
-<meta property="og:description" content="Learn creational design pattern">
-<meta property="og:image" content="https://remigenet.github.io/OOP_Python/content/Cours_6/.img/dunder_poo.webp">
+<meta property="og:title" content="TP: Dunder Method with Tensor for Automatic Differentiation – Programmation Orientée Objet en Python">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://remigenet.github.io/OOP_Python/content/Cours_2/.img/tpfinance.png">
 <meta property="og:site_name" content="Programmation Orientée Objet en Python">
-<meta name="citation_title" content="Creation Design Patterns">
+<meta name="citation_title" content="TP: Dunder Method with Tensor for Automatic Differentiation">
 <meta name="citation_author" content="Remi Genet">
 <meta name="citation_publication_date" content="2024-09-03">
 <meta name="citation_cover_date" content="2024-09-03">
 <meta name="citation_year" content="2024">
 <meta name="citation_online_date" content="2024-09-03">
-<meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_6/2-Creational_patterns.html">
+<meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_2/TP_dunder_tensor.html">
 <meta name="citation_language" content="en">
 </head>
 
@@ -742,7 +769,7 @@ globalThis._qpyodideGetInstance = function() {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_6/2-Creational_patterns.html">Creation Design Patterns</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_2/TP_heritage.html">Travaux Pratiques</a></li><li class="breadcrumb-item"><a href="../../content/Cours_2/TP_dunder_tensor.html">TP: Dunder Method with Tensor for Automatic Differentiation</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -756,32 +783,38 @@ globalThis._qpyodideGetInstance = function() {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_6/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">OOP Design Patterns</span></a>
+  <a href="../../content/Cours_2/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Encapsulation, Heritage, Composition et Dunder</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_6/1-Python_Design_Pattern.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python-Specific Design Patterns</span></a>
+  <a href="../../content/Cours_2/1-Encapsulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Encapsulation en Python</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_6/2-Creational_patterns.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Creation Design Patterns</span></a>
+  <a href="../../content/Cours_2/2-Heritage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Héritage en Python : Concept et intérêt</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_6/3-Structural_patterns.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Structural Design Patterns</span></a>
+  <a href="../../content/Cours_2/3-Composition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Héritage vs Composition</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_6/4-behavioral_patterns.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Behavioral Design Pattern</span></a>
+  <a href="../../content/Cours_2/4-Dunder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Méthodes Dunder en Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_2/5-call_a_dog.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python <strong>call</strong> Method: A Fun Exploration</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -794,8 +827,29 @@ globalThis._qpyodideGetInstance = function() {
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
- <span class="menu-text">content/Cours_5/TP_equity_portfolio.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_2/TP_heritage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP: Heritage avec le pricing d’option</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_2/TP_dunder_dataframe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP : Ajouter des méthodes dunder à DataFrameSimple</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_2/TP_dunder_liste.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP : Étendre la classe Liste avec des méthodes dunder</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_2/TP_dunder_tensor.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">TP: Dunder Method with Tensor for Automatic Differentiation</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -808,31 +862,15 @@ globalThis._qpyodideGetInstance = function() {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#creational-design-patterns-in-python" id="toc-creational-design-patterns-in-python" class="nav-link active" data-scroll-target="#creational-design-patterns-in-python">Creational Design Patterns in Python</a>
+  <li><a href="#understanding-tensors-and-automatic-differentiation" id="toc-understanding-tensors-and-automatic-differentiation" class="nav-link active" data-scroll-target="#understanding-tensors-and-automatic-differentiation">Understanding Tensors and Automatic Differentiation</a>
   <ul class="collapse">
-  <li><a href="#singleton-pattern" id="toc-singleton-pattern" class="nav-link" data-scroll-target="#singleton-pattern">1. Singleton Pattern</a>
-  <ul class="collapse">
-  <li><a href="#implementation-using-__new__" id="toc-implementation-using-__new__" class="nav-link" data-scroll-target="#implementation-using-__new__">1.1 Implementation using <code>__new__</code></a></li>
-  <li><a href="#implementation-using-a-decorator" id="toc-implementation-using-a-decorator" class="nav-link" data-scroll-target="#implementation-using-a-decorator">1.2 Implementation using a Decorator</a></li>
-  <li><a href="#pros-and-cons" id="toc-pros-and-cons" class="nav-link" data-scroll-target="#pros-and-cons">1.3 Pros and Cons</a></li>
+  <li><a href="#the-power-of-composition" id="toc-the-power-of-composition" class="nav-link" data-scroll-target="#the-power-of-composition">The Power of Composition</a></li>
+  <li><a href="#automatic-differentiation-its-all-about-the-chain-rule" id="toc-automatic-differentiation-its-all-about-the-chain-rule" class="nav-link" data-scroll-target="#automatic-differentiation-its-all-about-the-chain-rule">Automatic Differentiation: It’s All About the Chain Rule</a></li>
+  <li><a href="#tensors-tracking-operations-and-their-derivatives" id="toc-tensors-tracking-operations-and-their-derivatives" class="nav-link" data-scroll-target="#tensors-tracking-operations-and-their-derivatives">Tensors: Tracking Operations and Their Derivatives</a></li>
   </ul></li>
-  <li><a href="#factory-method-pattern" id="toc-factory-method-pattern" class="nav-link" data-scroll-target="#factory-method-pattern">2. Factory Method Pattern</a>
-  <ul class="collapse">
-  <li><a href="#example-matrix-computation-with-different-backends" id="toc-example-matrix-computation-with-different-backends" class="nav-link" data-scroll-target="#example-matrix-computation-with-different-backends">2.1 Example: Matrix Computation with Different Backends</a></li>
-  <li><a href="#benefits-of-factory-method" id="toc-benefits-of-factory-method" class="nav-link" data-scroll-target="#benefits-of-factory-method">2.2 Benefits of Factory Method</a></li>
-  </ul></li>
-  <li><a href="#abstract-factory-pattern" id="toc-abstract-factory-pattern" class="nav-link" data-scroll-target="#abstract-factory-pattern">3. Abstract Factory Pattern</a>
-  <ul class="collapse">
-  <li><a href="#example-cross-platform-ui-components" id="toc-example-cross-platform-ui-components" class="nav-link" data-scroll-target="#example-cross-platform-ui-components">3.1 Example: Cross-platform UI Components</a></li>
-  <li><a href="#benefits-of-abstract-factory" id="toc-benefits-of-abstract-factory" class="nav-link" data-scroll-target="#benefits-of-abstract-factory">3.2 Benefits of Abstract Factory</a></li>
-  </ul></li>
-  <li><a href="#builder-pattern" id="toc-builder-pattern" class="nav-link" data-scroll-target="#builder-pattern">4. Builder Pattern</a>
-  <ul class="collapse">
-  <li><a href="#example-custom-computer-builder" id="toc-example-custom-computer-builder" class="nav-link" data-scroll-target="#example-custom-computer-builder">4.1 Example: Custom Computer Builder</a></li>
-  <li><a href="#benefits-of-builder" id="toc-benefits-of-builder" class="nav-link" data-scroll-target="#benefits-of-builder">4.2 Benefits of Builder</a></li>
-  </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
-  </ul></li>
+  <li><a href="#tp-instructions-implementing-a-basic-tensor-class-with-automatic-differentiation" id="toc-tp-instructions-implementing-a-basic-tensor-class-with-automatic-differentiation" class="nav-link" data-scroll-target="#tp-instructions-implementing-a-basic-tensor-class-with-automatic-differentiation">TP Instructions: Implementing a Basic Tensor Class with Automatic Differentiation</a></li>
+  <li><a href="#example-usage-computing-gradients-of-a-complex-function" id="toc-example-usage-computing-gradients-of-a-complex-function" class="nav-link" data-scroll-target="#example-usage-computing-gradients-of-a-complex-function">Example Usage: Computing Gradients of a Complex Function</a></li>
+  <li><a href="#unitary-tests" id="toc-unitary-tests" class="nav-link" data-scroll-target="#unitary-tests">Unitary Tests</a></li>
   </ul>
 </nav>
     </div>
@@ -849,20 +887,15 @@ globalThis._qpyodideGetInstance = function() {
   });
 </script>
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/Cours_2/TP_heritage.html">Travaux Pratiques</a></li><li class="breadcrumb-item"><a href="../../content/Cours_2/TP_dunder_tensor.html">TP: Dunder Method with Tensor for Automatic Differentiation</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Creation Design Patterns</h1>
+<h1 class="title">TP: Dunder Method with Tensor for Automatic Differentiation</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Cours</div>
-    <div class="quarto-category">Fondamentaux</div>
+    <div class="quarto-category">TP</div>
+    <div class="quarto-category">Avancé</div>
   </div>
   </div>
 
-<div>
-  <div class="description">
-    Learn creational design pattern
-  </div>
-</div>
 
 
 <div class="quarto-title-meta column-body">
@@ -889,100 +922,66 @@ globalThis._qpyodideGetInstance = function() {
 </header>
 
 
-<section id="creational-design-patterns-in-python" class="level1">
-<h1>Creational Design Patterns in Python</h1>
-<hr>
-<p>Creational design patterns provide various object creation mechanisms, which increase flexibility and reuse of existing code.</p>
-<section id="singleton-pattern" class="level2">
-<h2 class="anchored" data-anchor-id="singleton-pattern">1. Singleton Pattern</h2>
-<p>The Singleton pattern ensures a class has only one instance and provides a global point of access to it.</p>
-<section id="implementation-using-__new__" class="level3">
-<h3 class="anchored" data-anchor-id="implementation-using-__new__">1.1 Implementation using <code>__new__</code></h3>
+<section id="understanding-tensors-and-automatic-differentiation" class="level2">
+<h2 class="anchored" data-anchor-id="understanding-tensors-and-automatic-differentiation">Understanding Tensors and Automatic Differentiation</h2>
+<section id="the-power-of-composition" class="level3">
+<h3 class="anchored" data-anchor-id="the-power-of-composition">The Power of Composition</h3>
+<p>Imagine you have a complex mathematical function. It might look intimidating at first, but it’s actually just a composition of simple operations. For example, consider this function:</p>
+<p><span class="math inline">\(f(x, y) = (x^2 + 2y) * \sin(x + y)\)</span></p>
+<p>We can break this down into simpler operations:</p>
+<ol type="1">
+<li><span class="math inline">\(a = x^2\)</span></li>
+<li><span class="math inline">\(b = 2y\)</span></li>
+<li><span class="math inline">\(c = a + b\)</span> (which is <span class="math inline">\(x^2 + 2y\)</span>)</li>
+<li><span class="math inline">\(d = x + y\)</span></li>
+<li><span class="math inline">\(e = \sin(d)\)</span> (which is <span class="math inline">\(\sin(x + y)\)</span>)</li>
+<li><span class="math inline">\(f = c * e\)</span> (our final result)</li>
+</ol>
+</section>
+<section id="automatic-differentiation-its-all-about-the-chain-rule" class="level3">
+<h3 class="anchored" data-anchor-id="automatic-differentiation-its-all-about-the-chain-rule">Automatic Differentiation: It’s All About the Chain Rule</h3>
+<p>Now, here’s the magic: if we know how to differentiate each of these simple operations, we can automatically compute the derivative of the entire complex function. This is the essence of automatic differentiation.</p>
+<p>Let’s say we want to find <span class="math inline">\(\frac{\partial f}{\partial x}\)</span>. We can use the chain rule:</p>
+<p><span class="math inline">\(\frac{\partial f}{\partial x} = \frac{\partial f}{\partial c} \cdot \frac{\partial c}{\partial x} + \frac{\partial f}{\partial e} \cdot \frac{\partial e}{\partial d} \cdot \frac{\partial d}{\partial x}\)</span></p>
+<p>Breaking it down: - <span class="math inline">\(\frac{\partial f}{\partial c} = e\)</span> - <span class="math inline">\(\frac{\partial c}{\partial x} = 2x\)</span> - <span class="math inline">\(\frac{\partial f}{\partial e} = c\)</span> - <span class="math inline">\(\frac{\partial e}{\partial d} = \cos(d)\)</span> - <span class="math inline">\(\frac{\partial d}{\partial x} = 1\)</span></p>
+<p>Putting it all together:</p>
+<p><span class="math inline">\(\frac{\partial f}{\partial x} = e \cdot 2x + c \cdot \cos(d) \cdot 1\)</span></p>
+</section>
+<section id="tensors-tracking-operations-and-their-derivatives" class="level3">
+<h3 class="anchored" data-anchor-id="tensors-tracking-operations-and-their-derivatives">Tensors: Tracking Operations and Their Derivatives</h3>
+<p>This is where tensors come in. In our implementation, a tensor will not only store its value but also remember: 1. The operation that created it 2. The tensors that were inputs to this operation 3. How to compute its derivative with respect to its inputs</p>
+<p>By doing this for each operation, we create a computational graph. When we want to compute the derivative of our final result with respect to any input, we can simply walk backwards through this graph, applying the chain rule at each step.</p>
+</section>
+</section>
+<section id="tp-instructions-implementing-a-basic-tensor-class-with-automatic-differentiation" class="level2">
+<h2 class="anchored" data-anchor-id="tp-instructions-implementing-a-basic-tensor-class-with-automatic-differentiation">TP Instructions: Implementing a Basic Tensor Class with Automatic Differentiation</h2>
+<p>Your task is to implement a simplified Tensor class that supports basic mathematical operations and automatic differentiation. This class will allow us to build simple computational graphs and compute gradients automatically.</p>
+<p>Here’s a skeleton of the Tensor class to get you started:</p>
 <div id="qpyodide-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Your tasks:</p>
+<ol type="1">
+<li>Implement the reversed methods for already existing one like <code>__radd__</code> or <code>__rmul__</code>.</li>
+<li>Implement the <code>__sub__</code> and <code>__truediv__</code> methods for subtraction and division operations.</li>
+<li>Add support for operations between Tensors and regular numbers (scalars) in all methods.</li>
+<li>Implement a <code>sin()</code> method that computes the sine of a Tensor.</li>
+<li>Add proper string representation methods (<code>__repr__</code> and <code>__str__</code>).</li>
+</ol>
 </section>
-<section id="implementation-using-a-decorator" class="level3">
-<h3 class="anchored" data-anchor-id="implementation-using-a-decorator">1.2 Implementation using a Decorator</h3>
+<section id="example-usage-computing-gradients-of-a-complex-function" class="level2">
+<h2 class="anchored" data-anchor-id="example-usage-computing-gradients-of-a-complex-function">Example Usage: Computing Gradients of a Complex Function</h2>
+<p>After implementing the Tensor class, you can use it to compute gradients of complex functions. Here’s an example using the function we discussed earlier:</p>
 <div id="qpyodide-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>This example demonstrates how your Tensor class can be used to automatically compute gradients of a complex function. The <code>backward()</code> method computes the gradients with respect to all input tensors.</p>
 </section>
-<section id="pros-and-cons" class="level3">
-<h3 class="anchored" data-anchor-id="pros-and-cons">1.3 Pros and Cons</h3>
-<ul>
-<li>Pros:
-<ul>
-<li>Ensures a single instance</li>
-<li>Global access point</li>
-<li>Lazy initialization</li>
-</ul></li>
-<li>Cons:
-<ul>
-<li>Violates Single Responsibility Principle</li>
-<li>Can make unit testing difficult</li>
-<li>Can hide bad design</li>
-</ul></li>
-</ul>
-</section>
-</section>
-<section id="factory-method-pattern" class="level2">
-<h2 class="anchored" data-anchor-id="factory-method-pattern">2. Factory Method Pattern</h2>
-<p>The Factory Method pattern provides an interface for creating objects in a superclass, but allows subclasses to alter the type of objects that will be created.</p>
-<section id="example-matrix-computation-with-different-backends" class="level3">
-<h3 class="anchored" data-anchor-id="example-matrix-computation-with-different-backends">2.1 Example: Matrix Computation with Different Backends</h3>
+<section id="unitary-tests" class="level2">
+<h2 class="anchored" data-anchor-id="unitary-tests">Unitary Tests</h2>
+<p>Here are some unitary tests to verify your implementation. Implement your Tensor class in a file named <code>tensor.py</code>, and then use these tests to check your work:</p>
 <div id="qpyodide-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
-<section id="benefits-of-factory-method" class="level3">
-<h3 class="anchored" data-anchor-id="benefits-of-factory-method">2.2 Benefits of Factory Method</h3>
-<ul>
-<li>Provides flexibility in object creation</li>
-<li>Promotes loose coupling</li>
-<li>Adheres to the Open/Closed Principle</li>
-<li>Simplifies adding new types of objects</li>
-</ul>
-</section>
-</section>
-<section id="abstract-factory-pattern" class="level2">
-<h2 class="anchored" data-anchor-id="abstract-factory-pattern">3. Abstract Factory Pattern</h2>
-<p>The Abstract Factory pattern provides an interface for creating families of related or dependent objects without specifying their concrete classes.</p>
-<section id="example-cross-platform-ui-components" class="level3">
-<h3 class="anchored" data-anchor-id="example-cross-platform-ui-components">3.1 Example: Cross-platform UI Components</h3>
-<div id="qpyodide-insertion-location-4"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
-<section id="benefits-of-abstract-factory" class="level3">
-<h3 class="anchored" data-anchor-id="benefits-of-abstract-factory">3.2 Benefits of Abstract Factory</h3>
-<ul>
-<li>Ensures compatibility between created objects</li>
-<li>Isolates concrete classes</li>
-<li>Simplifies exchanging product families</li>
-<li>Promotes consistency among products</li>
-</ul>
-</section>
-</section>
-<section id="builder-pattern" class="level2">
-<h2 class="anchored" data-anchor-id="builder-pattern">4. Builder Pattern</h2>
-<p>The Builder pattern separates the construction of a complex object from its representation, allowing the same construction process to create different representations.</p>
-<section id="example-custom-computer-builder" class="level3">
-<h3 class="anchored" data-anchor-id="example-custom-computer-builder">4.1 Example: Custom Computer Builder</h3>
-<div id="qpyodide-insertion-location-5"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
-<section id="benefits-of-builder" class="level3">
-<h3 class="anchored" data-anchor-id="benefits-of-builder">4.2 Benefits of Builder</h3>
-<ul>
-<li>Allows step-by-step creation of complex objects</li>
-<li>Can use the same construction code for different representations</li>
-<li>Isolates complex construction code from business logic</li>
-</ul>
-</section>
-</section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>Creational design patterns solve problems related to object creation in software design. They provide flexibility, improve code reusability, and help manage complexity in object-oriented systems. Each pattern has its specific use cases, and understanding them allows developers to choose the right tool for the job when designing software systems.</p>
 
 
-</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -1552,14 +1551,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../../content/Cours_6/1-Python_Design_Pattern.html" class="pagination-link" aria-label="Python-Specific Design Patterns">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Python-Specific Design Patterns</span>
+      <a href="../../content/Cours_2/TP_dunder_liste.html" class="pagination-link" aria-label="TP : Étendre la classe Liste avec des méthodes dunder">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">TP : Étendre la classe Liste avec des méthodes dunder</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../content/Cours_6/3-Structural_patterns.html" class="pagination-link" aria-label="Structural Design Patterns">
-        <span class="nav-page-text">Structural Design Patterns</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

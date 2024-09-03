@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Remi Genet">
-<meta name="dcterms.date" content="2024-09-02">
+<meta name="dcterms.date" content="2024-09-03">
 <meta name="description" content="Learn about decorators in Python with concrete examples, including basic function decorators, decorators with arguments, class decorators, decorators with parameters, and their practical applications.">
 
 <title>Decorator Practically – Programmation Orientée Objet en Python</title>
@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"id":1,"options":{"fig-height":5,"dpi":72,"results":"markup","out-height":"","message":"true","output":"true","comment":"","read-only":"false","fig-cap":"","label":"","fig-width":7,"warning":"true","autorun":"","classes":"","out-width":"700px","context":"interactive"},"code":"def uppercase_decorator(func):\n    def wrapper():\n        result = func()\n        return result.upper()\n    return wrapper\n\n@uppercase_decorator\ndef greet():\n    return \"hello, world!\"\n\nprint(greet())  # Output: HELLO, WORLD!"},{"id":2,"options":{"fig-height":5,"dpi":72,"results":"markup","out-height":"","message":"true","output":"true","comment":"","read-only":"false","fig-cap":"","label":"","fig-width":7,"warning":"true","autorun":"","classes":"","out-width":"700px","context":"interactive"},"code":"def log_function_call(func):\n    def wrapper(*args, **kwargs):\n        print(f\"Calling function: {func.__name__}\")\n        return func(*args, **kwargs)\n    return wrapper\n\n@log_function_call\ndef add(a, b):\n    return a + b\n\nresult = add(3, 5)\nprint(result)\n# Output:\n# Calling function: add\n# 8"},{"id":3,"options":{"fig-height":5,"dpi":72,"results":"markup","out-height":"","message":"true","output":"true","comment":"","read-only":"false","fig-cap":"","label":"","fig-width":7,"warning":"true","autorun":"","classes":"","out-width":"700px","context":"interactive"},"code":"def add_greeting(cls):\n    def greet(self):\n        return f\"Hello! I'm {self.name}\"\n    \n    cls.greet = greet\n    return cls\n\n@add_greeting\nclass Person:\n    def __init__(self, name):\n        self.name = name\n\nperson = Person(\"Alice\")\nprint(person.greet())  # Output: Hello! I'm Alice"},{"id":4,"options":{"fig-height":5,"dpi":72,"results":"markup","out-height":"","message":"true","output":"true","comment":"","read-only":"false","fig-cap":"","label":"","fig-width":7,"warning":"true","autorun":"","classes":"","out-width":"700px","context":"interactive"},"code":"def repeat(times):\n    def decorator(func):\n        def wrapper(*args, **kwargs):\n            for _ in range(times):\n                result = func(*args, **kwargs)\n            return result\n        return wrapper\n    return decorator\n\n@repeat(3)\ndef say_hello(name):\n    print(f\"Hello, {name}!\")\n\nsay_hello(\"Bob\")\n# Output:\n# Hello, Bob!\n# Hello, Bob!\n# Hello, Bob!"}];
+globalThis.qpyodideCellDetails = [{"id":1,"options":{"fig-cap":"","autorun":"","out-height":"","context":"interactive","output":"true","out-width":"700px","warning":"true","fig-height":5,"message":"true","comment":"","dpi":72,"label":"","fig-width":7,"classes":"","read-only":"false","results":"markup"},"code":"def uppercase_decorator(func):\n    def wrapper():\n        result = func()\n        return result.upper()\n    return wrapper\n\n@uppercase_decorator\ndef greet():\n    return \"hello, world!\"\n\nprint(greet())  # Output: HELLO, WORLD!"},{"id":2,"options":{"fig-cap":"","autorun":"","out-height":"","context":"interactive","output":"true","out-width":"700px","warning":"true","fig-height":5,"message":"true","comment":"","dpi":72,"label":"","fig-width":7,"classes":"","read-only":"false","results":"markup"},"code":"def log_function_call(func):\n    def wrapper(*args, **kwargs):\n        print(f\"Calling function: {func.__name__}\")\n        return func(*args, **kwargs)\n    return wrapper\n\n@log_function_call\ndef add(a, b):\n    return a + b\n\nresult = add(3, 5)\nprint(result)\n# Output:\n# Calling function: add\n# 8"},{"id":3,"options":{"fig-cap":"","autorun":"","out-height":"","context":"interactive","output":"true","out-width":"700px","warning":"true","fig-height":5,"message":"true","comment":"","dpi":72,"label":"","fig-width":7,"classes":"","read-only":"false","results":"markup"},"code":"def add_greeting(cls):\n    def greet(self):\n        return f\"Hello! I'm {self.name}\"\n    \n    cls.greet = greet\n    return cls\n\n@add_greeting\nclass Person:\n    def __init__(self, name):\n        self.name = name\n\nperson = Person(\"Alice\")\nprint(person.greet())  # Output: Hello! I'm Alice"},{"id":4,"options":{"fig-cap":"","autorun":"","out-height":"","context":"interactive","output":"true","out-width":"700px","warning":"true","fig-height":5,"message":"true","comment":"","dpi":72,"label":"","fig-width":7,"classes":"","read-only":"false","results":"markup"},"code":"def repeat(times):\n    def decorator(func):\n        def wrapper(*args, **kwargs):\n            for _ in range(times):\n                result = func(*args, **kwargs)\n            return result\n        return wrapper\n    return decorator\n\n@repeat(3)\ndef say_hello(name):\n    print(f\"Hello, {name}!\")\n\nsay_hello(\"Bob\")\n# Output:\n# Hello, Bob!\n# Hello, Bob!\n# Hello, Bob!"}];
 
 
 </script>
@@ -437,10 +437,10 @@ globalThis._qpyodideGetInstance = function() {
 <meta property="og:site_name" content="Programmation Orientée Objet en Python">
 <meta name="citation_title" content="Decorator Practically">
 <meta name="citation_author" content="Remi Genet">
-<meta name="citation_publication_date" content="2024-09-02">
-<meta name="citation_cover_date" content="2024-09-02">
+<meta name="citation_publication_date" content="2024-09-03">
+<meta name="citation_cover_date" content="2024-09-03">
 <meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-09-02">
+<meta name="citation_online_date" content="2024-09-03">
 <meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_4/3-Decorator_practically.html">
 <meta name="citation_language" content="en">
 </head>
@@ -506,7 +506,11 @@ globalThis._qpyodideGetInstance = function() {
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
-    <a class="dropdown-item" href="../../content/Cours_1/TP.html">
+    <a class="dropdown-item" href="../../content/Cours_1/TP_Liste.html">
+ <span class="dropdown-text">Construire sa propre Liste</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_1/TP_dataframe.html">
  <span class="dropdown-text">Construire son propre DataFrame</span></a>
   </li>  
     </ul>
@@ -547,7 +551,15 @@ globalThis._qpyodideGetInstance = function() {
  <span class="dropdown-text">TP: Heritage avec le pricing d’option</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder.html">
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder_dataframe.html">
+ <span class="dropdown-text">TP : Ajouter des méthodes dunder à DataFrameSimple</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder_liste.html">
+ <span class="dropdown-text">TP : Étendre la classe Liste avec des méthodes dunder</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder_tensor.html">
  <span class="dropdown-text">TP: Dunder Method with Tensor for Automatic Differentiation</span></a>
   </li>  
     </ul>
@@ -857,7 +869,7 @@ globalThis._qpyodideGetInstance = function() {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-09-02</p>
+      <p class="date">2024-09-03</p>
     </div>
   </div>
   

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Remi Genet">
-<meta name="dcterms.date" content="2024-09-02">
+<meta name="dcterms.date" content="2024-09-03">
 <meta name="description" content="Explore the quirky side of Python’s call method with fun examples and insights into memory allocation. A lighthearted break in our Python deep dive.">
 
 <title>Python call Method: A Fun Exploration – Programmation Orientée Objet en Python</title>
@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"options":{"read-only":"false","warning":"true","results":"markup","fig-height":5,"context":"interactive","message":"true","comment":"","dpi":72,"fig-cap":"","label":"","out-height":"","out-width":"700px","output":"true","autorun":"","fig-width":7,"classes":""},"code":"Dog()\nDog()()\nDog()()()()()\nDog()()()()()()()()()()  # and so on...","id":1},{"options":{"read-only":"false","warning":"true","results":"markup","fig-height":5,"context":"interactive","message":"true","comment":"","dpi":72,"fig-cap":"","label":"","out-height":"","out-width":"700px","output":"true","autorun":"","fig-width":7,"classes":""},"code":"class Dog:\n    def __call__(self):\n        return Dog\n\nprint(Dog())          # <__main__.Dog object at 0x...>\nprint(Dog()())        # <class '__main__.Dog'>\nprint(Dog()()())      # <__main__.Dog object at 0x...>\nprint(Dog()()()())    # <class '__main__.Dog'>\nprint(Dog()()()()())  # <__main__.Dog object at 0x...>","id":2},{"options":{"read-only":"false","warning":"true","results":"markup","fig-height":5,"context":"interactive","message":"true","comment":"","dpi":72,"fig-cap":"","label":"","out-height":"","out-width":"700px","output":"true","autorun":"","fig-width":7,"classes":""},"code":"dog = Dog()\nprint(dog)  # <__main__.Dog object at 0x7f5d2983e2a0>\ndog = Dog()\nprint(dog)  # <__main__.Dog object at 0x7f5d29859730>\ndog = dog()\nprint(dog)  # <class '__main__.Dog'>\ndog = dog()\nprint(dog)  # <__main__.Dog object at 0x7f5d2983e2a0>\ndog = dog()\nprint(dog)  # <class '__main__.Dog'>\ndog = dog()\nprint(dog)  # <__main__.Dog object at 0x7f5d2983e2a0>\ndog = Dog()\nprint(dog)  # <__main__.Dog object at 0x7f5d29859790>","id":3},{"options":{"read-only":"false","warning":"true","results":"markup","fig-height":5,"context":"interactive","message":"true","comment":"","dpi":72,"fig-cap":"","label":"","out-height":"","out-width":"700px","output":"true","autorun":"","fig-width":7,"classes":""},"code":"class Dog:\n    def __call__(self):\n        return self\n\nprint(Dog())      # <__main__.Dog object at 0x7f5d2983fc20>\nprint(Dog()())    # <__main__.Dog object at 0x7f5d2983fc20>\nprint(Dog()()())  # <__main__.Dog object at 0x7f5d2983fc20>","id":4},{"options":{"read-only":"false","warning":"true","results":"markup","fig-height":5,"context":"interactive","message":"true","comment":"","dpi":72,"fig-cap":"","label":"","out-height":"","out-width":"700px","output":"true","autorun":"","fig-width":7,"classes":""},"code":"class Dog:\n    def __call__(self):\n        return Dog()\n\nprint(Dog())      # <__main__.Dog object at 0x7f5d28762c60>\nprint(Dog()())    # <__main__.Dog object at 0x7f5d28763050>\nprint(Dog()()())  # <__main__.Dog object at 0x7f5d28763050>","id":5},{"options":{"read-only":"false","warning":"true","results":"markup","fig-height":5,"context":"interactive","message":"true","comment":"","dpi":72,"fig-cap":"","label":"","out-height":"","out-width":"700px","output":"true","autorun":"","fig-width":7,"classes":""},"code":"class Dog:\n    c = 0\n    _instances = {}\n    def __new__(cls):\n        cls.c += 1\n        cls._instances[cls.c] = super().__new__(cls)\n        return cls._instances[cls.c]\n    \n    def __call__(self):\n        return Dog\n\nprint(Dog())          # <__main__.Dog object at 0x7f5d28762930>\nprint(Dog()())        # <class '__main__.Dog'>\nprint(Dog()()())      # <__main__.Dog object at 0x7f5d287626c0>\nprint(Dog()()()())    # <class '__main__.Dog'>\nprint(Dog()()()()())  # <__main__.Dog object at 0x7f5d28762990>","id":6}];
+globalThis.qpyodideCellDetails = [{"code":"Dog()\nDog()()\nDog()()()()()\nDog()()()()()()()()()()  # and so on...","id":1,"options":{"comment":"","classes":"","results":"markup","read-only":"false","message":"true","fig-height":5,"output":"true","autorun":"","label":"","out-height":"","context":"interactive","fig-cap":"","out-width":"700px","warning":"true","fig-width":7,"dpi":72}},{"code":"class Dog:\n    def __call__(self):\n        return Dog\n\nprint(Dog())          # <__main__.Dog object at 0x...>\nprint(Dog()())        # <class '__main__.Dog'>\nprint(Dog()()())      # <__main__.Dog object at 0x...>\nprint(Dog()()()())    # <class '__main__.Dog'>\nprint(Dog()()()()())  # <__main__.Dog object at 0x...>","id":2,"options":{"comment":"","classes":"","results":"markup","read-only":"false","message":"true","fig-height":5,"output":"true","autorun":"","label":"","out-height":"","context":"interactive","fig-cap":"","out-width":"700px","warning":"true","fig-width":7,"dpi":72}},{"code":"dog = Dog()\nprint(dog)  # <__main__.Dog object at 0x7f5d2983e2a0>\ndog = Dog()\nprint(dog)  # <__main__.Dog object at 0x7f5d29859730>\ndog = dog()\nprint(dog)  # <class '__main__.Dog'>\ndog = dog()\nprint(dog)  # <__main__.Dog object at 0x7f5d2983e2a0>\ndog = dog()\nprint(dog)  # <class '__main__.Dog'>\ndog = dog()\nprint(dog)  # <__main__.Dog object at 0x7f5d2983e2a0>\ndog = Dog()\nprint(dog)  # <__main__.Dog object at 0x7f5d29859790>","id":3,"options":{"comment":"","classes":"","results":"markup","read-only":"false","message":"true","fig-height":5,"output":"true","autorun":"","label":"","out-height":"","context":"interactive","fig-cap":"","out-width":"700px","warning":"true","fig-width":7,"dpi":72}},{"code":"class Dog:\n    def __call__(self):\n        return self\n\nprint(Dog())      # <__main__.Dog object at 0x7f5d2983fc20>\nprint(Dog()())    # <__main__.Dog object at 0x7f5d2983fc20>\nprint(Dog()()())  # <__main__.Dog object at 0x7f5d2983fc20>","id":4,"options":{"comment":"","classes":"","results":"markup","read-only":"false","message":"true","fig-height":5,"output":"true","autorun":"","label":"","out-height":"","context":"interactive","fig-cap":"","out-width":"700px","warning":"true","fig-width":7,"dpi":72}},{"code":"class Dog:\n    def __call__(self):\n        return Dog()\n\nprint(Dog())      # <__main__.Dog object at 0x7f5d28762c60>\nprint(Dog()())    # <__main__.Dog object at 0x7f5d28763050>\nprint(Dog()()())  # <__main__.Dog object at 0x7f5d28763050>","id":5,"options":{"comment":"","classes":"","results":"markup","read-only":"false","message":"true","fig-height":5,"output":"true","autorun":"","label":"","out-height":"","context":"interactive","fig-cap":"","out-width":"700px","warning":"true","fig-width":7,"dpi":72}},{"code":"class Dog:\n    c = 0\n    _instances = {}\n    def __new__(cls):\n        cls.c += 1\n        cls._instances[cls.c] = super().__new__(cls)\n        return cls._instances[cls.c]\n    \n    def __call__(self):\n        return Dog\n\nprint(Dog())          # <__main__.Dog object at 0x7f5d28762930>\nprint(Dog()())        # <class '__main__.Dog'>\nprint(Dog()()())      # <__main__.Dog object at 0x7f5d287626c0>\nprint(Dog()()()())    # <class '__main__.Dog'>\nprint(Dog()()()()())  # <__main__.Dog object at 0x7f5d28762990>","id":6,"options":{"comment":"","classes":"","results":"markup","read-only":"false","message":"true","fig-height":5,"output":"true","autorun":"","label":"","out-height":"","context":"interactive","fig-cap":"","out-width":"700px","warning":"true","fig-width":7,"dpi":72}}];
 
 
 </script>
@@ -437,10 +437,10 @@ globalThis._qpyodideGetInstance = function() {
 <meta property="og:site_name" content="Programmation Orientée Objet en Python">
 <meta name="citation_title" content="Python __call__ Method: A Fun Exploration">
 <meta name="citation_author" content="Remi Genet">
-<meta name="citation_publication_date" content="2024-09-02">
-<meta name="citation_cover_date" content="2024-09-02">
+<meta name="citation_publication_date" content="2024-09-03">
+<meta name="citation_cover_date" content="2024-09-03">
 <meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-09-02">
+<meta name="citation_online_date" content="2024-09-03">
 <meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_2/5-call_a_dog.html">
 <meta name="citation_language" content="en">
 </head>
@@ -506,7 +506,11 @@ globalThis._qpyodideGetInstance = function() {
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
         <li>
-    <a class="dropdown-item" href="../../content/Cours_1/TP.html">
+    <a class="dropdown-item" href="../../content/Cours_1/TP_Liste.html">
+ <span class="dropdown-text">Construire sa propre Liste</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_1/TP_dataframe.html">
  <span class="dropdown-text">Construire son propre DataFrame</span></a>
   </li>  
     </ul>
@@ -547,7 +551,15 @@ globalThis._qpyodideGetInstance = function() {
  <span class="dropdown-text">TP: Heritage avec le pricing d’option</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder.html">
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder_dataframe.html">
+ <span class="dropdown-text">TP : Ajouter des méthodes dunder à DataFrameSimple</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder_liste.html">
+ <span class="dropdown-text">TP : Étendre la classe Liste avec des méthodes dunder</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_2/TP_dunder_tensor.html">
  <span class="dropdown-text">TP: Dunder Method with Tensor for Automatic Differentiation</span></a>
   </li>  
     </ul>
@@ -795,7 +807,19 @@ globalThis._qpyodideGetInstance = function() {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/Cours_2/TP_dunder.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/Cours_2/TP_dunder_dataframe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP : Ajouter des méthodes dunder à DataFrameSimple</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_2/TP_dunder_liste.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP : Étendre la classe Liste avec des méthodes dunder</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_2/TP_dunder_tensor.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">TP: Dunder Method with Tensor for Automatic Differentiation</span></a>
   </div>
 </li>
@@ -867,7 +891,7 @@ globalThis._qpyodideGetInstance = function() {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-09-02</p>
+      <p class="date">2024-09-03</p>
     </div>
   </div>
   
