@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Remi Genet">
-<meta name="dcterms.date" content="2024-09-03">
+<meta name="dcterms.date" content="2024-10-21">
 
 <title>TP : Étendre la classe Liste avec des méthodes dunder – Programmation Orientée Objet en Python</title>
 <style>
@@ -271,7 +271,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"class Liste:\n    def __init__(self):\n        self._elements = {}\n        self._count = 0\n\n    def append(self, element):\n        self._elements[self._count] = element\n        self._count += 1\n\n    def remove(self, valeur):\n        for index, element in self._elements.items():\n            if element == valeur:\n                del self._elements[index]\n                self._count -= 1\n                for i in range(index, self._count):\n                    self._elements[i] = self._elements.pop(i + 1)\n                break\n\n    def pop(self, index):\n        if index < 0 or index >= self._count:\n            raise IndexError(\"Index hors limites\")\n        element = self._elements.pop(index)\n        self._count -= 1\n        for i in range(index, self._count):\n            self._elements[i] = self._elements.pop(i + 1)\n        return element\n\n    def get_index(self, valeur):\n        for index, element in self._elements.items():\n            if element == valeur:\n                return index\n        return -1\n\n    # TODO: Implémentez les méthodes dunder ici\n    def __str__(self):\n        pass\n\n    def __len__(self):\n        pass\n\n    def __getitem__(self, index):\n        pass\n\n    def __setitem__(self, index, valeur):\n        pass\n\n    def __iter__(self):\n        pass\n\n    def __add__(self, other):\n        pass","id":1,"options":{"label":"","read-only":"false","results":"markup","out-height":"","autorun":"","classes":"","output":"true","comment":"","message":"true","fig-cap":"","fig-width":7,"context":"interactive","warning":"true","fig-height":5,"out-width":"700px","dpi":72}},{"code":"import unittest\n\nclass TestListeDunder(unittest.TestCase):\n    def setUp(self):\n        self.liste = Liste()\n        self.liste.append(1)\n        self.liste.append(2)\n        self.liste.append(3)\n\n    def test_str(self):\n        self.assertEqual(str(self.liste), \"[1, 2, 3]\")\n\n    def test_len(self):\n        self.assertEqual(len(self.liste), 3)\n\n    def test_getitem(self):\n        self.assertEqual(self.liste[1], 2)\n        with self.assertRaises(IndexError):\n            _ = self.liste[3]\n\n    def test_setitem(self):\n        self.liste[1] = 5\n        self.assertEqual(self.liste[1], 5)\n        with self.assertRaises(IndexError):\n            self.liste[3] = 4\n\n    def test_iter(self):\n        self.assertEqual(list(self.liste), [1, 2, 3])\n\n    def test_add(self):\n        other = Liste()\n        other.append(4)\n        other.append(5)\n        result = self.liste + other\n        self.assertEqual(str(result), \"[1, 2, 3, 4, 5]\")\n\ndef run_tests():\n    unittest.main(argv=[''], verbosity=2, exit=False)\n\nif __name__ == '__main__':\n    run_tests()","id":2,"options":{"label":"","read-only":"false","results":"markup","out-height":"","autorun":"","classes":"","output":"true","comment":"","message":"true","fig-cap":"","fig-width":7,"context":"interactive","warning":"true","fig-height":5,"out-width":"700px","dpi":72}}];
+globalThis.qpyodideCellDetails = [{"options":{"output":"true","fig-cap":"","out-height":"","warning":"true","label":"","out-width":"700px","fig-height":5,"fig-width":7,"autorun":"","classes":"","context":"interactive","results":"markup","dpi":72,"read-only":"false","message":"true","comment":""},"code":"class Liste:\n    def __init__(self):\n        self._elements = {}\n        self._count = 0\n\n    def append(self, element):\n        self._elements[self._count] = element\n        self._count += 1\n\n    def remove(self, valeur):\n        for index, element in self._elements.items():\n            if element == valeur:\n                del self._elements[index]\n                self._count -= 1\n                for i in range(index, self._count):\n                    self._elements[i] = self._elements.pop(i + 1)\n                break\n\n    def pop(self, index):\n        if index < 0 or index >= self._count:\n            raise IndexError(\"Index hors limites\")\n        element = self._elements.pop(index)\n        self._count -= 1\n        for i in range(index, self._count):\n            self._elements[i] = self._elements.pop(i + 1)\n        return element\n\n    def get_index(self, valeur):\n        for index, element in self._elements.items():\n            if element == valeur:\n                return index\n        return -1\n\n    # TODO: Implémentez les méthodes dunder ici\n    def __str__(self):\n        pass\n\n    def __len__(self):\n        pass\n\n    def __getitem__(self, index):\n        pass\n\n    def __setitem__(self, index, valeur):\n        pass\n\n    def __iter__(self):\n        pass\n\n    def __add__(self, other):\n        pass","id":1},{"options":{"output":"true","fig-cap":"","out-height":"","warning":"true","label":"","out-width":"700px","fig-height":5,"fig-width":7,"autorun":"","classes":"","context":"interactive","results":"markup","dpi":72,"read-only":"false","message":"true","comment":""},"code":"import unittest\n\nclass TestListeDunder(unittest.TestCase):\n    def setUp(self):\n        self.liste = Liste()\n        self.liste.append(1)\n        self.liste.append(2)\n        self.liste.append(3)\n\n    def test_str(self):\n        self.assertEqual(str(self.liste), \"[1, 2, 3]\")\n\n    def test_len(self):\n        self.assertEqual(len(self.liste), 3)\n\n    def test_getitem(self):\n        self.assertEqual(self.liste[1], 2)\n        with self.assertRaises(IndexError):\n            _ = self.liste[3]\n\n    def test_setitem(self):\n        self.liste[1] = 5\n        self.assertEqual(self.liste[1], 5)\n        with self.assertRaises(IndexError):\n            self.liste[3] = 4\n\n    def test_iter(self):\n        self.assertEqual(list(self.liste), [1, 2, 3])\n\n    def test_add(self):\n        other = Liste()\n        other.append(4)\n        other.append(5)\n        result = self.liste + other\n        self.assertEqual(str(result), \"[1, 2, 3, 4, 5]\")\n\ndef run_tests():\n    unittest.main(argv=[''], verbosity=2, exit=False)\n\nif __name__ == '__main__':\n    run_tests()","id":2}];
 
 
 </script>
@@ -470,10 +470,10 @@ globalThis._qpyodideGetInstance = function() {
 <meta property="og:site_name" content="Programmation Orientée Objet en Python">
 <meta name="citation_title" content="TP : Étendre la classe Liste avec des méthodes dunder">
 <meta name="citation_author" content="Remi Genet">
-<meta name="citation_publication_date" content="2024-09-03">
-<meta name="citation_cover_date" content="2024-09-03">
+<meta name="citation_publication_date" content="2024-10-21">
+<meta name="citation_cover_date" content="2024-10-21">
 <meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-09-03">
+<meta name="citation_online_date" content="2024-10-21">
 <meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_2/TP_dunder_liste.html">
 <meta name="citation_language" content="en">
 </head>
@@ -702,6 +702,10 @@ globalThis._qpyodideGetInstance = function() {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_5/TP.html">
+ <span class="dropdown-text">TP: Creating a Linear Regression Package</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -731,6 +735,10 @@ globalThis._qpyodideGetInstance = function() {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_6/TP.html">
+ <span class="dropdown-text">TP</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -910,7 +918,7 @@ globalThis._qpyodideGetInstance = function() {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-09-03</p>
+      <p class="date">2024-10-21</p>
     </div>
   </div>
   

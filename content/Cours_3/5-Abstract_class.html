@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Remi Genet">
-<meta name="dcterms.date" content="2024-09-03">
+<meta name="dcterms.date" content="2024-10-21">
 <meta name="description" content="Learn about abstract classes in Python, how to define and use them, and the benefits of using abstract classes for creating a common interface and enforcing method implementations in subclasses.">
 
 <title>Abstract Classes – Programmation Orientée Objet en Python</title>
@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"from abc import ABC, abstractmethod\n\nclass Animal(ABC):\n    @abstractmethod\n    def make_sound(self):\n        pass\n\n    def move(self):\n        print(\"Moving...\")","options":{"results":"markup","context":"interactive","fig-cap":"","fig-height":5,"comment":"","autorun":"","read-only":"false","dpi":72,"warning":"true","output":"true","fig-width":7,"classes":"","out-height":"","label":"","out-width":"700px","message":"true"},"id":1},{"code":"class Dog(Animal):\n    def make_sound(self):\n        return \"Woof!\"\n\nclass Cat(Animal):\n    def make_sound(self):\n        return \"Meow!\"\n\n# Usage\ndog = Dog()\nprint(dog.make_sound())  # Output: Woof!\ndog.move()  # Output: Moving...\n\ncat = Cat()\nprint(cat.make_sound())  # Output: Meow!\n\n# This would raise an error:\n# animal = Animal()  # TypeError: Can't instantiate abstract class Animal","options":{"results":"markup","context":"interactive","fig-cap":"","fig-height":5,"comment":"","autorun":"","read-only":"false","dpi":72,"warning":"true","output":"true","fig-width":7,"classes":"","out-height":"","label":"","out-width":"700px","message":"true"},"id":2},{"code":"from abc import ABC, abstractmethod\nimport math\n\nclass Shape(ABC):\n    @abstractmethod\n    def area(self):\n        pass\n\n    @abstractmethod\n    def perimeter(self):\n        pass\n\n    def describe(self):\n        print(f\"This shape has an area of {self.area()} and a perimeter of {self.perimeter()}\")\n\nclass Circle(Shape):\n    def __init__(self, radius):\n        self.radius = radius\n\n    def area(self):\n        return math.pi * self.radius ** 2\n\n    def perimeter(self):\n        return 2 * math.pi * self.radius\n\nclass Rectangle(Shape):\n    def __init__(self, width, height):\n        self.width = width\n        self.height = height\n\n    def area(self):\n        return self.width * self.height\n\n    def perimeter(self):\n        return 2 * (self.width + self.height)\n\n# Usage\ncircle = Circle(5)\nrectangle = Rectangle(4, 6)\n\ncircle.describe()\nrectangle.describe()","options":{"results":"markup","context":"interactive","fig-cap":"","fig-height":5,"comment":"","autorun":"","read-only":"false","dpi":72,"warning":"true","output":"true","fig-width":7,"classes":"","out-height":"","label":"","out-width":"700px","message":"true"},"id":3}];
+globalThis.qpyodideCellDetails = [{"options":{"out-height":"","message":"true","context":"interactive","warning":"true","output":"true","fig-height":5,"fig-width":7,"read-only":"false","out-width":"700px","classes":"","label":"","comment":"","fig-cap":"","autorun":"","dpi":72,"results":"markup"},"id":1,"code":"from abc import ABC, abstractmethod\n\nclass Animal(ABC):\n    @abstractmethod\n    def make_sound(self):\n        pass\n\n    def move(self):\n        print(\"Moving...\")"},{"options":{"out-height":"","message":"true","context":"interactive","warning":"true","output":"true","fig-height":5,"fig-width":7,"read-only":"false","out-width":"700px","classes":"","label":"","comment":"","fig-cap":"","autorun":"","dpi":72,"results":"markup"},"id":2,"code":"class Dog(Animal):\n    def make_sound(self):\n        return \"Woof!\"\n\nclass Cat(Animal):\n    def make_sound(self):\n        return \"Meow!\"\n\n# Usage\ndog = Dog()\nprint(dog.make_sound())  # Output: Woof!\ndog.move()  # Output: Moving...\n\ncat = Cat()\nprint(cat.make_sound())  # Output: Meow!\n\n# This would raise an error:\n# animal = Animal()  # TypeError: Can't instantiate abstract class Animal"},{"options":{"out-height":"","message":"true","context":"interactive","warning":"true","output":"true","fig-height":5,"fig-width":7,"read-only":"false","out-width":"700px","classes":"","label":"","comment":"","fig-cap":"","autorun":"","dpi":72,"results":"markup"},"id":3,"code":"from abc import ABC, abstractmethod\nimport math\n\nclass Shape(ABC):\n    @abstractmethod\n    def area(self):\n        pass\n\n    @abstractmethod\n    def perimeter(self):\n        pass\n\n    def describe(self):\n        print(f\"This shape has an area of {self.area()} and a perimeter of {self.perimeter()}\")\n\nclass Circle(Shape):\n    def __init__(self, radius):\n        self.radius = radius\n\n    def area(self):\n        return math.pi * self.radius ** 2\n\n    def perimeter(self):\n        return 2 * math.pi * self.radius\n\nclass Rectangle(Shape):\n    def __init__(self, width, height):\n        self.width = width\n        self.height = height\n\n    def area(self):\n        return self.width * self.height\n\n    def perimeter(self):\n        return 2 * (self.width + self.height)\n\n# Usage\ncircle = Circle(5)\nrectangle = Rectangle(4, 6)\n\ncircle.describe()\nrectangle.describe()"}];
 
 
 </script>
@@ -439,10 +439,10 @@ globalThis._qpyodideGetInstance = function() {
 <meta property="og:image:width" content="306">
 <meta name="citation_title" content="Abstract Classes">
 <meta name="citation_author" content="Remi Genet">
-<meta name="citation_publication_date" content="2024-09-03">
-<meta name="citation_cover_date" content="2024-09-03">
+<meta name="citation_publication_date" content="2024-10-21">
+<meta name="citation_cover_date" content="2024-10-21">
 <meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-09-03">
+<meta name="citation_online_date" content="2024-10-21">
 <meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_3/5-Abstract_class.html">
 <meta name="citation_language" content="en">
 </head>
@@ -671,6 +671,10 @@ globalThis._qpyodideGetInstance = function() {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_5/TP.html">
+ <span class="dropdown-text">TP: Creating a Linear Regression Package</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -700,6 +704,10 @@ globalThis._qpyodideGetInstance = function() {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_6/TP.html">
+ <span class="dropdown-text">TP</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -886,7 +894,7 @@ globalThis._qpyodideGetInstance = function() {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-09-03</p>
+      <p class="date">2024-10-21</p>
     </div>
   </div>
   

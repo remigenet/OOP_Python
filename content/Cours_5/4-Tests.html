@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Remi Genet">
-<meta name="dcterms.date" content="2024-09-03">
+<meta name="dcterms.date" content="2024-10-21">
 <meta name="description" content="Learn how to write and run unit tests in Python using the pytest framework.">
 
 <title>Unit Testing in Python – Programmation Orientée Objet en Python</title>
@@ -67,6 +67,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../content/Cours_5/TP.html" rel="next">
 <link href="../../content/Cours_5/3-Packaging_and_environment.html" rel="prev">
 <link href="../../content/.img/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
@@ -271,7 +272,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"id":1,"options":{"read-only":"false","out-height":"","out-width":"700px","output":"true","comment":"","context":"interactive","results":"markup","label":"","autorun":"","message":"true","warning":"true","classes":"","fig-width":7,"fig-cap":"","fig-height":5,"dpi":72},"code":"def test_addition():\n    assert 1 + 1 == 2\n\ndef test_string():\n    assert \"hello\".upper() == \"HELLO\""}];
+globalThis.qpyodideCellDetails = [{"code":"def test_addition():\n    assert 1 + 1 == 2\n\ndef test_string():\n    assert \"hello\".upper() == \"HELLO\"","options":{"read-only":"false","warning":"true","fig-height":5,"output":"true","message":"true","autorun":"","results":"markup","label":"","dpi":72,"comment":"","out-width":"700px","classes":"","context":"interactive","fig-cap":"","fig-width":7,"out-height":""},"id":1}];
 
 
 </script>
@@ -470,10 +471,10 @@ globalThis._qpyodideGetInstance = function() {
 <meta property="og:site_name" content="Programmation Orientée Objet en Python">
 <meta name="citation_title" content="Unit Testing in Python">
 <meta name="citation_author" content="Remi Genet">
-<meta name="citation_publication_date" content="2024-09-03">
-<meta name="citation_cover_date" content="2024-09-03">
+<meta name="citation_publication_date" content="2024-10-21">
+<meta name="citation_cover_date" content="2024-10-21">
 <meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-09-03">
+<meta name="citation_online_date" content="2024-10-21">
 <meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_5/4-Tests.html">
 <meta name="citation_language" content="en">
 </head>
@@ -702,6 +703,10 @@ globalThis._qpyodideGetInstance = function() {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_5/TP.html">
+ <span class="dropdown-text">TP: Creating a Linear Regression Package</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -731,6 +736,10 @@ globalThis._qpyodideGetInstance = function() {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_6/TP.html">
+ <span class="dropdown-text">TP</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -827,8 +836,11 @@ globalThis._qpyodideGetInstance = function() {
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
- <span class="menu-text">content/Cours_5/TP_equity_portfolio.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../content/Cours_5/TP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP: Creating a Linear Regression Package</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -895,7 +907,7 @@ globalThis._qpyodideGetInstance = function() {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-09-03</p>
+      <p class="date">2024-10-21</p>
     </div>
   </div>
   
@@ -1589,6 +1601,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../content/Cours_5/TP.html" class="pagination-link" aria-label="TP: Creating a Linear Regression Package">
+        <span class="nav-page-text">TP: Creating a Linear Regression Package</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

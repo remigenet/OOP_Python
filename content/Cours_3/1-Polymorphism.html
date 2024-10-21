@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Remi Genet">
-<meta name="dcterms.date" content="2024-09-03">
+<meta name="dcterms.date" content="2024-10-21">
 <meta name="description" content="Learn about polymorphism in object-oriented programming (OOP), including method overriding, runtime polymorphism, and how it enables flexible and extensible code structures.">
 
 <title>Polymorphism in Object-Oriented Programming – Programmation Orientée Objet en Python</title>
@@ -238,7 +238,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"class Animal:\n    def make_sound(self):\n        pass\n\nclass Dog(Animal):\n    def make_sound(self):\n        return \"Woof!\"\n\nclass Cat(Animal):\n    def make_sound(self):\n        return \"Meow!\"\n\nclass Cow(Animal):\n    def make_sound(self):\n        return \"Moo!\"\n\n# Using polymorphism\nanimals = [Dog(), Cat(), Cow()]\nfor animal in animals:\n    print(animal.make_sound())","id":1,"options":{"output":"true","warning":"true","label":"","classes":"","out-width":"700px","read-only":"false","context":"interactive","fig-width":7,"results":"markup","message":"true","fig-cap":"","comment":"","dpi":72,"fig-height":5,"autorun":"","out-height":""}},{"code":"class Shape:\n    def area(self):\n        return 0\n\nclass Rectangle(Shape):\n    def __init__(self, width, height):\n        self.width = width\n        self.height = height\n    \n    def area(self):\n        return self.width * self.height\n\nclass Circle(Shape):\n    def __init__(self, radius):\n        self.radius = radius\n    \n    def area(self):\n        return 3.14 * self.radius ** 2\n\n# Using method overriding\nshapes = [Rectangle(5, 3), Circle(4), Shape()]\nfor shape in shapes:\n    print(f\"Area: {shape.area()}\")","id":2,"options":{"output":"true","warning":"true","label":"","classes":"","out-width":"700px","read-only":"false","context":"interactive","fig-width":7,"results":"markup","message":"true","fig-cap":"","comment":"","dpi":72,"fig-height":5,"autorun":"","out-height":""}}];
+globalThis.qpyodideCellDetails = [{"code":"class Animal:\n    def make_sound(self):\n        pass\n\nclass Dog(Animal):\n    def make_sound(self):\n        return \"Woof!\"\n\nclass Cat(Animal):\n    def make_sound(self):\n        return \"Meow!\"\n\nclass Cow(Animal):\n    def make_sound(self):\n        return \"Moo!\"\n\n# Using polymorphism\nanimals = [Dog(), Cat(), Cow()]\nfor animal in animals:\n    print(animal.make_sound())","options":{"read-only":"false","context":"interactive","out-height":"","out-width":"700px","fig-width":7,"output":"true","comment":"","classes":"","fig-cap":"","warning":"true","fig-height":5,"dpi":72,"message":"true","label":"","results":"markup","autorun":""},"id":1},{"code":"class Shape:\n    def area(self):\n        return 0\n\nclass Rectangle(Shape):\n    def __init__(self, width, height):\n        self.width = width\n        self.height = height\n    \n    def area(self):\n        return self.width * self.height\n\nclass Circle(Shape):\n    def __init__(self, radius):\n        self.radius = radius\n    \n    def area(self):\n        return 3.14 * self.radius ** 2\n\n# Using method overriding\nshapes = [Rectangle(5, 3), Circle(4), Shape()]\nfor shape in shapes:\n    print(f\"Area: {shape.area()}\")","options":{"read-only":"false","context":"interactive","out-height":"","out-width":"700px","fig-width":7,"output":"true","comment":"","classes":"","fig-cap":"","warning":"true","fig-height":5,"dpi":72,"message":"true","label":"","results":"markup","autorun":""},"id":2}];
 
 
 </script>
@@ -437,10 +437,10 @@ globalThis._qpyodideGetInstance = function() {
 <meta property="og:site_name" content="Programmation Orientée Objet en Python">
 <meta name="citation_title" content="Polymorphism in Object-Oriented Programming">
 <meta name="citation_author" content="Remi Genet">
-<meta name="citation_publication_date" content="2024-09-03">
-<meta name="citation_cover_date" content="2024-09-03">
+<meta name="citation_publication_date" content="2024-10-21">
+<meta name="citation_cover_date" content="2024-10-21">
 <meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-09-03">
+<meta name="citation_online_date" content="2024-10-21">
 <meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_3/1-Polymorphism.html">
 <meta name="citation_language" content="en">
 </head>
@@ -669,6 +669,10 @@ globalThis._qpyodideGetInstance = function() {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_5/TP.html">
+ <span class="dropdown-text">TP: Creating a Linear Regression Package</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -698,6 +702,10 @@ globalThis._qpyodideGetInstance = function() {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_6/TP.html">
+ <span class="dropdown-text">TP</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -882,7 +890,7 @@ globalThis._qpyodideGetInstance = function() {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-09-03</p>
+      <p class="date">2024-10-21</p>
     </div>
   </div>
   

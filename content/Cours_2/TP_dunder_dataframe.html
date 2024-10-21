@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Remi Genet">
-<meta name="dcterms.date" content="2024-09-03">
+<meta name="dcterms.date" content="2024-10-21">
 
 <title>TP : Ajouter des méthodes dunder à DataFrameSimple – Programmation Orientée Objet en Python</title>
 <style>
@@ -271,7 +271,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"id":1,"code":"import numpy as np\n\nclass DataFrameSimple:\n    def __init__(self, data):\n        self.donnees = np.array(list(data.values())).T\n        self.colonnes = list(data.keys())\n\n    def afficher(self):\n        header = \" \".join(f\"{col:>10}\" for col in self.colonnes)\n        rows = [\" \".join(f\"{val:10}\" for val in row) for row in self.donnees[:5]]\n        return \"\\n\".join([header] + rows)\n\n    def moyenne(self, nom_colonne):\n        return np.mean(self.select_colonne(nom_colonne))\n\n    def somme(self, nom_colonne):\n        return np.sum(self.select_colonne(nom_colonne))\n\n    def min(self, nom_colonne):\n        return np.min(self.select_colonne(nom_colonne))\n\n    def max(self, nom_colonne):\n        return np.max(self.select_colonne(nom_colonne))\n\n    def select_colonne(self, nom_colonne):\n        index = self.colonnes.index(nom_colonne)\n        return self.donnees[:, index]\n\n    # TODO: Implémentez les méthodes dunder ici\n    def __str__(self):\n        pass\n\n    def __len__(self):\n        pass\n\n    def __getitem__(self, key):\n        pass\n\n    def __setitem__(self, key, value):\n        pass\n\n    def __iter__(self):\n        pass\n\n    def __add__(self, other):\n        pass\n\n# N'effacez pas cette ligne, elle est utilisée pour les tests\ndf = DataFrameSimple({'A': [1, 2, 3], 'B': [4, 5, 6]})","options":{"results":"markup","fig-width":7,"dpi":72,"context":"interactive","fig-height":5,"fig-cap":"","output":"true","warning":"true","label":"","autorun":"","classes":"","comment":"","out-width":"700px","message":"true","out-height":"","read-only":"false"}},{"id":2,"code":"import unittest\nimport numpy as np\n\nclass TestDataFrameSimpleDunder(unittest.TestCase):\n    def setUp(self):\n        self.df = DataFrameSimple({'A': [1, 2, 3], 'B': [4, 5, 6]})\n\n    def test_len(self):\n        self.assertEqual(len(self.df), 3)\n\n    def test_getitem(self):\n        np.testing.assert_array_equal(self.df['A'], np.array([1, 2, 3]))\n\n    def test_setitem(self):\n        self.df['C'] = [7, 8, 9]\n        np.testing.assert_array_equal(self.df['C'], np.array([7, 8, 9]))\n\n    def test_iter(self):\n        self.assertEqual(list(self.df), ['A', 'B'])\n\n    def test_add_scalar(self):\n        result = self.df + 1\n        np.testing.assert_array_equal(result.donnees, np.array([[2, 5], [3, 6], [4, 7]]))\n\n    def test_add_dataframe(self):\n        other = DataFrameSimple({'A': [10, 20, 30], 'B': [40, 50, 60]})\n        result = self.df + other\n        np.testing.assert_array_equal(result.donnees, np.array([[11, 44], [22, 55], [33, 66]]))\n\n    def test_add_array(self):\n        arr = np.array([[10, 40], [20, 50], [30, 60]])\n        result = self.df + arr\n        np.testing.assert_array_equal(result.donnees, np.array([[11, 44], [22, 55], [33, 66]]))\n\n    def test_add_invalid(self):\n        with self.assertRaises(TypeError):\n            _ = self.df + \"invalid\"\n\ndef run_tests():\n    unittest.main(argv=[''], verbosity=2, exit=False)\n\nif __name__ == '__main__':\n    run_tests()","options":{"results":"markup","fig-width":7,"dpi":72,"context":"interactive","fig-height":5,"fig-cap":"","output":"true","warning":"true","label":"","autorun":"","classes":"","comment":"","out-width":"700px","message":"true","out-height":"","read-only":"false"}}];
+globalThis.qpyodideCellDetails = [{"id":1,"code":"import numpy as np\n\nclass DataFrameSimple:\n    def __init__(self, data):\n        self.donnees = np.array(list(data.values())).T\n        self.colonnes = list(data.keys())\n\n    def afficher(self):\n        header = \" \".join(f\"{col:>10}\" for col in self.colonnes)\n        rows = [\" \".join(f\"{val:10}\" for val in row) for row in self.donnees[:5]]\n        return \"\\n\".join([header] + rows)\n\n    def moyenne(self, nom_colonne):\n        return np.mean(self.select_colonne(nom_colonne))\n\n    def somme(self, nom_colonne):\n        return np.sum(self.select_colonne(nom_colonne))\n\n    def min(self, nom_colonne):\n        return np.min(self.select_colonne(nom_colonne))\n\n    def max(self, nom_colonne):\n        return np.max(self.select_colonne(nom_colonne))\n\n    def select_colonne(self, nom_colonne):\n        index = self.colonnes.index(nom_colonne)\n        return self.donnees[:, index]\n\n    # TODO: Implémentez les méthodes dunder ici\n    def __str__(self):\n        pass\n\n    def __len__(self):\n        pass\n\n    def __getitem__(self, key):\n        pass\n\n    def __setitem__(self, key, value):\n        pass\n\n    def __iter__(self):\n        pass\n\n    def __add__(self, other):\n        pass\n\n# N'effacez pas cette ligne, elle est utilisée pour les tests\ndf = DataFrameSimple({'A': [1, 2, 3], 'B': [4, 5, 6]})","options":{"results":"markup","fig-height":5,"autorun":"","warning":"true","fig-cap":"","label":"","message":"true","output":"true","dpi":72,"fig-width":7,"read-only":"false","comment":"","context":"interactive","out-height":"","out-width":"700px","classes":""}},{"id":2,"code":"import unittest\nimport numpy as np\n\nclass TestDataFrameSimpleDunder(unittest.TestCase):\n    def setUp(self):\n        self.df = DataFrameSimple({'A': [1, 2, 3], 'B': [4, 5, 6]})\n\n    def test_len(self):\n        self.assertEqual(len(self.df), 3)\n\n    def test_getitem(self):\n        np.testing.assert_array_equal(self.df['A'], np.array([1, 2, 3]))\n\n    def test_setitem(self):\n        self.df['C'] = [7, 8, 9]\n        np.testing.assert_array_equal(self.df['C'], np.array([7, 8, 9]))\n\n    def test_iter(self):\n        self.assertEqual(list(self.df), ['A', 'B'])\n\n    def test_add_scalar(self):\n        result = self.df + 1\n        np.testing.assert_array_equal(result.donnees, np.array([[2, 5], [3, 6], [4, 7]]))\n\n    def test_add_dataframe(self):\n        other = DataFrameSimple({'A': [10, 20, 30], 'B': [40, 50, 60]})\n        result = self.df + other\n        np.testing.assert_array_equal(result.donnees, np.array([[11, 44], [22, 55], [33, 66]]))\n\n    def test_add_array(self):\n        arr = np.array([[10, 40], [20, 50], [30, 60]])\n        result = self.df + arr\n        np.testing.assert_array_equal(result.donnees, np.array([[11, 44], [22, 55], [33, 66]]))\n\n    def test_add_invalid(self):\n        with self.assertRaises(TypeError):\n            _ = self.df + \"invalid\"\n\ndef run_tests():\n    unittest.main(argv=[''], verbosity=2, exit=False)\n\nif __name__ == '__main__':\n    run_tests()","options":{"results":"markup","fig-height":5,"autorun":"","warning":"true","fig-cap":"","label":"","message":"true","output":"true","dpi":72,"fig-width":7,"read-only":"false","comment":"","context":"interactive","out-height":"","out-width":"700px","classes":""}}];
 
 
 </script>
@@ -470,10 +470,10 @@ globalThis._qpyodideGetInstance = function() {
 <meta property="og:site_name" content="Programmation Orientée Objet en Python">
 <meta name="citation_title" content="TP : Ajouter des méthodes dunder à DataFrameSimple">
 <meta name="citation_author" content="Remi Genet">
-<meta name="citation_publication_date" content="2024-09-03">
-<meta name="citation_cover_date" content="2024-09-03">
+<meta name="citation_publication_date" content="2024-10-21">
+<meta name="citation_cover_date" content="2024-10-21">
 <meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-09-03">
+<meta name="citation_online_date" content="2024-10-21">
 <meta name="citation_fulltext_html_url" content="https://remigenet.github.io/OOP_Python/content/Cours_2/TP_dunder_dataframe.html">
 <meta name="citation_language" content="en">
 </head>
@@ -702,6 +702,10 @@ globalThis._qpyodideGetInstance = function() {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_5/TP.html">
+ <span class="dropdown-text">TP: Creating a Linear Regression Package</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -731,6 +735,10 @@ globalThis._qpyodideGetInstance = function() {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Travaux Pratiques</li>
+        <li>
+    <a class="dropdown-item" href="../../content/Cours_6/TP.html">
+ <span class="dropdown-text">TP</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -910,7 +918,7 @@ globalThis._qpyodideGetInstance = function() {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-09-03</p>
+      <p class="date">2024-10-21</p>
     </div>
   </div>
   
