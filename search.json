@@ -1147,7 +1147,7 @@
     "href": "content/Projets/index.html",
     "title": "Projets",
     "section": "",
-    "text": "Les cours de cette partie sont:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nProjets POO - Millésime 2024-2025\n\n\n\n\n\n\nRemi Genet\n\n\n2024-10-21\n\n\n\n\n\n\n\n\nNo matching items\n\n Back to top",
+    "text": "Les cours de cette partie sont:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nProjets POO - 2024-2025\n\n\n\n\n\n\nRemi Genet\n\n\n2024-10-21\n\n\n\n\n\n\n\n\nNo matching items\n\n Back to top",
     "crumbs": [
       "Projets"
     ]
@@ -1155,11 +1155,61 @@
   {
     "objectID": "content/Projets/m2_EIF_2024.html",
     "href": "content/Projets/m2_EIF_2024.html",
-    "title": "Projets POO - Millésime 2024-2025",
+    "title": "Projets POO - 2024-2025",
     "section": "",
-    "text": "TODO\n\n\n\n\n\n Back to top",
+    "text": "Conception d’un framework de backtesting permettant d’évaluer et de comparer différentes stratégies d’investissement sur des données historiques. Ce framework vous aidera à implémenter, tester et analyser diverses stratégies de trading, en fournissant des métriques de performance et des visualisations pour faciliter la prise de décision. L’objectif est de créer un outil flexible et extensible qui permet aux utilisateurs de développer et d’évaluer leurs propres stratégies d’investissement.\n\n\n\n\nDonnées :\n\nLe framework doit accepter des données d’entrée au format CSV ou Parquet.\nLes étudiants sont responsables de fournir leurs propres données. Ils peuvent utiliser des données réelles (par exemple, crypto-monnaies, actions, ou autres actifs financiers) ou générer des données synthétiques.\nLe framework doit pouvoir accepter les données soit sous forme de DataFrame pandas, soit comme un chemin vers un fichier CSV ou Parquet.\nLe framework n’a pas besoin de récupérer les données lui-même ; elles doivent être fournies par l’utilisateur.\n\nImplémentation du backtester :\n\nCréez une classe abstraite Strategy avec les contraintes suivantes :\n\nMéthode obligatoire : get_position(historical_data, current_position)\nMéthode optionnelle : fit(data) (par défaut, cette méthode ne fait rien si elle n’est pas implémentée)\n\nPermettez la création de stratégies soit par héritage de la classe abstraite, soit par un décorateur pour les stratégies simples ne nécessitant que get_position.\nImplémentez une classe Backtester qui :\n\nEst instanciée avec une série de données d’entrée\nPossède une méthode pour exécuter le backtest en prenant une instance de Strategy\nRenvoie une instance de la classe Result après l’exécution du backtest\n\nImplémentez une classe Result pour afficher et visualiser les résultats du backtest, avec différentes méthodes pour le plotting et l’affichage des statistiques de performance, incluant (mais non limité à) :\n\nPerformance totale et annualisée\nVolatilité\nRatio de Sharpe\nDrawdown maximum\nRatio de Sortino\nNombre de trades\nPourcentage de trades gagnants\n\nAjoutez une fonction compare_results(result_1, result_2, ...) pour comparer les résultats de différentes stratégies.\nImplémentez la possibilité de choisir le backend pour les visualisations (matplotlib par défaut, avec options pour seaborn et plotly).\nPermettez de spécifier une fréquence de rééquilibrage pour chaque stratégie.\n\nFonctionnalités du framework :\n\nPermettez à l’utilisateur de définir et de tester facilement de nouvelles stratégies.\nOffrez la possibilité de comparer plusieurs stratégies entre elles.\nImplémentez des fonctionnalités pour gérer les frais de transaction et le slippage.\nLe framework doit permettre de créer et de tester des stratégies sur un ou plusieurs actifs simultanément.\n\nStructuration du code :\n\nAdoptez une approche orientée objet pour la structure de votre projet.\nDivisez votre code en modules et classes distincts pour chaque fonctionnalité.\nCommentez et documentez votre code pour faciliter sa compréhension.\nCréez un fichier pyproject.toml pour permettre l’installation via pip.\nIncluez des tests unitaires et d’intégration pour votre code.\n\nExemple d’utilisation :\n\nFournissez un notebook Jupyter (ou équivalent) qui démontre l’utilisation du package.\nCe notebook doit inclure un exemple complet d’utilisation du framework, de la création d’une stratégie à l’analyse des résultats.\nAssurez-vous que l’exemple montre les principales fonctionnalités du framework et inclut des visualisations des résultats.\n\n\n\n\n\n\nStructure du code :\n\nOrganisation et modularité du code.\nUtilisation appropriée des concepts de programmation orientée objet vus en cours.\nClarté et propreté du code (pas de redondance, noms de variables explicites, etc.).\n\nDocumentation :\n\nPrésence de commentaires explicatifs.\nQualité et clarté de la documentation fournie (par exemple, docstrings pour les classes et méthodes).\n\nFonctionnalités :\n\nImplémentation correcte du backtester et des différentes composantes du framework.\nFlexibilité et extensibilité du framework pour accommoder diverses stratégies.\nCapacité à gérer des stratégies sur un ou plusieurs actifs.\nQualité des visualisations et des résultats produits.\n\nTests :\n\nCouverture et pertinence des tests unitaires et d’intégration.\n\nInstallation et déploiement :\n\nConfiguration correcte du fichier pyproject.toml.\nFacilité d’installation et d’utilisation du package.\n\nExemple d’utilisation :\n\nQualité et exhaustivité du notebook d’exemple fourni.\nClarté des explications et pertinence des exemples choisis.\n\n\n\n\n\n\nCommencez par implémenter des stratégies simples (par exemple, une moyenne mobile croisée) pour tester votre framework avant de passer à des stratégies plus complexes.\nPensez à l’efficacité de votre code, surtout pour les backtests sur de grandes quantités de données historiques.\nL’utilisation de bibliothèques comme pandas, numpy, et scipy peut grandement faciliter le traitement des données et les calculs.\nL’utilisation de ChatGPT ou d’autres outils d’IA est autorisée, mais assurez-vous de comprendre et de personnaliser le code généré.\n\n\n\n\n\nVous travaillerez en groupes de 4 personnes. Tous les groupes auront le même sujet.\nLe projet doit être hébergé sur GitHub.\nEnvoyez un e-mail contenant :\n\nLes noms des membres du groupe\nLe lien vers le dépôt GitHub du projet",
     "crumbs": [
-      "Projets POO - Millésime 2024-2025"
+      "Projets POO - 2024-2025"
+    ]
+  },
+  {
+    "objectID": "content/Projets/m2_EIF_2024.html#description-du-projet",
+    "href": "content/Projets/m2_EIF_2024.html#description-du-projet",
+    "title": "Projets POO - 2024-2025",
+    "section": "",
+    "text": "Conception d’un framework de backtesting permettant d’évaluer et de comparer différentes stratégies d’investissement sur des données historiques. Ce framework vous aidera à implémenter, tester et analyser diverses stratégies de trading, en fournissant des métriques de performance et des visualisations pour faciliter la prise de décision. L’objectif est de créer un outil flexible et extensible qui permet aux utilisateurs de développer et d’évaluer leurs propres stratégies d’investissement.",
+    "crumbs": [
+      "Projets POO - 2024-2025"
+    ]
+  },
+  {
+    "objectID": "content/Projets/m2_EIF_2024.html#consignes",
+    "href": "content/Projets/m2_EIF_2024.html#consignes",
+    "title": "Projets POO - 2024-2025",
+    "section": "",
+    "text": "Données :\n\nLe framework doit accepter des données d’entrée au format CSV ou Parquet.\nLes étudiants sont responsables de fournir leurs propres données. Ils peuvent utiliser des données réelles (par exemple, crypto-monnaies, actions, ou autres actifs financiers) ou générer des données synthétiques.\nLe framework doit pouvoir accepter les données soit sous forme de DataFrame pandas, soit comme un chemin vers un fichier CSV ou Parquet.\nLe framework n’a pas besoin de récupérer les données lui-même ; elles doivent être fournies par l’utilisateur.\n\nImplémentation du backtester :\n\nCréez une classe abstraite Strategy avec les contraintes suivantes :\n\nMéthode obligatoire : get_position(historical_data, current_position)\nMéthode optionnelle : fit(data) (par défaut, cette méthode ne fait rien si elle n’est pas implémentée)\n\nPermettez la création de stratégies soit par héritage de la classe abstraite, soit par un décorateur pour les stratégies simples ne nécessitant que get_position.\nImplémentez une classe Backtester qui :\n\nEst instanciée avec une série de données d’entrée\nPossède une méthode pour exécuter le backtest en prenant une instance de Strategy\nRenvoie une instance de la classe Result après l’exécution du backtest\n\nImplémentez une classe Result pour afficher et visualiser les résultats du backtest, avec différentes méthodes pour le plotting et l’affichage des statistiques de performance, incluant (mais non limité à) :\n\nPerformance totale et annualisée\nVolatilité\nRatio de Sharpe\nDrawdown maximum\nRatio de Sortino\nNombre de trades\nPourcentage de trades gagnants\n\nAjoutez une fonction compare_results(result_1, result_2, ...) pour comparer les résultats de différentes stratégies.\nImplémentez la possibilité de choisir le backend pour les visualisations (matplotlib par défaut, avec options pour seaborn et plotly).\nPermettez de spécifier une fréquence de rééquilibrage pour chaque stratégie.\n\nFonctionnalités du framework :\n\nPermettez à l’utilisateur de définir et de tester facilement de nouvelles stratégies.\nOffrez la possibilité de comparer plusieurs stratégies entre elles.\nImplémentez des fonctionnalités pour gérer les frais de transaction et le slippage.\nLe framework doit permettre de créer et de tester des stratégies sur un ou plusieurs actifs simultanément.\n\nStructuration du code :\n\nAdoptez une approche orientée objet pour la structure de votre projet.\nDivisez votre code en modules et classes distincts pour chaque fonctionnalité.\nCommentez et documentez votre code pour faciliter sa compréhension.\nCréez un fichier pyproject.toml pour permettre l’installation via pip.\nIncluez des tests unitaires et d’intégration pour votre code.\n\nExemple d’utilisation :\n\nFournissez un notebook Jupyter (ou équivalent) qui démontre l’utilisation du package.\nCe notebook doit inclure un exemple complet d’utilisation du framework, de la création d’une stratégie à l’analyse des résultats.\nAssurez-vous que l’exemple montre les principales fonctionnalités du framework et inclut des visualisations des résultats.",
+    "crumbs": [
+      "Projets POO - 2024-2025"
+    ]
+  },
+  {
+    "objectID": "content/Projets/m2_EIF_2024.html#critères-dévaluation",
+    "href": "content/Projets/m2_EIF_2024.html#critères-dévaluation",
+    "title": "Projets POO - 2024-2025",
+    "section": "",
+    "text": "Structure du code :\n\nOrganisation et modularité du code.\nUtilisation appropriée des concepts de programmation orientée objet vus en cours.\nClarté et propreté du code (pas de redondance, noms de variables explicites, etc.).\n\nDocumentation :\n\nPrésence de commentaires explicatifs.\nQualité et clarté de la documentation fournie (par exemple, docstrings pour les classes et méthodes).\n\nFonctionnalités :\n\nImplémentation correcte du backtester et des différentes composantes du framework.\nFlexibilité et extensibilité du framework pour accommoder diverses stratégies.\nCapacité à gérer des stratégies sur un ou plusieurs actifs.\nQualité des visualisations et des résultats produits.\n\nTests :\n\nCouverture et pertinence des tests unitaires et d’intégration.\n\nInstallation et déploiement :\n\nConfiguration correcte du fichier pyproject.toml.\nFacilité d’installation et d’utilisation du package.\n\nExemple d’utilisation :\n\nQualité et exhaustivité du notebook d’exemple fourni.\nClarté des explications et pertinence des exemples choisis.",
+    "crumbs": [
+      "Projets POO - 2024-2025"
+    ]
+  },
+  {
+    "objectID": "content/Projets/m2_EIF_2024.html#conseils",
+    "href": "content/Projets/m2_EIF_2024.html#conseils",
+    "title": "Projets POO - 2024-2025",
+    "section": "",
+    "text": "Commencez par implémenter des stratégies simples (par exemple, une moyenne mobile croisée) pour tester votre framework avant de passer à des stratégies plus complexes.\nPensez à l’efficacité de votre code, surtout pour les backtests sur de grandes quantités de données historiques.\nL’utilisation de bibliothèques comme pandas, numpy, et scipy peut grandement faciliter le traitement des données et les calculs.\nL’utilisation de ChatGPT ou d’autres outils d’IA est autorisée, mais assurez-vous de comprendre et de personnaliser le code généré.",
+    "crumbs": [
+      "Projets POO - 2024-2025"
+    ]
+  },
+  {
+    "objectID": "content/Projets/m2_EIF_2024.html#groupes-et-remise-du-projet",
+    "href": "content/Projets/m2_EIF_2024.html#groupes-et-remise-du-projet",
+    "title": "Projets POO - 2024-2025",
+    "section": "",
+    "text": "Vous travaillerez en groupes de 4 personnes. Tous les groupes auront le même sujet.\nLe projet doit être hébergé sur GitHub.\nEnvoyez un e-mail contenant :\n\nLes noms des membres du groupe\nLe lien vers le dépôt GitHub du projet",
+    "crumbs": [
+      "Projets POO - 2024-2025"
     ]
   },
   {
