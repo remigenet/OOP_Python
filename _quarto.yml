@@ -106,7 +106,7 @@ website:
        - section: Travaux Pratiques
          expanded: false
          contents:
-         - content/Cours_5/TP_equity_portfolio.qmd
+         - content/Cours_5/TP.qmd
     - id: patterns 
       title: "Design Patterns"
       contents: 
@@ -118,7 +118,7 @@ website:
        - section: Travaux Pratiques
          expanded: false
          contents:
-         - content/Cours_5/TP_equity_portfolio.qmd
+         - content/Cours_6/TP.qmd
     - id: projects
       title: "Sujets de Projets possibles"
       contents: 
